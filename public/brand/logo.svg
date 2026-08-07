@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 250" width="200" height="250">
+  <!-- glazedweb mark v1.0 — pink donut, green slime drip. Hole is transparent. -->
+  <defs>
+    <radialGradient id="pinkGrad" cx="40%" cy="34%" r="75%">
+      <stop offset="0%" stop-color="#F887B2"/>
+      <stop offset="55%" stop-color="#E84D8A"/>
+      <stop offset="100%" stop-color="#CE3672"/>
+    </radialGradient>
+    <linearGradient id="lgGrad" x1="0" y1="92" x2="0" y2="215" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#D9EDA0"/>
+      <stop offset="55%" stop-color="#BFE07A"/>
+      <stop offset="100%" stop-color="#A3CE55"/>
+    </linearGradient>
+    <linearGradient id="creepGrad" x1="0" y1="90" x2="0" y2="124" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E3F2B0"/>
+      <stop offset="100%" stop-color="#C3E181"/>
+    </linearGradient>
+    <linearGradient id="dgGrad" x1="0" y1="92" x2="0" y2="165" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#5FA850"/>
+      <stop offset="100%" stop-color="#43813A"/>
+    </linearGradient>
+  </defs>
+  <g fill="url(#dgGrad)">
+    <ellipse cx="100" cy="110" rx="38" ry="15"/>
+    <path d="M 86 100 C 86 116, 87 130, 88 142 C 88 148, 91 149, 92 142 C 93 130, 92 114, 92 100 Z"/>
+    <path d="M 114 100 C 114 112, 115 124, 116 134 C 116 140, 119 141, 120 134 C 121 124, 120 110, 120 100 Z"/>
+  </g>
+  <g fill="url(#lgGrad)">
+    <path d="M 64 100 C 63 120, 65 138, 66 152 C 66 164, 68 172, 74 173 C 80 172, 83 165, 82 154 C 84 136, 85 116, 86 100 Z"/>
+    <path d="M 92 100 C 91 128, 93 152, 94 172 C 94 188, 97 199, 104 200 C 111 199, 114 190, 112 174 C 113 150, 114 124, 114 100 Z"/>
+    <path d="M 120 100 C 119 116, 120 130, 121 142 C 121 152, 123 159, 129 160 C 134 159, 137 153, 135 144 C 136 130, 137 114, 137 100 Z"/>
+  </g>
+  <path fill-rule="evenodd" fill="url(#pinkGrad)"
+        d="M 100 18 A 52 52 0 1 0 100 122 A 52 52 0 1 0 100 18 Z
+           M 100 59 A 13 13 0 1 1 100 85 A 13 13 0 1 1 100 59 Z"/>
+  <path d="M 56 98 A 52 52 0 0 0 144 98 C 142 94, 138 92, 134 94 C 130 97, 129 102, 125 104 C 119 106, 116 98, 110 96 C 104 94, 103 102, 98 105 C 93 107, 90 100, 84 97 C 78 95, 76 100, 71 102 C 66 103, 62 100, 56 98 Z" fill="url(#creepGrad)"/>
+  <path d="M 68 106 A 42 42 0 0 0 84 116" fill="none" stroke="#F1F8DC" stroke-width="4" stroke-linecap="round" opacity="0.85"/>
+  <path d="M 97 144 Q 103 151 109 144" fill="none" stroke="#55974A" stroke-width="4" stroke-linecap="round"/>
+  <g stroke="#F1F8DC" fill="none" stroke-linecap="round">
+    <path d="M 97 128 C 96 148, 97 166, 100 182" stroke-width="4.5" opacity="0.85"/>
+    <path d="M 69 118 C 68 132, 70 146, 71 156" stroke-width="3.5" opacity="0.8"/>
+    <path d="M 124 114 C 123 124, 125 138, 126 148" stroke-width="3.5" opacity="0.8"/>
+  </g>
+  <circle cx="100" cy="192" r="2.5" fill="#F1F8DC" opacity="0.9"/>
+  <circle cx="100" cy="72" r="13" fill="none" stroke="#C22F6B" stroke-width="3" opacity="0.3"/>
+  <path d="M 62 46 A 44 44 0 0 1 82 28" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" opacity="0.75"/>
+  <circle cx="92" cy="26" r="3.5" fill="#FFFFFF" opacity="0.75"/>
+</svg>

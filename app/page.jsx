@@ -213,15 +213,29 @@ export default function Home() {
           </h2>
           <p className="sec-sub">Recent bakes — and room in the case for yours.</p>
           <div className="work-grid">
-            <div className="wcard reveal">
-              <div className="thumb" style={{ background: "linear-gradient(135deg,#E84D8A,#CE3672)", color: "#fff" }}>
-                PROJECT ONE
+            <a
+              className="wcard reveal"
+              href="https://chism-chicken-ranch.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div
+                className="thumb"
+                style={{
+                  background: "linear-gradient(135deg,#B5532A,#8A3C1C)",
+                  color: "#FFF7EA",
+                  flexDirection: "column",
+                  gap: 6,
+                }}
+              >
+                <span style={{ fontSize: 34, fontWeight: 800, letterSpacing: "-1px" }}>CHISM</span>
+                <span style={{ fontSize: 11, letterSpacing: ".22em", opacity: 0.85 }}>CHICKEN RANCH</span>
               </div>
               <div className="meta">
-                <b>Coming soon</b>
-                <span>Local service business</span>
+                <b>Chism Chicken Ranch</b>
+                <span>Pasture-raised poultry · Marshall, MI</span>
               </div>
-            </div>
+            </a>
             <div className="wcard reveal">
               <div className="thumb" style={{ background: "linear-gradient(135deg,#BFE07A,#8FBC4E)", color: "#2B1E16" }}>
                 PROJECT TWO

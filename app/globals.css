@@ -179,8 +179,6 @@
   #chism-card { position: relative; overflow: visible; }
   #chism-card .thumb { border-radius: 18px 18px 0 0; }
   #chism-card .meta { border-radius: 0 0 18px 18px; }
-  .chism-chick .hen-body { transform-box: fill-box; transform-origin: 50% 88%; animation: chickBob 3.4s ease-in-out infinite; }
-  .hen-shadow { transition: opacity .4s ease; }
   .bok-bubble {
     position: absolute; top: -26px; right: 14px; z-index: 5;
     background: #FFFDF8; color: #8A3C1C;
@@ -201,83 +199,24 @@
   }
   #chism-card.boking .bok-bubble,
   #chism-card:hover .bok-bubble { opacity: 1; transform: scale(1) rotate(-3deg); }
-  .chism-egg { opacity: 0; transform-box: fill-box; transform-origin: 50% 100%; transition: opacity .4s ease; }
-  #chism-card.boking .chism-egg,
-  #chism-card:hover .chism-egg { opacity: 1; animation: eggLay 1.25s cubic-bezier(.45,.05,.55,.95); }
-  @keyframes eggLay {
-    0% { opacity: 0; transform: translate(16px, -28px) scale(.45) rotate(-12deg); }
-    12% { opacity: 1; }
-    36% { transform: translate(6px, -16px) scale(.92) rotate(-6deg); }
-    56% { transform: translate(0, 0) scale(1) rotate(0); }
-    67% { transform: translate(0, 0) scaleX(1.18) scaleY(.8); }
-    78% { transform: translate(0, -5px) scale(1) rotate(5deg); }
-    89% { transform: translate(0, 0) rotate(-2.5deg); }
-    100% { transform: translate(0, 0) rotate(0deg); }
-  }
-  .chism-egg-shadow { opacity: 0; transition: opacity .3s ease; }
-  #chism-card.boking .chism-egg-shadow,
-  #chism-card:hover .chism-egg-shadow { opacity: 1; transition: opacity .25s ease .6s; }
-
-  /* flight is scroll-scrubbed (JS drives .hen-body transform): down = away, up = back */
-  #chism-card.scrub-fly { z-index: 6; }
-  #chism-card.scrub-fly .hen-body { animation: none; }
-  #chism-card.scrub-fly .bok-bubble { opacity: 0 !important; }
-  #chism-card.scrub-fly .chism-egg,
-  #chism-card.scrub-fly .chism-egg-shadow { opacity: 1; }
-
-  /* keep scrolling: the egg she left behind hatches */
-  .chism-baby, .chism-shell-bottom, .chism-shell-top { opacity: 0; transform-box: fill-box; }
-  #chism-card.hatching .bok-bubble { opacity: 0 !important; }
-  #chism-card.hatching .chism-egg-shadow { opacity: 1; }
-  #chism-card.hatching .chism-egg { animation: hatchWobble .85s ease-in-out forwards; }
-  #chism-card.hatching .chism-shell-bottom { animation: shellBottomIn .5s ease-out .85s forwards; }
-  #chism-card.hatching .chism-shell-top { transform-origin: 50% 100%; animation: shellTopPop 1s ease-in .85s forwards; }
-  #chism-card.hatching .chism-baby {
-    transform-origin: 50% 100%;
-    animation: babyRise .9s cubic-bezier(.34,1.56,.64,1) 1s forwards, babyBob 2.6s ease-in-out 1.95s infinite;
-  }
-  @keyframes hatchWobble {
-    0% { transform: rotate(0); opacity: 1; }
-    15% { transform: rotate(-9deg) translateX(-1px); }
-    30% { transform: rotate(8deg) translateX(1px); }
-    45% { transform: rotate(-10deg); }
-    60% { transform: rotate(9deg) translateY(-2px); }
-    75% { transform: rotate(-6deg); }
-    99% { opacity: 1; }
-    100% { transform: rotate(0); opacity: 0; }
-  }
-  @keyframes shellBottomIn {
-    0% { opacity: 0; transform: translateY(0); }
-    8% { opacity: 1; }
-    40% { transform: translateY(1.5px) scaleY(.96); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes shellTopPop {
-    0% { opacity: 1; transform: translate(0, 0) rotate(0); }
-    30% { transform: translate(-7px, -14px) rotate(-35deg); }
-    60% { transform: translate(-11px, -6px) rotate(-70deg); }
-    85% { opacity: 1; }
-    100% { opacity: 0; transform: translate(-14px, 4px) rotate(-95deg); }
-  }
-  @keyframes babyRise {
-    0% { opacity: 0; transform: translateY(7px) scale(.5); }
-    30% { opacity: 1; }
-    70% { transform: translateY(-2.5px) scale(1.06); }
-    100% { opacity: 1; transform: translateY(0) scale(1); }
-  }
-  @keyframes babyBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1.6px); } }
-  #chism-card.boking .hen-body { animation: henLay .7s ease-out, chickBob 3.4s ease-in-out .7s infinite; }
-  @keyframes henLay {
-    0% { transform: translateY(0) rotate(0); }
-    30% { transform: translateY(-4px) rotate(3deg); }
-    60% { transform: translateY(2.5px) rotate(-1.5deg); }
-    100% { transform: translateY(0) rotate(0); }
-  }
-  @keyframes chickBob {
-    0%, 100% { transform: translateY(0) rotate(0); }
-    30% { transform: translateY(-2.5px) rotate(-1.6deg); }
-    65% { transform: translateY(1px) rotate(1.2deg); }
-  }
+  /* the big glazed egg — scroll-stepped shatter, hard cuts (data-egg 0-5 on the card) */
+  .chism-big-egg .crack-1, .chism-big-egg .crack-2, .chism-big-egg .crack-3,
+  .chism-big-egg .egg-open, .chism-big-egg .chick-peek, .chism-big-egg .chick-up,
+  .chism-big-egg .frags-4, .chism-big-egg .frags-5 { opacity: 0; }
+  #chism-card[data-egg="1"] .crack-1 { opacity: 1; }
+  #chism-card[data-egg="2"] .crack-1,
+  #chism-card[data-egg="2"] .crack-2 { opacity: 1; }
+  #chism-card[data-egg="3"] .crack-1,
+  #chism-card[data-egg="3"] .crack-2,
+  #chism-card[data-egg="3"] .crack-3 { opacity: 1; }
+  #chism-card[data-egg="4"] .egg-whole,
+  #chism-card[data-egg="5"] .egg-whole { opacity: 0; }
+  #chism-card[data-egg="4"] .egg-open,
+  #chism-card[data-egg="4"] .chick-peek,
+  #chism-card[data-egg="4"] .frags-4 { opacity: 1; }
+  #chism-card[data-egg="5"] .egg-open,
+  #chism-card[data-egg="5"] .chick-up,
+  #chism-card[data-egg="5"] .frags-5 { opacity: 1; }
 
   /* Be A Number card — logo float + scroll-linked number roll */
   .ban-logo { animation: banFloat 5s ease-in-out infinite; filter: drop-shadow(0 4px 14px rgba(212,168,67,0.35)); }
@@ -289,12 +228,7 @@
   @media (prefers-reduced-motion: reduce) {
     .ban-logo { animation: none; }
     .ban-counter.tick { animation: none; }
-    .chism-chick .hen-body, #chism-card.boking .hen-body { animation: none; }
     .bok-bubble { transition: opacity .2s ease; transform: scale(1) rotate(-3deg); }
-    .chism-egg { animation: none !important; opacity: 1 !important; transform: none; }
-    .chism-egg-shadow { opacity: 1; }
-    #chism-card.hatching .chism-shell-bottom, #chism-card.hatching .chism-shell-top,
-    #chism-card.hatching .chism-baby { animation: none; opacity: 0; }
     .step.glazed .num::after { animation: none; }
   }
 

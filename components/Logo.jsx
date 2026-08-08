@@ -233,3 +233,104 @@ export function ChismChicken({ size = 96, className, style }) {
     </svg>
   );
 }
+
+/* Chism Chicken Ranch v2 — one big sleek glazed egg. Scroll steps (data-egg on
+   the card, 0-5) crack it open frame by frame until a chick pops out. */
+export function ChismEgg({ size = 116, className, style }) {
+  const h = (size * 150) / 140;
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 140 150"
+      width={size}
+      height={h}
+      className={className}
+      style={style}
+      aria-hidden="true"
+    >
+      <defs>
+        <radialGradient id="chismEggGrad" cx="38%" cy="28%" r="80%">
+          <stop offset="0%" stopColor="#FFFFFF" />
+          <stop offset="45%" stopColor="#FFF8EC" />
+          <stop offset="100%" stopColor="#EFDCC2" />
+        </radialGradient>
+        <linearGradient id="chismGlazeGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#D9EDA0" />
+          <stop offset="100%" stopColor="#A9D65C" />
+        </linearGradient>
+      </defs>
+      {/* ground shadow */}
+      <ellipse cx="70" cy="140" rx="42" ry="6" fill="#5E2812" opacity="0.45" />
+      {/* chick peeking (step 4) — drawn under the open shell */}
+      <g className="chick-peek">
+        <circle cx="70" cy="88" r="15" fill="#FFD75E" />
+        <circle cx="64.5" cy="85" r="2.2" fill="#2B1E16" />
+        <circle cx="75.5" cy="85" r="2.2" fill="#2B1E16" />
+        <path d="M 66.5 90 L 70 94.5 L 73.5 90 Z" fill="#E8A33D" />
+        <path d="M 66 74.5 C 67 72 69 72 69.5 74 M 70.5 74 C 71.5 71.5 73.5 71.8 74 74" stroke="#E8A33D" strokeWidth="1.4" fill="none" strokeLinecap="round" />
+      </g>
+      {/* chick fully out (step 5) */}
+      <g className="chick-up">
+        <ellipse cx="49" cy="84" rx="7" ry="12" fill="#F5C93F" transform="rotate(24 49 84)" />
+        <ellipse cx="91" cy="84" rx="7" ry="12" fill="#F5C93F" transform="rotate(-24 91 84)" />
+        <circle cx="70" cy="72" r="21" fill="#FFD75E" />
+        <circle cx="62.5" cy="68" r="2.6" fill="#2B1E16" />
+        <circle cx="77.5" cy="68" r="2.6" fill="#2B1E16" />
+        <circle cx="63.3" cy="67.2" r="0.9" fill="#FFF7EA" />
+        <circle cx="78.3" cy="67.2" r="0.9" fill="#FFF7EA" />
+        <path d="M 65.5 74 L 70 79.5 L 74.5 74 Z" fill="#E8A33D" />
+        {/* shell-piece hat */}
+        <g transform="rotate(-14 70 50)">
+          <path d="M 58 52 C 59 44 64 40 70 40 C 76 40 81 44 82 52 L 77 48 L 73 53 L 69 47 L 64 52 L 60 48 Z" fill="url(#chismEggGrad)" />
+          <path d="M 61 43 C 64 39.5 76 39.5 79 43 C 80 46 77 47 75 45 C 73 43 74 47 70 47 C 66 47 68 43 65 45 C 63 47 60 46 61 43 Z" fill="url(#chismGlazeGrad)" />
+        </g>
+      </g>
+      {/* open bottom shell (steps 4-5) — jagged rim, covers the chick's lower body */}
+      <g className="egg-open">
+        <path
+          d="M 30 92 C 30 122 47 140 70 140 C 93 140 110 122 110 92 L 104 86 L 98 95 L 90 84 L 82 95 L 72 83 L 62 94 L 54 85 L 46 95 L 38 86 L 32 93 Z"
+          fill="url(#chismEggGrad)"
+        />
+        <path d="M 36 95 C 46 102 94 102 105 94 C 100 108 88 118 70 118 C 52 118 41 108 36 95 Z" fill="#D9C0A0" opacity="0.5" />
+      </g>
+      {/* the whole egg (steps 0-3) */}
+      <g className="egg-whole">
+        <path
+          d="M 70 20 C 95 20 112 52 112 90 C 112 120 93 140 70 140 C 47 140 28 120 28 90 C 28 52 45 20 70 20 Z"
+          fill="url(#chismEggGrad)"
+        />
+        {/* slime glaze cap, dripping — it ships glazed */}
+        <path
+          d="M 46 42 C 50 27 59 19 70 19 C 82 19 91 27 95 42 C 97 50 92 53 89 48 C 86 43 88 56 82 57 C 77 57 79 46 74 47 C 70 48 72 60 66 60 C 61 60 63 47 58 46 C 54 45 55 52 51 51 C 46 50 44 47 46 42 Z"
+          fill="url(#chismGlazeGrad)"
+        />
+        <circle cx="66" cy="60" r="2.4" fill="#A9D65C" className="egg-drip" />
+        {/* sheen */}
+        <path d="M 45 52 A 34 40 0 0 1 58 33" fill="none" stroke="#FFFFFF" strokeWidth="6" strokeLinecap="round" opacity="0.75" className="sheen" />
+        <circle cx="64" cy="29" r="2.6" fill="#FFFFFF" opacity="0.75" className="sheen" />
+      </g>
+      {/* cracks — cumulative, steps 1-3 */}
+      <g stroke="#B99F82" strokeWidth="2.2" strokeLinecap="round" fill="none">
+        <path className="crack-1" d="M 88 62 L 81 69 L 86 76" />
+        <path className="crack-2" d="M 81 69 L 72 72 L 74 81 M 86 76 L 92 84" />
+        <path className="crack-3" d="M 72 72 L 62 69 L 58 76 M 52 60 L 59 65 M 96 68 L 90 60 M 74 81 L 66 88" />
+      </g>
+      {/* frozen shell fragments — step 4 burst */}
+      <g className="frags-4">
+        <path d="M 46 60 L 56 52 L 58 64 Z" fill="url(#chismEggGrad)" transform="rotate(-18 51 58)" />
+        <path d="M 78 48 L 90 44 L 86 58 Z" fill="url(#chismEggGrad)" transform="rotate(14 84 51)" />
+        <path d="M 60 40 C 63 34 71 33 75 38 L 72 44 L 66 41 Z" fill="url(#chismGlazeGrad)" transform="rotate(-8 67 39)" />
+        <path d="M 96 60 L 104 56 L 102 66 Z" fill="url(#chismEggGrad)" transform="rotate(22 100 61)" />
+      </g>
+      {/* fragments flung further — step 5 */}
+      <g className="frags-5">
+        <path d="M 36 46 L 46 38 L 48 50 Z" fill="url(#chismEggGrad)" transform="rotate(-40 41 44)" />
+        <path d="M 88 34 L 100 30 L 96 44 Z" fill="url(#chismEggGrad)" transform="rotate(30 94 37)" />
+        <path d="M 52 26 C 55 20 63 19 67 24 L 64 30 L 58 27 Z" fill="url(#chismGlazeGrad)" transform="rotate(-22 59 25)" />
+        <path d="M 106 48 L 114 44 L 112 54 Z" fill="url(#chismEggGrad)" transform="rotate(45 110 49)" />
+        <circle cx="44" cy="30" r="2" fill="#EFDCC2" />
+        <circle cx="99" cy="22" r="2.4" fill="#EFDCC2" />
+      </g>
+    </svg>
+  );
+}

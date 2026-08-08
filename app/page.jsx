@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { LogoDefs, Mark, AnimatedMark, DripDivider, BeANumberMark, ChismChicken } from "@/components/Logo";
+import { LogoDefs, Mark, AnimatedMark, DripDivider, BeANumberMark, ChismEgg } from "@/components/Logo";
 
 export default function Home() {
   useEffect(() => {
@@ -54,61 +54,30 @@ export default function Home() {
     };
   }, []);
 
-  // Chism card: the hen boks and lays while you scroll past her. Her flight is
-  // scrubbed to scroll position (like the Be A Number counter): keep scrolling
-  // down and she flies out of the card; scroll back up and she flies back in.
-  // At the top of her flight, keep going and the egg she left behind hatches.
+  // Chism card: one big glazed egg. Scroll steps crack it open frame by frame
+  // (data-egg 0-5, hard cuts like the counter digits): hairline crack, spreading
+  // cracks, burst with frozen shell fragments, chick pops out. Fully reversible.
   useEffect(() => {
     const card = document.getElementById("chism-card");
     if (!card) return;
-    const body = card.querySelector(".hen-body");
-    const shadow = card.querySelector(".hen-shadow");
-    if (!body) return;
-    const reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const STEPS = 9; // discrete stop-motion poses along the flight path
+    const STEPS = 5;
     let hideT = 0;
     let raf = 0;
     let visible = false;
-    let lastY = window.scrollY;
-    let goingDown = true;
-    let step = 0; // current pose index, 0 (perched) .. STEPS (gone)
-    const clearScrub = () => {
-      card.classList.remove("scrub-fly");
-      body.style.transform = "";
-      body.style.opacity = "";
-      if (shadow) shadow.style.opacity = "";
-    };
-    const measure = () => {
+    const quant = () => {
       const r = card.getBoundingClientRect();
       const vh = window.innerHeight || 1;
       const cp = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
-      return { cp, f: Math.min(1, Math.max(0, (cp - 0.5) / 0.28)) };
-    };
-    // Stop-motion: each pose is a hard cut — no tweening. Scroll advances or
-    // rewinds her one frame at a time, exactly like the counter digits.
-    const render = () => {
-      if (step > 0) {
-        card.classList.add("scrub-fly");
-        const t = step / STEPS;
-        const rot = (step % 2 ? 9 : -7) - t * 2; // alternating wing-beat pose
-        body.style.transform = `translate(${165 * t}px, ${-210 * t}px) rotate(${rot}deg) scale(${1 - 0.3 * t})`;
-        body.style.opacity = step >= STEPS ? "0" : "1"; // present in every frame, then gone
-        if (shadow) shadow.style.opacity = String(Math.max(0, 1 - t * 2));
-      } else {
-        clearScrub();
-      }
+      return Math.round(Math.min(1, Math.max(0, (cp - 0.5) / 0.28)) * STEPS);
     };
     const io = new IntersectionObserver(
       (entries) => {
         visible = entries[0].isIntersecting;
         if (!visible) {
-          card.classList.remove("boking", "hatching");
-          step = 0;
-          clearScrub();
-        } else if (!reduced) {
-          // re-enter on the frame that matches the scroll position
-          step = Math.round(measure().f * STEPS);
-          render();
+          card.classList.remove("boking");
+          card.dataset.egg = "0";
+        } else {
+          card.dataset.egg = String(quant());
         }
       },
       { threshold: 0.35 }
@@ -116,29 +85,17 @@ export default function Home() {
     io.observe(card);
     const update = () => {
       raf = 0;
-      const dy = window.scrollY - lastY;
-      if (Math.abs(dy) > 2) goingDown = dy > 0; // ignore zero/tiny deltas
-      lastY = window.scrollY;
-      const m = measure();
-      const q = Math.round(m.f * STEPS);
-      if (q !== step) {
-        step = q;
-        render();
-      }
-      if (step >= STEPS && goingDown && m.cp > 0.8 && !card.classList.contains("hatching")) {
-        card.classList.add("hatching");
-      }
+      const q = String(quant());
+      if (card.dataset.egg !== q) card.dataset.egg = q;
     };
     const onScroll = () => {
       if (!visible) return;
-      if (!card.classList.contains("hatching") && !card.classList.contains("scrub-fly")) {
-        card.classList.add("boking");
-        clearTimeout(hideT);
-        hideT = setTimeout(() => card.classList.remove("boking"), 1200);
-      }
-      if (!reduced && !raf) raf = requestAnimationFrame(update);
+      card.classList.add("boking");
+      clearTimeout(hideT);
+      hideT = setTimeout(() => card.classList.remove("boking"), 1200);
+      if (!raf) raf = requestAnimationFrame(update);
     };
-    if (!reduced) update();
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll, { passive: true });
     return () => {
@@ -150,48 +107,75 @@ export default function Home() {
     };
   }, []);
 
-  // Menu prices: tick DOWN from the market-rate anchor to our price when the
-  // menu scrolls into view, so the deal literally plays out. Re-arms per visit.
+  // Menu prices: each one counts down from its market anchor SEPARATELY, as
+  // your scroll reaches it — first you glimpse the market price, then it melts
+  // to ours as your eyes pass. Scroll back up and it re-arms for the next pass.
   useEffect(() => {
     const menu = document.getElementById("menu");
     if (!menu) return;
     const nums = Array.from(menu.querySelectorAll(".price-num"));
     if (!nums.length) return;
     const reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) return; // struck-through anchor still shows; no animation
-    let armed = true;
-    const rafs = new Set();
-    const io = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && armed) {
-          armed = false;
-          nums.forEach((el) => {
-            const from = parseFloat(el.dataset.from);
-            const to = parseFloat(el.dataset.to);
-            const dur = 1300;
-            let start;
-            const tickDown = (ts) => {
-              if (start === undefined) start = ts;
-              const p = Math.min(1, (ts - start) / dur);
-              const ease = 1 - Math.pow(1 - p, 3);
-              el.textContent = Math.round(from + (to - from) * ease).toLocaleString("en-US");
-              if (p < 1) {
-                const id = requestAnimationFrame(tickDown);
-                rafs.add(id);
-              }
-            };
-            rafs.add(requestAnimationFrame(tickDown));
-          });
-        } else if (!entries[0].isIntersecting) {
-          armed = true;
+    if (reduced) return; // struck-through anchor still shows; numbers stay static
+    const grid = menu.querySelector(".menu-grid") || menu;
+    const thresholds = [0.3, 0.62]; // The Original melts first, Baker's Dozen clearly after
+    const state = nums.map(() => ({ status: "idle", raf: 0 }));
+    const fmt = (v) => Math.round(v).toLocaleString("en-US");
+    const startCount = (el, st) => {
+      const from = parseFloat(el.dataset.from);
+      const to = parseFloat(el.dataset.to);
+      const dur = 1100;
+      let start;
+      st.status = "counting";
+      const tickDown = (ts) => {
+        if (start === undefined) start = ts;
+        const p = Math.min(1, (ts - start) / dur);
+        const ease = 1 - Math.pow(1 - p, 3);
+        el.textContent = fmt(from + (to - from) * ease);
+        if (p < 1) st.raf = requestAnimationFrame(tickDown);
+        else st.status = "done";
+      };
+      st.raf = requestAnimationFrame(tickDown);
+    };
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const r = grid.getBoundingClientRect();
+      const vh = window.innerHeight || 1;
+      const p = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
+      nums.forEach((el, i) => {
+        const st = state[i];
+        const t = thresholds[i] ?? 0.5;
+        if (p >= t) {
+          if (st.status === "idle" || st.status === "primed") startCount(el, st);
+        } else if (p >= 0.1 && p < t - 0.08) {
+          // in view but your eyes haven't reached it: show the market price, armed to melt
+          if (st.status !== "primed") {
+            if (st.raf) cancelAnimationFrame(st.raf);
+            el.textContent = fmt(parseFloat(el.dataset.from));
+            st.status = "primed";
+          }
+        } else if (p < 0.1) {
+          // section out of view below: rest at the real price
+          if (st.status !== "idle") {
+            if (st.raf) cancelAnimationFrame(st.raf);
+            el.textContent = fmt(parseFloat(el.dataset.to));
+            st.status = "idle";
+          }
         }
-      },
-      { threshold: 0.35 }
-    );
-    io.observe(menu);
+      });
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
     return () => {
-      io.disconnect();
-      rafs.forEach((id) => cancelAnimationFrame(id));
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+      state.forEach((st) => st.raf && cancelAnimationFrame(st.raf));
     };
   }, []);
 
@@ -463,7 +447,7 @@ export default function Home() {
                     </textPath>
                   </text>
                 </svg>
-                <ChismChicken size={100} className="chism-chick" />
+                <ChismEgg size={112} className="chism-big-egg" />
               </div>
               <div className="meta">
                 <b>Chism Chicken Ranch</b>

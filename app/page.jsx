@@ -65,14 +65,13 @@ export default function Home() {
     const shadow = card.querySelector(".hen-shadow");
     if (!body) return;
     const reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const STEPS = 9; // discrete stop-motion poses along the flight path
     let hideT = 0;
-    let raf = 0; // scroll-update scheduling
-    let animRaf = 0; // easing loop
+    let raf = 0;
     let visible = false;
     let lastY = window.scrollY;
     let goingDown = true;
-    let cur = 0; // rendered flight progress (eased)
-    let target = 0; // scroll-derived destination
+    let step = 0; // current pose index, 0 (perched) .. STEPS (gone)
     const clearScrub = () => {
       card.classList.remove("scrub-fly");
       body.style.transform = "";
@@ -83,34 +82,20 @@ export default function Home() {
       const r = card.getBoundingClientRect();
       const vh = window.innerHeight || 1;
       const cp = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
-      return { cp, f: Math.min(1, Math.max(0, (cp - 0.55) / 0.2)) };
+      return { cp, f: Math.min(1, Math.max(0, (cp - 0.5) / 0.28)) };
     };
+    // Stop-motion: each pose is a hard cut — no tweening. Scroll advances or
+    // rewinds her one frame at a time, exactly like the counter digits.
     const render = () => {
-      if (cur > 0.01) {
+      if (step > 0) {
         card.classList.add("scrub-fly");
-        const flap = Math.sin(cur * Math.PI * 3) * 7;
-        body.style.transform = `translate(${165 * cur}px, ${-210 * cur}px) rotate(${flap}deg) scale(${1 - 0.3 * cur})`;
-        body.style.opacity = String(Math.max(0, 1 - Math.max(0, cur - 0.85) * 6.5));
-        if (shadow) shadow.style.opacity = String(Math.max(0, 1 - cur * 2));
+        const t = step / STEPS;
+        const rot = (step % 2 ? 9 : -7) - t * 2; // alternating wing-beat pose
+        body.style.transform = `translate(${165 * t}px, ${-210 * t}px) rotate(${rot}deg) scale(${1 - 0.3 * t})`;
+        body.style.opacity = step >= STEPS ? "0" : "1"; // present in every frame, then gone
+        if (shadow) shadow.style.opacity = String(Math.max(0, 1 - t * 2));
       } else {
         clearScrub();
-      }
-    };
-    // Scroll sets her DESTINATION; this eases her toward it frame by frame,
-    // so even a fast flick shows the whole flight — both directions.
-    const tick = () => {
-      animRaf = 0;
-      const d = target - cur;
-      if (Math.abs(d) < 0.006) {
-        cur = target;
-        render();
-      } else {
-        cur += d * 0.045;
-        render();
-        animRaf = requestAnimationFrame(tick);
-      }
-      if (goingDown && target >= 1 && cur > 0.95 && !card.classList.contains("hatching")) {
-        if (measure().cp > 0.78) card.classList.add("hatching");
       }
     };
     const io = new IntersectionObserver(
@@ -118,16 +103,11 @@ export default function Home() {
         visible = entries[0].isIntersecting;
         if (!visible) {
           card.classList.remove("boking", "hatching");
-          if (animRaf) cancelAnimationFrame(animRaf);
-          animRaf = 0;
-          cur = 0;
-          target = 0;
+          step = 0;
           clearScrub();
         } else if (!reduced) {
-          // re-enter in a position-consistent state (no surprise reverse-flight)
-          const m = measure();
-          cur = m.f;
-          target = m.f;
+          // re-enter on the frame that matches the scroll position
+          step = Math.round(measure().f * STEPS);
           render();
         }
       },
@@ -137,10 +117,17 @@ export default function Home() {
     const update = () => {
       raf = 0;
       const dy = window.scrollY - lastY;
-      if (Math.abs(dy) > 2) goingDown = dy > 0; // hysteresis: ignore zero/tiny deltas
+      if (Math.abs(dy) > 2) goingDown = dy > 0; // ignore zero/tiny deltas
       lastY = window.scrollY;
-      target = measure().f;
-      if (!animRaf) animRaf = requestAnimationFrame(tick);
+      const m = measure();
+      const q = Math.round(m.f * STEPS);
+      if (q !== step) {
+        step = q;
+        render();
+      }
+      if (step >= STEPS && goingDown && m.cp > 0.8 && !card.classList.contains("hatching")) {
+        card.classList.add("hatching");
+      }
     };
     const onScroll = () => {
       if (!visible) return;
@@ -160,7 +147,51 @@ export default function Home() {
       window.removeEventListener("resize", onScroll);
       clearTimeout(hideT);
       if (raf) cancelAnimationFrame(raf);
-      if (animRaf) cancelAnimationFrame(animRaf);
+    };
+  }, []);
+
+  // Menu prices: tick DOWN from the market-rate anchor to our price when the
+  // menu scrolls into view, so the deal literally plays out. Re-arms per visit.
+  useEffect(() => {
+    const menu = document.getElementById("menu");
+    if (!menu) return;
+    const nums = Array.from(menu.querySelectorAll(".price-num"));
+    if (!nums.length) return;
+    const reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) return; // struck-through anchor still shows; no animation
+    let armed = true;
+    const rafs = new Set();
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && armed) {
+          armed = false;
+          nums.forEach((el) => {
+            const from = parseFloat(el.dataset.from);
+            const to = parseFloat(el.dataset.to);
+            const dur = 1300;
+            let start;
+            const tickDown = (ts) => {
+              if (start === undefined) start = ts;
+              const p = Math.min(1, (ts - start) / dur);
+              const ease = 1 - Math.pow(1 - p, 3);
+              el.textContent = Math.round(from + (to - from) * ease).toLocaleString("en-US");
+              if (p < 1) {
+                const id = requestAnimationFrame(tickDown);
+                rafs.add(id);
+              }
+            };
+            rafs.add(requestAnimationFrame(tickDown));
+          });
+        } else if (!entries[0].isIntersecting) {
+          armed = true;
+        }
+      },
+      { threshold: 0.35 }
+    );
+    io.observe(menu);
+    return () => {
+      io.disconnect();
+      rafs.forEach((id) => cancelAnimationFrame(id));
     };
   }, []);
 
@@ -296,7 +327,10 @@ export default function Home() {
               <h3>The Original</h3>
               <div className="flavor">One-pager · classic glaze</div>
               <div className="price">
-                $750 <small>+ $59/mo</small>
+                <span className="was" aria-hidden="true">
+                  market <s>$1,500</s>
+                </span>
+                $<span className="price-num" data-from="1500" data-to="750">750</span> <small>+ $59/mo</small>
               </div>
               <ul>
                 <li>A single sharp page that says who you are and gets people to call</li>
@@ -313,7 +347,10 @@ export default function Home() {
               <h3>The Baker&apos;s Dozen</h3>
               <div className="flavor">Full site · double dipped</div>
               <div className="price">
-                $1,900 <small>+ $99/mo</small>
+                <span className="was" aria-hidden="true">
+                  market <s>$3,900</s>
+                </span>
+                $<span className="price-num" data-from="3900" data-to="1900">1,900</span> <small>+ $99/mo</small>
               </div>
               <ul>
                 <li>Up to 6 pages: services, about, gallery, the works</li>

@@ -196,6 +196,11 @@ export function ChismChicken({ size = 96, className, style }) {
       {/* eye */}
       <circle cx="79" cy="41" r="2.6" fill="#2B1E16" />
       <circle cx="80" cy="40.2" r="0.9" fill="#FFF7EA" />
+      {/* the egg — laid on scroll (.boking) */}
+      <g className="chism-egg">
+        <ellipse cx="36" cy="93" rx="6.3" ry="8.2" fill="#FFFDF8" />
+        <ellipse cx="33.8" cy="90" rx="2" ry="2.8" fill="#FFFFFF" opacity="0.8" />
+      </g>
     </svg>
   );
 }

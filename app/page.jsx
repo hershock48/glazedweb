@@ -294,8 +294,23 @@ export default function Home() {
                   gap: 4,
                 }}
               >
-                <ChismChicken size={102} className="chism-chick" />
-                <span style={{ fontSize: 11.5, fontWeight: 800, letterSpacing: ".2em" }}>CHISM CHICKEN RANCH</span>
+                <svg
+                  viewBox="0 0 220 54"
+                  width="200"
+                  height="49"
+                  aria-hidden="true"
+                  style={{ overflow: "visible", marginBottom: -10 }}
+                >
+                  <defs>
+                    <path id="chismArcPath" d="M 14 48 Q 110 6 206 48" fill="none" />
+                  </defs>
+                  <text fill="#FFF7EA" fontSize="13.5" fontWeight="800" letterSpacing="2">
+                    <textPath href="#chismArcPath" startOffset="50%" textAnchor="middle">
+                      CHISM CHICKEN RANCH
+                    </textPath>
+                  </text>
+                </svg>
+                <ChismChicken size={100} className="chism-chick" />
               </div>
               <div className="meta">
                 <b>Chism Chicken Ranch</b>

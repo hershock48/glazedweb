@@ -175,6 +175,17 @@
   }
   #chism-card.boking .bok-bubble,
   #chism-card:hover .bok-bubble { opacity: 1; transform: scale(1) rotate(-3deg); }
+  .chism-egg { opacity: 0; transform-box: fill-box; transform-origin: 50% 100%; transition: opacity .4s ease; }
+  #chism-card.boking .chism-egg,
+  #chism-card:hover .chism-egg { opacity: 1; animation: eggLay .9s cubic-bezier(.5,.05,.6,1); }
+  @keyframes eggLay {
+    0% { opacity: 0; transform: translateY(-20px) scale(.55); }
+    18% { opacity: 1; }
+    55% { transform: translateY(0) scale(1); }
+    70% { transform: translateY(0) scaleX(1.14) scaleY(.84); }
+    84% { transform: translateY(-3px) scale(1); }
+    100% { transform: translateY(0) scale(1); }
+  }
   @keyframes chickBob {
     0%, 100% { transform: translateY(0) rotate(0); }
     30% { transform: translateY(-2.5px) rotate(-1.6deg); }
@@ -193,6 +204,7 @@
     .ban-counter.tick { animation: none; }
     .chism-chick { animation: none; }
     .bok-bubble { transition: opacity .2s ease; transform: scale(1) rotate(-3deg); }
+    .chism-egg { animation: none !important; opacity: 1; transform: none; }
   }
 
   /* cta band */
@@ -221,3 +233,30 @@
   /* reveal on scroll */
   .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
   .reveal.in { opacity: 1; transform: none; }
+
+  /* ============ mobile ============ */
+  .btn { white-space: nowrap; }
+  @media (max-width: 640px) {
+    .navwrap { padding: 11px 14px; }
+    .brand { gap: 7px; }
+    .brand .bw { font-size: 17px; }
+    nav { gap: 13px; font-size: 13px; }
+    nav .btn { padding: 8px 13px; font-size: 12.5px; }
+    .hero { padding: 30px 20px 64px; gap: 22px; }
+    .hero .mark svg { width: 165px; height: 208px; }
+    .hero p.sub { font-size: 16px; }
+    .hero .ctas { gap: 10px; }
+    .btn.big { padding: 13px 22px; font-size: 15px; }
+    section .inner { padding: 56px 20px; }
+    .ctaband .inner { padding: 60px 20px; }
+    .mcard .price { font-size: 30px; }
+    footer .inner { padding: 48px 20px 32px; }
+  }
+  @media (max-width: 480px) {
+    .steps { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 390px) {
+    .brand .bw { font-size: 16px; }
+    nav { gap: 9px; font-size: 12.5px; }
+    nav .btn { padding: 7px 11px; font-size: 12px; }
+  }

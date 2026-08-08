@@ -167,20 +167,25 @@ export function ChismChicken({ size = 96, className, style }) {
       style={style}
       aria-hidden="true"
     >
-      {/* ground shadow */}
-      <ellipse cx="58" cy="101" rx="32" ry="5" fill="#5E2812" opacity="0.45" />
-      {/* legs */}
-      <g stroke="#E8A33D" strokeWidth="3.4" strokeLinecap="round" fill="none">
-        <path d="M 48 84 L 48 97 M 48 97 L 42 101 M 48 97 L 53 101" />
-        <path d="M 66 84 L 66 97 M 66 97 L 60 101 M 66 97 L 71 101" />
+      {/* ground shadow (fades when she takes off) */}
+      <g className="hen-shadow">
+        <ellipse cx="58" cy="101" rx="32" ry="5" fill="#5E2812" opacity="0.45" />
       </g>
-      {/* the egg — laid on scroll (.boking); drawn behind her body so it pops out of her rear */}
+      {/* the egg — laid on scroll (.boking); drawn behind her body so it pops out of her rear.
+          Lives OUTSIDE .hen-body so it stays behind when she flies away. */}
       <g className="chism-egg-shadow">
         <ellipse cx="18" cy="103.5" rx="6.4" ry="1.9" fill="#5E2812" opacity="0.4" />
       </g>
       <g className="chism-egg">
         <ellipse cx="18" cy="96" rx="7.2" ry="9.2" fill="#FFFDF8" />
         <ellipse cx="15.5" cy="92.5" rx="2.3" ry="3.1" fill="#FFFFFF" opacity="0.85" />
+      </g>
+      {/* the hen herself — this whole group waddles, lays, and flies away */}
+      <g className="hen-body">
+      {/* legs */}
+      <g stroke="#E8A33D" strokeWidth="3.4" strokeLinecap="round" fill="none">
+        <path d="M 48 84 L 48 97 M 48 97 L 42 101 M 48 97 L 53 101" />
+        <path d="M 66 84 L 66 97 M 66 97 L 60 101 M 66 97 L 71 101" />
       </g>
       {/* tail feathers */}
       <path d="M 30 52 C 16 44, 10 32, 18 20 C 22 30, 28 38, 36 44 Z" fill="#3B4A3A" />
@@ -204,6 +209,27 @@ export function ChismChicken({ size = 96, className, style }) {
       {/* eye */}
       <circle cx="79" cy="41" r="2.6" fill="#2B1E16" />
       <circle cx="80" cy="40.2" r="0.9" fill="#FFF7EA" />
+      </g>
+      {/* hatch stage — plays after she flies off and you keep scrolling */}
+      <g className="chism-baby">
+        <circle cx="18" cy="93" r="6" fill="#FFD75E" />
+        <ellipse cx="14" cy="94.6" rx="2" ry="2.6" fill="#F5C93F" />
+        <circle cx="20.2" cy="91.2" r="1.1" fill="#2B1E16" />
+        <path d="M 23.6 92.6 L 26.6 93.6 L 23.6 94.8 Z" fill="#E8A33D" />
+        <path d="M 17 87.4 C 17.4 86 18.6 86 19 87.3" stroke="#E8A33D" strokeWidth="1.2" fill="none" strokeLinecap="round" />
+      </g>
+      <g className="chism-shell-bottom">
+        <path
+          d="M 10.8 96 C 10.8 101.2, 14 105.2, 18 105.2 C 22 105.2, 25.2 101.2, 25.2 96 L 23 93.5 L 21.4 96.5 L 19.2 92.9 L 17 96.3 L 14.8 93.3 L 12.8 96.6 Z"
+          fill="#FFFDF8"
+        />
+      </g>
+      <g className="chism-shell-top">
+        <path
+          d="M 11.9 94 C 12.3 88, 14.6 86.9, 18 86.9 C 21.4 86.9, 23.7 88, 24.1 94 L 22 91.5 L 20 94.5 L 18 91 L 16 94.4 L 13.9 91.6 Z"
+          fill="#FFFDF8"
+        />
+      </g>
     </svg>
   );
 }

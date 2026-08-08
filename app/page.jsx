@@ -54,71 +54,113 @@ export default function Home() {
     };
   }, []);
 
-  // Chism card: the hen boks and lays while you scroll past her — then, if you
-  // keep scrolling down, she flies away and leaves the egg. She comes back
-  // (fresh cycle) once the card has fully left the viewport.
+  // Chism card: the hen boks and lays while you scroll past her. Her flight is
+  // scrubbed to scroll position (like the Be A Number counter): keep scrolling
+  // down and she flies out of the card; scroll back up and she flies back in.
+  // At the top of her flight, keep going and the egg she left behind hatches.
   useEffect(() => {
     const card = document.getElementById("chism-card");
     if (!card) return;
+    const body = card.querySelector(".hen-body");
+    const shadow = card.querySelector(".hen-shadow");
+    if (!body) return;
+    const reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let hideT = 0;
+    let raf = 0;
     let visible = false;
-    let laidAt = null; // scrollY at the moment the egg got laid
+    let lastY = window.scrollY;
+    const clearScrub = () => {
+      card.classList.remove("scrub-fly");
+      body.style.transform = "";
+      body.style.opacity = "";
+      if (shadow) shadow.style.opacity = "";
+    };
     const io = new IntersectionObserver(
       (entries) => {
         visible = entries[0].isIntersecting;
         if (!visible) {
-          card.classList.remove("boking", "flying");
-          laidAt = null;
+          card.classList.remove("boking", "hatching");
+          clearScrub();
+        } else if (!reduced && !raf) {
+          raf = requestAnimationFrame(update);
         }
       },
       { threshold: 0.35 }
     );
     io.observe(card);
-    const onScroll = () => {
-      if (!visible || card.classList.contains("flying")) return;
-      card.classList.add("boking");
-      if (laidAt === null) laidAt = window.scrollY;
-      clearTimeout(hideT);
-      hideT = setTimeout(() => card.classList.remove("boking"), 1200);
-      if (window.scrollY > laidAt + 140) {
-        card.classList.remove("boking");
-        card.classList.add("flying");
-        clearTimeout(hideT);
+    const update = () => {
+      raf = 0;
+      const goingDown = window.scrollY > lastY;
+      lastY = window.scrollY;
+      const r = card.getBoundingClientRect();
+      const vh = window.innerHeight || 1;
+      const cp = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
+      const f = Math.min(1, Math.max(0, (cp - 0.55) / 0.2)); // flight progress, scrubbed
+      if (f > 0) {
+        card.classList.add("scrub-fly");
+        const flap = Math.sin(f * Math.PI * 3) * 7;
+        body.style.transform = `translate(${165 * f}px, ${-210 * f}px) rotate(${flap}deg) scale(${1 - 0.3 * f})`;
+        body.style.opacity = String(Math.max(0, 1 - Math.max(0, f - 0.75) * 4));
+        if (shadow) shadow.style.opacity = String(Math.max(0, 1 - f * 2));
+      } else {
+        clearScrub();
+      }
+      if (f >= 1 && cp > 0.78 && goingDown && !card.classList.contains("hatching")) {
+        card.classList.add("hatching");
       }
     };
+    const onScroll = () => {
+      if (!visible) return;
+      if (!card.classList.contains("hatching") && !card.classList.contains("scrub-fly")) {
+        card.classList.add("boking");
+        clearTimeout(hideT);
+        hideT = setTimeout(() => card.classList.remove("boking"), 1200);
+      }
+      if (!reduced && !raf) raf = requestAnimationFrame(update);
+    };
+    if (!reduced) update();
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
     return () => {
       io.disconnect();
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
       clearTimeout(hideT);
+      if (raf) cancelAnimationFrame(raf);
     };
   }, []);
 
-  // Process steps: the glaze shine sweeps across the numbers as you scroll past.
+  // Process steps: each number glazes as your scroll reaches it — 1 first,
+  // then 2, 3, 4 as the section moves through the viewport. Recrossing a
+  // threshold re-runs that number's shine.
   useEffect(() => {
     const sec = document.getElementById("process");
     if (!sec) return;
-    let hideT = 0;
-    let visible = false;
-    const io = new IntersectionObserver(
-      (entries) => {
-        visible = entries[0].isIntersecting;
-        if (!visible) sec.classList.remove("glazing");
-      },
-      { threshold: 0.25 }
-    );
-    io.observe(sec);
-    const onScroll = () => {
-      if (!visible) return;
-      sec.classList.add("glazing");
-      clearTimeout(hideT);
-      hideT = setTimeout(() => sec.classList.remove("glazing"), 1000);
+    const steps = Array.from(sec.querySelectorAll(".step"));
+    if (!steps.length) return;
+    const thresholds = [0.22, 0.38, 0.54, 0.7];
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const r = sec.getBoundingClientRect();
+      const vh = window.innerHeight || 1;
+      const p = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
+      steps.forEach((el, i) => {
+        const t = thresholds[i] ?? 0.8;
+        if (p >= t) el.classList.add("glazed");
+        else if (p < t - 0.06) el.classList.remove("glazed");
+      });
     };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
     return () => {
-      io.disconnect();
       window.removeEventListener("scroll", onScroll);
-      clearTimeout(hideT);
+      window.removeEventListener("resize", onScroll);
+      if (raf) cancelAnimationFrame(raf);
     };
   }, []);
 

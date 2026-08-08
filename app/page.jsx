@@ -132,50 +132,63 @@ export default function Home() {
     if (!nums.length) return;
     const reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced) return; // struck-through anchor still shows; numbers stay static
-    const grid = menu.querySelector(".menu-grid") || menu;
-    const thresholds = [0.3, 0.62]; // The Original melts first, Baker's Dozen clearly after
-    const state = nums.map(() => ({ status: "idle", raf: 0 }));
     const fmt = (v) => Math.round(v).toLocaleString("en-US");
-    const startCount = (el, st) => {
-      const from = parseFloat(el.dataset.from);
-      const to = parseFloat(el.dataset.to);
+    // Each price watches its OWN card: melts as that card reaches your eyes.
+    // Stacked (mobile) => naturally sequential; same row (desktop) => a short
+    // left-to-right time stagger so they still melt one after another.
+    const items = nums.map((el) => ({
+      el,
+      card: el.closest(".mcard") || el,
+      status: "idle", // idle | primed | counting | done
+      raf: 0,
+      delayT: 0,
+    }));
+    const cancelWork = (it) => {
+      if (it.raf) cancelAnimationFrame(it.raf);
+      if (it.delayT) clearTimeout(it.delayT);
+      it.raf = 0;
+      it.delayT = 0;
+    };
+    const startCount = (it) => {
+      const from = parseFloat(it.el.dataset.from);
+      const to = parseFloat(it.el.dataset.to);
       const dur = 1100;
       let start;
-      st.status = "counting";
       const tickDown = (ts) => {
         if (start === undefined) start = ts;
         const p = Math.min(1, (ts - start) / dur);
         const ease = 1 - Math.pow(1 - p, 3);
-        el.textContent = fmt(from + (to - from) * ease);
-        if (p < 1) st.raf = requestAnimationFrame(tickDown);
-        else st.status = "done";
+        it.el.textContent = fmt(from + (to - from) * ease);
+        if (p < 1) it.raf = requestAnimationFrame(tickDown);
+        else it.status = "done";
       };
-      st.raf = requestAnimationFrame(tickDown);
+      it.raf = requestAnimationFrame(tickDown);
     };
     let raf = 0;
     const update = () => {
       raf = 0;
-      const r = grid.getBoundingClientRect();
       const vh = window.innerHeight || 1;
-      const p = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
-      nums.forEach((el, i) => {
-        const st = state[i];
-        const t = thresholds[i] ?? 0.5;
-        if (p >= t) {
-          if (st.status === "idle" || st.status === "primed") startCount(el, st);
-        } else if (p >= 0.1 && p < t - 0.08) {
-          // in view but your eyes haven't reached it: show the market price, armed to melt
-          if (st.status !== "primed") {
-            if (st.raf) cancelAnimationFrame(st.raf);
-            el.textContent = fmt(parseFloat(el.dataset.from));
-            st.status = "primed";
+      const tops = items.map((it) => Math.round(it.card.getBoundingClientRect().top));
+      items.forEach((it, idx) => {
+        const r = it.card.getBoundingClientRect();
+        const cp = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
+        if (cp >= 0.45) {
+          if (it.status === "idle" || it.status === "primed") {
+            const rowMatesBefore = items.filter((o, j) => j < idx && Math.abs(tops[j] - tops[idx]) < 8).length;
+            it.status = "counting";
+            it.delayT = setTimeout(() => startCount(it), rowMatesBefore * 380);
           }
-        } else if (p < 0.1) {
-          // section out of view below: rest at the real price
-          if (st.status !== "idle") {
-            if (st.raf) cancelAnimationFrame(st.raf);
-            el.textContent = fmt(parseFloat(el.dataset.to));
-            st.status = "idle";
+        } else if (cp >= 0.12 && cp < 0.38) {
+          if (it.status !== "primed") {
+            cancelWork(it);
+            it.el.textContent = fmt(parseFloat(it.el.dataset.from));
+            it.status = "primed";
+          }
+        } else if (cp < 0.12) {
+          if (it.status !== "idle") {
+            cancelWork(it);
+            it.el.textContent = fmt(parseFloat(it.el.dataset.to));
+            it.status = "idle";
           }
         }
       });
@@ -190,7 +203,7 @@ export default function Home() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       if (raf) cancelAnimationFrame(raf);
-      state.forEach((st) => st.raf && cancelAnimationFrame(st.raf));
+      items.forEach(cancelWork);
     };
   }, []);
 
@@ -253,7 +266,7 @@ export default function Home() {
 
       <div className="hero">
         <div>
-          <div className="kicker">Small-batch web studio</div>
+          <div className="kicker">Small-batch web studio · Marshall, MI</div>
           <h1>
             Websites people actually{" "}
             <em>

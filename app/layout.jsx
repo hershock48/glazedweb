@@ -2,17 +2,10 @@ import "./globals.css";
 
 export const metadata = {
   metadataBase: new URL("https://www.glazedweb.com"),
-  title: "glazedweb — Web Design in Marshall & Battle Creek, MI | Websites, Fresh Daily",
+  title: "Web Design in Marshall & Battle Creek, MI | glazedweb",
   description:
-    "Small-batch web design studio in Marshall, Michigan serving Battle Creek and small businesses across Michigan. Hand-built custom websites from $750 — no templates, no bloat, live in as little as 2 weeks.",
+    "Hand-built websites for Michigan small businesses from $750, live in 2 weeks. Small-batch studio in Marshall serving Battle Creek. Start your order today.",
   alternates: { canonical: "/" },
-  keywords: [
-    "web design Marshall MI",
-    "web designer Battle Creek MI",
-    "website design Calhoun County",
-    "small business websites Michigan",
-    "custom website Michigan",
-  ],
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml" },
@@ -21,12 +14,12 @@ export const metadata = {
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "glazedweb — Web Design in Marshall & Battle Creek, MI",
+    title: "Web Design in Marshall & Battle Creek, MI | glazedweb",
     description:
-      "Hand-built websites for small businesses in Marshall, Battle Creek, and across Michigan. Order it like a donut: pick a flavor, we bake it fresh, it ships glazed.",
+      "Hand-built websites for Michigan small businesses from $750, live in 2 weeks. Order it like a donut: pick a flavor, we bake it fresh, it ships glazed.",
     type: "website",
     url: "https://www.glazedweb.com",
-    images: [{ url: "/brand/logo-800.png", width: 800, height: 1000, alt: "glazedweb — pink donut with green glaze" }],
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "glazedweb — small-batch web design in Marshall, Michigan" }],
   },
 };
 

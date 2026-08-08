@@ -66,23 +66,69 @@ export default function Home() {
     if (!body) return;
     const reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let hideT = 0;
-    let raf = 0;
+    let raf = 0; // scroll-update scheduling
+    let animRaf = 0; // easing loop
     let visible = false;
     let lastY = window.scrollY;
+    let goingDown = true;
+    let cur = 0; // rendered flight progress (eased)
+    let target = 0; // scroll-derived destination
     const clearScrub = () => {
       card.classList.remove("scrub-fly");
       body.style.transform = "";
       body.style.opacity = "";
       if (shadow) shadow.style.opacity = "";
     };
+    const measure = () => {
+      const r = card.getBoundingClientRect();
+      const vh = window.innerHeight || 1;
+      const cp = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
+      return { cp, f: Math.min(1, Math.max(0, (cp - 0.55) / 0.2)) };
+    };
+    const render = () => {
+      if (cur > 0.01) {
+        card.classList.add("scrub-fly");
+        const flap = Math.sin(cur * Math.PI * 3) * 7;
+        body.style.transform = `translate(${165 * cur}px, ${-210 * cur}px) rotate(${flap}deg) scale(${1 - 0.3 * cur})`;
+        body.style.opacity = String(Math.max(0, 1 - Math.max(0, cur - 0.85) * 6.5));
+        if (shadow) shadow.style.opacity = String(Math.max(0, 1 - cur * 2));
+      } else {
+        clearScrub();
+      }
+    };
+    // Scroll sets her DESTINATION; this eases her toward it frame by frame,
+    // so even a fast flick shows the whole flight — both directions.
+    const tick = () => {
+      animRaf = 0;
+      const d = target - cur;
+      if (Math.abs(d) < 0.006) {
+        cur = target;
+        render();
+      } else {
+        cur += d * 0.045;
+        render();
+        animRaf = requestAnimationFrame(tick);
+      }
+      if (goingDown && target >= 1 && cur > 0.95 && !card.classList.contains("hatching")) {
+        if (measure().cp > 0.78) card.classList.add("hatching");
+      }
+    };
     const io = new IntersectionObserver(
       (entries) => {
         visible = entries[0].isIntersecting;
         if (!visible) {
           card.classList.remove("boking", "hatching");
+          if (animRaf) cancelAnimationFrame(animRaf);
+          animRaf = 0;
+          cur = 0;
+          target = 0;
           clearScrub();
-        } else if (!reduced && !raf) {
-          raf = requestAnimationFrame(update);
+        } else if (!reduced) {
+          // re-enter in a position-consistent state (no surprise reverse-flight)
+          const m = measure();
+          cur = m.f;
+          target = m.f;
+          render();
         }
       },
       { threshold: 0.35 }
@@ -90,24 +136,11 @@ export default function Home() {
     io.observe(card);
     const update = () => {
       raf = 0;
-      const goingDown = window.scrollY > lastY;
+      const dy = window.scrollY - lastY;
+      if (Math.abs(dy) > 2) goingDown = dy > 0; // hysteresis: ignore zero/tiny deltas
       lastY = window.scrollY;
-      const r = card.getBoundingClientRect();
-      const vh = window.innerHeight || 1;
-      const cp = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
-      const f = Math.min(1, Math.max(0, (cp - 0.55) / 0.2)); // flight progress, scrubbed
-      if (f > 0) {
-        card.classList.add("scrub-fly");
-        const flap = Math.sin(f * Math.PI * 3) * 7;
-        body.style.transform = `translate(${165 * f}px, ${-210 * f}px) rotate(${flap}deg) scale(${1 - 0.3 * f})`;
-        body.style.opacity = String(Math.max(0, 1 - Math.max(0, f - 0.75) * 4));
-        if (shadow) shadow.style.opacity = String(Math.max(0, 1 - f * 2));
-      } else {
-        clearScrub();
-      }
-      if (f >= 1 && cp > 0.78 && goingDown && !card.classList.contains("hatching")) {
-        card.classList.add("hatching");
-      }
+      target = measure().f;
+      if (!animRaf) animRaf = requestAnimationFrame(tick);
     };
     const onScroll = () => {
       if (!visible) return;
@@ -127,6 +160,7 @@ export default function Home() {
       window.removeEventListener("resize", onScroll);
       clearTimeout(hideT);
       if (raf) cancelAnimationFrame(raf);
+      if (animRaf) cancelAnimationFrame(animRaf);
     };
   }, []);
 

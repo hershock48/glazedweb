@@ -304,7 +304,7 @@ export default function Home() {
               <span>◦</span>
               <span>You own the code</span>
               <span>◦</span>
-              <span>Baked in Michigan</span>
+              <span>Baked in Marshall, MI</span>
               <span>◦</span>
             </span>
           ))}
@@ -537,7 +537,8 @@ export default function Home() {
                 </span>
               </div>
               <p style={{ marginTop: 14, fontSize: 13.5, maxWidth: 260, lineHeight: 1.6 }}>
-                Small-batch websites for small businesses. Baked in Michigan, served everywhere.
+                Small-batch websites for small businesses. Baked in Marshall, Michigan — serving Battle Creek,
+                Calhoun County, and everywhere else.
               </p>
             </div>
             <div className="foot-links">
@@ -549,6 +550,9 @@ export default function Home() {
               </div>
               <div className="col">
                 <b>Contact</b>
+                <span style={{ display: "block", color: "#A6907F", fontSize: 14, marginBottom: 8 }}>
+                  Marshall, Michigan
+                </span>
                 <a href="mailto:hello@glazedweb.com">hello@glazedweb.com</a>
                 <a href="#">Instagram</a>
                 <a href="#">Facebook</a>

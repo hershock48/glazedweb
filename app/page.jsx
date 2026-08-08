@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { LogoDefs, Mark, AnimatedMark, DripDivider } from "@/components/Logo";
+import { LogoDefs, Mark, AnimatedMark, DripDivider, BeANumberMark } from "@/components/Logo";
 
 export default function Home() {
   useEffect(() => {
@@ -18,6 +18,40 @@ export default function Home() {
     );
     document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
     return () => io.disconnect();
+  }, []);
+
+  // Be A Number work card: the shirt number rolls as you scroll —
+  // every number is a child, so the card cycles through them (001–052).
+  useEffect(() => {
+    const card = document.getElementById("ban-card");
+    const num = document.getElementById("ban-num");
+    if (!card || !num) return;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const r = card.getBoundingClientRect();
+      const vh = window.innerHeight || 1;
+      const p = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
+      const s = String(1 + Math.round(p * 51)).padStart(3, "0");
+      if (num.textContent !== s) {
+        num.textContent = s;
+        const wrap = num.parentElement;
+        wrap.classList.remove("tick");
+        void wrap.offsetWidth; // restart the pulse animation
+        wrap.classList.add("tick");
+      }
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, []);
 
   return (
@@ -245,18 +279,27 @@ export default function Home() {
                 <span>Restaurant / menu site</span>
               </div>
             </div>
-            <a className="wcard reveal" href="https://www.beanumber.org" target="_blank" rel="noopener noreferrer">
+            <a
+              id="ban-card"
+              className="wcard reveal"
+              href="https://www.beanumber.org"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <div
                 className="thumb"
                 style={{
-                  background: "linear-gradient(135deg,#26425C,#152435)",
-                  color: "#fff",
+                  background: "linear-gradient(160deg,#1E1B17,#0d0d0d)",
+                  color: "#FFF8F0",
                   flexDirection: "column",
-                  gap: 6,
+                  gap: 8,
                 }}
               >
-                <span style={{ fontSize: 36, fontWeight: 800, letterSpacing: "-1px" }}>№ 001</span>
-                <span style={{ fontSize: 11, letterSpacing: ".22em", opacity: 0.85 }}>EVERY NUMBER IS A CHILD</span>
+                <BeANumberMark size={54} style={{ color: "#D4A843" }} className="ban-logo" />
+                <span className="ban-counter" style={{ fontSize: 30, fontWeight: 800, letterSpacing: "-1px" }}>
+                  № <span id="ban-num">001</span>
+                </span>
+                <span style={{ fontSize: 10.5, letterSpacing: ".22em", opacity: 0.8 }}>EVERY NUMBER IS A CHILD</span>
               </div>
               <div className="meta">
                 <b>Be A Number International</b>

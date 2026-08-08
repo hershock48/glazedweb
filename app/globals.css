@@ -150,6 +150,18 @@
   .wcard .meta b { font-size: 15px; display: block; }
   .wcard .meta span { font-size: 12.5px; color: #A6907F; }
 
+  /* Be A Number card — logo float + scroll-linked number roll */
+  .ban-logo { animation: banFloat 5s ease-in-out infinite; filter: drop-shadow(0 4px 14px rgba(212,168,67,0.35)); }
+  #ban-card:hover .ban-logo { filter: drop-shadow(0 4px 20px rgba(212,168,67,0.6)); }
+  .ban-counter { font-variant-numeric: tabular-nums; display: inline-block; }
+  .ban-counter.tick { animation: banTick .18s ease-out; }
+  @keyframes banFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+  @keyframes banTick { 0% { transform: scale(1.1); color: #D4A843; } 100% { transform: scale(1); } }
+  @media (prefers-reduced-motion: reduce) {
+    .ban-logo { animation: none; }
+    .ban-counter.tick { animation: none; }
+  }
+
   /* cta band */
   .ctaband { background: var(--raspberry); color: #fff; position: relative; }
   .ctaband .inner { padding: 90px 24px; text-align: center; }

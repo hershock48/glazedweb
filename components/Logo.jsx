@@ -129,3 +129,28 @@ export function AnimatedMark({ width = 230, height = 290 }) {
     </svg>
   );
 }
+
+/* Be A Number International mark — © Be A Number, used with permission on the work card */
+export function BeANumberMark({ size = 56, style, className }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 92 92"
+      fill="none"
+      width={size}
+      height={size}
+      style={style}
+      className={className}
+      aria-label="Be A Number logo"
+    >
+      <rect x="19" y="0" width="16" height="16" rx="1" fill="currentColor" />
+      <rect x="57" y="0" width="16" height="16" rx="1" fill="currentColor" />
+      <rect x="0" y="19" width="16" height="16" rx="1" fill="currentColor" />
+      <rect x="76" y="19" width="16" height="16" rx="1" fill="currentColor" />
+      <path
+        d="M 19 38 L 35 38 L 35 57 L 57 57 L 57 38 L 73 38 L 73 57 L 92 57 L 92 73 L 73 73 L 73 92 L 57 92 L 57 73 L 35 73 L 35 92 L 19 92 L 19 73 L 0 73 L 0 57 L 19 57 Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}

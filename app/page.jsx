@@ -443,7 +443,7 @@ export default function Home() {
             <a
               id="chism-card"
               className="wcard reveal"
-              href="https://chism-chicken-ranch.vercel.app"
+              href="https://www.chismchickenranch.com"
               target="_blank"
               rel="noopener noreferrer"
             >

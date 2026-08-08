@@ -138,11 +138,17 @@ export default function AgreementPage() {
         <div className="legal-cta">
           <p>
             <b>Version 1.0</b> · effective August 2026. Accepting this on the order form creates a binding agreement; we
-            record the version and timestamp with your order and email you a copy.
+            record the version and timestamp with your order and email you a copy. Want it for your records, or for your
+            attorney? Download the signable document below — nothing here changes between the page and the paper.
           </p>
-          <Link className="btn big" href="/order">
-            Start your order →
-          </Link>
+          <div className="legal-actions">
+            <Link className="btn big" href="/order">
+              Start your order →
+            </Link>
+            <a className="btn big ghost" href="/glazed-web-agreement-v1.pdf" target="_blank" rel="noopener noreferrer">
+              Download PDF
+            </a>
+          </div>
         </div>
       </main>
 

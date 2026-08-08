@@ -199,24 +199,12 @@
   }
   #chism-card.boking .bok-bubble,
   #chism-card:hover .bok-bubble { opacity: 1; transform: scale(1) rotate(-3deg); }
-  /* the big glazed egg — scroll-stepped shatter, hard cuts (data-egg 0-5 on the card) */
-  .chism-big-egg .crack-1, .chism-big-egg .crack-2, .chism-big-egg .crack-3,
-  .chism-big-egg .egg-open, .chism-big-egg .chick-peek, .chism-big-egg .chick-up,
-  .chism-big-egg .frags-4, .chism-big-egg .frags-5 { opacity: 0; }
-  #chism-card[data-egg="1"] .crack-1 { opacity: 1; }
-  #chism-card[data-egg="2"] .crack-1,
-  #chism-card[data-egg="2"] .crack-2 { opacity: 1; }
-  #chism-card[data-egg="3"] .crack-1,
-  #chism-card[data-egg="3"] .crack-2,
-  #chism-card[data-egg="3"] .crack-3 { opacity: 1; }
-  #chism-card[data-egg="4"] .egg-whole,
-  #chism-card[data-egg="5"] .egg-whole { opacity: 0; }
-  #chism-card[data-egg="4"] .egg-open,
-  #chism-card[data-egg="4"] .chick-peek,
-  #chism-card[data-egg="4"] .frags-4 { opacity: 1; }
-  #chism-card[data-egg="5"] .egg-open,
-  #chism-card[data-egg="5"] .chick-up,
-  #chism-card[data-egg="5"] .frags-5 { opacity: 1; }
+  /* fresh eggs, delivered by scroll — JS scrubs each egg's fall */
+  #chism-card .thumb { position: relative; overflow: hidden; justify-content: flex-start; padding-top: 16px; }
+  #chism-card .thumb > svg:first-of-type { position: relative; z-index: 2; }
+  .chism-eggs { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; }
+  .chism-eggs .egg { transform-box: fill-box; transform-origin: 50% 100%; will-change: transform; transform: translateY(-200px); }
+  .chism-eggs .shadow { transform-box: fill-box; transform-origin: 50% 50%; opacity: 0.12; }
 
   /* Be A Number card — logo float + scroll-linked number roll */
   .ban-logo { animation: banFloat 5s ease-in-out infinite; filter: drop-shadow(0 4px 14px rgba(212,168,67,0.35)); }

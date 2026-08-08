@@ -334,3 +334,57 @@ export function ChismEgg({ size = 116, className, style }) {
     </svg>
   );
 }
+
+/* Chism Chicken Ranch v3 — fresh eggs, delivered by scroll. Three eggs (one
+   big glazed, two smaller) drop from the top of the card as you scroll; JS
+   drives per-egg transforms, so the fall scrubs forward and backward. */
+export function ChismEggs({ className }) {
+  return (
+    <svg className={className} viewBox="0 0 300 190" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+      <defs>
+        <radialGradient id="ceGrad" cx="38%" cy="28%" r="80%">
+          <stop offset="0%" stopColor="#FFFFFF" />
+          <stop offset="45%" stopColor="#FFF8EC" />
+          <stop offset="100%" stopColor="#EFDCC2" />
+        </radialGradient>
+        <linearGradient id="ceGlaze" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#D9EDA0" />
+          <stop offset="100%" stopColor="#A9D65C" />
+        </linearGradient>
+      </defs>
+      {/* landing shadows — deepen as each egg approaches */}
+      <ellipse className="shadow sh-a" cx="150" cy="176" rx="34" ry="5" fill="#5E2812" />
+      <ellipse className="shadow sh-b" cx="84" cy="177" rx="22" ry="4" fill="#5E2812" />
+      <ellipse className="shadow sh-c" cx="222" cy="177" rx="16" ry="3.2" fill="#5E2812" />
+      {/* the big glazed one */}
+      <g className="egg egg-a">
+        <path
+          d="M 150 76 C 168 76 182 100 182 127 C 182 149 168 172 150 172 C 132 172 118 149 118 127 C 118 100 132 76 150 76 Z"
+          fill="url(#ceGrad)"
+        />
+        <path
+          d="M 133 103 C 135 87 141 76 150 76 C 159 76 165 87 167 103 C 168 109 164 111 162 107 C 160 103 161 113 157 113 C 153 113 155 105 151 106 C 148 107 149 116 145 116 C 141 116 143 106 139 106 C 136 106 137 111 134 110 C 131 109 132 106 133 103 Z"
+          fill="url(#ceGlaze)"
+        />
+        <path d="M 132 110 A 26 34 0 0 1 141 90" fill="none" stroke="#FFFFFF" strokeWidth="4.5" strokeLinecap="round" opacity="0.75" className="sheen" />
+        <circle cx="146" cy="85" r="2" fill="#FFFFFF" opacity="0.75" className="sheen" />
+      </g>
+      {/* medium */}
+      <g className="egg egg-b">
+        <path
+          d="M 84 114 C 96 114 105 130 105 148 C 105 163 96 174 84 174 C 72 174 63 163 63 148 C 63 130 72 114 84 114 Z"
+          fill="url(#ceGrad)"
+        />
+        <path d="M 71 146 A 17 22 0 0 1 77 132" fill="none" stroke="#FFFFFF" strokeWidth="3.2" strokeLinecap="round" opacity="0.7" className="sheen" />
+      </g>
+      {/* small */}
+      <g className="egg egg-c">
+        <path
+          d="M 222 131 C 231 131 238 143 238 156 C 238 167 231 175 222 175 C 213 175 206 167 206 156 C 206 143 213 131 222 131 Z"
+          fill="url(#ceGrad)"
+        />
+        <path d="M 212 155 A 12 16 0 0 1 216 145" fill="none" stroke="#FFFFFF" strokeWidth="2.6" strokeLinecap="round" opacity="0.7" className="sheen" />
+      </g>
+    </svg>
+  );
+}

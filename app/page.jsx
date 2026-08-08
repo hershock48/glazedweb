@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { LogoDefs, Mark, AnimatedMark, DripDivider, BeANumberMark, ChismEgg } from "@/components/Logo";
+import { LogoDefs, Mark, AnimatedMark, DripDivider, BeANumberMark, ChismEggs } from "@/components/Logo";
 
 export default function Home() {
   useEffect(() => {
@@ -54,49 +54,63 @@ export default function Home() {
     };
   }, []);
 
-  // Chism card: one big glazed egg. Scroll steps crack it open frame by frame
-  // (data-egg 0-5, hard cuts like the counter digits): hairline crack, spreading
-  // cracks, burst with frozen shell fragments, chick pops out. Fully reversible.
+  // Chism card: fresh eggs, delivered by scroll. Each egg's fall is scrubbed
+  // to scroll position — the big glazed one drops in first, then two smaller
+  // ones follow, each landing with a little squash and a deepening shadow.
+  // Scroll back up and they lift right back out of the card.
   useEffect(() => {
     const card = document.getElementById("chism-card");
     if (!card) return;
-    const STEPS = 5;
+    const eggs = [
+      { el: card.querySelector(".egg-a"), sh: card.querySelector(".sh-a"), zone: [0.34, 0.47], tilt: 0 },
+      { el: card.querySelector(".egg-b"), sh: card.querySelector(".sh-b"), zone: [0.43, 0.56], tilt: -7 },
+      { el: card.querySelector(".egg-c"), sh: card.querySelector(".sh-c"), zone: [0.51, 0.64], tilt: 6 },
+    ].filter((e) => e.el);
+    if (!eggs.length) return;
+    const reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const clamp01 = (v) => Math.min(1, Math.max(0, v));
+    const place = (egg, ei) => {
+      const y = -200 * (1 - ei); // starts fully above the card's top edge
+      const k = ei > 0.86 ? (ei - 0.86) / 0.14 : 0;
+      const squash = 1 - 0.13 * Math.sin(k * Math.PI);
+      egg.el.style.transform = `translateY(${y}px) rotate(${egg.tilt * ei}deg) scaleY(${squash})`;
+      if (egg.sh) {
+        egg.sh.style.opacity = String(0.12 + 0.88 * ei);
+        egg.sh.style.transform = `scaleX(${0.5 + 0.5 * ei})`;
+      }
+    };
+    if (reduced) {
+      eggs.forEach((egg) => place(egg, 1)); // calm, fully-set scene
+      return;
+    }
     let hideT = 0;
     let raf = 0;
     let visible = false;
-    const quant = () => {
+    const render = () => {
+      raf = 0;
       const r = card.getBoundingClientRect();
       const vh = window.innerHeight || 1;
-      const cp = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
-      // finish the shatter while the egg is still front and center (mobile included)
-      return Math.round(Math.min(1, Math.max(0, (cp - 0.35) / 0.3)) * STEPS);
+      const cp = clamp01((vh - r.top) / (vh + r.height));
+      eggs.forEach((egg) => place(egg, clamp01((cp - egg.zone[0]) / (egg.zone[1] - egg.zone[0]))));
     };
     const io = new IntersectionObserver(
       (entries) => {
         visible = entries[0].isIntersecting;
-        if (!visible) {
-          card.classList.remove("boking");
-          card.dataset.egg = "0";
-        } else {
-          card.dataset.egg = String(quant());
-        }
+        if (!visible) card.classList.remove("boking");
+        else render();
       },
-      { threshold: 0.35 }
+      { threshold: 0.2 }
     );
     io.observe(card);
-    const update = () => {
-      raf = 0;
-      const q = String(quant());
-      if (card.dataset.egg !== q) card.dataset.egg = q;
-    };
     const onScroll = () => {
-      if (!visible) return;
-      card.classList.add("boking");
-      clearTimeout(hideT);
-      hideT = setTimeout(() => card.classList.remove("boking"), 1200);
-      if (!raf) raf = requestAnimationFrame(update);
+      if (visible) {
+        card.classList.add("boking");
+        clearTimeout(hideT);
+        hideT = setTimeout(() => card.classList.remove("boking"), 1200);
+      }
+      if (!raf) raf = requestAnimationFrame(render);
     };
-    update();
+    render();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll, { passive: true });
     return () => {
@@ -448,7 +462,7 @@ export default function Home() {
                     </textPath>
                   </text>
                 </svg>
-                <ChismEgg size={112} className="chism-big-egg" />
+                <ChismEggs className="chism-eggs" />
               </div>
               <div className="meta">
                 <b>Chism Chicken Ranch</b>

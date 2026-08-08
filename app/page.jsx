@@ -82,6 +82,34 @@ export default function Home() {
     };
   }, []);
 
+  // Process steps: the glaze shine sweeps across the numbers as you scroll past.
+  useEffect(() => {
+    const sec = document.getElementById("process");
+    if (!sec) return;
+    let hideT = 0;
+    let visible = false;
+    const io = new IntersectionObserver(
+      (entries) => {
+        visible = entries[0].isIntersecting;
+        if (!visible) sec.classList.remove("glazing");
+      },
+      { threshold: 0.25 }
+    );
+    io.observe(sec);
+    const onScroll = () => {
+      if (!visible) return;
+      sec.classList.add("glazing");
+      clearTimeout(hideT);
+      hideT = setTimeout(() => sec.classList.remove("glazing"), 1000);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      io.disconnect();
+      window.removeEventListener("scroll", onScroll);
+      clearTimeout(hideT);
+    };
+  }, []);
+
   return (
     <>
       <LogoDefs />

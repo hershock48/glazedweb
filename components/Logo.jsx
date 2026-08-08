@@ -174,6 +174,11 @@ export function ChismChicken({ size = 96, className, style }) {
         <path d="M 48 84 L 48 97 M 48 97 L 42 101 M 48 97 L 53 101" />
         <path d="M 66 84 L 66 97 M 66 97 L 60 101 M 66 97 L 71 101" />
       </g>
+      {/* the egg — laid on scroll (.boking); drawn behind her body so it emerges from underneath */}
+      <g className="chism-egg">
+        <ellipse cx="30" cy="95" rx="7.2" ry="9.2" fill="#FFFDF8" />
+        <ellipse cx="27.5" cy="91.5" rx="2.3" ry="3.1" fill="#FFFFFF" opacity="0.85" />
+      </g>
       {/* tail feathers */}
       <path d="M 30 52 C 16 44, 10 32, 18 20 C 22 30, 28 38, 36 44 Z" fill="#3B4A3A" />
       <path d="M 34 56 C 22 52, 14 44, 16 34 C 22 42, 30 48, 40 51 Z" fill="#55694F" />
@@ -196,11 +201,6 @@ export function ChismChicken({ size = 96, className, style }) {
       {/* eye */}
       <circle cx="79" cy="41" r="2.6" fill="#2B1E16" />
       <circle cx="80" cy="40.2" r="0.9" fill="#FFF7EA" />
-      {/* the egg — laid on scroll (.boking) */}
-      <g className="chism-egg">
-        <ellipse cx="36" cy="93" rx="6.3" ry="8.2" fill="#FFFDF8" />
-        <ellipse cx="33.8" cy="90" rx="2" ry="2.8" fill="#FFFFFF" opacity="0.8" />
-      </g>
     </svg>
   );
 }

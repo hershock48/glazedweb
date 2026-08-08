@@ -177,14 +177,22 @@
   #chism-card:hover .bok-bubble { opacity: 1; transform: scale(1) rotate(-3deg); }
   .chism-egg { opacity: 0; transform-box: fill-box; transform-origin: 50% 100%; transition: opacity .4s ease; }
   #chism-card.boking .chism-egg,
-  #chism-card:hover .chism-egg { opacity: 1; animation: eggLay .9s cubic-bezier(.5,.05,.6,1); }
+  #chism-card:hover .chism-egg { opacity: 1; animation: eggLay 1.15s cubic-bezier(.45,.05,.55,.95); }
   @keyframes eggLay {
-    0% { opacity: 0; transform: translateY(-20px) scale(.55); }
-    18% { opacity: 1; }
-    55% { transform: translateY(0) scale(1); }
-    70% { transform: translateY(0) scaleX(1.14) scaleY(.84); }
-    84% { transform: translateY(-3px) scale(1); }
-    100% { transform: translateY(0) scale(1); }
+    0% { opacity: 0; transform: translateY(-30px) scale(.5); }
+    12% { opacity: 1; }
+    52% { transform: translateY(0) scale(1); }
+    64% { transform: translateY(0) scaleX(1.18) scaleY(.8); }
+    76% { transform: translateY(-5px) scale(1) rotate(5deg); }
+    87% { transform: translateY(0) rotate(-3deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+  }
+  #chism-card.boking .chism-chick { animation: henLay .7s ease-out, chickBob 3.4s ease-in-out .7s infinite; }
+  @keyframes henLay {
+    0% { transform: translateY(0) rotate(0); }
+    30% { transform: translateY(-4px) rotate(3deg); }
+    60% { transform: translateY(2.5px) rotate(-1.5deg); }
+    100% { transform: translateY(0) rotate(0); }
   }
   @keyframes chickBob {
     0%, 100% { transform: translateY(0) rotate(0); }
@@ -202,7 +210,7 @@
   @media (prefers-reduced-motion: reduce) {
     .ban-logo { animation: none; }
     .ban-counter.tick { animation: none; }
-    .chism-chick { animation: none; }
+    .chism-chick, #chism-card.boking .chism-chick { animation: none; }
     .bok-bubble { transition: opacity .2s ease; transform: scale(1) rotate(-3deg); }
     .chism-egg { animation: none !important; opacity: 1; transform: none; }
   }

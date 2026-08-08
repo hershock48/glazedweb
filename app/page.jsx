@@ -54,25 +54,37 @@ export default function Home() {
     };
   }, []);
 
-  // Chism card: the hen boks while you scroll past her.
+  // Chism card: the hen boks and lays while you scroll past her — then, if you
+  // keep scrolling down, she flies away and leaves the egg. She comes back
+  // (fresh cycle) once the card has fully left the viewport.
   useEffect(() => {
     const card = document.getElementById("chism-card");
     if (!card) return;
     let hideT = 0;
     let visible = false;
+    let laidAt = null; // scrollY at the moment the egg got laid
     const io = new IntersectionObserver(
       (entries) => {
         visible = entries[0].isIntersecting;
-        if (!visible) card.classList.remove("boking");
+        if (!visible) {
+          card.classList.remove("boking", "flying");
+          laidAt = null;
+        }
       },
       { threshold: 0.35 }
     );
     io.observe(card);
     const onScroll = () => {
-      if (!visible) return;
+      if (!visible || card.classList.contains("flying")) return;
       card.classList.add("boking");
+      if (laidAt === null) laidAt = window.scrollY;
       clearTimeout(hideT);
       hideT = setTimeout(() => card.classList.remove("boking"), 1200);
+      if (window.scrollY > laidAt + 140) {
+        card.classList.remove("boking");
+        card.classList.add("flying");
+        clearTimeout(hideT);
+      }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {

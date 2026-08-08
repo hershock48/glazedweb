@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { LogoDefs, Mark, AnimatedMark, DripDivider, BeANumberMark } from "@/components/Logo";
+import { LogoDefs, Mark, AnimatedMark, DripDivider, BeANumberMark, ChismChicken } from "@/components/Logo";
 
 export default function Home() {
   useEffect(() => {
@@ -51,6 +51,34 @@ export default function Home() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  // Chism card: the hen boks while you scroll past her.
+  useEffect(() => {
+    const card = document.getElementById("chism-card");
+    if (!card) return;
+    let hideT = 0;
+    let visible = false;
+    const io = new IntersectionObserver(
+      (entries) => {
+        visible = entries[0].isIntersecting;
+        if (!visible) card.classList.remove("boking");
+      },
+      { threshold: 0.35 }
+    );
+    io.observe(card);
+    const onScroll = () => {
+      if (!visible) return;
+      card.classList.add("boking");
+      clearTimeout(hideT);
+      hideT = setTimeout(() => card.classList.remove("boking"), 1200);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      io.disconnect();
+      window.removeEventListener("scroll", onScroll);
+      clearTimeout(hideT);
     };
   }, []);
 
@@ -248,22 +276,26 @@ export default function Home() {
           <p className="sec-sub">Recent bakes — and room in the case for yours.</p>
           <div className="work-grid">
             <a
+              id="chism-card"
               className="wcard reveal"
               href="https://chism-chicken-ranch.vercel.app"
               target="_blank"
               rel="noopener noreferrer"
             >
+              <div className="bok-bubble" aria-hidden="true">
+                bok bok bok
+              </div>
               <div
                 className="thumb"
                 style={{
                   background: "linear-gradient(135deg,#B5532A,#8A3C1C)",
                   color: "#FFF7EA",
                   flexDirection: "column",
-                  gap: 6,
+                  gap: 4,
                 }}
               >
-                <span style={{ fontSize: 34, fontWeight: 800, letterSpacing: "-1px" }}>CHISM</span>
-                <span style={{ fontSize: 11, letterSpacing: ".22em", opacity: 0.85 }}>CHICKEN RANCH</span>
+                <ChismChicken size={102} className="chism-chick" />
+                <span style={{ fontSize: 11.5, fontWeight: 800, letterSpacing: ".2em" }}>CHISM CHICKEN RANCH</span>
               </div>
               <div className="meta">
                 <b>Chism Chicken Ranch</b>

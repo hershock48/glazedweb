@@ -154,3 +154,48 @@ export function BeANumberMark({ size = 56, style, className }) {
     </svg>
   );
 }
+
+/* Chism Chicken Ranch — hand-drawn hen for the work card */
+export function ChismChicken({ size = 96, className, style }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 120 110"
+      width={size}
+      height={(size * 110) / 120}
+      className={className}
+      style={style}
+      aria-hidden="true"
+    >
+      {/* ground shadow */}
+      <ellipse cx="58" cy="101" rx="32" ry="5" fill="#5E2812" opacity="0.45" />
+      {/* legs */}
+      <g stroke="#E8A33D" strokeWidth="3.4" strokeLinecap="round" fill="none">
+        <path d="M 48 84 L 48 97 M 48 97 L 42 101 M 48 97 L 53 101" />
+        <path d="M 66 84 L 66 97 M 66 97 L 60 101 M 66 97 L 71 101" />
+      </g>
+      {/* tail feathers */}
+      <path d="M 30 52 C 16 44, 10 32, 18 20 C 22 30, 28 38, 36 44 Z" fill="#3B4A3A" />
+      <path d="M 34 56 C 22 52, 14 44, 16 34 C 22 42, 30 48, 40 51 Z" fill="#55694F" />
+      {/* body + head */}
+      <path
+        d="M 27 52 C 14 58, 12 75, 25 84 C 36 91, 58 93, 71 87 C 84 81, 88 70, 87 59 L 87 40 C 87 28, 74 23, 67 31 L 62 38 C 50 34, 37 42, 27 52 Z"
+        fill="#FFF7EA"
+      />
+      {/* wing */}
+      <path d="M 40 60 C 51 53, 64 56, 65 64 C 62 74, 47 77, 39 70 C 37 66, 37 62, 40 60 Z" fill="#F0DFC8" />
+      {/* comb */}
+      <path
+        d="M 68 27 C 68 21, 74 19, 76 24 C 78 18, 85 19, 85 25 C 89 22, 93 26, 90 31 L 71 32 Z"
+        fill="#D64541"
+      />
+      {/* beak */}
+      <path d="M 87 43 L 100 47 L 87 52 Z" fill="#E8A33D" />
+      {/* wattle */}
+      <path d="M 82 52 C 84 60, 76 62, 75 55 C 75 51, 80 49, 82 52 Z" fill="#D64541" />
+      {/* eye */}
+      <circle cx="79" cy="41" r="2.6" fill="#2B1E16" />
+      <circle cx="80" cy="40.2" r="0.9" fill="#FFF7EA" />
+    </svg>
+  );
+}

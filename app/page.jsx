@@ -257,7 +257,7 @@ export default function Home() {
             <a href="#menu">Menu</a>
             <a href="#process">Process</a>
             <a href="#work">Work</a>
-            <a className="btn" href="#order">
+            <a className="btn" href="/order">
               Get a site
             </a>
           </nav>
@@ -287,7 +287,7 @@ export default function Home() {
             donut: pick a flavor, we bake it fresh, it ships glazed.
           </p>
           <div className="ctas">
-            <a className="btn big" href="#order">
+            <a className="btn big" href="/order">
               Start your order
             </a>
             <a className="btn big ghost" href="#menu">
@@ -350,7 +350,7 @@ export default function Home() {
                 <li>Contact form, map, hours — the essentials, done right</li>
                 <li>Live in 2 weeks — then the monthly covers hosting, security, and small edits forever</li>
               </ul>
-              <a className="btn ghost" href="#order">
+              <a className="btn ghost" href="/order?flavor=original">
                 Order this
               </a>
             </div>
@@ -371,7 +371,7 @@ export default function Home() {
                 <li>SEO foundations + Google Business tune-up</li>
                 <li>Monthly covers hosting, updates, edits, and a check-in</li>
               </ul>
-              <a className="btn" href="#order">
+              <a className="btn" href="/order?flavor=dozen">
                 Order this
               </a>
             </div>
@@ -385,7 +385,7 @@ export default function Home() {
                 <li>Care plan scoped to fit — hosting, updates, and edits</li>
                 <li>If you can sketch it on a napkin, we can bake it</li>
               </ul>
-              <a className="btn ghost" href="#order">
+              <a className="btn ghost" href="/order?flavor=custom">
                 Get a quote
               </a>
             </div>
@@ -531,7 +531,7 @@ export default function Home() {
             Tell us about your business in two minutes. We&apos;ll reply within one business day with a plan and a price
             — no calls required until you want one.
           </p>
-          <a className="btn big" href="mailto:hello@glazedweb.com">
+          <a className="btn big" href="/order">
             Start your order →
           </a>
         </div>

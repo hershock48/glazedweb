@@ -68,7 +68,8 @@ export default function Home() {
       const r = card.getBoundingClientRect();
       const vh = window.innerHeight || 1;
       const cp = Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height)));
-      return Math.round(Math.min(1, Math.max(0, (cp - 0.5) / 0.28)) * STEPS);
+      // finish the shatter while the egg is still front and center (mobile included)
+      return Math.round(Math.min(1, Math.max(0, (cp - 0.35) / 0.3)) * STEPS);
     };
     const io = new IntersectionObserver(
       (entries) => {

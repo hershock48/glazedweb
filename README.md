@@ -55,15 +55,22 @@ pushes to `main`. Meanwhile `copperac`, `griffin-claw-rebuild` and
 using the same credentials and the same machine. So the push itself, the
 token and GitHub were all fine.
 
-Two things it was **not**, both ruled out by evidence rather than by looking:
+**What fixed it: re-saving the Vercel GitHub App's repository access.**
+GitHub → Settings → Applications → Vercel → Configure → Repository access →
+Save. The setting was already on *All repositories*; saving it anyway is the
+point, because saving re-fires the installation event and Vercel
+re-registers the repo. The next push to `main` built immediately, and the
+three before it had not.
 
-* **The Vercel GitHub App's repository access.** It was set to *All
-  repositories*, so the App could see the repo the whole time.
-* **Production Branch or Ignored Build Step.** Neither can produce this
-  symptom. An Ignored Build Step still creates a deployment and marks it
-  *Canceled*; a wrong Production Branch still creates a *Preview*. Here
-  there was no deployment record of any kind, which means Vercel never
-  started one.
+So the App's *stated* access is not evidence that the link works. A screen
+reading "All repositories" tells you what GitHub intends, not whether Vercel
+currently has a live registration for this repo. Save it regardless.
+
+What it was **not**: Production Branch or Ignored Build Step. Neither can
+produce this symptom, and it is worth knowing why so nobody goes hunting
+there. An Ignored Build Step still creates a deployment and marks it
+*Canceled*; a wrong Production Branch still creates a *Preview*. Here there
+was no deployment record of any kind, which means Vercel never started one.
 
 A caution on how to test this, because the obvious experiment does not work:
 pushing a throwaway branch to check whether the webhook fires proves
@@ -73,11 +80,12 @@ that was demonstrably building fine at the time, and getting no deployment
 there either. Test with a real commit on the production branch or not at
 all.
 
-What is left, once those are gone, is the project's own link record to the
-repo on Vercel's side. Fix: project → **Settings → Git → Disconnect**, then
-reconnect `hershock48/glazedweb`. The dashboard reports the repo as
-connected either way, which is why this is invisible from both ends until
-you compare a working project against a broken one.
+If re-saving the App access ever fails to fix it, the next thing to try is
+the project's own link record: **Settings → Git → Disconnect**, then
+reconnect the repo. Vercel's dashboard reports the repo as connected either
+way, and its Production Checklist keeps "Connect Git Repository" ticked, so
+neither end of this shows you anything. The only reliable signal is
+comparing a working project's latest deployment against a broken one's.
 
 ## Brand
 

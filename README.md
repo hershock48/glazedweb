@@ -87,6 +87,32 @@ way, and its Production Checklist keeps "Connect Git Repository" ticked, so
 neither end of this shows you anything. The only reliable signal is
 comparing a working project's latest deployment against a broken one's.
 
+## The /order form is not delivering email yet
+
+`/order` is the funnel: flavour, business details, clickwrap acceptance of the
+agreement. `POST /api/order` sends it through Resend, but only once **both**
+`RESEND_API_KEY` and `ORDER_TO_EMAIL` are set in the Vercel project. Until
+then it answers `503 not_configured` and the form opens a pre-filled email
+instead, so the order survives. See `.env.example`.
+
+Neither variable is defaulted, and `ORDER_TO_EMAIL` especially is not. A
+guessed inbox is worse than no inbox: Resend would accept the message, the API
+would answer `ok:true`, the customer would be told their order was received,
+and it would be gone with no bounce anyone sees. A missing value has to fail
+loudly.
+
+**Confirm `hello@glazedweb.com` actually receives mail.** It was hardcoded in
+eight places before `lib/contact.js` existed, including the
+`ProfessionalService` JSON-LD in `app/layout.jsx` that Google reads as the
+studio's contact address. Nothing has ever verified it lands anywhere. Kevin's
+working mailbox is kevin@glazedweb.com. While the form is on its mailto
+fallback, that address is the *only* path an order takes, so if it is dead,
+prospects are filling in the whole form and hitting send into nothing.
+
+The fallback copy used to read "Email isn't wired up on this form yet". True,
+and the wrong thing to say on the last screen of a funnel to somebody deciding
+whether to pay us to build their website. Same behaviour, no confession.
+
 ## Brand
 
 - Mark: pink donut + green slime drip (see `components/Logo.jsx`)

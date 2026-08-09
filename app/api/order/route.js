@@ -1,6 +1,7 @@
+import { ORDER_TO } from "@/lib/contact";
+
 export const runtime = "nodejs";
 
-const TO = process.env.ORDER_TO_EMAIL || "hello@glazedweb.com";
 const FROM = process.env.ORDER_FROM_EMAIL || "orders@glazedweb.com";
 
 function esc(s) {
@@ -20,9 +21,13 @@ export async function POST(req) {
     return Response.json({ ok: false, reason: "missing_fields" }, { status: 400 });
   }
 
+  // Both are required, and a missing one is a 503 rather than a best guess.
+  // The client turns a 503 into a pre-filled mailto, so the order survives
+  // either way. What must never happen is answering ok:true when the message
+  // went nowhere: the customer would be told we had their order and we would
+  // not, with nothing anywhere to notice it.
   const key = process.env.RESEND_API_KEY;
-  if (!key) {
-    // Not wired up yet — the client falls back to a pre-filled mailto so no order is ever lost.
+  if (!key || !ORDER_TO) {
     return Response.json({ ok: false, reason: "not_configured" }, { status: 503 });
   }
 
@@ -62,7 +67,7 @@ export async function POST(req) {
       headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
       body: JSON.stringify({
         from: `glazedweb orders <${FROM}>`,
-        to: [TO],
+        to: [ORDER_TO],
         reply_to: email,
         subject: `New order — ${body.flavor} — ${business}`,
         html,

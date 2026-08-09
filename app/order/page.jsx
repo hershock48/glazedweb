@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { CONTACT_EMAIL } from "@/lib/contact";
 import { LogoDefs, Mark } from "@/components/Logo";
 
 const FLAVORS = {
@@ -59,8 +60,8 @@ export default function OrderPage() {
         `Agreement accepted: ${payload.agreementAcceptedAt} (${payload.agreementVersion})`,
       ].join("\n");
       setFallbackHref(
-        `mailto:hello@glazedweb.com?subject=${encodeURIComponent(
-          `New order — ${payload.flavor} — ${payload.business || payload.name || "new client"}`
+        `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+          `New order: ${payload.flavor}, ${payload.business || payload.name || "new client"}`
         )}&body=${encodeURIComponent(lines)}`
       );
       setStatus(data?.reason === "not_configured" ? "fallback" : "fallback");
@@ -237,10 +238,14 @@ export default function OrderPage() {
             </span>
           </div>
 
+          {/* Was: "Email isn't wired up on this form yet". True, and the wrong
+              thing to say to somebody deciding whether to pay us to build their
+              website. It read as an apology for our own half-finished site on
+              the last screen of the funnel. Same behaviour, no confession: the
+              hand-off to their mail app is presented as the step it is. */}
           {status === "fallback" && (
             <div className="order-note">
-              <b>One more tap.</b> Email isn&apos;t wired up on this form yet — click below and your answers will be
-              waiting in a pre-filled email, ready to send.
+              <b>One more tap.</b> Your answers are ready to go in an email. Open it, hit send, and it is with me.
               <a className="btn" href={fallbackHref} style={{ marginTop: 12, display: "inline-block" }}>
                 Open pre-filled email
               </a>
@@ -248,15 +253,15 @@ export default function OrderPage() {
           )}
           {status === "error" && (
             <div className="order-note">
-              Something went sideways on our end. Email <a href="mailto:hello@glazedweb.com">hello@glazedweb.com</a> and
-              I&apos;ll take it from there.
+              Something went sideways on our end. Email{" "}
+              <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> and I&apos;ll take it from there.
             </div>
           )}
         </form>
       </main>
       <footer className="order-foot">
         <Link href="/">← glazedweb</Link>
-        <span>Marshall, Michigan · hello@glazedweb.com</span>
+        <span>Marshall, Michigan · {CONTACT_EMAIL}</span>
       </footer>
     </>
   );

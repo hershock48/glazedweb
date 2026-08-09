@@ -119,22 +119,30 @@ whether to pay us to build their website. Same behaviour, no confession.
 
 ## The share card
 
-`public/og.png` is what appears when the link is texted or posted. It is the
-mark alone on the cream ground, no wordmark and no copy, by request.
+`public/og.png` is what appears when the link is texted or posted: the mark on
+the cream ground with "Websites, fresh daily." under it. The wordmark, the
+hand-built line, the geo line and the green rule are all gone. Four lines of
+copy is too much to read at the size a text message renders this.
 
-The words are not lost by doing that: every client renders the `openGraph`
-title and description as text beside the image, and those still carry
-"Web Design in Marshall & Battle Creek, MI" and the price and timeline. The
-card only has to be recognisable.
+Nothing is lost by cutting the rest, because every client renders the
+`openGraph` title and description as text beside the image, and those still
+carry "Web Design in Marshall & Battle Creek, MI" with the price and timeline.
+The card only has to be recognisable.
 
-To remake it: `public/brand/logo.svg` at 520px tall, centred on `#FDF6EC` in a
-1200x630 frame, rendered at 2x and downsampled. One detail that is not
-obvious, and was measured rather than eyeballed: the logo's viewBox carries
-empty space below the drips, so centring the element leaves the artwork sitting
-high, at 92px of cream above against 159px below. Shifting it down 33.5px
-centres the ink, at 126 against 125. The mark also stays inside the central
-630x630 square so it survives the square crop some clients apply, and inside
-the 1200x600 Twitter crop.
+To remake it: `public/brand/logo.svg` at 380px tall above the tagline at 54px /
+800 weight in `#CE3672`, centred on `#FDF6EC` in a 1200x630 frame, rendered at
+2x and downsampled. Type is the system stack, because the site ships no webfont
+at all and matching it means using the same stack rather than picking something
+close.
+
+Two details that were measured rather than eyeballed, both caused by the same
+thing. The logo's viewBox carries roughly 58px of empty space below the drips.
+That slack stacks on top of any flex gap, which pushed the tagline away from the
+mark it belongs to, so the mark carries `margin-bottom: -58px` to absorb it. And
+the same slack makes a box-centred layout sit high, so the mark is shifted up
+28px to bring the combined artwork to 126px of cream above against 124 below.
+The result stays inside the central 630x630 square, so the square crop some
+clients apply does not clip it.
 
 `twitter` in `app/layout.jsx` sets the card type and nothing else, on purpose.
 A root twitter block carrying title, description or image is inherited by every

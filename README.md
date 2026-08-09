@@ -42,7 +42,42 @@ duplicates are now deleted and every repo has exactly one project.
 duplicate pair. Leave them alone.
 
 Rule going forward: **one Vercel project per repo.** If you need a second
-environment, use a branch and a preview deployment, not a second import.
+environment, use a branch and a pull request, not a second import.
+
+### When a push to `main` builds nothing at all
+
+Separate fault, found the same evening and worth writing down because the
+diagnosis is counter-intuitive.
+
+`glazedweb` stopped building at `05dc86d` and then ignored three consecutive
+pushes to `main`. Meanwhile `copperac`, `griffin-claw-rebuild` and
+`sprinklesandsparklesbb` all built normally from pushes minutes either side,
+using the same credentials and the same machine. So the push itself, the
+token and GitHub were all fine.
+
+Two things it was **not**, both ruled out by evidence rather than by looking:
+
+* **The Vercel GitHub App's repository access.** It was set to *All
+  repositories*, so the App could see the repo the whole time.
+* **Production Branch or Ignored Build Step.** Neither can produce this
+  symptom. An Ignored Build Step still creates a deployment and marks it
+  *Canceled*; a wrong Production Branch still creates a *Preview*. Here
+  there was no deployment record of any kind, which means Vercel never
+  started one.
+
+A caution on how to test this, because the obvious experiment does not work:
+pushing a throwaway branch to check whether the webhook fires proves
+nothing. A bare branch push with no pull request open does not create a
+deployment on this setup — verified by pushing one to `copperac`, a project
+that was demonstrably building fine at the time, and getting no deployment
+there either. Test with a real commit on the production branch or not at
+all.
+
+What is left, once those are gone, is the project's own link record to the
+repo on Vercel's side. Fix: project → **Settings → Git → Disconnect**, then
+reconnect `hershock48/glazedweb`. The dashboard reports the repo as
+connected either way, which is why this is invisible from both ends until
+you compare a working project against a broken one.
 
 ## Brand
 

@@ -20,7 +20,15 @@ export const metadata = {
       "Hand-built websites for Michigan small businesses from $750, live in 2 weeks. Order it like a donut: pick a flavor, we bake it fresh, it ships glazed.",
     type: "website",
     url: "https://www.glazedweb.com",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "glazedweb — small-batch web design in Marshall, Michigan" }],
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "The glazedweb mark: a pink donut with a green glaze dripping off it" }],
+  },
+  // Only the card type. Deliberately no title, description or image here: a
+  // twitter block with those set at the root gets inherited by every sub-page,
+  // so pages that override openGraph would still advertise the homepage's card
+  // to any scraper that prefers twitter:*. Without this line the image is still
+  // found, but rendered as a small square thumbnail rather than a wide card.
+  twitter: {
+    card: "summary_large_image",
   },
 };
 

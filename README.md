@@ -117,6 +117,35 @@ The fallback copy used to read "Email isn't wired up on this form yet". True,
 and the wrong thing to say on the last screen of a funnel to somebody deciding
 whether to pay us to build their website. Same behaviour, no confession.
 
+## The share card
+
+`public/og.png` is what appears when the link is texted or posted. It is the
+mark alone on the cream ground, no wordmark and no copy, by request.
+
+The words are not lost by doing that: every client renders the `openGraph`
+title and description as text beside the image, and those still carry
+"Web Design in Marshall & Battle Creek, MI" and the price and timeline. The
+card only has to be recognisable.
+
+To remake it: `public/brand/logo.svg` at 520px tall, centred on `#FDF6EC` in a
+1200x630 frame, rendered at 2x and downsampled. One detail that is not
+obvious, and was measured rather than eyeballed: the logo's viewBox carries
+empty space below the drips, so centring the element leaves the artwork sitting
+high, at 92px of cream above against 159px below. Shifting it down 33.5px
+centres the ink, at 126 against 125. The mark also stays inside the central
+630x630 square so it survives the square crop some clients apply, and inside
+the 1200x600 Twitter crop.
+
+`twitter` in `app/layout.jsx` sets the card type and nothing else, on purpose.
+A root twitter block carrying title, description or image is inherited by every
+sub-page, so pages that override `openGraph` would still hand the homepage's
+card to any scraper preferring `twitter:*`.
+
+Changing this file does not change what has already been shared. Facebook,
+iMessage and LinkedIn cache preview images hard. Force a re-scrape through
+Facebook's Sharing Debugger; iMessage clears itself over a few days and has no
+button.
+
 ## Brand
 
 - Mark: pink donut + green slime drip (see `components/Logo.jsx`)

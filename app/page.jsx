@@ -482,15 +482,42 @@ export default function Home() {
                 <span>Pasture-raised poultry · Marshall, MI</span>
               </div>
             </a>
-            <div className="wcard reveal">
-              <div className="thumb" style={{ background: "linear-gradient(135deg,#BFE07A,#8FBC4E)", color: "#2B1E16" }}>
-                PROJECT TWO
+            {/* Copper Athletic Club. Points at /demo, not the root of that
+                host: the root is the proposal document, which is written for
+                them and not for the public. Says "in progress" because it is a
+                live demo of an unsigned job, and the rest of this case is real
+                shipped work. Palette and the proof line are theirs. */}
+            <a
+              id="cac-card"
+              className="wcard reveal"
+              href="https://copperac.glazedweb.com/demo"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div
+                className="thumb"
+                style={{
+                  background: "linear-gradient(150deg,#191919,#0d0d0d)",
+                  color: "#e8e2d8",
+                  flexDirection: "column",
+                  gap: 0,
+                }}
+              >
+                <span className="cac-glow" aria-hidden="true" />
+                <span className="cac-lockup">
+                  <span className="cac-word">COPPER</span>
+                  <span className="cac-sub">ATHLETIC CLUB</span>
+                </span>
+                <span className="cac-rule" aria-hidden="true" />
+                <span className="cac-spec">
+                  EST. 2013 · 14 SCREENS · <span className="cac-zero">0</span> TREADMILLS
+                </span>
               </div>
               <div className="meta">
-                <b>Coming soon</b>
-                <span>Restaurant / menu site</span>
+                <b>Copper Athletic Club</b>
+                <span>Sports bar · Marshall, MI · in progress</span>
               </div>
-            </div>
+            </a>
             <a
               id="ban-card"
               className="wcard reveal"

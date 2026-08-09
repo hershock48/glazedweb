@@ -206,6 +206,45 @@
   .chism-eggs .egg { transform-box: fill-box; transform-origin: 50% 100%; will-change: transform; transform: translateY(-200px); }
   .chism-eggs .shadow { transform-box: fill-box; transform-origin: 50% 50%; opacity: 0.12; }
 
+  /* Copper Athletic Club card — copper lockup over an amber odds-board glow.
+     Copper #b86d2a on their ink-soft ground measures 4.40, which fails AA for
+     body text but clears the 3:1 large-text threshold comfortably, and this is
+     28px display type. The small spec line uses cream-dim (14.6, AAA) rather
+     than copper for the same reason. */
+  #cac-card .thumb { position: relative; overflow: hidden; }
+  .cac-glow {
+    position: absolute; left: 50%; top: 46%; width: 260px; height: 130px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(ellipse at center, rgba(184,109,42,0.30), transparent 70%);
+    pointer-events: none;
+  }
+  .cac-lockup { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 3px; }
+  .cac-word {
+    font-size: 28px; font-weight: 800; letter-spacing: .16em; line-height: 1;
+    color: #b86d2a; text-indent: .16em;
+  }
+  .cac-sub {
+    font-size: 10px; font-weight: 700; letter-spacing: .34em; line-height: 1;
+    color: #d18a48; text-indent: .34em;
+  }
+  .cac-rule {
+    position: relative; z-index: 2;
+    display: block; width: 52px; height: 2px; margin: 14px 0 12px;
+    background: #b86d2a; opacity: .8;
+  }
+  .cac-spec {
+    position: relative; z-index: 2;
+    font-size: 9.5px; font-weight: 700; letter-spacing: .17em;
+    color: #e8e2d8; opacity: .78; text-indent: .17em;
+  }
+  /* The joke is the zero, so it gets the LED treatment off their scoreboard. */
+  .cac-zero { color: #d18a48; animation: cacLed 3.2s ease-in-out infinite; }
+  #cac-card:hover .cac-glow { background: radial-gradient(ellipse at center, rgba(184,109,42,0.44), transparent 70%); }
+  @keyframes cacLed {
+    0%, 44%, 100% { opacity: 1; text-shadow: 0 0 8px rgba(209,138,72,0.55); }
+    50%, 56% { opacity: .45; text-shadow: none; }
+  }
+
   /* Be A Number card — logo float + scroll-linked number roll */
   .ban-logo { animation: banFloat 5s ease-in-out infinite; filter: drop-shadow(0 4px 14px rgba(212,168,67,0.35)); }
   #ban-card:hover .ban-logo { filter: drop-shadow(0 4px 20px rgba(212,168,67,0.6)); }
@@ -216,6 +255,7 @@
   @media (prefers-reduced-motion: reduce) {
     .ban-logo { animation: none; }
     .ban-counter.tick { animation: none; }
+    .cac-zero { animation: none; }
     .bok-bubble { transition: opacity .2s ease; transform: scale(1) rotate(-3deg); }
     .step.glazed .num::after { animation: none; }
   }

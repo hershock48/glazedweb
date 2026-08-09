@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { LogoDefs, Mark } from "@/components/Logo";
+import { CONTACT_EMAIL } from "@/lib/contact";
 
 export const metadata = {
   title: "Service Agreement | glazedweb",
@@ -36,7 +37,7 @@ export default function AgreementPage() {
         <h1>The deal, in plain English.</h1>
         <p className="legal-lead">
           Every Glazed Web project runs on these terms. No surprises, no fine print designed to trap you. If anything
-          here is unclear, ask before you sign — <a href="mailto:hello@glazedweb.com">hello@glazedweb.com</a>.
+          here is unclear, ask before you sign. <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
         </p>
 
         <div className="legal-highlights">
@@ -154,7 +155,7 @@ export default function AgreementPage() {
 
       <footer className="order-foot">
         <Link href="/">← glazedweb</Link>
-        <span>Marshall, Michigan · hello@glazedweb.com</span>
+        <span>Marshall, Michigan · {CONTACT_EMAIL}</span>
       </footer>
     </>
   );

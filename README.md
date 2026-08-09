@@ -90,24 +90,28 @@ comparing a working project's latest deployment against a broken one's.
 ## The /order form is not delivering email yet
 
 `/order` is the funnel: flavour, business details, clickwrap acceptance of the
-agreement. `POST /api/order` sends it through Resend, but only once **both**
-`RESEND_API_KEY` and `ORDER_TO_EMAIL` are set in the Vercel project. Until
-then it answers `503 not_configured` and the form opens a pre-filled email
-instead, so the order survives. See `.env.example`.
+agreement. `POST /api/order` sends it through Resend, and **one** variable
+switches it on: `RESEND_API_KEY` in the Vercel project. Until then it answers
+`503 not_configured` and the form opens a pre-filled email instead, so an order
+survives a half-finished setup. See `.env.example`.
 
-Neither variable is defaulted, and `ORDER_TO_EMAIL` especially is not. A
-guessed inbox is worse than no inbox: Resend would accept the message, the API
-would answer `ok:true`, the customer would be told their order was received,
-and it would be gone with no bounce anyone sees. A missing value has to fail
-loudly.
+Sending needs glazedweb.com verified in Resend with DNS records. That is
+deliberately our domain rather than each client's: verify once and every site
+we build can send, with `reply_to` set to the customer so hitting reply on a
+notification lands with them.
 
-**Confirm `hello@glazedweb.com` actually receives mail.** It was hardcoded in
-eight places before `lib/contact.js` existed, including the
-`ProfessionalService` JSON-LD in `app/layout.jsx` that Google reads as the
-studio's contact address. Nothing has ever verified it lands anywhere. Kevin's
-working mailbox is kevin@glazedweb.com. While the form is on its mailto
-fallback, that address is the *only* path an order takes, so if it is dead,
-prospects are filling in the whole form and hitting send into nothing.
+`ORDER_TO_EMAIL` is optional and defaults to `CONTACT_EMAIL`. It used to be
+required with no default, because at the time the address was a guess, and a
+guessed inbox is worse than none: Resend accepts the message, the route answers
+`ok:true`, the customer is told their order arrived, and it is gone with no
+bounce anyone sees. Now that the address is confirmed the default is safe.
+Anything unconfirmed should go back to failing loudly.
+
+All contact addresses come from `lib/contact.js`. It was hardcoded in eight
+places before that file existed, including the `ProfessionalService` JSON-LD in
+`app/layout.jsx` that Google reads as the studio's contact address. `kevin@` is
+the address of record, confirmed 9 August 2026; `hello@` also reaches him, so
+nothing already sent there is lost and nothing needed migrating.
 
 The fallback copy used to read "Email isn't wired up on this form yet". True,
 and the wrong thing to say on the last screen of a funnel to somebody deciding

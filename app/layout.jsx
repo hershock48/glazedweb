@@ -1,4 +1,5 @@
 import "./globals.css";
+import { CONTACT_EMAIL } from "@/lib/contact";
 
 export const metadata = {
   metadataBase: new URL("https://www.glazedweb.com"),
@@ -31,7 +32,7 @@ const localBusinessSchema = {
   description:
     "Small-batch web design studio building hand-made custom websites for small businesses. Based in Marshall, Michigan, serving Battle Creek, Albion, Coldwater, and all of Michigan.",
   url: "https://www.glazedweb.com",
-  email: "hello@glazedweb.com",
+  email: CONTACT_EMAIL,
   image: "https://www.glazedweb.com/brand/logo-800.png",
   logo: "https://www.glazedweb.com/brand/logo-800.png",
   priceRange: "$750 - $1,900",

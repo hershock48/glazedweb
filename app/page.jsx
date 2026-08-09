@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { LogoDefs, Mark, AnimatedMark, DripDivider, BeANumberMark, ChismEggs } from "@/components/Logo";
+import { CONTACT_EMAIL } from "@/lib/contact";
 
 export default function Home() {
   useEffect(() => {
@@ -599,7 +600,7 @@ export default function Home() {
                 <span style={{ display: "block", color: "#A6907F", fontSize: 14, marginBottom: 8 }}>
                   Marshall, Michigan
                 </span>
-                <a href="mailto:hello@glazedweb.com">hello@glazedweb.com</a>
+                <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
                 <a href="#">Instagram</a>
                 <a href="#">Facebook</a>
               </div>

@@ -509,8 +509,14 @@ export default function Home() {
                   <span className="cac-sub">ATHLETIC CLUB</span>
                 </span>
                 <span className="cac-rule" aria-hidden="true" />
+                {/* Both numbers here were wrong and this card is public. The
+                    count is nine, confirmed by Kevin; 14 was mine. "EST. 2013"
+                    is gone because Copper's own Facebook avatar reads "est.
+                    2018" and their site states no year, so we were publishing a
+                    likely-wrong founding date for a client on our own
+                    portfolio. Matches the demo's h1 now. */}
                 <span className="cac-spec">
-                  EST. 2013 · 14 SCREENS · <span className="cac-zero">0</span> TREADMILLS
+                  9 TVS · <span className="cac-zero">0</span> TREADMILLS
                 </span>
               </div>
               <div className="meta">

@@ -248,7 +248,9 @@ export default function Home() {
 
       <header>
         <div className="navwrap">
-          <a className="brand" href="#">
+          {/* Was href="#", so the logo did nothing when clicked. Home is the
+              one link every visitor expects a wordmark to be. */}
+          <a className="brand" href="/">
             <Mark />
             <span className="bw">
               glazed<span>web</span>
@@ -284,7 +286,7 @@ export default function Home() {
             </em>
           </h1>
           <p className="sub">
-            Hand-built sites for small businesses — no templates, no bloat, no six-month timelines. Order it like a
+            Hand-built sites for small businesses. No templates, no bloat, no six-month timelines. Order it like a
             donut: pick a flavor, we bake it fresh, it ships glazed.
           </p>
           <div className="ctas">
@@ -332,7 +334,7 @@ export default function Home() {
           </div>
           <h2 className="sec-title">Order it like a donut.</h2>
           <p className="sec-sub">
-            Three flavors. One build price, one small monthly that keeps your site hosted, secure, and fresh — no
+            Three flavors. One build price, one small monthly that keeps your site hosted, secure, and fresh, with no
             surprise invoices. Every site is baked from scratch, never from a template.
           </p>
           <div className="menu-grid">
@@ -348,8 +350,8 @@ export default function Home() {
               <ul>
                 <li>A single sharp page that says who you are and gets people to call</li>
                 <li>Mobile-first, fast, and found on Google</li>
-                <li>Contact form, map, hours — the essentials, done right</li>
-                <li>Live in 2 weeks — then the monthly covers hosting, security, and small edits forever</li>
+                <li>Contact form, map, hours. The essentials, done right</li>
+                <li>Live in 2 weeks, then the monthly covers hosting, security, and small edits forever</li>
               </ul>
               <a className="btn ghost" href="/order?flavor=original">
                 Order this
@@ -368,7 +370,7 @@ export default function Home() {
               <ul>
                 <li>Up to 6 pages: services, about, gallery, the works</li>
                 <li>Custom design that looks like you, not a theme</li>
-                <li>Booking, menus, or e-commerce lite — one baked in</li>
+                <li>Booking, menus, or e-commerce lite, one baked in</li>
                 <li>SEO foundations + Google Business tune-up</li>
                 <li>Monthly covers hosting, updates, edits, and a check-in</li>
               </ul>
@@ -383,7 +385,7 @@ export default function Home() {
               <ul>
                 <li>Online stores, membership sites, web apps</li>
                 <li>Rebrands and redesigns of existing sites</li>
-                <li>Care plan scoped to fit — hosting, updates, and edits</li>
+                <li>Care plan scoped to fit: hosting, updates, and edits</li>
                 <li>If you can sketch it on a napkin, we can bake it</li>
               </ul>
               <a className="btn ghost" href="/order?flavor=custom">
@@ -413,7 +415,7 @@ export default function Home() {
               <div className="num">2</div>
               <h4>Mix the dough</h4>
               <div className="sub">Design</div>
-              <p>We design your homepage first and show you. You react, we adjust — no big reveals, no surprises.</p>
+              <p>We design your homepage first and show you. You react, we adjust. No big reveals, no surprises.</p>
             </div>
             <div className="step reveal">
               <div className="num">3</div>
@@ -425,7 +427,7 @@ export default function Home() {
               <div className="num">4</div>
               <h4>Glazed &amp; delivered</h4>
               <div className="sub">Launch</div>
-              <p>Domain connected, Google set up, everything handed over. You own it all — code, content, accounts.</p>
+              <p>Domain connected, Google set up, everything handed over. You own it all: code, content, accounts.</p>
             </div>
           </div>
         </div>
@@ -439,7 +441,7 @@ export default function Home() {
           <h2 className="sec-title" style={{ color: "#F3EAE1" }}>
             Fresh from the shop.
           </h2>
-          <p className="sec-sub">Recent bakes — and room in the case for yours.</p>
+          <p className="sec-sub">Recent bakes, and room in the case for yours.</p>
           <div className="work-grid">
             <a
               id="chism-card"
@@ -564,8 +566,8 @@ export default function Home() {
         <div className="inner">
           <h2>Hungry yet?</h2>
           <p>
-            Tell us about your business in two minutes. We&apos;ll reply within one business day with a plan and a price
-            — no calls required until you want one.
+            Tell us about your business in two minutes. We&apos;ll reply within one business day with a plan and a price.
+            No calls required until you want one.
           </p>
           <a className="btn big" href="/order">
             Start your order →
@@ -586,7 +588,7 @@ export default function Home() {
                 </span>
               </div>
               <p style={{ marginTop: 14, fontSize: 13.5, maxWidth: 260, lineHeight: 1.6 }}>
-                Small-batch websites for small businesses. Baked in Marshall, Michigan — serving Battle Creek,
+                Small-batch websites for small businesses. Baked in Marshall, Michigan, serving Battle Creek,
                 Calhoun County, and everywhere else.
               </p>
             </div>
@@ -603,8 +605,12 @@ export default function Home() {
                   Marshall, Michigan
                 </span>
                 <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
-                <a href="#">Instagram</a>
-                <a href="#">Facebook</a>
+                {/* Instagram and Facebook links lived here as href="#".
+                    Neither account exists yet, so they went nowhere at all.
+                    When the accounts are real, add them back here and add a
+                    sameAs array to the Organization JSON-LD in layout.jsx at
+                    the same time, which is what actually tells Google the
+                    profiles belong to this business. */}
               </div>
             </div>
           </div>

@@ -84,7 +84,7 @@ export default function OrderPage() {
             </div>
             <h1>Order in the oven.</h1>
             <p>
-              Got it — your {f.name} order is on the board. I read every one myself and reply within one business day
+              Got it. Your {f.name} order is on the board. I read every one myself and reply within one business day
               with next steps and a start date. No calls required until you want one.
             </p>
             <p className="done-small">Check your inbox for a copy. If it&apos;s not there in a few minutes, peek in spam.</p>
@@ -108,7 +108,7 @@ export default function OrderPage() {
           </div>
           <h1>Tell us what you need.</h1>
           <p className="sec-sub">
-            Two minutes, no calls, no pressure. You&apos;ll get a real reply from Kevin within one business day — with a
+            Two minutes, no calls, no pressure. You&apos;ll get a real reply from Kevin within one business day, with a
             plan, a price, and a start date.
           </p>
         </div>
@@ -135,7 +135,7 @@ export default function OrderPage() {
               ))}
             </div>
             <p className="hint">
-              Not sure? Pick the closest one — we&apos;ll sort it out together. See the full{" "}
+              Not sure? Pick the closest one and we&apos;ll sort it out together. See the full{" "}
               <Link href="/#menu">menu</Link>.
             </p>
           </section>
@@ -167,7 +167,7 @@ export default function OrderPage() {
               </label>
               <label>
                 <span className="flabel">Current website (if any)</span>
-                <input name="currentSite" placeholder="janesbakery.com — or none yet" />
+                <input name="currentSite" placeholder="janesbakery.com, or none yet" />
               </label>
             </div>
             <label className="full">
@@ -176,7 +176,7 @@ export default function OrderPage() {
                 name="details"
                 required
                 rows={5}
-                placeholder="Tell me about the business, who you're trying to reach, and what the site needs to do — take orders, show a menu, get the phone ringing…"
+                placeholder="Tell me about the business, who you're trying to reach, and what the site needs to do: take orders, show a menu, get the phone ringing…"
               />
             </label>
             <label className="full">
@@ -199,7 +199,7 @@ export default function OrderPage() {
               <p className="terms-lead">The whole deal, in five lines:</p>
               <ul>
                 <li>
-                  <b>You own it all.</b> When the build is paid in full, the site is yours — code, content, accounts.
+                  <b>You own it all.</b> When the build is paid in full, the site is yours: code, content, accounts.
                 </li>
                 <li>
                   <b>No lock-in.</b> The monthly covers hosting, security, and edits. Cancel anytime; you keep the site.
@@ -208,7 +208,7 @@ export default function OrderPage() {
                   <b>Your domain is yours</b> from day one, and transfers to you free whenever you ask.
                 </li>
                 <li>
-                  <b>Nothing is owed today.</b> Submitting this doesn&apos;t charge you — we confirm scope first, then
+                  <b>Nothing is owed today.</b> Submitting this doesn&apos;t charge you. We confirm scope first, then
                   invoice a deposit to start.
                 </li>
                 <li>

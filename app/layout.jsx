@@ -60,13 +60,13 @@ const localBusinessSchema = {
   makesOffer: [
     {
       "@type": "Offer",
-      name: "The Original — one-page custom website",
+      name: "The Original, one-page custom website",
       price: "750",
       priceCurrency: "USD",
     },
     {
       "@type": "Offer",
-      name: "The Baker's Dozen — full custom website (up to 6 pages)",
+      name: "The Baker's Dozen, full custom website (up to 6 pages)",
       price: "1900",
       priceCurrency: "USD",
     },

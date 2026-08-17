@@ -1,14 +1,33 @@
 :root {
     --raspberry: #E84D8A;
     --raspberry-deep: #CE3672;
+    /* A third pink, for link text on a light ground. --raspberry is 3.34 on
+       cream and --raspberry-deep is 4.45, which is close enough to 4.5 to be
+       infuriating but is still a fail. #C9356F is 4.63 on cream and 4.89 on
+       the white cards, and is 2% off the deep pink, so nothing reads as a
+       different colour. Deep stays the button and badge background, where the
+       requirement is white ON it rather than it on cream. */
+    --raspberry-ink: #C9356F;
     --slime: #BFE07A;
     --slime-bright: #A9D65C;
-    --fern: #55974A;
+    /* Darkened from #55974A, which measured 3.31 on cream and needed 4.5.
+       Fern is only ever small bold text on a light ground here (.kicker,
+       .sec-kicker, .mcard .flavor, .step .sub, .fblurb, .terms-lead), so the
+       token is the right place to fix it and every one of those was carrying
+       the same fault. #467C3D measures 4.65. The dark-background green is
+       --slime and is untouched. */
+    --fern: #467C3D;
     --chocolate: #2B1E16;
     --chocolate-2: #201712;
     --cream: #FDF6EC;
     --cream-2: #FFFDF8;
-    --taupe: #8A7663;
+    /* Darkened from #8A7663, which measured 4.03 on the cream ground and
+       needed 4.5. Fixed at the token rather than on .brand .bw span, because
+       eleven pieces of small text read this colour and every one of them had
+       the same fault waiting. #7F6D5B measures 4.61 and still sits 3.26 away
+       from the ink half of the wordmark, so "glazed" and "web" still read as
+       two tones. A 7.7% darkening; nobody will see it as a brand change. */
+    --taupe: #7F6D5B;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -32,8 +51,17 @@
   nav { display: flex; align-items: center; gap: 26px; font-size: 14px; }
   nav a { color: #5A4A3A; text-decoration: none; font-weight: 500; }
   nav a:hover { color: var(--raspberry); }
+  /* THE PRIMARY CALL TO ACTION FAILED CONTRAST. White on --raspberry #E84D8A
+     is 3.58, and at 14px/700 it needs 4.5. That is every "Get a site", "Start
+     your order" and "Order this" button on the site, which is a poor look for
+     a studio that sells accessible builds.
+
+     Fixed with --raspberry-deep, which was already in the palette as the
+     bottom stop of the donut gradient and measures 4.78. No new colour
+     invented, and the brand pink stays exactly where it was for accents, the
+     h1 flourish, borders and hovers. */
   .btn {
-    display: inline-block; background: var(--raspberry); color: #fff !important;
+    display: inline-block; background: var(--raspberry-deep); color: #fff !important;
     font-weight: 700; border-radius: 999px; text-decoration: none;
     padding: 10px 20px; font-size: 14px; border: none; cursor: pointer;
     box-shadow: 0 6px 16px -6px rgba(232,77,138,0.55);
@@ -42,7 +70,7 @@
   .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 22px -8px rgba(232,77,138,0.65); }
   .btn.big { padding: 15px 30px; font-size: 16px; }
   .btn.ghost { background: transparent; color: var(--chocolate) !important; box-shadow: none; border: 2px solid rgba(43,30,22,0.18); }
-  .btn.ghost:hover { border-color: var(--raspberry); color: var(--raspberry) !important; }
+  .btn.ghost:hover { border-color: var(--raspberry-deep); color: var(--raspberry-deep) !important; }
 
   /* ============ hero ============ */
   .hero { max-width: 1100px; margin: 0 auto; padding: 64px 24px 90px; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 40px; align-items: center; }
@@ -110,7 +138,8 @@
   }
   .mcard:hover { transform: translateY(-6px); box-shadow: 0 22px 44px -20px rgba(60,35,10,.28); border-color: var(--slime-bright); }
   .mcard.featured { border-color: var(--raspberry); box-shadow: 0 18px 40px -18px rgba(232,77,138,.35); }
-  .mcard .tag { position: absolute; top: -13px; left: 24px; background: var(--raspberry); color: #fff; font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; border-radius: 999px; padding: 5px 12px; }
+  /* Same white-on-pink fault as .btn, same fix. */
+  .mcard .tag { position: absolute; top: -13px; left: 24px; background: var(--raspberry-deep); color: #fff; font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; border-radius: 999px; padding: 5px 12px; }
   .mcard h3 { font-size: 21px; font-weight: 800; letter-spacing: -0.5px; }
   .mcard .flavor { font-size: 12.5px; color: var(--fern); font-weight: 700; text-transform: uppercase; letter-spacing: .12em; margin-top: 4px; }
   .mcard .price { margin-top: 16px; font-size: 34px; font-weight: 800; letter-spacing: -1.5px; }
@@ -237,13 +266,10 @@
     font-size: 9.5px; font-weight: 700; letter-spacing: .17em;
     color: #e8e2d8; opacity: .78; text-indent: .17em;
   }
-  /* The joke is the zero, so it gets the LED treatment off their scoreboard. */
-  .cac-zero { color: #d18a48; animation: cacLed 3.2s ease-in-out infinite; }
+  /* .cac-zero and its cacLed blink are gone with the joke. The LED existed to
+     make the zero in "0 TREADMILLS" flicker like a scoreboard bulb; with no
+     zero it would have been a word blinking for no reason. */
   #cac-card:hover .cac-glow { background: radial-gradient(ellipse at center, rgba(184,109,42,0.44), transparent 70%); }
-  @keyframes cacLed {
-    0%, 44%, 100% { opacity: 1; text-shadow: 0 0 8px rgba(209,138,72,0.55); }
-    50%, 56% { opacity: .45; text-shadow: none; }
-  }
 
   /* Be A Number card — logo float + scroll-linked number roll */
   .ban-logo { animation: banFloat 5s ease-in-out infinite; filter: drop-shadow(0 4px 14px rgba(212,168,67,0.35)); }
@@ -255,16 +281,20 @@
   @media (prefers-reduced-motion: reduce) {
     .ban-logo { animation: none; }
     .ban-counter.tick { animation: none; }
-    .cac-zero { animation: none; }
     .bok-bubble { transition: opacity .2s ease; transform: scale(1) rotate(-3deg); }
     .step.glazed .num::after { animation: none; }
   }
 
   /* cta band */
-  .ctaband { background: var(--raspberry); color: #fff; position: relative; }
+  /* Band background moved to the deep pink: white on --raspberry was 3.58.
+     The paragraph's opacity came off with it. At .92 the effective white is
+     #FBEFF4, which measures 4.27 even against the darker band, so the softness
+     was costing the pass on its own. The h2 was always full white; the p now
+     matches it. */
+  .ctaband { background: var(--raspberry-deep); color: #fff; position: relative; }
   .ctaband .inner { padding: 90px 24px; text-align: center; }
   .ctaband h2 { font-size: clamp(30px, 4.4vw, 48px); font-weight: 800; letter-spacing: -1.6px; line-height: 1.08; }
-  .ctaband p { margin: 16px auto 30px; font-size: 17px; opacity: .92; max-width: 480px; line-height: 1.55; }
+  .ctaband p { margin: 16px auto 30px; font-size: 17px; max-width: 480px; line-height: 1.55; }
   .ctaband .btn { background: var(--chocolate); box-shadow: 0 10px 24px -10px rgba(0,0,0,.4); }
 
   /* footer */
@@ -340,7 +370,7 @@
   .fblurb { font-size: 11.5px; color: var(--fern); font-weight: 700; text-transform: uppercase; letter-spacing: .1em; }
   .fprice { font-size: 14px; font-weight: 800; margin-top: 4px; }
   .hint { font-size: 13px; color: var(--taupe); margin-top: 14px; }
-  .hint a, .terms-link a { color: var(--raspberry); font-weight: 700; }
+  .hint a, .terms-link a { color: var(--raspberry-ink); font-weight: 700; }
   .fgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   @media (max-width: 640px) { .fgrid { grid-template-columns: 1fr; } }
   .order-form label { display: grid; gap: 6px; font-size: 13.5px; font-weight: 700; color: #5A4A3A; }
@@ -365,7 +395,10 @@
     font-size: 14.5px; font-weight: 600; color: var(--chocolate); cursor: pointer;
   }
   .clickwrap input { width: 21px; height: 21px; flex: none; margin-top: 1px; accent-color: var(--raspberry); cursor: pointer; }
-  .clickwrap a { color: var(--raspberry); font-weight: 800; }
+    /* The link a client clicks to read the terms they are about to accept, and it
+     measured 3.58. Of every link on the site this is the one that has to be
+     legible. */
+  .clickwrap a { color: var(--raspberry-ink); font-weight: 800; }
   .order-submit { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
   .order-submit .btn[disabled] { opacity: .45; cursor: not-allowed; transform: none; box-shadow: none; }
   .submit-note { font-size: 13px; color: var(--taupe); }
@@ -375,12 +408,24 @@
   .order-done h1 { font-size: clamp(30px, 4.4vw, 44px); font-weight: 800; letter-spacing: -1.6px; margin-bottom: 14px; }
   .order-done p { font-size: 16.5px; color: #6B5747; line-height: 1.6; max-width: 480px; margin: 0 auto 14px; }
   .done-small { font-size: 13.5px !important; color: var(--taupe) !important; margin-bottom: 28px !important; }
-  .order-foot { border-top: 1px solid rgba(43,30,22,0.08); padding: 22px 24px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 13px; color: var(--taupe); }
-  .order-foot a { color: var(--chocolate); text-decoration: none; font-weight: 700; }
+  /* THE "glazedweb" LINK IN THIS FOOTER WAS INVISIBLE, at 1.09.
+
+     .order-foot was given colours for a light ground, --taupe text and
+     --chocolate links, but it is a <footer>, and the element rule above paints
+     every footer with --chocolate-2. So the back-to-home link was #2B1E16 on
+     #201712: near-black on near-black, present in the DOM, clickable, and
+     invisible on the two pages a paying client actually uses.
+
+     Fixed with the palette the main footer already uses on the same ground:
+     #A6907F body at 5.80 and #F3EAE1 links at 14.81. The border-top also moves
+     from a dark rgba to a light one, since a black hairline on a black bar was
+     doing nothing either. */
+  .order-foot { border-top: 1px solid rgba(243,234,225,0.1); padding: 22px 24px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 13px; color: #A6907F; }
+  .order-foot a { color: #F3EAE1; text-decoration: none; font-weight: 700; }
 
   /* legal page */
   .legal-lead { font-size: 17px; color: #6B5747; line-height: 1.6; }
-  .legal-lead a, .legal a { color: var(--raspberry); font-weight: 700; }
+  .legal-lead a, .legal a { color: var(--raspberry-ink); font-weight: 700; }
   .legal-highlights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 30px 0 10px; }
   @media (max-width: 700px) { .legal-highlights { grid-template-columns: 1fr; } }
   .legal-highlights > div { background: var(--cream-2); border: 2px solid rgba(43,30,22,0.09); border-radius: 16px; padding: 16px 18px; display: grid; gap: 6px; }

@@ -44,6 +44,21 @@ cp Glazed_Web_Client_Agreement_v1.pdf public/glazed-web-agreement-v1.pdf
 
 ## Version history
 
+- **v1.0, typographic revision** (17 August 2026). Em dashes replaced throughout,
+  in `build-agreement.js` and in `app/agreement/page.jsx`, then the .docx and PDF
+  regenerated and the public copy refreshed. All three homes verified at zero.
+
+  **The version number deliberately did not move, and that is the whole point of
+  recording this.** Not one word, number, obligation or right changed; only
+  punctuation. Bumping to v1.1 would tell every client who has already accepted
+  v1.0, and whose order email records that string, that the terms they agreed to
+  had been superseded. That is a worse and less honest signal than leaving the
+  number where it is. The rule above stands unchanged: **if the terms change, the
+  number goes up.** Punctuation is not the terms.
+
+  Note that the em dashes were fixed in the generator, not in the .docx. Editing
+  the .docx directly means the next `node build-agreement.js` silently reverts it.
+
 - **v1.0** (August 2026) — First real version. Client owns the code, content, and accounts on payment in full, with handover of the repo, hosting project, and account logins. Month-to-month after launch, 30 days' notice, no early-termination penalty. Domain held in the client's name and transferred free on request. Deposit-then-balance payment structure. Annual adjustment capped at one increase per twelve months with 30 days' notice. Carve-out preserving Glazed Web's reusable tooling, licensed into the site. Portfolio and footer-credit rights. Michigan law.
 
   Replaces an earlier unsigned draft in which Glazed Web retained ownership of the website with a $1,000 client buyout — that model was dropped because it contradicted the ownership promise made on the site.

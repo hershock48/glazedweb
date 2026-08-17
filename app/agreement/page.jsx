@@ -59,7 +59,7 @@ export default function AgreementPage() {
           <h2>1. What we build</h2>
           <p>
             Glazed Web designs, builds, and launches a custom website for your business. The pages, features, and scope
-            are whatever we agree to in writing before work starts — usually the flavor you picked from the menu, plus
+            are whatever we agree to in writing before work starts, usually the flavor you picked from the menu, plus
             anything we add by mutual agreement. Your build includes <b>two rounds of revisions</b> to the design before
             launch. Work beyond the agreed scope is quoted and approved by you before it begins; nothing gets added to
             your bill by surprise.
@@ -71,7 +71,7 @@ export default function AgreementPage() {
             something else in writing. A deposit starts the project; the balance is due at launch. The monthly fee begins
             the first of the month after your site goes live and covers hosting, an SSL certificate, software and
             security updates, backups, and a reasonable amount of small content edits (hours, prices, photos, text). Big
-            new work — extra pages, redesigns, new features — is quoted separately.
+            new work (extra pages, redesigns, new features) is quoted separately.
           </p>
           <p>
             If an invoice goes more than fifteen days past due, we may pause work and, after letting you know in writing,
@@ -80,13 +80,14 @@ export default function AgreementPage() {
 
           <h2>3. Who owns what</h2>
           <p>
-            <b>You own your content</b> — your name, logos, photos, text, menus, and prices — always, from the start.
+            <b>You own your content.</b> Your name, logos, photos, text, menus, and prices are yours always, from the
+            start.
           </p>
           <p>
-            <b>You own the website.</b> When the build fee is paid in full, all rights in the site we built for you —
-            the design, the layout, the code, the configuration — transfer to you. On request we&apos;ll hand over the
+            <b>You own the website.</b> When the build fee is paid in full, all rights in the site we built for you
+            (the design, the layout, the code, the configuration) transfer to you. On request we&apos;ll hand over the
             complete working project: the code repository, the hosting project, and the logins for any accounts we set up
-            on your behalf. Not a static snapshot — the real thing.
+            on your behalf. Not a static snapshot. The real thing.
           </p>
           <p>
             The monthly fee buys hosting and care, not the right to hold your website. If you stop paying it, your site
@@ -101,14 +102,14 @@ export default function AgreementPage() {
           <p>
             If we register a domain for you, it exists for your business, not ours. We&apos;ll put it in your name where
             the registrar allows, keep it renewed while you&apos;re with us, and transfer it to any registrar account you
-            name — free, within fourteen days of your asking. We will never hold a domain hostage, sell it, or let it
+            name, free, within fourteen days of your asking. We will never hold a domain hostage, sell it, or let it
             lapse on purpose.
           </p>
 
           <h2>5. How long this lasts</h2>
           <p>
             The agreement starts when you accept it and runs through launch, then continues month to month. Either of us
-            can end the monthly service with thirty days&apos; written notice — no termination fee, no remaining-months
+            can end the monthly service with thirty days&apos; written notice. No termination fee, no remaining-months
             penalty, no auto-renewing multi-year term. If either of us materially breaks the agreement, the other can end
             it after giving fifteen days&apos; written notice and a chance to fix the problem.
           </p>
@@ -120,11 +121,11 @@ export default function AgreementPage() {
             you get us words and photos, the faster you launch.
           </p>
 
-          <h2>7. What we promise — and what we don&apos;t</h2>
+          <h2>7. What we promise, and what we don&apos;t</h2>
           <p>
             We&apos;ll do professional, careful work and keep your site up and functioning to the best of our ability.
-            We can&apos;t promise perfect uptime, specific Google rankings, traffic numbers, or business results —
-            nobody honestly can. Neither of us is liable to the other for indirect or consequential damages, and our
+            We can&apos;t promise perfect uptime, specific Google rankings, traffic numbers, or business results.
+            Nobody honestly can. Neither of us is liable to the other for indirect or consequential damages, and our
             total liability is capped at what you paid us in the twelve months before a claim.
           </p>
 
@@ -140,7 +141,7 @@ export default function AgreementPage() {
           <p>
             <b>Version 1.0</b> · effective August 2026. Accepting this on the order form creates a binding agreement; we
             record the version and timestamp with your order and email you a copy. Want it for your records, or for your
-            attorney? Download the signable document below — nothing here changes between the page and the paper.
+            attorney? Download the signable document below. Nothing here changes between the page and the paper.
           </p>
           <div className="legal-actions">
             <Link className="btn big" href="/order">

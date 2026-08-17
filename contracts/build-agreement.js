@@ -90,7 +90,7 @@ const sigCell = (heading, lines) =>
 const doc = new Document({
   creator: "Glazed Web",
   title: "Website Design & Services Agreement",
-  description: "Glazed Web client agreement — v1.0",
+  description: "Glazed Web client agreement, v1.0",
   numbering: {
     config: [
       {
@@ -153,13 +153,13 @@ const doc = new Document({
         // ---- the short version ----
         h1("The short version"),
         body("The full terms follow, but here is the whole deal in five lines:"),
-        bullet("You own it all. When the build fee is paid in full, the website is yours — code, content, and accounts."),
+        bullet("You own it all. When the build fee is paid in full, the website is yours: code, content, and accounts."),
         bullet("No lock-in. The monthly fee covers hosting and care. It is month-to-month; cancel anytime and keep your site."),
         bullet("Your domain is yours, held in your name where possible, and transferred to you free whenever you ask."),
         bullet("Two revision rounds are included in the build. Anything beyond the agreed scope is quoted before work starts."),
         bullet("No surprise invoices. Prices are what is written below."),
         body(
-          "If any part of this summary ever appears to conflict with the detailed terms below, the detailed terms govern — but they were written to say the same thing."
+          "If any part of this summary ever appears to conflict with the detailed terms below, the detailed terms govern, though they were written to say the same thing."
         ),
 
         // ---- 1 SERVICES ----
@@ -167,14 +167,14 @@ const doc = new Document({
         sub("a", "Provider will design, develop, and launch a custom website for Client (the “Website”), to be published at [DOMAIN]. The Website will include the pages and features described in Exhibit A (Scope), or, if no Exhibit A is attached, the package selected by Client from Provider’s published menu at glazedweb.com.", "Website."),
         sub("b", "The build fee includes up to two (2) rounds of revisions to the design before launch. Additional revision rounds, new pages, or features beyond the agreed scope will be quoted and approved by Client in writing before any work begins.", "Revisions."),
         sub("c", "Provider will use reasonable efforts to launch the Website within the timeframe the Parties agree in writing, subject to Client meeting its responsibilities in Section 6. Projects most often stall on content; timelines assume Client provides materials and feedback promptly.", "Launch."),
-        sub("d", "Provider will build the Website to be mobile-responsive, reasonably fast, and technically prepared for search engines (including submission of a sitemap and basic on-page structure). Provider does not guarantee rankings — see Section 7.", "Standards."),
+        sub("d", "Provider will build the Website to be mobile-responsive, reasonably fast, and technically prepared for search engines (including submission of a sitemap and basic on-page structure). Provider does not guarantee rankings. See Section 7.", "Standards."),
 
         // ---- 2 FEES ----
         clause(2, "Fees & Payment"),
         sub("a", "Client will pay a one-time build fee of $[BUILD FEE] for the design and development of the Website.", "Build fee."),
         sub("b", "A deposit of $[DEPOSIT] is due before work begins and is credited against the build fee. The remaining balance is due upon launch of the Website. Provider will invoice each amount; invoices are payable within fifteen (15) days of receipt.", "Deposit and balance."),
         sub("c", "Beginning the first day of the month following launch, Client will pay a monthly service fee of $[MONTHLY FEE], due on the first (1st) of each month.", "Monthly service fee."),
-        sub("d", "The monthly fee includes: (i) website hosting, including an SSL certificate; (ii) software and security updates, monitoring, and periodic backups; (iii) registration and renewal of the Domain, if Provider registers it under Section 5; and (iv) minor content edits requested by Client — for example updated hours, prices, photos, or text — up to [EDIT ALLOWANCE] per month. Unused edit time does not roll over.", "What the monthly fee covers."),
+        sub("d", "The monthly fee includes: (i) website hosting, including an SSL certificate; (ii) software and security updates, monitoring, and periodic backups; (iii) registration and renewal of the Domain, if Provider registers it under Section 5; and (iv) minor content edits requested by Client, for example updated hours, prices, photos, or text, up to [EDIT ALLOWANCE] per month. Unused edit time does not roll over.", "What the monthly fee covers."),
         sub("e", "Work beyond the included services will be billed at Provider’s then-current rate of $[HOURLY RATE] per hour, quoted and approved by Client in advance. Nothing is added to Client’s bill without approval.", "Additional work."),
         sub("f", "Provider may adjust the monthly service fee no more than once per twelve (12) months, by no more than [ANNUAL ADJUSTMENT]%, with at least thirty (30) days’ written notice. If Client does not accept an adjustment, Client may terminate under Section 3(b) with no penalty.", "Annual adjustment."),
         sub("g", "If any payment is more than fifteen (15) days past due, Provider may, after written notice to Client, pause work and pause hosting until the account is brought current. Pausing does not waive amounts owed, and Provider will not delete Client Content or the Website during a pause.", "Late payment."),
@@ -184,15 +184,15 @@ const doc = new Document({
         sub("a", "This Agreement begins on the Effective Date and continues through launch of the Website, then continues on a month-to-month basis.", "Term."),
         sub("b", "Either Party may end the monthly service for any reason with thirty (30) days’ written notice. There is no minimum term after launch, no early-termination fee, no penalty for remaining months, and no automatically renewing multi-year commitment.", "Ending the monthly service."),
         sub("c", "Either Party may terminate this Agreement if the other Party materially breaches it and fails to cure the breach within fifteen (15) days of receiving written notice describing it.", "Termination for breach."),
-        sub("d", "On termination, Client will pay all amounts owed through the effective date of termination. Sections 4 (Ownership), 5 (Domain), 7 (Warranties & Limitations), and 8 (General) survive termination. If the build fee has been paid in full, Client keeps the Website under Section 4 — termination of hosting and care does not affect Client’s ownership.", "Effect of termination."),
+        sub("d", "On termination, Client will pay all amounts owed through the effective date of termination. Sections 4 (Ownership), 5 (Domain), 7 (Warranties & Limitations), and 8 (General) survive termination. If the build fee has been paid in full, Client keeps the Website under Section 4. Termination of hosting and care does not affect Client’s ownership.", "Effect of termination."),
 
         // ---- 4 OWNERSHIP ----
-        clause(4, "Ownership — You Own It All"),
+        clause(4, "Ownership: You Own It All"),
         sub("a", "Client owns all content it provides, including its business name, logos, photographs, text, menus, and pricing (“Client Content”), at all times and without condition. Provider claims no rights in Client Content and will return or make it available at no charge on request.", "Client content."),
-        sub("b", "Upon payment of the build fee in full, Provider assigns to Client all of Provider’s right, title, and interest in the Website created for Client — including its design, layout, source code, templates, and configuration (together the “Deliverables”) — and the Deliverables become Client’s property. Provider will execute any documents reasonably needed to confirm this assignment.", "You own the Website."),
-        sub("c", "On Client’s request, Provider will hand over the complete working project: the source-code repository, the hosting project, and the login credentials for any accounts Provider created on Client’s behalf. Client receives the live, working project — not a static snapshot or an export.", "Handover."),
+        sub("b", "Upon payment of the build fee in full, Provider assigns to Client all of Provider’s right, title, and interest in the Website created for Client, including its design, layout, source code, templates, and configuration (together the “Deliverables”), and the Deliverables become Client’s property. Provider will execute any documents reasonably needed to confirm this assignment.", "You own the Website."),
+        sub("c", "On Client’s request, Provider will hand over the complete working project: the source-code repository, the hosting project, and the login credentials for any accounts Provider created on Client’s behalf. Client receives the live, working project, not a static snapshot or an export.", "Handover."),
         sub("d", "The monthly service fee buys hosting and care. It does not buy the right to hold the Website. If Client stops paying the monthly fee, the Website remains Client’s property, and Provider will reasonably assist in moving it to a host of Client’s choosing (migration work beyond a reasonable handover may be quoted under Section 2(e)).", "The monthly fee is not a leash."),
-        sub("e", "Provider retains ownership of general-purpose tools, libraries, and know-how that pre-existed this project or that Provider develops for general use, and grants Client a perpetual, royalty-free license to use those components as incorporated in the Website. This clause exists so Provider can keep using its own toolkit — it does not limit Client’s ownership of the Website itself.", "Provider’s general tools."),
+        sub("e", "Provider retains ownership of general-purpose tools, libraries, and know-how that pre-existed this project or that Provider develops for general use, and grants Client a perpetual, royalty-free license to use those components as incorporated in the Website. This clause exists so Provider can keep using its own toolkit. It does not limit Client’s ownership of the Website itself.", "Provider’s general tools."),
         sub("f", "Provider may display the completed Website in its portfolio and state that Provider built it, and may include a small “site baked by glazedweb” credit in the Website footer. Provider will remove the credit at Client’s request. Provider will not use Client Content in marketing materials beyond portfolio display without Client’s consent.", "Portfolio & credit."),
 
         // ---- 5 DOMAIN ----
@@ -271,7 +271,7 @@ const doc = new Document({
 
         // ---- Exhibit A ----
         new Paragraph({ children: [t("", { size: 21 })], pageBreakBefore: true }),
-        p([t("Exhibit A — Scope & Pricing", { size: 30, bold: true, color: INK })], { spacing: { after: 60 } }),
+        p([t("Exhibit A: Scope & Pricing", { size: 30, bold: true, color: INK })], { spacing: { after: 60 } }),
         p([t("Attach or complete this page. It controls what gets built.", { size: 18, color: PINK })], { spacing: { after: 240 } }),
         rule(),
         p(t("Package", { size: 22, bold: true, color: INK }), { spacing: { after: 120 } }),
@@ -294,7 +294,7 @@ const doc = new Document({
         p([t("Glazed Web  ·  Marshall, Michigan  ·  hello@glazedweb.com  ·  glazedweb.com", { size: 17, color: GREY })], {
           alignment: AlignmentType.CENTER,
         }),
-        p([t("Agreement v1.0 — matches the published terms at glazedweb.com/agreement", { size: 16, color: GREY, italics: true })], {
+        p([t("Agreement v1.0, matches the published terms at glazedweb.com/agreement", { size: 16, color: GREY, italics: true })], {
           alignment: AlignmentType.CENTER,
         }),
       ],

@@ -520,9 +520,14 @@ export default function Home() {
                     Copper's Facebook avatar reads "est. 2018" and their site
                     states no year, so we were publishing a likely-wrong
                     founding date for a client on our own portfolio. */}
-                <span className="cac-spec">
-                  7 TVS · <span className="cac-zero">0</span> TREADMILLS
-                </span>
+                {/* Was "7 TVS · 0 TREADMILLS". Retired at the owner's request on
+                    the Copper site itself, and this card kept publishing it,
+                    which is the portfolio-card-in-another-repo failure the
+                    README warns about. This is their own sentence, compressed:
+                    "Every wall is memorabilia and every screen dedicated to
+                    sports." Two counts nobody could verify become two claims
+                    that are true on every night of the year. */}
+                <span className="cac-spec">EVERY WALL · EVERY SCREEN</span>
               </div>
               <div className="meta">
                 <b>Copper Athletic Club</b>

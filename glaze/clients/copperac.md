@@ -72,6 +72,37 @@ Note for the studio credit: the chocolate mark under a `#191919` footer measures
 
 Credit reads **"Double Dipped by"**.
 
+## The ordering demo (August 2026)
+
+**Copper is the first demo of the Glazed Web ordering product, and it lives on
+the `ordering` branch only. Kevin's call: not public, and the live demo at
+copperac.glazedweb.com does not carry it.** The branch deploys as a Vercel
+preview (auth-protected by the project's settings); merging to `main` is a
+decision nobody has made yet. Do not merge it, and do not add ordering routes
+to `main`, without Kevin saying so.
+
+What is on the branch: `/order` with the full food menu, cocktails to go
+included (the Toast page this replaces sells them), the 99¢ order fee stated
+on the menu before checkout, and a demo checkout that takes no payment.
+`/kitchen` is the staff board: accept tap, 86 board that grays items out on
+`/order` within seconds, busy dial (Normal / Busy +15 / Slammed +30 / Pause)
+driving the quoted pickup time, and a fee-share counter showing the house's
+50¢ per order. Both routes `noindex`. All demo state is one warm serverless
+instance's memory; the comment at the top of `app/api/ordering/route.ts` is
+the contract for that trade.
+
+The branch's README section "The ordering demo" is the full record: what the
+demo fakes, what production adds, and the before-it-ships checklist, Michigan
+sales-tax consult at the top. On the branch the header, footer and menu-page
+Order Online buttons point at `/order`; `SITE.orderUrl` and the `OrderAction`
+schema still hold the Toast link on purpose, so merging stays a decision and
+not an accident.
+
+Unverified, carried forward rather than dropped: real iOS Safari behaviour,
+how long demo orders survive on Vercel's warm instance, the cocktails-to-go
+wording ("sealed, 21 and up, ID at pickup" is unconfirmed with the bar), and
+the 20-minute prep quote, which is a demo default, not a kitchen number.
+
 ## Retired
 
 - **"7 TVs. 0 treadmills."** The owner does not like it. Retired outright rather

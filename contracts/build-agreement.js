@@ -248,7 +248,7 @@ const doc = new Document({
                     p(t("Kevin Hershock, Glazed Web", { size: 18, color: GREY }), { spacing: { after: 240 } }),
                     p(t("_".repeat(32), { size: 21, color: "C9BBAA" }), { spacing: { after: 30 } }),
                     p(t("Date", { size: 18, color: GREY }), { spacing: { after: 200 } }),
-                    p(t("hello@glazedweb.com", { size: 18, color: GREY })),
+                    p(t("kevin@glazedweb.com", { size: 18, color: GREY })),
                   ],
                 }),
                 new TableCell({
@@ -291,7 +291,7 @@ const doc = new Document({
         fill("Target launch date:", 32),
         fill("Client materials due by:", 32),
         rule(),
-        p([t("Glazed Web  ·  Marshall, Michigan  ·  hello@glazedweb.com  ·  glazedweb.com", { size: 17, color: GREY })], {
+        p([t("Glazed Web  ·  Marshall, Michigan  ·  kevin@glazedweb.com  ·  glazedweb.com", { size: 17, color: GREY })], {
           alignment: AlignmentType.CENTER,
         }),
         p([t("Agreement v1.0, matches the published terms at glazedweb.com/agreement", { size: 16, color: GREY, italics: true })], {

@@ -45,6 +45,9 @@ roll hero still waits on the shoot.
   so site and store together are $2,500 and $150/mo, which still sits under Mopro's
   published $199 entry price. Plus 99c an order, paid by the customer at checkout, not
   by the bakery. Kevin's numbers, Aug 2026.
+- The demo takes shipping orders: /shop has a real form (box, address, gift note, who
+  to ring for the card), same no-JS server-form pattern as /order, no payment taken and
+  the page says so twice. Paid checkout is exactly what the $600 add-on replaces.
 - Proposal is six sections now, not five: the shipping argument was promoted out of
   "What we built" into its own section four, because it is the revenue case and it was
   reading as a footnote. Cost is five, next is six.
@@ -61,6 +64,11 @@ roll hero still waits on the shoot.
   badly enough to move up a plan. Worth offering as an option, not as the default.
 
 ## Facts that matter
+
+- NOT ON A CORNER. 144 W. Michigan is mid block, storefronts either side, which the
+  night photograph shows plainly. "Same corner of Michigan Avenue" was in the site
+  description, the story page twice, the homepage and the proposal before Kevin caught
+  it. Say building, or block, or the address.
 
 - The spelling customers type, louiesbakery.com, is a bakery in Emmaus, Pennsylvania
   (verified Aug 2026). Their hyphenated domain is painted on the building.

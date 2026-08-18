@@ -46,7 +46,12 @@ statically generated or revalidated on a timer: regeneration is request-triggere
 so on a quiet site the cached page ages indefinitely and serves times the server
 then rejects. That killed the booking form for fourteen days once.
 
-**Copy voice.** Diagnosis rather than introduction. The closing line, after
+**Copy voice.** See `migas-voice.md`, drawn from his own Patreon writing. The
+short version: he is specific to the decimal, he hedges on purpose, he credits
+everyone including people who have wronged him, and he is explicitly anti-hype.
+He is not epigrammatic, which is the trap the current site copy fell into.
+
+Diagnosis rather than introduction. The closing line, after
 several passes: *"Yours has a switch, a schedule and a feed chart. Somebody set
 every one of those, which means every one can be changed. That is what the call is
 for."* Everything in that sentence is a decision, which is the point.
@@ -98,11 +103,15 @@ than assembled by hand.
 
 ## Open
 
-- **The credentials strip.** "Licensed / 4 / SOPs" is not doing the job of
-  legitimising a state-licensed operator, and fixing it needs facts only MI Gas
-  has: licence class, licence number, canopy square footage, years operating. Plus
-  the real GrowCast guest list as verifiable social proof. **Do not invent any of
-  it.** This has been deferred twice and it is deferred until they answer.
+- **The credentials strip.** "Licensed / 4 / SOPs" is not doing the job. This was
+  blocked twice on the assumption that it needed a licence class, a licence number
+  and a canopy figure from him. **His own writing says that is not what he thinks
+  proves anything**, so it is no longer blocked on paperwork. See the proof section
+  of `migas-voice.md`: what he treats as evidence is the same rooms photographed
+  over time plus stated deltas, and there are several of those in his own words.
+  Still confirm any figure with him before publishing, since the posts are dated
+  and the numbers move, and run any licence wording past him because what a
+  licensed operator may claim is his lawyer's question. **Do not invent any of it.**
 - **A real email address.** The ICS invitation is not a true invitation without an
   `ORGANIZER`, which RFC 5546 §3.2.2 makes mandatory in `METHOD:REQUEST`. Without
   it Outlook refuses the item and other clients drop Accept and Decline.

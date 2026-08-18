@@ -66,13 +66,26 @@ roll hero still waits on the shoot.
   pages. This is finding five in the proposal, replacing the one Kevin killed.
 - Kevin's rule on tone, stated: the letter must not read as dicks, and must not sell
   Goldbelly on the bakery's behalf. Blame the platform, never the owner.
-- Their Goldbelly listing appears to sell nothing. Goldbelly product pages read fine
-  through WebFetch (a Dough Doughnuts box returned name, $69.95, contents and seven
-  image URLs), and Louie's has no product page indexed anywhere, Goldbelly's own search
-  returns no result for their name, and their merchant page carries story copy and two
-  photographs with no product links. Not proof, because the catalogue renders in the
-  browser. Kevin to confirm on a phone. If it is true, their own nav's "Order on Gold
-  Belly" link sends buyers to a page with nothing to buy, and that is a finding.
+- THEIR GOLDBELLY LISTING SELLS FIVE THINGS (screenshot from Kevin, Aug 2026, after my
+  own probe wrongly suggested it was empty: product pages are readable by URL, but none
+  of theirs is indexed and Goldbelly's search returns nothing for their name, which is
+  not the same as having no products. Do not repeat that inference).
+    Classic Nut Rolls, 1 dozen, $75.95
+    Signature Tin, 6 pieces, $79.95
+    Apple & Raisin Fritters, 6 pack, $79.95
+    Signature Cookie Tin, 2 dozen, $79.95
+    Pumpkin-Shaped Sugar Cookie Gift Tin, 16, $85.95, marked coming soon
+  All free shipping, meaning freight is inside the price. Listing tagline is theirs:
+  "OVER 70 YEARS OF DONUTS DONE THE RIGHT WAY". Two verified-purchase reviews, both
+  Virginia F. of Tucson AZ, May 2026: "Not one cookie broke! They taste great, love
+  them, will buy more!" and "These rolls are amazing!" Both now on the demo's /shop.
+- A dozen nut rolls is $75.95 delivered on the marketplace against roughly $23 at
+  counter prices. That spread is the shipping argument in the proposal. It is NOT a
+  commission figure: it holds the tin, the freight and Goldbelly's share together, and
+  the letter says so rather than implying the marketplace pockets $53.
+- Product photography exists on those five listings and is usable per Kevin. Still not
+  in the repo: the imgix URLs are generated per product page and the slugs did not
+  guess (four attempts, all 404). Need one product URL from Kevin to lift them.
 - Photo rights on Goldbelly product imagery: Kevin says we have permission, Aug 2026.
 - Goldbelly is a marketplace, not a credential. Sellers apply through a form and
   Goldbelly decides; the only published standard is their own phrase, "Goldbelly

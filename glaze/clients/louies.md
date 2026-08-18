@@ -23,6 +23,11 @@ PNG and an AI video. The two photographs in the build are from their own Goldbel
 merchant profile (same rights basis, flag at signing). WWMT's feature gallery is the
 shot list and is NOT usable: the station's photographs, not the bakery's.
 
+Their Goldbelly profile holds exactly two photographs, the same two, at full size:
+the storefront at 2400x1800 and the Louie portrait at 2400x3078. The build now uses
+the full-size storefront. There is no product photography on that listing, so the nut
+roll hero still waits on the shoot.
+
 ## Decisions
 
 - The site is the case, not a price list: availability rules from their old menu's
@@ -47,10 +52,26 @@ shot list and is NOT usable: the station's photographs, not the bakery's.
 - Their old site still showed a July vacation banner on August 18, and /team is live
   with lorem ipsum and three invented names. Both are findings in the proposal, with
   links.
+- Their own store is broken in the same way the homepage is: /store quotes "shipped on
+  tuesday feb, 10" and /shopping-cart quotes "We ship April 25", two stale dates on two
+  pages. This is finding five in the proposal, replacing the one Kevin killed.
+- Kevin's rule on tone, stated: the letter must not read as dicks, and must not sell
+  Goldbelly on the bakery's behalf. Blame the platform, never the owner.
+- Goldbelly is a marketplace, not a credential. Sellers apply through a form and
+  Goldbelly decides; the only published standard is their own phrase, "Goldbelly
+  good". No acceptance rate, no audit, no certification behind it, and their ratings
+  display has been questioned in the trade press. Treat their listing as a place the
+  bakery currently sells, never as a badge, and do not build an argument on it.
+- Their Goldbelly profile calls them a "repeat winner of Best Bakery in Michigan".
+  Nothing independent confirms which award or which years, and the only "best bakery"
+  wording findable elsewhere is the title of a customer's Tripadvisor review. UNUSED
+  until Jason names the award. Do not ship it on the strength of marketplace copy.
 
 ## Open
 
 - Show Jason. One action in the proposal: look at the demo, then call Kevin.
+- Ask Jason about the "Best Bakery in Michigan" wins: which award, which years. If it
+  is real and namable it is worth a line on the story page.
 - Attach louies.glazedweb.com to the Vercel project (Kevin, dashboard).
 - SMTP_* and ORDER_TO in Vercel, then one real test send of the order form.
 - Original logo art; unframed scan of the Louie photograph; half-morning photo shoot

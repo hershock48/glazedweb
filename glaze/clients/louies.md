@@ -41,6 +41,18 @@ roll hero still waits on the shoot.
   in their artwork); hat animates. Replace with original art when it arrives.
 - Voice is first person. Kevin's call, after catching "See what they make".
 - Proposal prices the Baker's Dozen: $1,900 + $99/mo. Set in the pitch page.
+- THE ONLINE STORE IS A PRICED ADD-ON, not a "talk later": +$600 one time and +$51/mo,
+  so site and store together are $2,500 and $150/mo, which still sits under Mopro's
+  published $199 entry price. Plus 99c an order, paid by the customer at checkout, not
+  by the bakery. Kevin's numbers, Aug 2026.
+- Proposal is six sections now, not five: the shipping argument was promoted out of
+  "What we built" into its own section four, because it is the revenue case and it was
+  reading as a footnote. Cost is five, next is six.
+- Section five carries a second calculator: boxes a month and what Goldbelly pays per
+  box, returning what passes through the middle and the payback on the store. It
+  assumes only a QUARTER of orders move to the bakery's own page, and it says the tin
+  and the truck are real costs either way. Do not let anyone "simplify" it into a
+  commission figure we do not have.
 - One price per menu row, no cash column. Kevin's call once Square landed. Do not
   reintroduce a `cash` field on MenuItem.
 - Phase-two checkout is quoted on Stripe as the base layer (2.9% + 30c, no monthly).
@@ -52,7 +64,7 @@ roll hero still waits on the shoot.
 
 - The spelling customers type, louiesbakery.com, is a bakery in Emmaus, Pennsylvania
   (verified Aug 2026). Their hyphenated domain is painted on the building.
-- Cash discount on every line of their menu; the site explains it once.
+- The coffee is Starbucks, brewed in the bakery, three sizes (Kevin, Aug 2026). Their published menu already priced it; the demo now says it out loud on the drinks section.
 - POS: SQUARE, and the cash discount is gone with it (Kevin, from the shop, Aug 2026).
   This answers the open POS question and invalidates every price on their published
   menu, which still prints a card price and a cash price on every line. The build now

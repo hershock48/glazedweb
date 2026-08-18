@@ -45,7 +45,12 @@ roll hero still waits on the shoot.
   so site and store together are $2,500 and $150/mo, which still sits under Mopro's
   published $199 entry price. Plus 99c an order, paid by the customer at checkout, not
   by the bakery. Kevin's numbers, Aug 2026.
-- The demo takes shipping orders: /shop has a real form (box, address, gift note, who
+- THE DEMO SELLS. /shop has the five boxes at their own prices, a cookie cart, and a
+  checkout: Stripe hosted Checkout when STRIPE_SECRET_KEY is set, an emailed order and
+  an honest "nothing has been charged" when it is not. No marketplace price, name or
+  link anywhere on the site now (Kevin, emphatically); the listing stays in the schema
+  as a sameAs only. The $600 add-on is now precisely "switch the card payment on".
+- Superseded, kept for the reasoning: the demo takes shipping orders: /shop has a real form (box, address, gift note, who
   to ring for the card), same no-JS server-form pattern as /order, no payment taken and
   the page says so twice. Paid checkout is exactly what the $600 add-on replaces.
 - Proposal is six sections now, not five: the shipping argument was promoted out of
@@ -130,6 +135,24 @@ roll hero still waits on the shoot.
   (shot list in the repo README); real closures; four PLACEHOLDER menu facts.
 - On signing: remove noindex (robots.ts + next.config header), delete the pitch and
   rewrites, tell the bakery about the review quotes and the studio credit.
+
+## Debug pass, August 18
+
+Every closure path in the availability engine was broken and is now fixed and tested by
+simulating a live closure: "back" naming the last closed day (usually a Monday), the
+board and menu badges ignoring closures entirely, nextOpenDay walking into a shutdown,
+overlapping ranges resolving to the earliest, unvalidated dates that silently matched
+nothing, /visit's table and the structured data advertising hours through a closure.
+Closure dates now throw at build if they are not yyyy-mm-dd.
+
+Also: honeypot returning success while discarding an order and logging nothing (and
+named `company`, which Chrome autofills); send failures reported as "email not switched
+on"; "[object File]" passing validation; two open redirects; the coming-soon tin
+orderable by cookie; the Stripe path never telling the bakery; ?state=paid claimable by
+anybody; /menu?today=1 unfiltered without JavaScript.
+
+Standing numbers after it: twelve routes, zero axe violations at 320/390/768/1440,
+/ at 2160ms LCP and 0.000 CLS, menu prints on three pages.
 
 ## Retired
 

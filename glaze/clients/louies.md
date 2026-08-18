@@ -41,14 +41,23 @@ roll hero still waits on the shoot.
   in their artwork); hat animates. Replace with original art when it arrives.
 - Voice is first person. Kevin's call, after catching "See what they make".
 - Proposal prices the Baker's Dozen: $1,900 + $99/mo. Set in the pitch page.
+- One price per menu row, no cash column. Kevin's call once Square landed. Do not
+  reintroduce a `cash` field on MenuItem.
+- Phase-two checkout is quoted on Stripe as the base layer (2.9% + 30c, no monthly).
+  Square's own online rate is 3.3% + 30c on the free plan and 2.9% + 30c on Plus at
+  $49/mo, so building on Square only pays for itself if the bakery wants one dashboard
+  badly enough to move up a plan. Worth offering as an option, not as the default.
 
 ## Facts that matter
 
 - The spelling customers type, louiesbakery.com, is a bakery in Emmaus, Pennsylvania
   (verified Aug 2026). Their hyphenated domain is painted on the building.
 - Cash discount on every line of their menu; the site explains it once.
-- POS: unknown. No Toast/Square/Clover footprint findable; likely a basic terminal.
-  Ask Jason.
+- POS: SQUARE, and the cash discount is gone with it (Kevin, from the shop, Aug 2026).
+  This answers the open POS question and invalidates every price on their published
+  menu, which still prints a card price and a cash price on every line. The build now
+  shows one price, the card figure carried across, and it is the largest PLACEHOLDER
+  on the site until Jason hands over the current Square list.
 - Their old site still showed a July vacation banner on August 18, and /team is live
   with lorem ipsum and three invented names. Both are findings in the proposal, with
   links.
@@ -70,6 +79,8 @@ roll hero still waits on the shoot.
 ## Open
 
 - Show Jason. One action in the proposal: look at the demo, then call Kevin.
+- GET THE SQUARE PRICE LIST. Every figure on the demo is a carried-over card price and
+  needs replacing with what the register actually charges.
 - Ask Jason about the "Best Bakery in Michigan" wins: which award, which years. If it
   is real and namable it is worth a line on the story page.
 - Attach louies.glazedweb.com to the Vercel project (Kevin, dashboard).

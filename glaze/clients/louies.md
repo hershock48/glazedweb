@@ -66,6 +66,14 @@ roll hero still waits on the shoot.
   pages. This is finding five in the proposal, replacing the one Kevin killed.
 - Kevin's rule on tone, stated: the letter must not read as dicks, and must not sell
   Goldbelly on the bakery's behalf. Blame the platform, never the owner.
+- Their Goldbelly listing appears to sell nothing. Goldbelly product pages read fine
+  through WebFetch (a Dough Doughnuts box returned name, $69.95, contents and seven
+  image URLs), and Louie's has no product page indexed anywhere, Goldbelly's own search
+  returns no result for their name, and their merchant page carries story copy and two
+  photographs with no product links. Not proof, because the catalogue renders in the
+  browser. Kevin to confirm on a phone. If it is true, their own nav's "Order on Gold
+  Belly" link sends buyers to a page with nothing to buy, and that is a finding.
+- Photo rights on Goldbelly product imagery: Kevin says we have permission, Aug 2026.
 - Goldbelly is a marketplace, not a credential. Sellers apply through a form and
   Goldbelly decides; the only published standard is their own phrase, "Goldbelly
   good". No acceptance rate, no audit, no certification behind it, and their ratings

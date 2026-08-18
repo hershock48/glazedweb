@@ -182,3 +182,100 @@ may say about their licence is his lawyer's question, not ours.
 - [ ] Somewhere, something he does not know, or got wrong, or is still testing.
 - [ ] Nothing lifted from the Patreon. He sells that.
 - [ ] Read it back and ask whether a grower would believe a person wrote it.
+
+---
+
+## Second pass: what else the writing gives us
+
+The first pass took the voice. This one takes everything else, and there was
+more in it than there was voice.
+
+### He has no product attached to his advice, and that is a positioning asset
+
+He recommends Slow Nickel's calcium, General Hydroponics CaliMagic, Athena, Front
+Row, Botanicare, Grodan, Netafim. **He sells none of them.** And he is pointed
+about people who do:
+
+> "In typical Athena fashion they put out some great info from their deep roster
+> of a highly educated/experienced team and then lace it with a sales pitch at
+> the end. They don't sell organic additives so of course they say 'don't use
+> these, they will hurt you' and 'use our product we sell instead'."
+
+A consultant whose recommendation has no bottle behind it is a different offer
+from a nutrient company's education arm, and the site never says so. It is the
+kind of claim that is both true and impossible for a competitor to copy.
+
+### The site does not speak grower, and that is measurable
+
+Checking his working vocabulary against every rendered string on the site, 34 of
+46 terms appeared nowhere: dryback, shot size, P1, P2, field capacity, PWEC, crop
+steering, generative, vegetative, DLI, PPFD, VPD, stacking, lollipop, defol,
+fade, flush, tip burn, stretch, bulking, ripening, transpiration, dripper, gph,
+terpene, cannabinoid, genetics, substrate.
+
+What was there, runoff and canopy and coco and EC, is on every hobby blog. The
+words that prove somebody has run a commercial room were absent. They are also
+what a commercial grower types into a search box.
+
+Six of them now land in the consult intake, where a grower is answering rather
+than being marketed at. The rest belong in the guide pages, which is the next
+item, and should never be stuffed in for their own sake.
+
+### The guide pages sell format, not contents
+
+All four say a one-line blurb and then "Guide video library, downloadable PDF."
+That is packaging. **For an information product the table of contents is the
+sales page**, and his is already written.
+
+His published bloom programme is structured exactly like a contents list:
+
+    Days 1-21    post transplant and stretch
+    Days 22-44   end of stretch and bulking
+    Day 45-63+   ripening and flush
+    then         troubleshooting: tip burn and salt build-up,
+                 overwatering before and during flush
+
+with each phase carrying day and night temperature, RH, VPD, CO2, PPFD and DLI,
+the irrigation schedule with shot sizes and timings, and the EC taper.
+
+His runoff post ends with its own eleven-step summary, in order, from calculating
+feed rate through to reading pH and EC once the target volume is hit.
+
+**Take that shape to him and ask whether it matches what is actually in the
+videos.** Do not write it onto the site first. It is his product and only he
+knows what is in it, and an invented contents list on a page that takes money is
+the placeholder problem with a price tag on it.
+
+### He has written more than the site sells
+
+Four guides are on sale: flower, veg, runoff, hand-water to automation. His
+posts also cover, at length: nutrients and plant biology as a three-part primer,
+foliar analysis with agronomists reading the results, non-nitrogen calcium
+products, the callus propagation technique, clone technique, mother programme,
+lollipopping, and end-of-flower ripening. He also mentions doing "more formal
+consulting" for mother-programme work, which is a tier the site does not list.
+
+Worth one conversation: which of those are already inside the four guides, which
+are separate products he has not packaged, and whether the mother-programme
+consulting belongs on the consulting page as a fourth session type.
+
+### What he actually needs in order to diagnose
+
+The consult intake asked for runoff EC and pH. His own method says the volume
+comes first and the readings are meaningless without it:
+
+> "If our EC and PH are way off in our runoff, but the volumes are also way off,
+> the first step is to usually adjust your program so your runoff volume hits
+> your target and then see if that solves your problem before you start making
+> adjustments to your feed recipe."
+
+So the form asked for the two numbers and never asked for the one that qualifies
+them. Fixed. Two other sharpenings went in at the same time: the stage question
+now offers his own phase names and day ranges rather than generic ones, and the
+lights question asks for PPFD or DLI alongside wattage, because wattage is what a
+catalogue lists and PPFD is what he works in.
+
+Still worth asking him: does he want shot size as a percentage of substrate
+volume, and the P1 or P1-plus-P2 schedule, on the form? Both are central to how
+he reads a room, and both would cost another two fields on a form that is already
+long.

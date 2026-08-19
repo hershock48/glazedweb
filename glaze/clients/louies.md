@@ -63,6 +63,28 @@ roll hero still waits on the shoot.
   commission figure we do not have.
 - One price per menu row, no cash column. Kevin's call once Square landed. Do not
   reintroduce a `cash` field on MenuItem.
+- HOW GLAZED GETS PAID PER ORDER, since it decides the architecture. If the bakery's
+  own Square or their own Stripe key takes the money, we earn nothing per order and the
+  99c in the proposal is fiction: the monthly is all there is. Two rails that do pay:
+    Stripe Connect, direct charges. The bakery is a connected account, the money lands
+    in THEIR balance, and `application_fee_amount` lands in ours on every payment,
+    automatically. Needs the card_payments capability on their account, which is
+    ordinary onboarding. This is the one to build on: the checkout is already Stripe
+    hosted Checkout, and Connect is a change of parameters rather than a rewrite.
+    Square app fees. `app_fee_money` on payments our app processes for them under
+    OAuth, requiring the PAYMENTS_WRITE_ADDITIONAL_RECIPIENTS grant. Fees land in the
+    Glazed Square developer account, capped at 90% of the payment. Only applies to
+    payments taken THROUGH our integration; anything they ring up on their own POS or
+    sell through Square Online pays us nothing.
+  Note the wording of the quote: "99c an order, paid by the customer". To be literally
+  true that is a 99c line item added at checkout and then collected as the application
+  fee. Taking it out of the bakery's proceeds instead is a different deal and should be
+  described differently.
+- THE MONEY RAIL AND THE PRINTER ARE SEPARATE and this is the unlock. We can own the
+  checkout (and the per-order fee) and still push the finished order into Square via
+  the Orders API so it lands in their dashboard and prints on the same printer as the
+  to-go tickets. Pointing them at Square Online instead hands away both the fee and the
+  relationship.
 - Phase-two checkout is quoted on Stripe as the base layer (2.9% + 30c, no monthly).
   Square's own online rate is 3.3% + 30c on the free plan and 2.9% + 30c on Plus at
   $49/mo, so building on Square only pays for itself if the bakery wants one dashboard

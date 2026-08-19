@@ -437,3 +437,82 @@
   .legal-cta p { font-size: 13.5px; color: var(--taupe); line-height: 1.6; margin-bottom: 20px; }
   .order-form .flabel { display: block; }
   .legal-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  /* ───────────────────────────────────────────────────────────────────────────
+     #jelly — the ordering section.
+
+     Its own classes rather than reusing .mcard, and that is deliberate. .mcard is
+     built for the cream ground: a light background, a light border, and body text at
+     #5A4A3A. Dropping it onto --chocolate-2 would need six overrides and would leave
+     two definitions of a card that have to be kept in step forever. These are the same
+     shapes and the same rhythm, drawn for the dark ground once.
+
+     Every colour here was measured against #201712 rather than picked:
+       --slime #BFE07A   11.87 on the section, 10.66 on a card
+       #F3EAE1           14.81 / 13.31
+       #C9BCAE            9.46 / 8.50   (body copy)
+       #A6907F            5.80          (the note under the grid)
+     ─────────────────────────────────────────────────────────────────────────── */
+  #jelly { background: var(--chocolate-2); color: #F3EAE1; }
+  #jelly .sec-kicker { color: var(--slime); }
+  #jelly .sec-title { color: #F3EAE1; }
+  #jelly .sec-sub { color: #C9BCAE; }
+
+  .jgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 44px; }
+  @media (max-width: 800px) { .jgrid { grid-template-columns: 1fr; } }
+
+  .jcard {
+    background: #2C2019;
+    border: 1px solid #3B2C22;
+    border-radius: 18px;
+    padding: 28px 24px 26px;
+    transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+  }
+  .jcard:hover {
+    transform: translateY(-6px);
+    border-color: var(--slime-bright);
+    box-shadow: 0 22px 44px -20px rgba(0, 0, 0, .55);
+  }
+  .jcard h3 { font-size: 21px; font-weight: 800; letter-spacing: -0.5px; color: #F3EAE1; }
+  .jflavor {
+    font-size: 12.5px; color: var(--slime); font-weight: 700;
+    text-transform: uppercase; letter-spacing: .12em; margin-top: 4px;
+  }
+  .jprice { margin-top: 16px; font-size: 34px; font-weight: 800; letter-spacing: -1.5px; color: #F3EAE1; }
+  .jprice small { font-size: 14px; color: #A6907F; font-weight: 500; letter-spacing: 0; }
+  .jcard ul { list-style: none; margin: 20px 0 0; display: grid; gap: 10px; }
+  .jcard li { font-size: 14.5px; color: #C9BCAE; padding-left: 24px; position: relative; line-height: 1.45; }
+  /* The same slime tick the menu cards use, so the two grids read as one family. */
+  .jcard li::before {
+    content: "";
+    position: absolute; left: 0; top: 7px;
+    width: 12px; height: 7px;
+    border-left: 2.5px solid var(--slime-bright);
+    border-bottom: 2.5px solid var(--slime-bright);
+    transform: rotate(-45deg);
+  }
+
+  .jnote {
+    margin-top: 34px; max-width: 720px;
+    font-size: 14.5px; line-height: 1.65; color: #A6907F;
+  }
+  .jctas { margin-top: 30px; }
+
+  /* Anchored sections clear the sticky header with room to spare.
+     Measured before changing anything: the section's own 84px top padding already put
+     the kicker at 84px against a 65px header on desktop, but at 56px against a 54px
+     header on a phone — visible, and touching. This is the two pixels of comfort. */
+  section[id] { scroll-margin-top: 26px; }
+
+  /* THE NAV RAN OUT OF ROOM WHEN JELLY WAS ADDED TO IT.
+     Measured at 320px: the nav became 242px wide and pushed the document 41px past the
+     viewport. Four text links plus a button does not fit a 320px phone at any gap worth
+     tapping.
+
+     Process is the one that goes. It is the least load-bearing of the four — the section
+     is still there and still reached by scrolling — while Menu is the pricing, Jelly is
+     the new pitch, and Work is the proof. Hidden rather than shrunk, because shrinking
+     the whole row below 12.5px to fit one more word makes all five harder to hit. */
+  @media (max-width: 380px) {
+    nav a[href="#process"] { display: none; }
+  }

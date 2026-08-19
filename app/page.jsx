@@ -258,6 +258,9 @@ export default function Home() {
           </a>
           <nav>
             <a href="#menu">Menu</a>
+            {/* The new pitch needs a way in. Placed second, next to the packages,
+                because Jelly is what goes inside one rather than a fourth package. */}
+            <a href="#jelly">Jelly</a>
             <a href="#process">Process</a>
             <a href="#work">Work</a>
             <a className="btn" href="/order">
@@ -286,8 +289,8 @@ export default function Home() {
             </em>
           </h1>
           <p className="sub">
-            Hand-built sites for small businesses. No templates, no bloat, no six-month timelines. Order it like a
-            donut: pick a flavor, we bake it fresh, it ships glazed.
+            Hand-built sites for restaurants, food trucks, breweries and the local shops around them. And if people
+            order from you online, we build the ordering into your site instead of renting it from a platform.
           </p>
           <div className="ctas">
             <a className="btn big" href="/order">
@@ -298,7 +301,7 @@ export default function Home() {
             </a>
           </div>
           <div className="proof">
-            Launched in as little as <b>2 weeks</b> · Simple pricing · You own everything
+            Live in as little as <b>2 weeks</b> · You own everything · Online ordering with <b>no monthly fee</b>
           </div>
         </div>
         <div className="mark">
@@ -312,9 +315,11 @@ export default function Home() {
             <span key={i} style={{ display: "contents" }}>
               <span>Fresh sites</span>
               <span>◦</span>
+              <span>Ordering built in</span>
+              <span>◦</span>
               <span>No templates</span>
               <span>◦</span>
-              <span>Simple pricing</span>
+              <span>Your orders, your list</span>
               <span>◦</span>
               <span>2-week launches</span>
               <span>◦</span>
@@ -370,7 +375,7 @@ export default function Home() {
               <ul>
                 <li>Up to 6 pages: services, about, gallery, the works</li>
                 <li>Custom design that looks like you, not a theme</li>
-                <li>Booking, menus, or e-commerce lite, one baked in</li>
+                <li>Booking, menus, or online ordering, one baked in</li>
                 <li>SEO foundations + Google Business tune-up</li>
                 <li>Monthly covers hosting, updates, edits, and a check-in</li>
               </ul>
@@ -396,7 +401,75 @@ export default function Home() {
         </div>
       </section>
 
-      <DripDivider fill="#FFFDF8" bg="var(--cream)" />
+      <DripDivider fill="#FFFDF8" bg="var(--chocolate-2)" />
+
+      <section id="jelly">
+        <div className="inner">
+          <div className="sec-kicker">The filling</div>
+          <h2 className="sec-title">Jelly goes inside the donut.</h2>
+          <p className="sec-sub">
+            If people order from you online, that ordering can live in your own website instead of on someone
+            else&apos;s platform. Same kitchen, same register, same menu. The difference is whose customer it is when
+            the order lands.
+          </p>
+
+          <div className="jgrid">
+            <div className="jcard reveal">
+              <h3>Order ahead</h3>
+              <div className="jflavor">In your own site</div>
+              <div className="jprice">
+                $0<small>/mo</small>
+              </div>
+              <ul>
+                <li>Guests order from your website, not a marketplace that also sells your competitor</li>
+                <li>You keep the order, the email address and the phone number</li>
+                <li>Your POS does not change. This replaces the online channel, not the register</li>
+                <li>Guests pay 99¢ at checkout and half of that comes back to you</li>
+              </ul>
+            </div>
+
+            <div className="jcard reveal">
+              <h3>Jelly Register</h3>
+              <div className="jflavor">At the counter</div>
+              <div className="jprice">
+                $249<small> once</small>
+              </div>
+              <ul>
+                <li>2.7% + 15¢ all in, and a dime of that is ours</li>
+                <li>Bought once, not rented monthly like the handheld you have now</li>
+                <li>Same rails as the online ordering, so it is one payout and one report</li>
+                <li>Optional. The site works without it</li>
+              </ul>
+            </div>
+
+            <div className="jcard reveal">
+              <h3>The math</h3>
+              <div className="jflavor">On your own statement</div>
+              <div className="jprice">Bring it</div>
+              <ul>
+                <li>Toast&apos;s pay-as-you-go processing runs up to 3.69% + 15¢</li>
+                <li>A rented handheld is around $50 a month on top of that</li>
+                <li>On $10,000 of card volume the rate difference alone is about $99 a month</li>
+                <li>Those are published numbers. Yours is the one that decides it, so we read it first</li>
+              </ul>
+            </div>
+          </div>
+
+          <p className="jnote">
+            Jelly is new, and we would rather say so than have you find out. It is going in at Copper Athletic Club
+            and Cookin&apos; with Beans first, both here in Marshall, and the standing rule is simple: if the all-in
+            cost does not beat the statement you are already paying, we do not switch you.
+          </p>
+
+          <div className="jctas">
+            <a className="btn big" href="/order?flavor=dozen">
+              Talk about ordering
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <DripDivider fill="#201712" bg="var(--cream)" />
 
       <section id="process">
         <div className="inner">

@@ -375,7 +375,18 @@
   @media (max-width: 640px) { .fgrid { grid-template-columns: 1fr; } }
   .order-form label { display: grid; gap: 6px; font-size: 13.5px; font-weight: 700; color: #5A4A3A; }
   .order-form label.full { margin-top: 14px; }
-  .req { color: var(--raspberry); }
+  /* THE REQUIRED-FIELD ASTERISKS FAILED AA, on the form that takes the order.
+     --raspberry #E84D8A on the #FFFDF8 field ground measures 3.53 against a 4.5 floor,
+     and an asterisk marking a field as required is meaningful UI text, not incidental
+     decoration, so the exemption does not apply. Four of them on the page.
+
+     --raspberry-ink is the token that already exists for exactly this problem: it is
+     what the buttons moved to when white-on-raspberry failed at 3.58. Here it measures
+     4.89. The tint is close enough that nothing reads as a different colour, which is
+     the whole reason that token was introduced rather than a new one invented.
+
+     Pre-existing on main, not introduced by this branch. */
+  .req { color: var(--raspberry-ink); }
   .order-form input, .order-form textarea, .order-form select {
     font: inherit; font-weight: 500; color: var(--chocolate);
     background: #fff; border: 2px solid rgba(43,30,22,0.14); border-radius: 12px; padding: 11px 13px;
@@ -516,3 +527,19 @@
   @media (max-width: 380px) {
     nav a[href="#process"] { display: none; }
   }
+
+  /* The acknowledgement on /order when somebody arrives from the Jelly section.
+     Slime-tinted rather than raspberry, because raspberry is the buy button on this
+     page and a notice that looks like a CTA competes with the actual one.
+     #5A4A3A on #F4F9E6 measures 7.89, and the bold chocolate on it is 15.03. */
+  .jelly-note {
+    margin-top: 18px;
+    padding: 14px 16px;
+    border-left: 3px solid var(--slime-bright);
+    background: #F4F9E6;
+    border-radius: 0 10px 10px 0;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: #5A4A3A;
+  }
+  .jelly-note b { color: var(--chocolate); }

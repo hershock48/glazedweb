@@ -13,13 +13,18 @@ const FLAVORS = {
 
 export default function OrderPage() {
   const [flavor, setFlavor] = useState("dozen");
+  /** Set when they arrived from the Jelly section rather than the menu. Carried into
+   *  the payload so the enquiry does not land looking like every other one. */
+  const [wantsOrdering, setWantsOrdering] = useState(false);
   const [agreed, setAgreed] = useState(false);
   const [status, setStatus] = useState("idle"); // idle | sending | done | fallback | error
   const [fallbackHref, setFallbackHref] = useState("");
 
   useEffect(() => {
-    const q = new URLSearchParams(window.location.search).get("flavor");
+    const params = new URLSearchParams(window.location.search);
+    const q = params.get("flavor");
     if (q && FLAVORS[q]) setFlavor(q);
+    if (params.get("jelly") === "1") setWantsOrdering(true);
   }, []);
 
   const onSubmit = async (e) => {
@@ -29,6 +34,7 @@ export default function OrderPage() {
     const payload = Object.fromEntries(form.entries());
     payload.flavor = FLAVORS[flavor].name;
     payload.flavorPrice = FLAVORS[flavor].price;
+    if (wantsOrdering) payload.ordering = "Yes — came in through Jelly";
     payload.agreementAcceptedAt = new Date().toISOString();
     payload.agreementVersion = "v1.0 (2026-08)";
     setStatus("sending");
@@ -46,6 +52,7 @@ export default function OrderPage() {
       // Not configured yet (or transient failure): hand them a prefilled email
       const lines = [
         `Flavor: ${payload.flavor} (${payload.flavorPrice})`,
+        ...(payload.ordering ? [`Online ordering: ${payload.ordering}`] : []),
         `Name: ${payload.name || ""}`,
         `Business: ${payload.business || ""}`,
         `Email: ${payload.email || ""}`,
@@ -61,7 +68,9 @@ export default function OrderPage() {
       ].join("\n");
       setFallbackHref(
         `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-          `New order: ${payload.flavor}, ${payload.business || payload.name || "new client"}`
+          `New order${payload.ordering ? " + Jelly" : ""}: ${payload.flavor}, ${
+            payload.business || payload.name || "new client"
+          }`
         )}&body=${encodeURIComponent(lines)}`
       );
       setStatus(data?.reason === "not_configured" ? "fallback" : "fallback");
@@ -134,6 +143,13 @@ export default function OrderPage() {
                 </label>
               ))}
             </div>
+            {wantsOrdering && (
+              <p className="jelly-note">
+                <b>Online ordering is on the list.</b> You came in from Jelly, so we will bring
+                your current statement to the call and work out whether it actually beats what
+                you pay now. Pick whichever size site fits, ordering goes in either way.
+              </p>
+            )}
             <p className="hint">
               Not sure? Pick the closest one and we&apos;ll sort it out together. See the full{" "}
               <Link href="/#menu">menu</Link>.

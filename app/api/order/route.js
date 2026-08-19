@@ -33,6 +33,7 @@ export async function POST(req) {
 
   const rows = [
     ["Flavor", `${body.flavor} — ${body.flavorPrice}`],
+    ["Online ordering", body.ordering],
     ["Name", name],
     ["Business", business],
     ["Email", email],
@@ -69,7 +70,7 @@ export async function POST(req) {
         from: `glazedweb orders <${FROM}>`,
         to: [ORDER_TO],
         reply_to: email,
-        subject: `New order — ${body.flavor} — ${business}`,
+        subject: `New order${body.ordering ? " + Jelly" : ""} — ${body.flavor} — ${business}`,
         html,
       }),
     });

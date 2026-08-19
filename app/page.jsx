@@ -462,7 +462,7 @@ export default function Home() {
           </p>
 
           <div className="jctas">
-            <a className="btn big" href="/order?flavor=dozen">
+            <a className="btn big" href="/order?jelly=1">
               Talk about ordering
             </a>
           </div>

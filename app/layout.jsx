@@ -3,9 +3,9 @@ import { CONTACT_EMAIL } from "@/lib/contact";
 
 export const metadata = {
   metadataBase: new URL("https://www.glazedweb.com"),
-  title: "Web Design in Marshall & Battle Creek, MI | glazedweb",
+  title: "Restaurant Websites & Online Ordering in Marshall, MI | glazedweb",
   description:
-    "Hand-built websites for Michigan small businesses from $750, live in 2 weeks. Small-batch studio in Marshall serving Battle Creek. Start your order today.",
+    "Hand-built websites for Michigan restaurants, food trucks and breweries from $750, live in 2 weeks. Online ordering built into your own site with no monthly fee.",
   alternates: { canonical: "/" },
   icons: {
     icon: [
@@ -15,9 +15,9 @@ export const metadata = {
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "Web Design in Marshall & Battle Creek, MI | glazedweb",
+    title: "Restaurant Websites & Online Ordering in Marshall, MI | glazedweb",
     description:
-      "Hand-built websites for Michigan small businesses from $750, live in 2 weeks. Order it like a donut: pick a flavor, we bake it fresh, it ships glazed.",
+      "Hand-built sites for restaurants, food trucks and breweries, with ordering built in rather than rented. Order it like a donut: pick a flavor, we bake it fresh, it ships glazed.",
     type: "website",
     url: "https://www.glazedweb.com",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "glazedweb: a pink donut with a green glaze dripping off it, over the line Websites, fresh daily." }],

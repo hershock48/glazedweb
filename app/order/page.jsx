@@ -34,7 +34,13 @@ export default function OrderPage() {
     const payload = Object.fromEntries(form.entries());
     payload.flavor = FLAVORS[flavor].name;
     payload.flavorPrice = FLAVORS[flavor].price;
-    if (wantsOrdering) payload.ordering = "Yes — came in through Jelly";
+    if (wantsOrdering) {
+      payload.ordering = "Yes, came in through Jelly";
+      // Object.fromEntries already put the raw field in payload, so this normalises it
+      // rather than reading the form again. An empty box must still send a value, or the
+      // email row disappears and "they did not answer" looks identical to "we never asked".
+      payload.orderVolume = String(payload.orderVolume || "").trim() || "not given";
+    }
     payload.agreementAcceptedAt = new Date().toISOString();
     payload.agreementVersion = "v1.0 (2026-08)";
     setStatus("sending");
@@ -53,6 +59,7 @@ export default function OrderPage() {
       const lines = [
         `Flavor: ${payload.flavor} (${payload.flavorPrice})`,
         ...(payload.ordering ? [`Online ordering: ${payload.ordering}`] : []),
+        ...(payload.orderVolume ? [`Orders per month: ${payload.orderVolume}`] : []),
         `Name: ${payload.name || ""}`,
         `Business: ${payload.business || ""}`,
         `Email: ${payload.email || ""}`,
@@ -145,9 +152,10 @@ export default function OrderPage() {
             </div>
             {wantsOrdering && (
               <p className="jelly-note">
-                <b>Online ordering is on the list.</b> You came in from Jelly, so we will bring
-                your current statement to the call and work out whether it actually beats what
-                you pay now. Pick whichever size site fits, ordering goes in either way.
+                <b>Online ordering is on the list.</b> You came in from Jelly, so send us your
+                current processing statement and we will work out whether ours actually beats it.
+                If it does not, we will tell you so and you owe nothing for the asking. Pick
+                whichever size site fits: ordering goes in either way.
               </p>
             )}
             <p className="hint">
@@ -169,6 +177,16 @@ export default function OrderPage() {
                 <span className="flabel">Business name <span className="req">*</span></span>
                 <input name="business" required placeholder="Jane&apos;s Bakery" />
               </label>
+              {wantsOrdering && (
+                <label>
+                  <span className="flabel">Online orders in a normal month</span>
+                  <input
+                    name="orderVolume"
+                    inputMode="numeric"
+                    placeholder="A rough number is fine"
+                  />
+                </label>
+              )}
               <label>
                 <span className="flabel">Email <span className="req">*</span></span>
                 <input name="email" type="email" required autoComplete="email" placeholder="jane@janesbakery.com" />

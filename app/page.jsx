@@ -461,11 +461,30 @@ export default function Home() {
             cost does not beat the statement you are already paying, we do not switch you.
           </p>
 
+          <p className="jtry">
+            <b>You can use it right now.</b> The order builder on Cookin&apos; with Beans, a food truck
+            here in Marshall, is live: six steps, real prices, and the total adding itself up exactly
+            the way the board on the truck does. Nothing to install and no account to make.
+          </p>
+
           <div className="jctas">
-            <a className="btn big" href="/order?jelly=1">
-              Talk about ordering
+            <a
+              className="btn big"
+              href="https://cookinwithbeans.vercel.app/order"
+              target="_blank"
+              rel="noopener"
+            >
+              Try the ordering
+            </a>
+            <a className="btn big ghost" href="/order?jelly=1">
+              Send me the math
             </a>
           </div>
+
+          <p className="jsmall">
+            Ordering goes in whichever size site you pick. It is not a fourth package and it is not
+            an upsell on the build.
+          </p>
         </div>
       </section>
 

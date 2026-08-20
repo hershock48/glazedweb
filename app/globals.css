@@ -543,3 +543,36 @@
     color: #5A4A3A;
   }
   .jelly-note b { color: var(--chocolate); }
+
+  /* The "use it now" line and the small print under the Jelly buttons. Both sit on
+     --chocolate-2: #C9BCAE measures 9.46 there and #A6907F measures 5.80. */
+  .jtry {
+    margin-top: 30px; max-width: 720px;
+    font-size: 15px; line-height: 1.65; color: #C9BCAE;
+  }
+  .jtry b { color: #F3EAE1; }
+  .jctas { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 12px; }
+  /* The ghost button is drawn for the cream ground, where its border and text are
+     chocolate. On this section that is chocolate on chocolate and invisible, so the
+     dark-ground variant is stated here rather than left to inherit. Measured: #F3EAE1
+     on #201712 is 14.81, and the border only has to clear 3:1 as a non-text control. */
+  /* !important IS REQUIRED HERE AND IS NOT LAZINESS. The base rule is
+     `.btn.ghost { color: var(--chocolate) !important }`, and an !important declaration
+     beats a more specific normal one, so the first version of this override lost
+     silently: the button rendered chocolate text on the chocolate ground, which axe
+     caught as a serious contrast violation and which measured as very nearly invisible.
+     Matching !important is the only way to win without editing the shared rule that
+     every cream-ground ghost button on the site depends on. */
+  #jelly .btn.ghost {
+    background: transparent;
+    border: 2px solid #5A4A3E;
+    color: #F3EAE1 !important;
+  }
+  #jelly .btn.ghost:hover {
+    border-color: var(--slime-bright);
+    color: var(--slime) !important;
+  }
+  .jsmall {
+    margin-top: 18px; max-width: 640px;
+    font-size: 13.5px; line-height: 1.6; color: #A6907F;
+  }

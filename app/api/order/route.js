@@ -34,6 +34,12 @@ export async function POST(req) {
   const rows = [
     ["Flavor", `${body.flavor} — ${body.flavorPrice}`],
     ["Online ordering", body.ordering],
+    // Sits directly under "Online ordering" because it is the number that qualifies
+    // that answer: at 49¢ an order, 100 a month and 500 a month are different
+    // businesses. It was added to the form and to the client's mailto fallback and
+    // missed HERE, which is the path that actually runs once RESEND is configured, so
+    // in production the field would have been collected and silently dropped.
+    ["Orders per month", body.orderVolume],
     ["Name", name],
     ["Business", business],
     ["Email", email],

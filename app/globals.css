@@ -283,6 +283,24 @@
     .ban-counter.tick { animation: none; }
     .bok-bubble { transition: opacity .2s ease; transform: scale(1) rotate(-3deg); }
     .step.glazed .num::after { animation: none; }
+
+    /* THE TICKER WAS MEASURED STILL RUNNING at animation-name scroll, 28s, with the
+       preference set. It is continuous horizontal movement across the full width of the
+       page, which is the thing people set this preference to stop. Stopped outright
+       rather than slowed: the words are the point and they read fine at rest. */
+    .ticker-inner { animation: none; }
+
+    /* And the mark, which breathes, sags, drips and shimmers on seven independent
+       loops. NOT namespaced under .gmark on this site: these classes are bare here,
+       and the first version of this rule was written as .gmark .goo, which matched
+       nothing at all and looked exactly like a fix. That namespaced form belongs to
+       the proposal shell, which is a different stylesheet. */
+    .goo,
+    .wob1, .wob2, .wob3, .wobB,
+    .string, .droplet, .droplet2, .sheen { animation: none; }
+
+    /* The reveal still has to happen, it just must not travel. */
+    .js .reveal { transition: none; }
   }
 
   /* cta band */
@@ -314,8 +332,13 @@
   .drip-divider { display: block; width: 100%; height: 54px; margin-bottom: -1px; }
 
   /* reveal on scroll */
-  .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
-  .reveal.in { opacity: 1; transform: none; }
+  /* SCOPED TO .js ON PURPOSE. Unscoped, this hides thirteen content blocks from anyone
+     whose JavaScript did not run, because only the IntersectionObserver adds .in:
+     all three pricing cards, all three Jelly cards and the four process steps, leaving
+     headings above empty space with nothing to report it. Visible is the default and
+     the animation is the enhancement, not the other way round. */
+  .js .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
+  .js .reveal.in { opacity: 1; transform: none; }
 
   /* ============ mobile ============ */
   .btn { white-space: nowrap; }

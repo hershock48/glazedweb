@@ -76,6 +76,15 @@ const localBusinessSchema = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        {/* Before first paint, so the reveal styles never apply in a browser that
+            cannot undo them. See the .js .reveal rule in globals.css. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('js')",
+          }}
+        />
+      </head>
       <body>
         <script
           type="application/ld+json"

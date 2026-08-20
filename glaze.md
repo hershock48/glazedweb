@@ -201,6 +201,15 @@ out loud at handover.** Silence about a placeholder reads as "this number is rea
 > Sprinkles served invented prices to real customers because a placeholder was
 > left in a constant and nobody said so.
 
+**A guess written as a plain value is worse than a blank.** If you do not know
+it, mark it `PLACEHOLDER` even when the guess feels safe, because the next
+person cannot tell your assumption from a confirmed fact.
+
+> An agency's whole site said the wrong town for a full build. `city` was the one
+> field in the contact block written as a bare string while every neighbour was a
+> marked placeholder, so it read as checked. It reached page titles, the hero,
+> the structured data, the link card image and four local guides.
+
 ### Accessibility is measured, not intended
 
 **Run `glaze/scripts/audit.mjs`. Zero violations at both widths on every route.** Fix contrast at
@@ -292,6 +301,39 @@ exist.
 **When a thing appears N times, check all N.** A fix verified on one instance is
 unverified. This applies to repos, to a component rendered twice on a page, to
 footers across two layouts, and to routes.
+
+### Do not argue the other guy's case in our own pitch
+
+Being straight is a rule about facts. It is not a license to hedge our work in
+a client's document, and the two get confused constantly, because the hedge
+sounds like the virtue.
+
+A price note on the Insurance for a Cause proposal read: *"In fairness to them,
+theirs is a themed WordPress site rather than twenty-one written pages and three
+tools, so the comparison flatters us on what you get. It does not flatter us on
+what you keep."* Kevin's response was to delete it, and he was right. It is two
+sentences of a competitor's defense sitting in the middle of our price, written
+by us, unprompted, in a document whose job is to be stood behind.
+
+**The test is who pays for the silence.**
+
+- If leaving it out costs the client money, time or a bad surprise, say it.
+  *"Getting your first twenty reviews will probably do more for you than half of
+  this website will"* costs us the sale and saves her the disappointment. That
+  is the house voice and it stays.
+- If leaving it out costs only our own comfort, cut it. Pre-emptively softening
+  a comparison, apologizing for a number that is already sourced, or
+  volunteering the counter-argument nobody raised is not honesty. It is
+  flinching, and the client can hear it.
+
+A figure with a link under it needs no apology. It is already checkable, which
+is the entire point of putting it there. If a comparison genuinely cannot be
+defended without a caveat, **the comparison is the thing to change**, not to
+annotate.
+
+Related and different: **do not tell a client something unflattering about their
+own idea unless they can act on it.** That is settled elsewhere, in the Insurance
+for a Cause file, and it was settled the same way.
 
 ---
 
@@ -500,6 +542,19 @@ session does by default, which is why they need naming.
 - **A generic element selector can style a class you thought was independent.**
   `footer { background: dark }` painted a footer whose own class set light-ground
   text colours, producing a 1.09 link.
+- **An animated element wider than about 4096px stops being composited on
+  mobile.** Mobile GPUs cap a layer's texture, commonly at 4096 and on older
+  devices 2048, and past it iOS Safari can decline to run the animation at all.
+  Two marquee rails measuring 4,510px and 11,488px animated perfectly in every
+  desktop browser and sat dead still on a phone. **Measure the track, treat its
+  width as a budget, and say so next to the content that spends it.**
+- **A rotation's apparent movement scales with the element's size.** The same
+  2.6 degrees that reads as a gentle sway on a 300px mark is a third of the
+  travel at 180px and reads as static. Responsive artwork needs responsive
+  amplitude, and the thing to measure is pixels travelled, not degrees.
+- **A colour token validated against one ground is not validated.** Two tokens
+  passed on the page colour and failed on the second, quieter band that was
+  added later. Check every token against **every** ground it can land on.
 
 ### SVG and images
 
@@ -535,6 +590,23 @@ session does by default, which is why they need naming.
   parent's wholesale, image included.
 - **A `301` may turn a POST into a GET.** Exclude `/api` from any catch-all
   redirect, or use `308`, which preserves the method.
+- **Anything the server renders open and the client collapses is a layout
+  shift.** A mobile menu rendered expanded, so it would work with JavaScript
+  off, then collapsed on hydration, shipped a header 365px taller than it ends
+  up and threw the page upward. **CLS 0.3947 against a 0.1 bar, and only on a
+  throttled connection.** A native `<details>` is collapsed in the server's HTML
+  *and* opens without JavaScript, which is both problems solved and less code.
+- **On a pitch host, `/` is the proposal, not the site.** Every other path is
+  served normally, so a root-relative link is fine everywhere except the one
+  that points at `/`. A logo linking home therefore throws the client out of
+  their own demo and back into the sales document. Resolve it from the hostname
+  and keep that pattern in sync with the rewrite's.
+- **A dashboard build setting survives deleting the file that created it.** A
+  repo that began as a static pitch with `"outputDirectory": "public"` kept
+  serving `public/` as a flat directory after it became a Next app: `next build`
+  ran, reported success, and every route needing the framework returned Vercel's
+  own `NOT_FOUND`. `vercel.json` takes precedence over project settings and is
+  how you clear it from the repo.
 
 ### Scripted edits
 

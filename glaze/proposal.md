@@ -14,6 +14,40 @@ phone if a call goes sideways.
 Lift its stylesheet and its animated donut marks **verbatim**. Do not re-derive
 them. Then strip what the new proposal does not use.
 
+**The numbered steps glaze, and the glaze is lifted too.** The discs in the
+process section come from `.step .num` in glazedweb's own `app/globals.css`: a
+radial that puts the light at 32% 26%, two inset shadows, a blurred white
+highlight on `::before`, and a skewed white gradient on `::after` that sweeps
+across when the step arrives. The driver is the scroll handler in its
+`app/page.jsx`, thresholds `[0.22, 0.38, 0.54, 0.7]` included, rewritten as
+plain JS because a proposal page has no React.
+
+Copying only the disc is the trap. It looks glazed sitting still and never
+glazes, because the two pieces that make it work are the ones with no visible
+effect on their own: **`position: relative`, which the pseudo-elements position
+against, and `overflow: hidden`, which keeps the sweep inside the circle.**
+Without them the highlight lands somewhere up the page and the sweep runs across
+the card. Scroll-scrubbed, never autoplayed, and off under reduced motion.
+
+**The price melts too.** The build number counts down from a market anchor as
+the card reaches the reader, same 1100ms and cubic ease-out as the menu prices
+on glazedweb, same idle/primed/counting machine so scrolling back up re-arms it.
+One card instead of three, so the left-to-right stagger is the only thing
+dropped.
+
+Two rules on that, and the second one is not optional:
+
+- **The anchor is a published figure with a link under it, not a number you
+  liked.** Every other figure in a proposal carries a source, and an invented
+  one in the price section is the one place a client will actually check.
+  Insurance for a Cause anchors at $15,000 against $3,500, which is the top of
+  a published range for an independent agent's site, with the range and what it
+  buys said out loud underneath.
+- **The rendered number is the real price.** `data-to` is what sits in the
+  markup and the anchor is only in `data-from`. Write the anchor into the DOM
+  at load and count down from it, and a reader with scripts blocked, or on
+  reduced motion, is looking at a price you are not charging.
+
 Also in that repo, for reference:
 
 | Path | What it is |
@@ -66,7 +100,21 @@ ownership terms, one next step.
 
 **Out:** stock photography. Anything about Glazed Web's process that the client
 did not ask about. Adjectives doing the work a number should do. Any claim about
-their current site that has not been verified in a browser this session.
+their current site that has not been verified in a browser this session. **Any
+sentence that argues the competitor's side of a comparison we are making.**
+
+That last one is worth a paragraph, because it does not feel like a mistake
+while you are writing it. A price note on the Insurance for a Cause proposal
+read: *"In fairness to them, theirs is a themed WordPress site rather than
+twenty-one written pages and three tools, so the comparison flatters us on what
+you get."* That is the other guy's defense, written by us, unprompted, inside
+our own price. Kevin deleted it.
+
+**A sourced figure needs no apology. It is already checkable, which is why it is
+there.** If a comparison cannot be defended without a caveat, change the
+comparison rather than annotate it. The full rule, and where the line sits
+against the unflattering things we DO say, is under "Being straight" in
+`glaze.md`.
 
 ---
 
@@ -120,3 +168,6 @@ check it on every build.
 - [ ] The price is a number.
 - [ ] Read it once as the owner, not as the builder. If a sentence is about us
       rather than about them, cut it.
+- [ ] No sentence anywhere argues the other side of a comparison we are making.
+      Search it for "in fairness", "to be fair", "admittedly", "of course" and
+      "that said" and justify every hit or cut it.

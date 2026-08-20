@@ -73,6 +73,26 @@ nothing and renders invisible shapes.
 Use the SVG. The PNGs exist for surfaces that cannot take vector, such as the
 `image` and `logo` fields in the site's JSON-LD.
 
+### Client favicons
+
+Everything above is the studio's own mark. **A client site gets the client's
+mark**, and it gets cut the same way a header mark is: the detailed version above
+roughly 32px, a simplified one below it.
+
+**Full bleed, no corner radius.** Render on the icon's own background, not on a
+white page. A rounded rect screenshotted on white bakes pure `#FFFFFF` into the
+four corners, which reads as a white frame around the icon on any tab, launcher
+or bookmark bar that is not white. iOS also masks an `apple-touch-icon` itself
+and expects a full square, so a pre-rounded one double-rounds.
+
+**Build the `.ico` with three sizes inside it**, 48 from the detailed cut and 32
+and 16 from the simplified one. One source scaled to 16px is how a mark turns to
+mush.
+
+> The anchor on Insurance for a Cause lost the heart's counter completely at
+> 16px, and had white corners at every size. Both were invisible in the 512px
+> source and obvious in a tab.
+
 ---
 
 ## The palette

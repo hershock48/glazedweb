@@ -107,6 +107,38 @@ each platform's debugger to force one when it matters.
 
 ---
 
+## One host, three documents, two icons
+
+A pitch host serves the proposal at `/`, the logo page at `/logo` and the whole
+client site at `/demo`. Three documents, one origin, and a favicon is cached per
+origin, which is what makes this look harder than it is.
+
+**Glazed's documents carry Glazed's mark. The client's site carries theirs.**
+The proposal and the logo presentation are ours. The demo is theirs, and the tab
+above their own site should say their name, not ours.
+
+The failure people try to prevent here is the donut sticking in the tab while
+the client looks at their site. It is real, and the cause is not two icons on
+one origin. It is a document that declares no icon at all and lets the browser
+fall back to `/favicon.ico` at the root, which on a pitch host is whatever the
+demo app happens to serve. **Declare explicitly on both sides and neither falls
+back, so neither can win the other's tab.** On a Next demo the file conventions
+do it for you: `app/favicon.ico`, `app/icon.png`, `app/apple-icon.png` all emit
+real `<link>` tags. On a static pitch page you write them yourself.
+
+Two details that are easy to get wrong on the static side:
+
+- **SVG first, `.ico` after it.** Safari does not take an SVG through
+  `rel=icon`, so a page with only the SVG shows Safari nothing.
+- **Absolute paths.** `/` and `/logo` are rewrites. A relative href resolves
+  against the pretty URL, not against the file it was written in.
+
+**Lift the icon, do not redraw it.** Glazed's own `public/favicon.svg`,
+`favicon.ico` and `apple-touch-icon.png` are the assets. Copy them next to the
+pitch pages.
+
+---
+
 ## Making the image
 
 Render it from a real page rather than assembling it in an image editor, so the
@@ -141,3 +173,6 @@ in a message bubble where the card is a third the size.
 - [ ] Pasted into Messages **and** one non-Apple surface, and looked at.
 - [ ] For a pitch host: proposal card and demo card are different files, and the
       demo card is the client's.
+- [ ] For a pitch host: **every** document declares an icon explicitly, so
+      nothing falls back to the origin root. Proposal and logo page declare
+      Glazed's; the demo declares the client's.

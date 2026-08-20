@@ -26,6 +26,7 @@ None of these is a judgment call.
 - [ ] Checked at 320, 390, 768 and 1440 wide. 320 is the one that breaks.
 - [ ] Reduced motion produces a complete page, not an empty one.
 - [ ] With JavaScript off, every form still submits and every nav link still works.
+- [ ] A real 404 in the site's own design, with links out. Not the framework default.
 - [ ] Keyboard: focus visible on every interactive element, skip link first in tab order.
 - [ ] Largest Contentful Paint under 2.5s and Cumulative Layout Shift under 0.1 on
       a throttled mobile profile. Total JavaScript under 150KB compressed.
@@ -37,6 +38,9 @@ None of these is a judgment call.
 - [ ] Canonical URL points at the client's real domain, never at a `.vercel.app` host.
 - [ ] `LocalBusiness` structured data, with hours and address, on the homepage.
 - [ ] `sitemap.xml` and `robots.txt` present, and the demo or preview host is `noindex`.
+- [ ] Favicon set present and it is the **client's** mark: `favicon.ico`, `icon.png`,
+      `apple-icon.png`. Full bleed, **no corner radius**, corners in the icon's own
+      background colour. Checked at 48, 32 and 16 at true size.
 
 ### Security and handover
 
@@ -53,6 +57,14 @@ has produced bugs no local check caught, so anything visually unusual needs a re
 device before it ships.
 
 **Accessibility target.** WCAG 2.1 AA, measured with the auditor.
+
+**Do not put a 404 route in the auditor's route list.** It correctly reports a
+4xx and every run then looks like a failure.
+
+**Measure CLS on a throttled connection, not just a throttled CPU.** A layout
+shift that only appears on slow network is invisible on a desktop test and
+obvious on a phone. One build measured 0.0000 locally and **0.3947** at 1.6Mbps,
+from a mobile menu that shipped expanded and collapsed on hydration.
 
 ---
 

@@ -87,9 +87,18 @@ const WIDTHS = [
 
 // axe is injected into the page rather than imported, so it runs in the page's
 // own context against the real rendered DOM.
-const axePath = ["./node_modules/axe-core/axe.min.js", path.join(process.cwd(), "node_modules/axe-core/axe.min.js"), path.join(import.meta.dirname ?? ".", "../../node_modules/axe-core/axe.min.js")].find(
-  (p) => fs.existsSync(p)
-);
+//
+// Resolved from the working directory first, then upward from this script's own
+// location. The upward walk is merged in from the old tools/ copy of this
+// script, the one respect in which that copy was not a strict subset of this
+// one: it let `node audit.mjs` work from inside the scripts directory itself.
+const here = path.dirname(new URL(import.meta.url).pathname);
+const axePath = [
+  path.join(process.cwd(), "node_modules/axe-core/axe.min.js"),
+  path.join(here, "node_modules/axe-core/axe.min.js"),
+  path.join(here, "../node_modules/axe-core/axe.min.js"),
+  path.join(here, "../../node_modules/axe-core/axe.min.js"),
+].find((p) => fs.existsSync(p));
 if (!axePath) {
   console.error("axe-core not found. Install it in the working directory:\n  npm install axe-core playwright-core --no-save");
   process.exit(1);
@@ -97,7 +106,12 @@ if (!axePath) {
 const axe = fs.readFileSync(axePath, "utf8");
 
 const host = new URL(BASE).host;
-const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
+// The sandbox pins Chromium at /opt/pw-browsers/chromium; a Mac does not. Per
+// the appendix in glaze.md, resolve from the environment with a fallback: set
+// CHROMIUM_PATH, or let Playwright find its own install when the pin is absent.
+const pinned = "/opt/pw-browsers/chromium";
+const executablePath = process.env.CHROMIUM_PATH ?? (fs.existsSync(pinned) ? pinned : undefined);
+const browser = await chromium.launch(executablePath ? { executablePath } : {});
 
 let violations = 0;
 const overflow = [];

@@ -57,5 +57,15 @@ Free-form prose is fine, but keep these headings so a session can skim:
 | Lemoncello Catering | `donna` |
 | Camp Barber | `campbarber` |
 | Shortstop Barber Shop | *not created yet* |
+| Insurance for a Cause | `anchor` |
+| Pastrami Joe's | `pjs` |
+| Schuler's Restaurant & Pub | `Schulers` |
+| DeVine's Flowers & Botanicals | `devine` |
+| True North Ice Cream | `truenorth` |
+| The Stagecoach Inn | `stagecoach` |
 
 `bangrants` is Kevin's and does not matter.
+
+Five of those rows have no file here yet: pjs, Schulers, devine, truenorth and
+stagecoach carry their durable facts in their own READMEs, which is the wrong
+place per this file's own rules. Writing their client files is open work.

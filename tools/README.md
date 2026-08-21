@@ -19,14 +19,15 @@ npm install axe-core playwright-core --no-save
 Install **both together**. `npm install <pkg> --no-save` prunes packages that are not
 in `package.json`, so installing one on its own removes the other.
 
-Chromium is already on the machine at `/opt/pw-browsers/chromium` and every script
-launches it explicitly. Do not run `playwright install`.
+In the sandbox, Chromium is pinned at `/opt/pw-browsers/chromium` and the scripts
+find it there. On any other machine set `CHROMIUM_PATH`, or install Playwright's
+own browser and leave it unset. Do not run `playwright install` in the sandbox.
 
 ## The scripts
 
 | Script | Answers |
 | --- | --- |
-| `audit.mjs` | Is this build shippable? axe against WCAG 2.1 AA, horizontal overflow, console and page errors, and 4xx/5xx, across every route at 390px and 1440px. |
+| `audit.mjs` | **Forwarder only.** The standing auditor is `glaze/scripts/audit.mjs`; this file re-executes it so the two can never diverge again (they did once, and the fixes landed on only one side). |
 | `animating.mjs` | Is this element's animation actually moving, or does it only claim to be? |
 | `gap.mjs` | Does the clearance between two elements hold at every width, or only at the two you screenshotted? |
 | `contrast.mjs` | Which colour pairs fail contrast, grouped so one bad token does not look like fifty separate bugs? |

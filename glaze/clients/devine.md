@@ -109,7 +109,15 @@ six tokens and re-run the auditor.
 - Whether "Classic Red Dozen" is still meant to be on sale at $75: on the owner.
 - How she takes card payments today at all (IRIS does none; is there a
   terminal, Square, paper slips?): on the owner, at the meeting.
-- One wedding spreadsheet and one funeral worksheet, as she actually keeps
-  them: the spec for the quote builder is in those two documents, not in
-  anyone's imagination. Ask her to bring them.
+- The real wedding spreadsheet: **she has agreed to send it.** The wedding
+  model and template get rewritten from it when it lands.
+- Funerals, corrected 2026-08-21: **there is no funeral worksheet.** Her
+  words: funerals "are done on the spot... quotes in person, no spreadsheet."
+  So the funeral variant's job is a counter pad, not a document pipeline:
+  speed and a live total across a desk from the family, with print as a
+  same-visit courtesy. The refinement ask changes from "bring the worksheet"
+  to "walk us through one on-the-spot funeral quote at the meeting" - watch
+  the real motion, then shape the tool to it. Likely follow-on once observed:
+  a finished funeral quote becomes an order on the board in one tap, because
+  the family ordering is standing right there.
 - What "all over the board" means about the floral groups: in person.

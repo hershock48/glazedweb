@@ -235,9 +235,11 @@ the token or the class, **never on the one element that got flagged.**
 
 Beyond that: the best effect is usually the client's own brand doing something,
 not a generic reveal. Scroll-scrubbed beats autoplay because the visitor controls
-it. And desynchronisation matters more than amplitude. Three things arriving on
-schedules roughly 150 to 300ms apart reads as weather; three arriving together
-reads as a slide transition.
+it, except where the effect has more discrete steps than the scroll has pixels to
+spend on them -- see the counter entry in the failure log. And desynchronisation
+matters more than amplitude. Three things arriving on schedules roughly 150 to
+300ms apart reads as weather; three arriving together reads as a slide
+transition.
 
 ### Copy is counted, not vibed
 
@@ -556,6 +558,18 @@ session does by default, which is why they need naming.
 - **A colour token validated against one ground is not validated.** Two tokens
   passed on the page colour and failed on the second, quieter band that was
   added later. Check every token against **every** ground it can land on.
+- **A scroll-scrubbed counter needs pixels per step, and a short element has
+  none to give.** Schuler's rolled 1909 to 2026 across `cover 34%` to `74%`.
+  The number is only 57.6px tall at 390px wide, so `cover` is barely one
+  viewport -- 902px, of which the band is 361px. That is 3.08px of scroll per
+  year. A normal flick, ~900px in 450ms decelerating, crosses the whole band in
+  about seven frames, so the count rendered EIGHT of its 117 values and lurched
+  in twenty-year jumps. It read correctly on a desktop wheel the entire time,
+  which is why it shipped. **Before scrubbing anything with discrete states,
+  divide the band's pixels by the number of states. Under roughly 8px per step
+  a thumb skips most of them.** A leader drawing or a fade has no steps to skip
+  and degrades into "less far along"; a counter degrades into a stutter. Make
+  that one time-based, fired once when it is properly in frame.
 
 ### SVG and images
 

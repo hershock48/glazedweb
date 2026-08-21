@@ -28,6 +28,7 @@
  */
 import fs from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { loadChromium, launchOpts, arg } from "./lib/browser.mjs";
 
 const chromium = await loadChromium();
@@ -35,7 +36,7 @@ const BASE = arg("base", "http://127.0.0.1:4490");
 const ROUTES = arg("routes", "/").split(",").map((r) => r.trim()).filter(Boolean);
 const WIDTHS = arg("widths", "320,768").split(",").map((w) => parseInt(w.trim(), 10)).filter(Boolean);
 
-const here = path.dirname(new URL(import.meta.url).pathname);
+const here = path.dirname(fileURLToPath(import.meta.url));
 const axePath = [
   path.join(process.cwd(), "node_modules/axe-core/axe.min.js"),
   path.join(here, "node_modules/axe-core/axe.min.js"),

@@ -12,7 +12,8 @@
  */
 import { spawn } from "node:child_process";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-const canonical = path.join(path.dirname(new URL(import.meta.url).pathname), "../glaze/scripts/audit.mjs");
+const canonical = path.join(path.dirname(fileURLToPath(import.meta.url)), "../glaze/scripts/audit.mjs");
 const child = spawn(process.execPath, [canonical, ...process.argv.slice(2)], { stdio: "inherit" });
 child.on("exit", (code) => process.exit(code ?? 1));

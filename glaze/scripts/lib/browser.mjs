@@ -18,16 +18,17 @@
  *    install.
  */
 import fs from "node:fs";
+import path from "node:path";
 import { createRequire } from "node:module";
 import { pathToFileURL } from "node:url";
 
 export async function loadChromium() {
-  const req = createRequire(pathToFileURL(process.cwd() + "/"));
+  const req = createRequire(pathToFileURL(path.join(process.cwd(), "package.json")));
   for (const name of ["playwright-core", "playwright"]) {
     for (const resolve of [() => req.resolve(name), () => name]) {
       try {
         const spec = resolve();
-        const mod = await import(spec.startsWith("/") ? pathToFileURL(spec).href : spec);
+        const mod = await import(path.isAbsolute(spec) ? pathToFileURL(spec).href : spec);
         const chromium = mod.chromium ?? mod.default?.chromium;
         if (chromium) return chromium;
       } catch {}

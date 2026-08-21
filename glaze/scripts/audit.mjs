@@ -39,6 +39,7 @@
 // project, and it has failed twice in one session for two different reasons.
 import fs from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { loadChromium, launchOpts, arg } from "./lib/browser.mjs";
 
 const chromium = await loadChromium();
@@ -57,7 +58,7 @@ const WIDTHS = [
 // location. The upward walk is merged in from the old tools/ copy of this
 // script, the one respect in which that copy was not a strict subset of this
 // one: it let `node audit.mjs` work from inside the scripts directory itself.
-const here = path.dirname(new URL(import.meta.url).pathname);
+const here = path.dirname(fileURLToPath(import.meta.url));
 const axePath = [
   path.join(process.cwd(), "node_modules/axe-core/axe.min.js"),
   path.join(here, "node_modules/axe-core/axe.min.js"),

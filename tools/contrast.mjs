@@ -19,6 +19,7 @@
 import { chromium } from "playwright-core";
 import fs from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const arg = (n, d) => {
   const i = process.argv.indexOf(`--${n}`);
@@ -30,7 +31,7 @@ const ROUTES = arg("routes", "/").split(",").map((r) => r.trim()).filter(Boolean
 // Resolve axe from the script's own location upward as well as from the working
 // directory, so these work whether you run `node tools/audit.mjs` from the repo root
 // or `node audit.mjs` from inside tools/.
-const here = path.dirname(new URL(import.meta.url).pathname);
+const here = path.dirname(fileURLToPath(import.meta.url));
 const axePath = [
   path.join(process.cwd(), "node_modules/axe-core/axe.min.js"),
   path.join(here, "node_modules/axe-core/axe.min.js"),

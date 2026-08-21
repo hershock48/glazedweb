@@ -57,6 +57,16 @@ the concept site at `/demo`. A meeting with the owner is set for late August
 - **No delivery fee, minimum, or cutoff is invented anywhere.** Their site
   publishes none of the three. Checkout says the subtotal is settled on the
   confirm call. All three are questions for the owner.
+- **The quote builder built 2026-08-21, same day, on a PROVISIONAL model** at
+  `/workroom/quotes`: wedding and funeral templates as separate models (her
+  distinction), per-stem flower pricing prefilled from purchase history,
+  flowers × markup (default ×3) + labor % (default 25%) + hardgoods +
+  delivery/setup, 50% wedding deposit from their published process, a
+  wholesale buy list, and a client print view that carries no stem counts or
+  markup and only published policies. Everything about the model is a dial,
+  and the whole thing is a stand-in to be rewritten from her real wedding
+  spreadsheet and funeral worksheet after the meeting. A quote-validity line
+  was deliberately NOT printed; she has to supply one if she has one.
 - **Phase 2 built 2026-08-21, before the meeting, as demo material**: the
   workroom at `/workroom` (order board; phone orders written up at the
   counter, web orders landing by themselves) and `/workroom/stems` (purchases,

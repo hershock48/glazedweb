@@ -33,6 +33,22 @@ own browser and leave it unset. Do not run `playwright install` in the sandbox.
 | `contrast.mjs` | Which colour pairs fail contrast, grouped so one bad token does not look like fifty separate bugs? |
 | `egress.mjs` | Can the browser reach the public internet at all? (Currently: no.) |
 
+Three more harnesses live beside the auditor in `glaze/scripts/`, imported from
+the Pastrami Joe's build where a clean axe run at 390 and 1440 missed seven real
+faults: `width-check.mjs` (320 and 768, with a settle that waits for every
+finite animation), `motion-check.mjs` (transient overflow sampled through the
+entrance, and reduced motion verified to report `animation-name: none` on every
+element), and `perf-check.mjs` (LCP, CLS and JS weight on a throttled mobile
+profile — throttled connection, not just CPU, which is what caught anchor's
+0.3947 CLS). Their shared browser resolution is `glaze/scripts/lib/browser.mjs`.
+
+Two site-specific patterns worth copying per build rather than running from
+here: Schulers' `practice-check.mjs` and `claim-check.mjs` test a demo against
+every claim its own proposal makes, including buried sub-promises, and found
+nine real failures; pjs's `scrim-check.mjs` measures text over a photograph on
+the composite, which axe structurally cannot see. Both live in those repos'
+`tools/` with their reasoning.
+
 Each file opens with the specific failure that caused it to exist. Those comments are
 the point — read the one you are about to use.
 

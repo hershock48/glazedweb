@@ -34,7 +34,7 @@ something you cannot open.
 | **glaze/launch.md** | The full definition of done, the zero-to-live order, and the checklist you copy into their README. |
 | **glaze/clients/** | One file per client. Durable facts only, no live state. Read the relevant one before touching that repo. |
 | **glaze/starting-a-session.md** | Not for the session, for Kevin. The opening message to paste into a new Cowork chat, and why attaching the repos beats pasting a token. |
-| **glaze/scripts/** | `audit.mjs` is the standing auditor and `plate.mjs` computes the credit plate. Run these rather than writing a fresh one; both have been sharpened over several rounds. |
+| **glaze/scripts/** | The house harnesses. `audit.mjs` is the standing auditor, `plate.mjs` computes the credit plate, `width-check.mjs` covers 320 and 768, `motion-check.mjs` samples transient overflow and verifies reduced motion actually stops everything, `perf-check.mjs` measures LCP, CLS and JS weight on a throttled mobile profile. Run these rather than writing fresh ones; each has been sharpened by a real failure. |
 | **glaze/assets/glazed-credit/** | The credit components, `.tsx` and `.jsx`, plus their CSS. Copy, never rebuild. |
 
 ---

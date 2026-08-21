@@ -32,51 +32,16 @@
  * resolvable from this script's location. Install both together if you install
  * either: `npm install axe-core --no-save` on its own has pruned playwright-core.
  */
-// RESOLVED RATHER THAN IMPORTED BY NAME, and this is not fussiness.
-//
-// A bare `import { chromium } from "playwright-core"` resolves relative to THIS
-// FILE, not to the project being audited. Run the script from anywhere other than
-// a directory whose own node_modules has playwright, and it dies with
-// ERR_MODULE_NOT_FOUND before it has drawn a single pixel. That failed twice in
-// one session: once from a read-only cache directory, once from a global install
-// that turned out to be CommonJS, so the named export did not exist either.
-//
-// This tries, in order: the audited project's node_modules, playwright-core by
-// name, playwright by name, and a global install. It accepts either the ESM named
-// export or the CommonJS default. If a fresh machine has neither, the error below
-// says exactly what to install instead of talking about module resolution.
-import { createRequire } from "node:module";
-import { pathToFileURL } from "node:url";
-
-async function loadChromium() {
-  const req = createRequire(pathToFileURL(process.cwd() + "/"));
-  const candidates = ["playwright-core", "playwright"];
-  for (const name of candidates) {
-    for (const resolve of [() => req.resolve(name), () => name]) {
-      try {
-        const spec = resolve();
-        const mod = await import(spec.startsWith("/") ? pathToFileURL(spec).href : spec);
-        const chromium = mod.chromium ?? mod.default?.chromium;
-        if (chromium) return chromium;
-      } catch {}
-    }
-  }
-  console.error(
-    "Could not load a browser driver. From the project you are auditing, run:\n" +
-      "  npm install axe-core playwright-core --no-save\n" +
-      "Install them together: axe-core alone has pruned playwright-core before."
-  );
-  process.exit(1);
-}
-
-const chromium = await loadChromium();
+// The browser is RESOLVED RATHER THAN IMPORTED BY NAME, and the reasoning
+// lives in ./lib/browser.mjs, shared with the other harnesses so a fix to the
+// resolver can never miss a copy. The short version: a bare import of
+// playwright-core resolves relative to this file rather than the audited
+// project, and it has failed twice in one session for two different reasons.
 import fs from "node:fs";
 import path from "node:path";
+import { loadChromium, launchOpts, arg } from "./lib/browser.mjs";
 
-const arg = (name, fallback) => {
-  const i = process.argv.indexOf(`--${name}`);
-  return i > -1 && process.argv[i + 1] ? process.argv[i + 1] : fallback;
-};
+const chromium = await loadChromium();
 
 const BASE = arg("base", "http://127.0.0.1:4490");
 const ROUTES = arg("routes", "/").split(",").map((r) => r.trim()).filter(Boolean);
@@ -106,12 +71,7 @@ if (!axePath) {
 const axe = fs.readFileSync(axePath, "utf8");
 
 const host = new URL(BASE).host;
-// The sandbox pins Chromium at /opt/pw-browsers/chromium; a Mac does not. Per
-// the appendix in glaze.md, resolve from the environment with a fallback: set
-// CHROMIUM_PATH, or let Playwright find its own install when the pin is absent.
-const pinned = "/opt/pw-browsers/chromium";
-const executablePath = process.env.CHROMIUM_PATH ?? (fs.existsSync(pinned) ? pinned : undefined);
-const browser = await chromium.launch(executablePath ? { executablePath } : {});
+const browser = await chromium.launch(launchOpts());
 
 let violations = 0;
 const overflow = [];

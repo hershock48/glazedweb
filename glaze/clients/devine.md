@@ -111,6 +111,16 @@ six tokens and re-run the auditor.
   terminal, Square, paper slips?): on the owner, at the meeting.
 - The real wedding spreadsheet: **she has agreed to send it.** The wedding
   model and template get rewritten from it when it lands.
+- **The funeral pad was built 2026-08-21 from research, not from a document**,
+  and the design decisions in it are the thing to check against reality:
+  price-first (funeral work is sold by naming a piece and a price, stems
+  worked out later, so quote-math runs in reverse to report the flower
+  budget); the family's stated budget as the frame with a live gap; the
+  service as a DEADLINE (an hour before the viewing, day-before when the
+  service is early) rather than a date; ribbon wording and who each piece is
+  from as per-piece fields; and "put it on the board" as the last button,
+  because the family is standing there. Price points are published 2026
+  industry ranges, labelled as such on screen, awaiting hers.
 - Funerals, corrected 2026-08-21: **there is no funeral worksheet.** Her
   words: funerals "are done on the spot... quotes in person, no spreadsheet."
   So the funeral variant's job is a counter pad, not a document pipeline:

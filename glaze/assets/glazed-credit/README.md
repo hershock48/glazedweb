@@ -82,7 +82,9 @@ work, so keep it. Swapping in the client wording deletes it.
 The credit link carries `rel="noopener noreferrer"`. Whether it should also carry `nofollow`
 is an open decision with Kevin. Google's explicit recommendation for designer credit links
 you control is to add it, and the risk of not doing so lands on the client's site as much as
-ours. See the SEO note in `standards.md`.
+ours. See the SEO note in `../../standards.md`, which also carries the rule that
+whichever way the ruling goes, it goes the same way on every site in the same
+week.
 
 The mark is sized in `em` (2.15em ≈ 26px against a 12px footer line). At 22px the hole closes
 to 3px and it starts reading as a lollipop; at 30px it dominates the bar. Both ends were

@@ -66,6 +66,6 @@ Free-form prose is fine, but keep these headings so a session can skim:
 
 `bangrants` is Kevin's and does not matter.
 
-Five of those rows have no file here yet: pjs, Schulers, devine, truenorth and
+Four of those rows have no file here yet: pjs, Schulers, truenorth and
 stagecoach carry their durable facts in their own READMEs, which is the wrong
 place per this file's own rules. Writing their client files is open work.

@@ -22,10 +22,19 @@ thing appears N times, check all N" (glaze.md) applies to whole apps. The next
 session that touches any copy should extract it — a package, a template repo,
 or at minimum a canonical-copy declaration here.
 
+The kitchen system now has a florist cousin: `devine/src/app/workroom/` +
+`src/lib/workroom/` ports the store (two backends, self-creating tables) and
+the PIN gate to TypeScript, swaps the ticket queue for a date-bucketed order
+board (orders live for weeks, not minutes), and adds three ledgers the kitchen
+never needed: stem purchases, shrink with reasons, and per-product recipes
+that price a week's margin. If the kitchen system gets extracted, the
+workroom's store/auth are the newest TS copies to extract FROM.
+
 ## The rest
 
 | App | Lives in | What it is |
 |---|---|---|
+| Florist workroom | `devine/src/app/workroom/`, `src/lib/workroom/` | Order board (web orders land automatically, phone orders written up at the counter, one button moves an order along) + stem/shrink/recipe tracker with a Monday-morning week report: bought, tossed, shrink %, revenue, stem cost, margin per product. Never guesses a number it was not given. The shape for any Phase-3 floral SaaS. |
 | Sponsorship platform | `beanumber/` | The account's largest system: Stripe subscriptions + one-time gifts, webhook with Postgres-first mirror and idempotent retries, magic-link auth, shirt-number claiming, admin roster with uploads and compliance digests, drip email pipeline, newsletter engine with per-sponsor links, Remotion video, an Expo mobile app, a rep program (Airtable-backed — see the retirement memo before touching). Steal subsystems, not the whole. |
 | Grant pipeline | `bangrants/` | Discovery dashboard: grants.gov ingest, page-change monitoring, funders/inbox/pipeline/watchlist views, Supabase auth. The shape for any "watch external sources, triage into a pipeline" tool. |
 | Insurance pitch site + quote engine | `anchor/` | Content site with a working quote intake, a giving ledger, and a public calculator. |

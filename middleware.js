@@ -3,10 +3,10 @@ import { NextResponse } from "next/server";
 // Language routing for the Dominican Republic page at /do.
 //
 // The order of precedence, most binding first:
-//   1. ?lang= on a toggle link — the visitor just chose. Store it in a
+//   1. ?lang= on a toggle link: the visitor just chose. Store it in a
 //      cookie for a year and redirect to the clean URL.
-//   2. The gw-locale cookie — a choice made earlier, on any visit.
-//   3. Geography — Vercel stamps every request with x-vercel-ip-country.
+//   2. The gw-locale cookie, a choice made earlier, on any visit.
+//   3. Geography: Vercel stamps every request with x-vercel-ip-country.
 //      A first-time visitor from the DR gets the Spanish page.
 //
 // Geo-IP is only ~95% right (VPNs, carriers routing through Miami), which is

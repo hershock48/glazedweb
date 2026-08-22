@@ -3,8 +3,8 @@ import { LogoDefs, Mark } from "@/components/Logo";
 import { CONTACT_EMAIL } from "@/lib/contact";
 
 // The shell for the SEO service pages (/restaurant-website-design-michigan
-// and friends). These pages exist to say exactly the words a searcher types
-// — one service, one state, in the title, H1, and URL — because that is the
+// and friends). These pages exist to say exactly the words a searcher types,
+// one service and one state in the title, H1, and URL, because that is the
 // whole playbook that lets a four-page site own an uncrowded query. The
 // shell reuses the agreement page's article layout so a new service page is
 // just metadata plus copy, and adding the next one stays a ten-minute job.
@@ -55,7 +55,7 @@ export default function ServicePage({ kicker, title, lead, highlights, related, 
         <div className="legal-cta">
           <p>
             Pricing is on the menu: one build price, one small monthly, no surprise invoices. Every site is baked from
-            scratch in Marshall, Michigan, and everything — code, content, accounts — is yours.
+            scratch in Marshall, and everything is handed over: code, content, and accounts.
             {related && related.length > 0 && (
               <>
                 {" "}

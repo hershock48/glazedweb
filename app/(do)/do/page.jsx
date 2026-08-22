@@ -10,6 +10,7 @@ import {
   WHATSAPP_US_DISPLAY,
   waLink,
 } from "@/lib/contact";
+import { PRICING, rd, num } from "@/lib/pricing";
 import { useHomeEffects } from "@/components/homeEffects";
 
 // The homepage for the Dominican Republic, written for that market rather
@@ -22,8 +23,8 @@ import { useHomeEffects } from "@/components/homeEffects";
 //    the page first shipped quoting US$. Set at ~RD$58.5/US$ and rounded to
 //    clean numbers that keep the half-the-market story: RD$45,000 ≈ US$770,
 //    RD$115,000 ≈ US$1,965. Costs are in dollars, so if the peso moves far
-//    from that rate these numbers are due a nudge — here, in the layout's
-//    JSON-LD offers, and in the WhatsApp prefills below.
+//    from that rate the numbers are due a nudge, and lib/pricing.js is the
+//    one place they live.
 //  - Angel is named on the page. "A US studio with a person here you can
 //    write to in Spanish" is the pitch; an anonymous foreign site is not.
 //
@@ -145,9 +146,9 @@ export default function HomeDO() {
               <div className="flavor">Una sola página · glaseado clásico</div>
               <div className="price">
                 <span className="was" aria-hidden="true">
-                  mercado <s>RD$90,000</s>
+                  mercado <s>{rd(PRICING.do.original.market)}</s>
                 </span>
-                RD$<span className="price-num" data-from="90000" data-to="45000">45,000</span> <small>+ RD$3,500/mes</small>
+                RD$<span className="price-num" data-from={PRICING.do.original.market} data-to={PRICING.do.original.build}>{num(PRICING.do.original.build)}</span> <small>+ {rd(PRICING.do.original.monthly)}/mes</small>
               </div>
               <ul>
                 <li>Una página clara que dice quién eres y hace que la gente te escriba</li>
@@ -157,7 +158,7 @@ export default function HomeDO() {
               </ul>
               <a
                 className="btn ghost"
-                href={waAngel("Hola Angel, me interesa La Original (RD$45,000) para mi negocio.")}
+                href={waAngel(`Hola Angel, me interesa La Original (${rd(PRICING.do.original.build)}) para mi negocio.`)}
               >
                 Pedir por WhatsApp
               </a>
@@ -168,9 +169,9 @@ export default function HomeDO() {
               <div className="flavor">Página completa · doble glaseado</div>
               <div className="price">
                 <span className="was" aria-hidden="true">
-                  mercado <s>RD$230,000</s>
+                  mercado <s>{rd(PRICING.do.dozen.market)}</s>
                 </span>
-                RD$<span className="price-num" data-from="230000" data-to="115000">115,000</span> <small>+ RD$6,000/mes</small>
+                RD$<span className="price-num" data-from={PRICING.do.dozen.market} data-to={PRICING.do.dozen.build}>{num(PRICING.do.dozen.build)}</span> <small>+ {rd(PRICING.do.dozen.monthly)}/mes</small>
               </div>
               <ul>
                 <li>Hasta 6 páginas: servicios, nosotros, galería, lo que haga falta</li>
@@ -181,7 +182,7 @@ export default function HomeDO() {
               </ul>
               <a
                 className="btn"
-                href={waAngel("Hola Angel, me interesa La Docena del Panadero (RD$115,000) para mi negocio.")}
+                href={waAngel(`Hola Angel, me interesa La Docena del Panadero (${rd(PRICING.do.dozen.build)}) para mi negocio.`)}
               >
                 Pedir por WhatsApp
               </a>
@@ -379,14 +380,20 @@ export default function HomeDO() {
             Escríbele a <b>{DO_REP_NAME}</b>, nuestro representante en República Dominicana. Cuéntale de tu negocio por
             WhatsApp y en menos de un día tienes un plan y un precio, en tu idioma y sin compromiso.
           </p>
+          {/* .btn is nowrap, so the button text has to fit a 320px screen;
+              the full number lives in the line below and in the footer. */}
           <a
             className="btn big"
             href={waAngel("Hola Angel, quiero información para hacer la página web de mi negocio.")}
           >
-            WhatsApp de Angel: {WHATSAPP_DO_DISPLAY} →
+            Escríbele a Angel por WhatsApp →
           </a>
-          <p style={{ fontSize: 14, opacity: 0.85, marginTop: 22, marginBottom: 0 }}>
-            ¿Prefieres el estudio en EE. UU.? Kevin:{" "}
+          {/* Full-strength white: this band is --raspberry-deep, where white
+              measures 4.78 and passes AA only unfaded. The 0.85 opacity this
+              paragraph first shipped with put all three elements below 4.5,
+              and the auditor caught it. */}
+          <p style={{ fontSize: 14, marginTop: 22, marginBottom: 0 }}>
+            Angel: {WHATSAPP_DO_DISPLAY} · ¿Prefieres el estudio en EE. UU.? Kevin:{" "}
             <a
               href={waLink(WHATSAPP_US, "Hi Kevin, I'd like a website for my business in the Dominican Republic.")}
               style={{ color: "#fff", textDecoration: "underline" }}

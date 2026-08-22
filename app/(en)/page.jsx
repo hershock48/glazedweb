@@ -2,6 +2,7 @@
 
 import { LogoDefs, Mark, AnimatedMark, DripDivider, BeANumberMark, ChismEggs } from "@/components/Logo";
 import { CONTACT_EMAIL } from "@/lib/contact";
+import { PRICING, usd, num } from "@/lib/pricing";
 import { useHomeEffects } from "@/components/homeEffects";
 
 export default function Home() {
@@ -116,9 +117,9 @@ export default function Home() {
               <div className="flavor">One-pager · classic glaze</div>
               <div className="price">
                 <span className="was" aria-hidden="true">
-                  market <s>$1,500</s>
+                  market <s>{usd(PRICING.us.original.market)}</s>
                 </span>
-                $<span className="price-num" data-from="1500" data-to="750">750</span> <small>+ $59/mo</small>
+                $<span className="price-num" data-from={PRICING.us.original.market} data-to={PRICING.us.original.build}>{num(PRICING.us.original.build)}</span> <small>+ {usd(PRICING.us.original.monthly)}/mo</small>
               </div>
               <ul>
                 <li>A single sharp page that says who you are and gets people to call</li>
@@ -136,9 +137,9 @@ export default function Home() {
               <div className="flavor">Full site · double dipped</div>
               <div className="price">
                 <span className="was" aria-hidden="true">
-                  market <s>$3,900</s>
+                  market <s>{usd(PRICING.us.dozen.market)}</s>
                 </span>
-                $<span className="price-num" data-from="3900" data-to="1900">1,900</span> <small>+ $99/mo</small>
+                $<span className="price-num" data-from={PRICING.us.dozen.market} data-to={PRICING.us.dozen.build}>{num(PRICING.us.dozen.build)}</span> <small>+ {usd(PRICING.us.dozen.monthly)}/mo</small>
               </div>
               <ul>
                 <li>Up to 6 pages: services, about, gallery, the works</li>

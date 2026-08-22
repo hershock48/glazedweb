@@ -25,7 +25,7 @@ export function useHomeEffects() {
     return () => io.disconnect();
   }, []);
 
-  // Be A Number work card: the shirt number rolls as you scroll —
+  // Be A Number work card: the shirt number rolls as you scroll:
   // every number is a child, so the card cycles through them (001–052).
   useEffect(() => {
     const card = document.getElementById("ban-card");
@@ -60,7 +60,7 @@ export function useHomeEffects() {
   }, []);
 
   // Chism card: fresh eggs, delivered by scroll. Each egg's fall is scrubbed
-  // to scroll position — the big glazed one drops in first, then two smaller
+  // to scroll position: the big glazed one drops in first, then two smaller
   // ones follow, each landing with a little squash and a deepening shadow.
   // Scroll back up and they lift right back out of the card.
   useEffect(() => {
@@ -128,7 +128,7 @@ export function useHomeEffects() {
   }, []);
 
   // Menu prices: each one counts down from its market anchor SEPARATELY, as
-  // your scroll reaches it — first you glimpse the market price, then it melts
+  // your scroll reaches it: first you glimpse the market price, then it melts
   // to ours as your eyes pass. Scroll back up and it re-arms for the next pass.
   useEffect(() => {
     const menu = document.getElementById("menu");
@@ -214,7 +214,7 @@ export function useHomeEffects() {
     };
   }, []);
 
-  // Process steps: each number glazes as your scroll reaches it — 1 first,
+  // Process steps: each number glazes as your scroll reaches it: 1 first,
   // then 2, 3, 4 as the section moves through the viewport. Recrossing a
   // threshold re-runs that number's shine.
   useEffect(() => {

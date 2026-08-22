@@ -1,5 +1,6 @@
 import "../globals.css";
 import { CONTACT_EMAIL } from "@/lib/contact";
+import { PRICING, usd } from "@/lib/pricing";
 
 export const metadata = {
   metadataBase: new URL("https://www.glazedweb.com"),
@@ -7,8 +8,7 @@ export const metadata = {
   // casts the whole-state net; the old Marshall & Battle Creek title fished
   // one county. Marshall stays in the copy as where we bake, not who we serve.
   title: "Web Design in Michigan | glazedweb",
-  description:
-    "Hand-built websites for Michigan small businesses from $750, live in 2 weeks. Small-batch studio in Marshall serving all of Michigan. Start your order today.",
+  description: `Hand-built websites for Michigan small businesses from ${usd(PRICING.us.original.build)}, live in 2 weeks. Small-batch studio in Marshall serving all of Michigan. Start your order today.`,
   // languages tells Google the Dominican page at /do is this page in Spanish,
   // not duplicate content. x-default keeps the English site as the answer for
   // every country we haven't localized.
@@ -25,8 +25,7 @@ export const metadata = {
   },
   openGraph: {
     title: "Web Design in Michigan | glazedweb",
-    description:
-      "Hand-built websites for Michigan small businesses from $750, live in 2 weeks. Order it like a donut: pick a flavor, we bake it fresh, it ships glazed.",
+    description: `Hand-built websites for Michigan small businesses from ${usd(PRICING.us.original.build)}, live in 2 weeks. Order it like a donut: pick a flavor, we bake it fresh, it ships glazed.`,
     type: "website",
     url: "https://www.glazedweb.com",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "glazedweb: a pink donut with a green glaze dripping off it, over the line Websites, fresh daily." }],
@@ -52,7 +51,7 @@ const localBusinessSchema = {
   email: CONTACT_EMAIL,
   image: "https://www.glazedweb.com/brand/logo-800.png",
   logo: "https://www.glazedweb.com/brand/logo-800.png",
-  priceRange: "$750 - $1,900",
+  priceRange: `${usd(PRICING.us.original.build)} - ${usd(PRICING.us.dozen.build)}`,
   address: {
     "@type": "PostalAddress",
     addressLocality: "Marshall",
@@ -64,13 +63,13 @@ const localBusinessSchema = {
     {
       "@type": "Offer",
       name: "The Original, one-page custom website",
-      price: "750",
+      price: String(PRICING.us.original.build),
       priceCurrency: "USD",
     },
     {
       "@type": "Offer",
       name: "The Baker's Dozen, full custom website (up to 6 pages)",
-      price: "1900",
+      price: String(PRICING.us.dozen.build),
       priceCurrency: "USD",
     },
   ],

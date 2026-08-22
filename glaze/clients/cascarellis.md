@@ -34,11 +34,13 @@ site consumes `GET {feed}/api/v1/case/homer` via `src/data/liveTaps.ts`
 transcribed snapshot in `src/data/bar.ts` as the fallback on any failure,
 including an empty board). The deployment's own env: `SCOOPLIST_LOCATIONS=
 homer:Cascarelli's`, `SCOOPLIST_CATEGORIES=taps:On Tap`,
-`SCOOPLIST_ALLERGENS=-`, and `SCOOPLIST_SIZES` needs real pour prices from
-the owner, otherwise new taps default to ice cream Mini/Small/Large in the
-admin. Still to do: create that Vercel project from the scooplist repo, set
-its env plus a real PIN, then set `SCOOPLIST_FEED_URL` on the cascarellis
-project.
+`SCOOPLIST_ALLERGENS=-`, and `SCOOPLIST_SIZES=taps=-` ("-" = deliberately no
+default prices, supported since scooplist `8b9ee1b`; new taps start with an
+empty price list, and a custom-category deployment never inherits ice cream
+prices even with SIZES unset). Swap in real pour prices whenever the owner
+supplies them. Still to do: create that Vercel project from the scooplist
+repo, set its env plus a real PIN, then set `SCOOPLIST_FEED_URL` on the
+cascarellis project.
 
 ## Permissions
 

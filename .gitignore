@@ -9,3 +9,4 @@ out/
 # Scratch verification harnesses written at the repo root. Anything worth keeping
 # gets cleaned up, documented and moved into tools/ instead.
 /*.mjs
+gbp-photos/

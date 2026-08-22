@@ -366,8 +366,8 @@ export default function Home() {
                 </span>
               </div>
               <p style={{ marginTop: 14, fontSize: 13.5, maxWidth: 260, lineHeight: 1.6 }}>
-                Small-batch websites for small businesses. Baked in Marshall, Michigan, serving Battle Creek,
-                Calhoun County, and everywhere else.
+                Small-batch websites for small businesses. Baked in Marshall, Michigan, serving the whole state and
+                everywhere else.
               </p>
             </div>
             <div className="foot-links">
@@ -376,6 +376,14 @@ export default function Home() {
                 <a href="#menu">The menu</a>
                 <a href="#process">Process</a>
                 <a href="#work">Work</a>
+              </div>
+              {/* Internal links are how Google discovers and weighs the
+                  service pages; the sitemap alone is a hint, not a vote. */}
+              <div className="col">
+                <b>Services</b>
+                <a href="/restaurant-website-design-michigan">Restaurant websites</a>
+                <a href="/online-ordering-website-michigan">Online ordering</a>
+                <a href="/small-business-web-design-michigan">Small business sites</a>
               </div>
               <div className="col">
                 <b>Contact</b>

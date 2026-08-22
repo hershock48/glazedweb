@@ -33,9 +33,15 @@ site consumes `GET {feed}/api/v1/case/homer` via `src/data/liveTaps.ts`
 (truenorth's liveCase.ts pattern: 3s abort, 60s revalidate, and the
 transcribed snapshot in `src/data/bar.ts` as the fallback on any failure,
 including an empty board). The deployment's own env: `SCOOPLIST_LOCATIONS=
-homer:Cascarelli's`, `SCOOPLIST_CATEGORIES=taps:On Tap`,
-`SCOOPLIST_ALLERGENS=-`, and `SCOOPLIST_SIZES=-` ("-" = deliberately no
-default prices, supported since scooplist `8b9ee1b`). LIVE since 2026-08-22:
+homer:Cascarelli's`, `SCOOPLIST_CATEGORIES` with ALL TEN boards
+(taps, spumante, bianco, rosso, mules, martinis, whiskey, fun, mocktails,
+na — verified via /api/status, which reports `vertical.boards`; an earlier
+draft of this file said just "taps:On Tap", but the boot seed only runs
+when the categories cover the whole bar program), `SCOOPLIST_ALLERGENS=-`,
+and `SCOOPLIST_SIZES=-` ("-" = deliberately no default prices, supported
+since scooplist `8b9ee1b`). Worth adding: `SCOOPLIST_NOUNS=drink,cooler,in`
+(scooplist `28f2b23`) so the admin and TV board say "the cooler", the
+owner's own word for the list; without it a pinned install says item/board. LIVE since 2026-08-22:
 the deployment is `cascarellis-taps` on Vercel, public at
 `cascarellistaps.glazedweb.com`, Neon postgres attached (the app resolves
 the integration's PREFIXED var, `DATABASE_CASCARELLIS_DATABASE_URL`, via

@@ -1,4 +1,4 @@
-import "./globals.css";
+import "../globals.css";
 import { CONTACT_EMAIL } from "@/lib/contact";
 
 export const metadata = {
@@ -6,7 +6,13 @@ export const metadata = {
   title: "Web Design in Marshall & Battle Creek, MI | glazedweb",
   description:
     "Hand-built websites for Michigan small businesses from $750, live in 2 weeks. Small-batch studio in Marshall serving Battle Creek. Start your order today.",
-  alternates: { canonical: "/" },
+  // languages tells Google the Dominican page at /do is this page in Spanish,
+  // not duplicate content. x-default keeps the English site as the answer for
+  // every country we haven't localized.
+  alternates: {
+    canonical: "/",
+    languages: { en: "/", "es-DO": "/do", "x-default": "/" },
+  },
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml" },

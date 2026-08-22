@@ -15,7 +15,7 @@ export const metadata = {
   metadataBase: new URL("https://www.glazedweb.com"),
   title: "Diseño de Páginas Web en República Dominicana | glazedweb",
   description:
-    "Páginas web hechas a mano para negocios dominicanos desde US$750, listas en 2 semanas. Escríbele por WhatsApp a Angel, nuestro representante en RD.",
+    "Páginas web hechas a mano para negocios dominicanos desde RD$45,000, listas en 2 semanas. Escríbele por WhatsApp a Angel, nuestro representante en RD.",
   alternates: {
     canonical: "/do",
     languages: { en: "/", "es-DO": "/do", "x-default": "/" },
@@ -30,7 +30,7 @@ export const metadata = {
   openGraph: {
     title: "Diseño de Páginas Web en República Dominicana | glazedweb",
     description:
-      "Páginas web hechas a mano para negocios dominicanos desde US$750, listas en 2 semanas. Pídela como una dona: eliges el sabor, la horneamos fresca y te la entregamos glaseada.",
+      "Páginas web hechas a mano para negocios dominicanos desde RD$45,000, listas en 2 semanas. Pídela como una dona: eliges el sabor, la horneamos fresca y te la entregamos glaseada.",
     type: "website",
     url: "https://www.glazedweb.com/do",
     locale: "es_DO",
@@ -62,7 +62,7 @@ const localBusinessSchema = {
   email: CONTACT_EMAIL,
   image: "https://www.glazedweb.com/brand/logo-800.png",
   logo: "https://www.glazedweb.com/brand/logo-800.png",
-  priceRange: "US$750 - US$1,900",
+  priceRange: "RD$45,000 - RD$115,000",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Marshall",
@@ -91,14 +91,14 @@ const localBusinessSchema = {
     {
       "@type": "Offer",
       name: "La Original, página web de una sola página",
-      price: "750",
-      priceCurrency: "USD",
+      price: "45000",
+      priceCurrency: "DOP",
     },
     {
       "@type": "Offer",
       name: "La Docena del Panadero, página web completa (hasta 6 páginas)",
-      price: "1900",
-      priceCurrency: "USD",
+      price: "115000",
+      priceCurrency: "DOP",
     },
   ],
 };

@@ -18,8 +18,12 @@ import { useHomeEffects } from "@/components/homeEffects";
 //  - Every CTA is WhatsApp, not /order. Business in the DR runs on WhatsApp,
 //    and the /order flow is in English anyway. Leads go to Angel, the rep on
 //    the ground, with a prefilled message naming the package.
-//  - Prices are the same numbers, explicitly marked US$ — services in the DR
-//    are commonly quoted in dollars, and "US$" is the standard local notation.
+//  - Prices are in Dominican pesos (RD$), Kevin's call on 22 Aug 2026 after
+//    the page first shipped quoting US$. Set at ~RD$58.5/US$ and rounded to
+//    clean numbers that keep the half-the-market story: RD$45,000 ≈ US$770,
+//    RD$115,000 ≈ US$1,965. Costs are in dollars, so if the peso moves far
+//    from that rate these numbers are due a nudge — here, in the layout's
+//    JSON-LD offers, and in the WhatsApp prefills below.
 //  - Angel is named on the page. "A US studio with a person here you can
 //    write to in Spanish" is the pitch; an anonymous foreign site is not.
 //
@@ -96,7 +100,7 @@ export default function HomeDO() {
             </a>
           </div>
           <div className="proof">
-            Lista en tan solo <b>2 semanas</b> · Precios claros en US$ · Todo queda a tu nombre
+            Lista en tan solo <b>2 semanas</b> · Precios claros en RD$ · Todo queda a tu nombre
           </div>
         </div>
         <div className="mark">
@@ -141,9 +145,9 @@ export default function HomeDO() {
               <div className="flavor">Una sola página · glaseado clásico</div>
               <div className="price">
                 <span className="was" aria-hidden="true">
-                  mercado <s>US$1,500</s>
+                  mercado <s>RD$90,000</s>
                 </span>
-                US$<span className="price-num" data-from="1500" data-to="750">750</span> <small>+ US$59/mes</small>
+                RD$<span className="price-num" data-from="90000" data-to="45000">45,000</span> <small>+ RD$3,500/mes</small>
               </div>
               <ul>
                 <li>Una página clara que dice quién eres y hace que la gente te escriba</li>
@@ -153,7 +157,7 @@ export default function HomeDO() {
               </ul>
               <a
                 className="btn ghost"
-                href={waAngel("Hola Angel, me interesa La Original (US$750) para mi negocio.")}
+                href={waAngel("Hola Angel, me interesa La Original (RD$45,000) para mi negocio.")}
               >
                 Pedir por WhatsApp
               </a>
@@ -164,9 +168,9 @@ export default function HomeDO() {
               <div className="flavor">Página completa · doble glaseado</div>
               <div className="price">
                 <span className="was" aria-hidden="true">
-                  mercado <s>US$3,900</s>
+                  mercado <s>RD$230,000</s>
                 </span>
-                US$<span className="price-num" data-from="3900" data-to="1900">1,900</span> <small>+ US$99/mes</small>
+                RD$<span className="price-num" data-from="230000" data-to="115000">115,000</span> <small>+ RD$6,000/mes</small>
               </div>
               <ul>
                 <li>Hasta 6 páginas: servicios, nosotros, galería, lo que haga falta</li>
@@ -177,7 +181,7 @@ export default function HomeDO() {
               </ul>
               <a
                 className="btn"
-                href={waAngel("Hola Angel, me interesa La Docena del Panadero (US$1,900) para mi negocio.")}
+                href={waAngel("Hola Angel, me interesa La Docena del Panadero (RD$115,000) para mi negocio.")}
               >
                 Pedir por WhatsApp
               </a>

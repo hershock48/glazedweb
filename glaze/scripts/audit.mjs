@@ -108,7 +108,14 @@ for (const route of ROUTES) {
       }
       window.scrollTo(0, 0);
     });
-    await page.waitForTimeout(400);
+    // A full second, not 400ms: reveal transitions commonly run 700ms, and
+    // axe sampling a half-faded element blends its color with the ground and
+    // reports a contrast failure that is not there. It surfaced as .day .d
+    // flags on the encounterafrica demo that appeared only in multi-route
+    // runs (a loaded machine stretches the race) and vanished when the same
+    // route was audited alone, twice. The settle has to outlive the longest
+    // transition, not feel long enough.
+    await page.waitForTimeout(1100);
 
     const ov = await page.evaluate(() => ({
       sw: document.documentElement.scrollWidth,

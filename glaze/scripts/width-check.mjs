@@ -90,7 +90,9 @@ for (const width of WIDTHS) {
         .map((a) => a.finished.catch(() => {}));
       await Promise.all(ending);
     });
-    await page.waitForTimeout(120);
+    // Outlive the longest reveal transition (commonly 700ms) so axe never
+    // samples a half-faded element; see the matching note in audit.mjs.
+    await page.waitForTimeout(1100);
 
     await page.addScriptTag({ path: axePath });
     const res = await page.evaluate(async () =>

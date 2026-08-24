@@ -8,8 +8,12 @@ Durable facts only, no live state. Started 24 Aug 2026, pre-signature
 - Panadería + repostería, cafetería + restaurante, agua e hielo, and catering
   with salones de eventos. Four divisions, one house; their own site nav
   names them exactly this way.
-- Av. Independencia, Gazcue, Santo Domingo. Exact street number and phone
-  UNCONFIRMED; placeholders until intake.
+- Av. Independencia, Gazcue, Santo Domingo. Exact street number UNCONFIRMED;
+  placeholder until intake.
+- Phone **809-682-1433**, published on their own coming-soon splash
+  (villarcomingsoon.jpg, dated 2022 in their uploads). Their own number by
+  their own hand, but three years old: confirm at intake before it ships on
+  the site.
 - ~4.4 stars across ~14,973 aggregated reviews (evendo, Aug 2026), among the
   highest-volume counts in Santo Domingo.
 - Market: DR track. Pricing quoted from `lib/pricing.js` `do` block:
@@ -33,13 +37,22 @@ Durable facts only, no live state. Started 24 Aug 2026, pre-signature
   proposal at the root of villarhermanos.glazedweb.com, demo at /demo,
   PDF at /proposal. Delete the root proposal when they sign or pass.
 
-## Permissions
+## Permissions and assets
 
-- Photos: Kevin reports permission to use photos "from their site"
-  (24 Aug 2026). CAUTION: their site's images are likely theme stock, not
-  theirs; confirm coverage of their Facebook/Instagram photos and save the
-  written permission here when it exists.
-- Logo: not yet supplied. Ask if a vector exists and who made it.
+- Photos: Kevin confirmed permission to use photos from their site
+  (24 Aug 2026). The site holds exactly two images. `home-1.jpg` is theme
+  stock (fine-dining flat-lay, Australian wine) and is NOT used; their
+  permission cannot cover it. `villarcomingsoon.jpg` is genuinely theirs
+  (their vitrina, their logo, their phone) and two crops from it are in the
+  demo: the almond-bizcocho trays and the decorated cakes. Uncompressed
+  originals and a logo crop sit gitignored in the villarhermanos repo's
+  photo-candidates/.
+- Their Facebook/Instagram photos: permission NOT yet confirmed to cover
+  them; ask and save the written answer here.
+- Logo: the real oval Villar Hnos. badge (chef illustration, blue) exists
+  only inside the coming-soon composite; a 780x500 crop is in
+  photo-candidates/vh-logo-crop.png with faint cake texture behind it.
+  Usable at small sizes; ask if a vector exists and who made it.
 
 ## Retired
 

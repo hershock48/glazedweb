@@ -12,3 +12,5 @@ Two rules every card follows, both learned the hard way on the first one:
 the URL is part of the lockup, always (a forwarded image loses its post
 text, and glazedweb.com is the only path back), and the jelly line reads
 "1.5% of card deposits", never "per booking".
+
+| `uganda-general-post.html` / `.jpg` / `.txt` | The general-audience sibling of the operators card: same layout and rules, ownership/speed/preview sell, no OTA wedge, enquiries to hello@glazedweb.com. |

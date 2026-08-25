@@ -1,4 +1,4 @@
-﻿Websites for lodges and safari operators, built to take bookings
+Websites for lodges and safari operators, built to take bookings
 (post version, send with uganda-operators-post.jpg; *asterisks* bold on WhatsApp)
 
 *Websites for lodges and safari operators, built to take bookings*
@@ -25,16 +25,26 @@ clicked through it. See our work: glazedweb.com
 Reply here or WhatsApp Andrew Otage: +256 774 189668
 
 ----------------------------------------------------------------------
-Personal variant (for no-ads groups, Andrew's voice):
+Personal variant, attack-led (for no-ads groups, Andrew's voice; this is
+the preferred version, Kevin's call 25 Aug 2026):
 
-I have started working with a small U.S. web studio, Glazed Web, bringing
-their booking websites to operators here. Sharing because the model is
-unusual: US$1,900 for a full custom site plus US$450/yr care, online
-deposits through your own site at 1.5% of card deposits charged only when
-you get paid, and the first 90 days at 0%. You see a working preview of
-your own site before you commit to anything, and you own the site, the
-code, and the domain. Their work is at glazedweb.com. Message me if you
-want the preview for your lodge or company.
+The OTAs take 15-30% of every booking, and the commission is not even the
+expensive part. The guest belongs to them: the masked email, the inbox,
+the repeat booking next season. You ran the safari; they own the customer.
+
+I've started working with a small U.S. web studio, Glazed Web, bringing
+their booking websites to operators here. The model is the opposite of
+the platforms:
+
+- US$1,900 once for a full custom site, plus US$450/yr care
+- Deposits through your own site: 1.5% of card deposits, charged only when you get paid
+- First 90 days at 0%
+- You own the site, the code, the domain, and every guest detail
+
+They build a working preview of your own site before you commit to
+anything. Their work: glazedweb.com
+
+Message me if you want the preview for your lodge or company.
 
 ----------------------------------------------------------------------
 Sources for the commission figures (Andrew's back pocket, not the post):
@@ -42,5 +52,9 @@ Booking.com 10-25%, ~15% standard: prenohq.com/blog/what-commission-rates-does-b
 Viator 20-30%: otaplaybook.com/viator-commission-rate-what-operators-actually-pay/
 GetYourGuide 25-30%, 2025 increases: otaplaybook.com/getyourguide-commission-rates/
 SafariBookings ~10%: safaribookings.com/partnership-agreement-for-tour-operators
+OTA guest-email masking is documented platform behavior (Booking.com alias
+addresses), safe to say plainly.
+Attack the system with sourced facts only; one exaggeration in a group of
+insiders costs Andrew the credibility the channel runs on.
 Never post Encounter Africa links in these groups; their pitch does not
 belong in front of their competitors.

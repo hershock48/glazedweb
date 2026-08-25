@@ -90,6 +90,20 @@ custom. Nothing hedged, nothing "starting from."
 
 **6. "What happens next."** One action. Not three.
 
+Which action depends on the market, Kevin's ruling of 25 Aug 2026:
+
+- **US-market proposals:** the one action is booking the call at
+  **glazedweb.com/schedule**. The scheduler is the MI Gas booking bone
+  running on our own site (see `glaze/catalog/web-bones.md`), which makes it
+  double as proof: the prospect books through the kind of thing we build
+  instead of renting. Link it at the bottom of the proposal; do not also
+  keep an email CTA competing with it.
+- **Rep-led markets (Uganda, DR):** the one action stays WhatsApp to the
+  local rep. A Zoom link with Michigan is a worse next step than Andrew or
+  Angel answering in the prospect's own timezone and language; the
+  scheduler can enter later in those deals, once the rep hands off to
+  Kevin.
+
 ---
 
 ## What goes in and what stays out

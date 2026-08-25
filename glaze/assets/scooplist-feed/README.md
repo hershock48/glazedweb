@@ -46,7 +46,9 @@ strip the types rather than fork the logic.
 ## Multi-org vs single-tenant feeds
 
 Set `org` in the `FeedConfig` for the central multi-org deployment
-(`https://scooplist.glazedweb.com`, path `/api/v1/orgs/{org}/case/{location}`).
+(`https://scooplist-orgs.vercel.app`, path `/api/v1/orgs/{org}/case/{location}`;
+note `scooplist.glazedweb.com` is True North's single-tenant install, not the
+central deployment).
 Omit it for a dedicated single-tenant install (truenorth, cascarellis; path
 `/api/v1/case/{location}`). Same JSON shape either way, additive-only
 contract, breaking it breaks live menus.

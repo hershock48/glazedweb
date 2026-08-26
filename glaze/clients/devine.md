@@ -80,6 +80,17 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   (shop phone's last four until WORKROOM_PIN is set), a gate not a vault:
   nothing behind it moves money.
 
+- **The letter was revised 2026-08-22** to match the built reality: checkout
+  described in the present tense (payment on the confirming call now, Stripe
+  as the option later, matching her no-card-processing operation), a new
+  section four for the workroom with its stand-ins declared, and the cost
+  section carrying the comparison sourced to her own number: $230 a month
+  against our $150, $960 a year less after the build year, $11,000 against
+  $13,800 over five, ownership against receipts. **A pricing call is baked
+  in: the workroom is written as included in the $150 monthly.** Kevin can
+  veto with one edit; the reasoning is she is the design partner and her
+  feedback plus her floral-group reach is the consideration.
+
 ## Permissions
 
 - **Product photographs were supplied by Kevin directly** (their host captchas

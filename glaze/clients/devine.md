@@ -45,9 +45,9 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   on the confirm call, no card online). Phase 2, an internal order board plus
   stem/shrink/recipe-costing tracker for the shop, adapting the pjs ordering
   pattern. Phase 3, productize the Phase 2 tool as a subscription app for other
-  shops ONLY if DeVine's uses it daily and 3 to 5 shops from the owner's floral
-  groups will pay for it. The full-POS question (payments hardware, wire
-  services) is deliberately deferred, not declined.
+  shops ONLY if DeVine's uses it daily and other shops turn up wanting to pay
+  for it. The full-POS question (payments hardware, wire services) is
+  deliberately deferred, not declined.
 - **Order intake design**: prices come from the catalog on the server, never
   from the browser. An off-list delivery zip warns and still submits; the ticket
   carries a flag line ("a near miss is a phone call, not a wall"). A failed send
@@ -88,8 +88,8 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   against our $150, $960 a year less after the build year, $11,000 against
   $13,800 over five, ownership against receipts. **A pricing call is baked
   in: the workroom is written as included in the $150 monthly.** Kevin can
-  veto with one edit; the reasoning is she is the design partner and her
-  feedback plus her floral-group reach is the consideration.
+  veto with one edit; it stands as a plain product decision about what the
+  monthly buys, nothing more (see Retired for the framing that was cut).
 
 ## Permissions
 
@@ -108,9 +108,19 @@ six tokens and re-run the auditor.
 
 ## Retired
 
-- Nothing shipped and pulled yet. (The checkout's "switched off and says so"
-  demo notice was replaced by real order intake in August 2026; that was the
-  plan, not a retraction.)
+- **The "design partner" framing, retired by Kevin 2026-08-22.** Sessions had
+  been describing her as a design partner whose feedback and floral-group
+  reach were consideration she pays with. Kevin's ruling, near verbatim: "I
+  see her as a customer. I don't want to partner with her in that way. If we
+  build a better product she will tell people naturally, and if it needs work
+  she will tell me what to fix." So: she is a customer who pays money and
+  owns what she buys. Her feedback is customer feedback, welcome and acted
+  on, never an obligation or a payment. Her floral groups are market
+  information she volunteered, never a distribution channel we recruit her
+  into. Do not resurrect the partner framing in letters, meeting docs, phase
+  plans, or pricing rationale.
+- The checkout's "switched off and says so" demo notice was replaced by real
+  order intake in August 2026; that was the plan, not a retraction.
 
 ## Open
 

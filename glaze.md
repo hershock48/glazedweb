@@ -559,6 +559,15 @@ session does by default, which is why they need naming.
 - **A colour token validated against one ground is not validated.** Two tokens
   passed on the page colour and failed on the second, quieter band that was
   added later. Check every token against **every** ground it can land on.
+- **A bare text node can overflow the document and no element rect will show
+  it.** A 38-character email address in plain body text pushed the devine
+  letter's scrollWidth to 323 at 320, while every `getBoundingClientRect` sweep
+  read clean: the paragraph's border box stayed at its laid-out width and the
+  overflowing line belonged to a text node, which is not an element. It read as
+  a transient animation bug for exactly that reason. Attribute this class of
+  overflow by bisection, hiding subtrees while watching `scrollWidth`, not by
+  scanning rects; fix it with `overflow-wrap: break-word` at the body level,
+  which fires only when a single token cannot fit its line.
 - **A scroll-scrubbed counter needs pixels per step, and a short element has
   none to give.** Schuler's rolled 1909 to 2026 across `cover 34%` to `74%`.
   The number is only 57.6px tall at 390px wide, so `cover` is barely one

@@ -46,9 +46,11 @@ strip the types rather than fork the logic.
 ## Multi-org vs single-tenant feeds
 
 Set `org` in the `FeedConfig` for the central multi-org deployment
-(`https://scooplist-orgs.vercel.app`, path `/api/v1/orgs/{org}/case/{location}`;
-note `scooplist.glazedweb.com` is True North's single-tenant install, not the
-central deployment).
+(`https://scooplist.glazedweb.com`, path `/api/v1/orgs/{org}/case/{location}`).
+That domain was True North's single-tenant install until it flipped into the
+central deployment with True North as its first org; their site still reads
+the legacy path through `SCOOPLIST_LEGACY_ALIAS`, which is why the legacy
+form keeps working there.
 Omit it for a dedicated single-tenant install (truenorth, cascarellis; path
 `/api/v1/case/{location}`). Same JSON shape either way, additive-only
 contract, breaking it breaks live menus.

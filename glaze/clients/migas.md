@@ -6,10 +6,18 @@
 ## What they are
 
 Cannabis cultivation consultant operating a licensed Michigan facility. Sells
-consulting to other growers: room triage, programme review, the fixes that come
+consulting to other growers: room triage, program review, the fixes that come
 from having actually run a canopy.
 
-Spec build, not yet bought.
+**Engaged as of the 2026-08-27 owner call.** His direction, all landed in the
+repo the same day: merch sales off the site, guide selling off the site (the
+Patreon gets one advertising section instead, with only numbers checkable on his
+public page), consulting at **$250/hour, his number**, a **co-management** offer
+in his own terms ($50-150/light by project size, Aroya/Pinnacle/Growlink-class
+sensors required and TrolMaster excluded, head grower must run the program,
+grower-relocation network, genetic sourcing via Bractworx or another nursery,
+design-build by conversation), and booking availability he edits himself at
+`/admin` with his calendar's iCal feed removing taken slots.
 
 ## Decisions on file
 
@@ -101,8 +109,33 @@ than assembled by hand.
 - **The plume/flare SVG layer on the sun.** Random strands left over from an
   earlier build. The exterior fire carries the flare now.
 
+## Retired by the 2026-08-27 call
+
+- **The consulting-rates placeholder.** $150/$300/$500 were ours; $250/hour is
+  his. Prices now derive from `RATE` in `lib/site.ts`.
+- **/shop, /guides, MERCH, GUIDES, BUNDLE, the restock and guide-request
+  actions.** The site no longer sells anything directly; the booking request and
+  the question form are the only forms left.
+- **The static-availability caveat.** `lib/slots.ts` spent its life promising a
+  calendar-feed seam; it is filled. Windows are Blob-stored JSON edited at
+  `/admin` (PIN via `MIGAS_ADMIN_PIN`), busy times come from
+  `MIGAS_BUSY_ICS_URL`, every failure is open so the form never goes down with
+  the feed. Recurring events deliberately not expanded; counted and logged.
+
 ## Open
 
+- **Four env settings before anyone real books**, all visible as a status panel
+  on `/admin`: SMTP, `MIGAS_NOTIFY_TO`, `MIGAS_ADMIN_PIN`, a Blob store on the
+  Vercel project, and `MIGAS_BUSY_ICS_URL`. Kevin sets them in the dashboard.
+  Then book a real test call end to end (inbox + phone calendar + slot gone).
+- **The co-management project minimum.** He named a minimum, no figure. The page
+  says one exists without a number until he sets it.
+- **The 30/90-minute prices** are pro-rata arithmetic on his $250/hour, flagged
+  on the page. Confirm, or drop the half-hour session.
+- **Patreon dashboard exports**: member growth over the years and member quotes,
+  both offered by him on the call. Seams in `PATREON` render them when supplied.
+  Refresh `PATREON.stats` (45 members / 162 posts / from $100, read 2026-08-27)
+  and bump `checkedOn` whenever touched.
 - **The credentials strip.** "Licensed / 4 / SOPs" is not doing the job. This was
   blocked twice on the assumption that it needed a licence class, a licence number
   and a canopy figure from him. **His own writing says that is not what he thinks
@@ -119,5 +152,9 @@ than assembled by hand.
   verifiable from a sandbox.
 - Stripe's published restricted-business list prohibits courses and information on
   cultivating marijuana, so the processor question may not be answerable yet.
+  First ask: what settles his existing Squarespace store sales today?
+- **When the pitch host converts**: he is in, so the day the deposit lands the
+  rewrites() block and public/pitch/migas come out, noindex comes off with the
+  domain cutover per the README's Going live section.
 - Whether to gate the live URL, the h1 weight, the price ticker placement, and
   where the `Totem` mark goes. All open, all Kevin's call.

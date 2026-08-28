@@ -19,13 +19,13 @@ August 2026.
 
 **Anchor Insurance and Risk Management** is the licensed entity, and
 **Anchor Insurance** is the customer-facing short form everything runs under.
-**"Insurance for a cause" is the tagline**, not a name.
+**The tagline is "Coverage that gives back."**
 
 That is the state since **August 28, 2026**, when the client decided at the
 pitch meeting to move away from "Insurance for a Cause" as the name and fold
-everything under Anchor. The old name became the tagline, replacing "Coverage
-that gives back." The giving program is unchanged. The site's structured data
-keeps "Insurance for a Cause" as `alternateName` for continuity.
+everything under Anchor. The old name auditioned as the tagline for a few
+hours the same day and the client said no to that too; the site's structured
+data keeps it as `alternateName` for continuity and it appears nowhere else.
 
 The mark is an anchor with a heart for a rope ring, so it survived the rename
 untouched: it was drawn for the licensed name in the first place.
@@ -36,21 +36,34 @@ The owner is a woman; **we do not have her name.** There is a second person name
 **Amanda** whose role is unconfirmed. Both are visible placeholders on the site
 and in the logo page. Do not guess either.
 
-## The giving program, and the rule that shapes the build
+## The giving program, and the shape the client chose
 
-Michigan DIFS publishes six conditions on a producer donating commission. Three
-matter here:
+**Since August 28, 2026: no set percentage, no ledger, no goal bar, no vote.**
+The site says a percentage of what we earn goes back, without committing to
+the number, and the effort goes into content: every supported cause gets a
+write-up on `/giving/causes` (who they are, why we picked them, what came of
+it), with no amounts anywhere. `giving.stories` in `lib/site.ts` holds them.
+The receipts suite this build originally shipped is in the repo's git history
+before that date.
+
+Michigan DIFS publishes six conditions on a producer donating commission. They
+still apply, because the money is still commission and the giving is still
+advertised. Three matter here:
 
 1. **Offered uniformly, not tied to specific transactions.** The site never says
    "your policy bought X."
-2. **The insured must not control which organization receives it.** This is why
-   the cause is chosen by a **public vote open to anyone** and why there is no
-   choose-your-charity control on the quote form. **Do not add one**, however
-   good an idea it looks.
+2. **The insured must not control which organization receives it.** The agency
+   picks the causes itself, and there is no choose-your-charity control on the
+   quote form. **Do not add one**, however good an idea it looks.
 3. **The recipient must not be a client of the producer.** In the footer only.
    It was on the homepage and the giving page too and Kevin pulled it: in the
    body of a page it explains a licensing constraint to a customer who never
    asked.
+
+There is also a **Google review ask** on the homepage and contact page, added
+the same day at the client's request. It is gated on
+`site.social.googleReview`, the direct write-a-review URL, which does not
+exist until the Google Business Profile does.
 
 Her attorney or E&O carrier signs the program off. DIFS closes its own FAQ
 recommending counsel. **We do not give the legal opinion**, we hand over a written
@@ -67,11 +80,11 @@ publishes. **Ask before adding any.**
 
 ## Voice
 
-Warm, plain, and willing to say the unflattering thing. The whole brand rests on
-being checkable, so anything on this site that cannot be verified undercuts the
-product. Two lines that set the register:
+Warm, plain, and willing to say the unflattering thing. The brand rests on
+specificity: real causes with real write-ups, and honesty about being new
+where there is nothing to show yet. Two lines that set the register:
 
-- "We are new, so this is honestly at zero."
+- "We are new, and this page is honest about it."
 - "We will tell you if we cannot beat what you have."
 
 The about page is the one that cannot be written without her. It needs a recorded
@@ -82,11 +95,21 @@ this site.**
 
 **"Insurance for a Cause" as the customer-facing name.** The original DBA and
 the name the whole first build wore, retired by the client on August 28, 2026.
-Everything runs under Anchor Insurance now and the old name survives only as
-the tagline, the schema `alternateName`, and history notes. The pitch directory
-moved from `public/pitch/insuranceforacause/` to `public/pitch/anchor/`, and
-this file was renamed from `insuranceforacause.md`. Do not reintroduce the old
-name as a name.
+Everything runs under Anchor Insurance now. The old name auditioned as the
+tagline for a few hours the same day and was retired from that too; it
+survives only as the schema `alternateName` and in history notes. The pitch
+directory moved from `public/pitch/insuranceforacause/` to
+`public/pitch/anchor/`, and this file was renamed from `insuranceforacause.md`.
+Do not reintroduce the old name anywhere visible.
+
+**The receipts suite: set percentage, ledger, goal bar, public vote.** The
+build's original differentiator, retired by the client the same day. She wants
+the softer "we give a percentage back" with content about the donations
+instead of published numbers. The proposal was softened to match: the argument
+is now "show the giving with real write-ups," not "publish the receipts." The
+research that produced the original shape (96% of agencies donate, almost none
+show it) still stands and still drives the content angle. **Do not re-argue
+the ledger with her unless she reopens it.**
 
 **"Marshall, Michigan," then "Grass Lake."** The town was wrong twice. The first
 build said Marshall throughout, in page titles, the hero, the structured data,

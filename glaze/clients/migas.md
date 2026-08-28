@@ -138,8 +138,11 @@ searches found no matching company, so identifying them is a question for Jake.
 
 Also in Kevin's notes: besides the booked-consult flow, Jake wants to capture
 "random calls" — visitors who will not finish an intake ("some might know and
-others don't know what's up"), worded so both kinds convert. A lighter
-request-a-call path is unbuilt as of 2026-08-28.
+others don't know what's up"), worded so both kinds convert. **Both capture
+paths shipped 2026-08-28:** the co-management application at
+`/co-management#apply` (nine questions in `COMANAGE_APPLY`, capture-not-wall on
+the disqualifying sensor answers) and the callback at `/consulting#call` (name
+plus ONE of phone or email).
 
 ## Retired by the 2026-08-27 call
 

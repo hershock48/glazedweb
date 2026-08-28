@@ -34,18 +34,29 @@ knobbed stock, barbed flukes, and a gold wave flowing across it, the name in
 Trajan-style serif capitals over a gold rule. It replaced the heart-ring mark
 Glazed drew before the logo existed (retired, in the anchor repo's git history).
 
-What derives from it, all measured, all in the repo's README:
+**The mark must be TRACED from her artwork, never redrawn "cleaner."** The
+first vector attempt simplified the logo into a generic anchor and Kevin
+rejected it on sight, the "it's not MY donut" failure again. The shipped mark
+is a measured trace (overlay-diff harness against the supplied image, masks
+thresholded, landmarks extracted) and the repo README documents the method.
+The source on file is a phone-screenshot JPEG in Kevin's Downloads
+(IMG_6500.jpg); **the client's original vector file is still wanted**, and
+when it lands its paths replace the trace verbatim.
 
-- **The mark** is her logo redrawn as clean vectors in `components/Logo.tsx`,
-  two cuts, water always drawn in front of the shank.
-- **The palette** is navy and gold now, not navy and red. Gold is a fill that
-  cannot carry white text and fails as text on light grounds, so it has four
-  tokens and gold surfaces always carry navy lettering. Buttons are navy.
+What derives from the logo, all measured, all in the repo's README:
+
+- **The mark** is the trace in `components/Logo.tsx`, geometry exported so
+  the header and hero import it and cannot drift. Two cuts; slits render in
+  a `gap` color that dark grounds must pass.
+- **The palette is sampled from the artwork**: navy #122C4E, golds #C69F58
+  and #D3BB90 (its two ribbons). Gold is a fill that cannot carry white text
+  and fails as text on light grounds, so it has four tokens and gold surfaces
+  always carry navy lettering. Buttons are navy.
 - **The wordmark face is Cinzel**, lockup and footer only, never headings.
-- **The water is the motion**, per the client, explicitly: the hero's ribbons
-  flow on looping periodic paths, the anchor rocks, the header plays a
-  one-shot drop-then-flow entrance. Reduced motion gets the still, complete
-  mark.
+- **The water is the motion**, per the client, explicitly: shimmer strokes
+  flow through clipPaths of her exact ribbons in the hero, the anchor rocks,
+  the header plays a one-shot drop-then-flow entrance. Reduced motion gets
+  the still, complete logo.
 
 ## The people
 

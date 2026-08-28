@@ -109,6 +109,38 @@ than assembled by hand.
 - **The plume/flare SVG layer on the sun.** Random strands left over from an
   earlier build. The exterior fire carries the flare now.
 
+## The co-management division prospect (Kevin's own notes from the same call)
+
+Not yet a project; recorded so the site decisions below read correctly.
+
+Jake is in talks with a partner group: they sell books, programs and biosecurity
+SOPs for grows, run a beneficial/predatory-insect business ("wrong bugs wrong
+time" was their teachable failure), have a greenhouse in the greater Detroit
+area with exotic plants, and brought in partners from LA and New York. The idea
+on the table: a **co-management division that Jake runs**, presented to them
+with a framework and business model, managing grows around the country,
+charging **a flat fee** because it is "more digestible for the owner grower
+who's paying it." Working phrase in Kevin's notes: **"Plantsmen grow management
+model"** — likely the model's name, not confirmed as the company's; two web
+searches found no matching company, so identifying them is a question for Jake.
+
+**Two consequences for the work:**
+
+- The shipped per-light pricing ($50-150/light) is Jake's solo rate card and may
+  be superseded by the division's flat fee. Pricing already reads from one
+  constant, so the pivot is one edit; do not harden per-light language anywhere
+  new.
+- The Glazed Web upside is bigger than the migas site: build the division's
+  site by converting the co-management work, then manage website, platforms,
+  content, and design the SOP/template/paperwork library. The current
+  /co-management page plus the booking loop is effectively the demo for that
+  pitch.
+
+Also in Kevin's notes: besides the booked-consult flow, Jake wants to capture
+"random calls" — visitors who will not finish an intake ("some might know and
+others don't know what's up"), worded so both kinds convert. A lighter
+request-a-call path is unbuilt as of 2026-08-28.
+
 ## Retired by the 2026-08-27 call
 
 - **The consulting-rates placeholder.** $150/$300/$500 were ours; $250/hour is

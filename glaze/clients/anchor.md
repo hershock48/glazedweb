@@ -1,4 +1,4 @@
-# Insurance for a Cause
+# Anchor Insurance
 
 ---
 
@@ -8,20 +8,27 @@ August 2026.
 | | |
 |---|---|
 | Repo | `hershock48/anchor` |
-| Pitch host | `insuranceforacause.glazedweb.com` |
+| Pitch host | `anchor.glazedweb.com` |
 | Proposal | `/` |
 | Logo presentation | `/logo` |
 | Demo | `/demo` |
-| Client domain | Not bought. `lib/site.ts` assumes `insuranceforacause.com` and flags it |
+| Client domain | Not bought. `lib/site.ts` assumes `anchorinsurancemi.com` and flags it |
 | Price quoted | $3,500 build, $150 a month |
 
-## The names, which are not the same string
+## The names, and the flip
 
-**Anchor Insurance and Risk Management** is the licensed entity. **Insurance for
-a Cause** is the DBA and the name on the door. Both have to appear. The repo is
-named for the licensed entity; everything customer-facing uses the DBA.
+**Anchor Insurance and Risk Management** is the licensed entity, and
+**Anchor Insurance** is the customer-facing short form everything runs under.
+**"Insurance for a cause" is the tagline**, not a name.
 
-The mark is an anchor for that reason, so one logo serves both names.
+That is the state since **August 28, 2026**, when the client decided at the
+pitch meeting to move away from "Insurance for a Cause" as the name and fold
+everything under Anchor. The old name became the tagline, replacing "Coverage
+that gives back." The giving program is unchanged. The site's structured data
+keeps "Insurance for a Cause" as `alternateName` for continuity.
+
+The mark is an anchor with a heart for a rope ring, so it survived the rename
+untouched: it was drawn for the licensed name in the first place.
 
 ## The people
 
@@ -72,6 +79,14 @@ hour, in her words. **Inventing it would be the most damaging thing available on
 this site.**
 
 ## Retired
+
+**"Insurance for a Cause" as the customer-facing name.** The original DBA and
+the name the whole first build wore, retired by the client on August 28, 2026.
+Everything runs under Anchor Insurance now and the old name survives only as
+the tagline, the schema `alternateName`, and history notes. The pitch directory
+moved from `public/pitch/insuranceforacause/` to `public/pitch/anchor/`, and
+this file was renamed from `insuranceforacause.md`. Do not reintroduce the old
+name as a name.
 
 **"Marshall, Michigan," then "Grass Lake."** The town was wrong twice. The first
 build said Marshall throughout, in page titles, the hero, the structured data,

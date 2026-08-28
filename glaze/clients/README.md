@@ -57,7 +57,7 @@ Free-form prose is fine, but keep these headings so a session can skim:
 | Lemoncello Catering | `donna` |
 | Camp Barber | `campbarber` |
 | Shortstop Barber Shop | *not created yet* |
-| Insurance for a Cause | `anchor` |
+| Anchor Insurance (was Insurance for a Cause) | `anchor` |
 | Pastrami Joe's | `pjs` |
 | Schuler's Restaurant & Pub | `Schulers` |
 | DeVine's Flowers & Botanicals | `devine` |

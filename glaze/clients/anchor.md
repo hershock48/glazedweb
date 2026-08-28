@@ -27,8 +27,25 @@ everything under Anchor. The old name auditioned as the tagline for a few
 hours the same day and the client said no to that too; the site's structured
 data keeps it as `alternateName` for continuity and it appears nowhere else.
 
-The mark is an anchor with a heart for a rope ring, so it survived the rename
-untouched: it was drawn for the licensed name in the first place.
+## The logo is the client's own, and the brand derives from it
+
+**She brought a real logo on August 28, 2026**: a navy anchor with a ring, a
+knobbed stock, barbed flukes, and a gold wave flowing across it, the name in
+Trajan-style serif capitals over a gold rule. It replaced the heart-ring mark
+Glazed drew before the logo existed (retired, in the anchor repo's git history).
+
+What derives from it, all measured, all in the repo's README:
+
+- **The mark** is her logo redrawn as clean vectors in `components/Logo.tsx`,
+  two cuts, water always drawn in front of the shank.
+- **The palette** is navy and gold now, not navy and red. Gold is a fill that
+  cannot carry white text and fails as text on light grounds, so it has four
+  tokens and gold surfaces always carry navy lettering. Buttons are navy.
+- **The wordmark face is Cinzel**, lockup and footer only, never headings.
+- **The water is the motion**, per the client, explicitly: the hero's ribbons
+  flow on looping periodic paths, the anchor rocks, the header plays a
+  one-shot drop-then-flow entrance. Reduced motion gets the still, complete
+  mark.
 
 ## The people
 
@@ -92,6 +109,11 @@ hour, in her words. **Inventing it would be the most damaging thing available on
 this site.**
 
 ## Retired
+
+**The heart-ring anchor mark and the navy-and-red palette.** Both were drawn
+before the client produced her real logo on August 28, 2026, and both retired
+the same day the logo arrived. The heart's ring and "Cause Red" have no basis
+in her actual brand. In the anchor repo's git history before commit 20d874b.
 
 **"Insurance for a Cause" as the customer-facing name.** The original DBA and
 the name the whole first build wore, retired by the client on August 28, 2026.

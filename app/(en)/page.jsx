@@ -31,12 +31,12 @@ export default function Home() {
             <a className="btn" href="/order">
               Get a site
             </a>
-            {/* ?lang=en / ?lang=es are handled by middleware.js: it stores the
-                choice in a cookie so it outlives the geo autodetect, then
-                redirects to the clean URL. */}
-            <a className="lang" href="/do?lang=es" lang="es" title="Ver en español">
-              ES
-            </a>
+            {/* The ES pill that lived here is gone by Kevin's call (Aug 2026):
+                it read as clutter to the US audience, and Dominican visitors
+                never need it because middleware.js geo-routes them to /do on
+                arrival. /do keeps its EN toggle as the escape hatch for a
+                wrong geo guess; hreflang alternates in the layout still tell
+                Google the two pages are the same site in two languages. */}
           </nav>
         </div>
       </header>

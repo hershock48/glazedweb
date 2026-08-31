@@ -34,29 +34,31 @@ knobbed stock, barbed flukes, and a gold wave flowing across it, the name in
 Trajan-style serif capitals over a gold rule. It replaced the heart-ring mark
 Glazed drew before the logo existed (retired, in the anchor repo's git history).
 
-**The mark must be TRACED from her artwork, never redrawn "cleaner."** The
-first vector attempt simplified the logo into a generic anchor and Kevin
-rejected it on sight, the "it's not MY donut" failure again. The shipped mark
-is a measured trace (overlay-diff harness against the supplied image, masks
-thresholded, landmarks extracted) and the repo README documents the method.
-The source on file is a phone-screenshot JPEG in Kevin's Downloads
-(IMG_6500.jpg); **the client's original vector file is still wanted**, and
-when it lands its paths replace the trace verbatim.
+**The mark is her file, USED AS-IS. Do not vectorize it, ever.** Two
+recreations died in three days: a simplified generic anchor (rejected on
+sight, the "it's not MY donut" failure) and then a faithful measured trace
+(still not the thing). Kevin's final call on August 31, 2026: use the logo
+they have. The shipped mark is `public/brand/anchor-mark.png`, her image with
+the background keyed out; nothing in the repo draws the anchor.
 
 What derives from the logo, all measured, all in the repo's README:
 
-- **The mark** is the trace in `components/Logo.tsx`, geometry exported so
-  the header and hero import it and cannot drift. Two cuts; slits render in
-  a `gap` color that dark grounds must pass.
+- **The mark** is the image, rendered by `components/Logo.tsx`. The artwork
+  is navy-on-light and no other version exists: **on any dark ground it sits
+  on a paper plate** (never the bare PNG on navy), and the favicon rides a
+  light tile.
+- **The motion is a swing, only**, per the client, explicitly: the hero hangs
+  the plated logo from a line and swings it. The header does not animate.
 - **The palette is sampled from the artwork**: navy #122C4E, golds #C69F58
   and #D3BB90 (its two ribbons). Gold is a fill that cannot carry white text
   and fails as text on light grounds, so it has four tokens and gold surfaces
   always carry navy lettering. Buttons are navy.
 - **The wordmark face is Cinzel**, lockup and footer only, never headings.
-- **The water is the motion**, per the client, explicitly: shimmer strokes
-  flow through clipPaths of her exact ribbons in the hero, the anchor rocks,
-  the header plays a one-shot drop-then-flow entrance. Reduced motion gets
-  the still, complete logo.
+
+**Still wanted from the client: the logo's original file** (vector or
+high-res). The source on hand is a phone-screenshot JPEG in Kevin's Downloads
+(IMG_6500.jpg): sharp at site sizes, not print-grade. When the real file
+lands, re-key the PNG from it and nothing else changes.
 
 ## The people
 

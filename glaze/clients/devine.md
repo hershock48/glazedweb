@@ -148,6 +148,19 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   letter, the current letter and the agreement both name the fee plainly,
   and that is the disclosure. Do not resurrect the heads-up obligation.
 
+- **The seasonal engine, built 2026-08-31 from the owner's own observation**
+  (relayed by Kevin: the change of seasons is a huge part of her sales). The
+  demo turns with the calendar on its own: four premade seasons as the base
+  (accent token, hero copy, featured six) and six flower holidays highlighted
+  as each approaches, every date computed rather than stored, rendered per
+  request in the shop's timezone. Holiday bands state the day and its date and
+  link into her catalog, and deliberately carry no cutoffs or availability
+  claims, because she has published none. Seasonal copy and picks are Glazed's,
+  on the README checklist for her veto; spring, summer and winter each lean on
+  three photographed plants until the remaining product photos land. The footer
+  preview row (cookie via `/api/season`) is the demo move for the meeting:
+  flip her site through the whole year across the table.
+
 ## Permissions
 
 - **Product photographs were supplied by Kevin directly** (their host captchas

@@ -43,12 +43,13 @@ the background keyed out; nothing in the repo draws the anchor.
 
 What derives from the logo, all measured, all in the repo's README:
 
-- **The mark** is the image, rendered by `components/Logo.tsx`. The artwork
-  is navy-on-light and no other version exists: **on any dark ground it sits
-  on a paper plate** (never the bare PNG on navy), and the favicon rides a
-  light tile.
-- **The motion is a swing, only**, per the client, explicitly: the hero hangs
-  the plated logo from a line and swings it. The header does not animate.
+- **The mark** is the image, rendered by `components/Logo.tsx`. Two files,
+  one artwork: the navy original for light grounds and a reversed cut for
+  dark ones, made by RECOLORING her pixels navy-to-white, never by redrawing.
+  The favicon rides a light tile.
+- **The motion is a swing, only, with no plate**, per the client, explicitly:
+  the hero hangs the bare reversed anchor from a line and swings it. The
+  header does not animate.
 - **The palette is sampled from the artwork**: navy #122C4E, golds #C69F58
   and #D3BB90 (its two ribbons). Gold is a fill that cannot carry white text
   and fails as text on light grounds, so it has four tokens and gold surfaces

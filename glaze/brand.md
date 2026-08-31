@@ -175,10 +175,15 @@ with the drippy donut linking to glazedweb.com.
 somebody is mid-decision about spending real money on expertise. MI Gas gets
 this one.
 
-**"Concept build by"** on a spec build that has not been bought.
-
 Retired, and recorded so nobody reintroduces them: *Designed and built by*,
-*Made in Marshall by*, and a bare *Built by*.
+*Made in Marshall by*, a bare *Built by* — and, as of Kevin's ruling on
+31 Aug 2026, **"Concept build by"**. This file used to prescribe it for spec
+builds that had not been bought, so sessions kept shipping it to prospect
+footers no matter how many times Kevin objected; he had to say it three
+times. The ruling: the default wording is the wording, spec build or not. A
+prospect reading the demo should see the same signature a client gets, not a
+label announcing the work is on spec. Where it was live (devine, campbarber,
+the encounterafrica pages) it has been replaced.
 
 ### Procedure
 

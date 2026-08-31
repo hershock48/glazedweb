@@ -100,6 +100,19 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   and the fee mechanics; nothing calls it yet, by phase-plan design. The
   99c fee must be named in her agreement before cards go live: disclosed
   and boring beats discovered.
+- **The whole sandbox loop was VERIFIED end to end 2026-08-31**, Kevin
+  driving the dashboards: OAuth connect (grant stored in Neon), webhook
+  subscription (payment.created + payment.updated, signature key live),
+  and a $20 virtual-terminal test charge that landed as a square_sales
+  row three seconds after it was rung. Two traps recorded for the next
+  person: the Application Secret is on the app's OAuth page (the
+  Credentials page offers an Access Token in the same slot, and pasting
+  that 401s the token exchange after a clean-looking Allow), and every
+  Vercel env-var save needs a redeploy after it before the runtime sees
+  it. The developer app is named "devine", one app per client. Still
+  untested in sandbox: the catalog push. Production flip remains gated on
+  her signing: her one technical step is a single Allow click on her own
+  Square login.
 - **The letter was revised 2026-08-22** to match the built reality: checkout
   described in the present tense (payment on the confirming call now, Stripe
   as the option later, matching her no-card-processing operation), a new

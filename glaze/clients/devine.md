@@ -142,9 +142,11 @@ the concept site at `/demo`. A meeting with the owner is set for late August
 - **The letter's fee promise was corrected before she signs** (Kevin's
   ruling, same day): the old Stripe take-nothing-on-top bullet now says
   cards run on her own Square account and names the 99c customer-paid
-  service fee. Kevin owes her a heads-up text about that change BEFORE
-  sending the /agreement link; the letter she originally read promised
-  no fee on top.
+  service fee, written as first-pass prose with no correction framing.
+  A session's suggestion that Kevin owed her a heads-up text about the
+  change was RETIRED by Kevin the same day: she barely read the original
+  letter, the current letter and the agreement both name the fee plainly,
+  and that is the disclosure. Do not resurrect the heads-up obligation.
 
 ## Permissions
 

@@ -129,6 +129,23 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   veto with one edit; it stands as a plain product decision about what the
   monthly buys, nothing more (see Retired for the framing that was cut).
 
+- **She said YES at the meeting (Kevin, 2026-08-31), and the paper went up
+  the same day**: /agreement on the pitch host is a clickwrap acceptance of
+  the Client Agreement v1.0 (incorporated by reference, never restated)
+  plus her Exhibit A. Terms: $2,000 build with $1,000 on acceptance and
+  balance at launch, $150 monthly including store and workroom, 2 hours of
+  edits a month, $125/hour beyond scope quoted in advance, timeline agreed
+  in writing later. Deal facts live in devine `src/lib/agreement.ts`; the
+  letter repeats them in prose and is named there as the surface that
+  cannot read the constant. Acceptance record: email to AGREEMENT_TO
+  (default kevin@glazedweb.com) is THE record, DB row the duplicate.
+- **The letter's fee promise was corrected before she signs** (Kevin's
+  ruling, same day): the old Stripe take-nothing-on-top bullet now says
+  cards run on her own Square account and names the 99c customer-paid
+  service fee. Kevin owes her a heads-up text about that change BEFORE
+  sending the /agreement link; the letter she originally read promised
+  no fee on top.
+
 ## Permissions
 
 - **Product photographs were supplied by Kevin directly** (their host captchas

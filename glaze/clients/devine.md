@@ -80,6 +80,26 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   (shop phone's last four until WORKROOM_PIN is set), a gate not a vault:
   nothing behind it moves money.
 
+- **She rings counter sales on Square, on the basic (free) plan** (owner,
+  by text, relayed 2026-08-31). The free plan is fully sufficient for
+  everything built here: Square does not gate API access (OAuth, catalog,
+  webhooks, Payments API) by plan, and Payments API processing is
+  2.9% + 30c on every plan. The 3.3% rate that would apply to Square's
+  own hosted checkout on the free plan never applies, because our checkout
+  is our own. No upgrade to recommend, ever, unless she wants Square's own
+  software features.
+- **Square OAuth + platform fee plumbing built 2026-08-31**: the register
+  link's production path. A Glazed-owned Square developer app
+  (SQUARE_APP_ID/SECRET; account kevin@glazedweb.com) that HER account
+  authorizes at /api/square/connect, grant stored in Neon (square_oauth
+  table), lazy 30-day token refresh, sandbox env-token path unchanged.
+  All scopes requested at connect time including
+  PAYMENTS_WRITE_ADDITIONAL_RECIPIENTS, so turning on online card payments
+  later (with the 99c app fee riding to the Glazed account) is a deploy,
+  not a reconnect. lib/square/payments.ts holds the dormant payment helper
+  and the fee mechanics; nothing calls it yet, by phase-plan design. The
+  99c fee must be named in her agreement before cards go live: disclosed
+  and boring beats discovered.
 - **The letter was revised 2026-08-22** to match the built reality: checkout
   described in the present tense (payment on the confirming call now, Stripe
   as the option later, matching her no-card-processing operation), a new
@@ -128,8 +148,9 @@ six tokens and re-run the auditor.
 - Team roles and portraits: on the owner.
 - 37 remaining product photographs: on the owner/Kevin.
 - Whether "Classic Red Dozen" is still meant to be on sale at $75: on the owner.
-- How she takes card payments today at all (IRIS does none; is there a
-  terminal, Square, paper slips?): on the owner, at the meeting.
+- ~~How she takes card payments today~~ answered 2026-08-31: Square at the
+  counter, basic plan (see Decisions). Still open: what hardware (register,
+  reader, terminal) and whether anything else takes cards.
 - The real wedding spreadsheet: **she has agreed to send it.** The wedding
   model and template get rewritten from it when it lands.
 - **The funeral pad was built 2026-08-21 from research, not from a document**,

@@ -143,10 +143,12 @@ export default function AgreementPage() {
             record the version and timestamp with your order and email you a copy. Want it for your records, or for your
             attorney? Download the signable document below. Nothing here changes between the page and the paper.
           </p>
+          {/* No "Start your order" CTA down here, deliberately (Kevin, 2026-08-31):
+              this page is read by custom clients sent from their own acceptance
+              pages as well as by menu prospects, and a legal document that ends in
+              a sales button reads wrong for both. The header keeps the standard
+              nav path to /order; the document ends like a document. */}
           <div className="legal-actions">
-            <Link className="btn big" href="/order">
-              Start your order →
-            </Link>
             <a className="btn big ghost" href="/glazed-web-agreement-v1.pdf" target="_blank" rel="noopener noreferrer">
               Download PDF
             </a>

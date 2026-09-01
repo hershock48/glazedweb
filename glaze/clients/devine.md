@@ -312,7 +312,12 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   the shop); recipeCost() is the one costing rule for the week figure
   and the margins table; the 115-variety master list collapsed behind
   a details disclosure. Seeded numbers verified identical before and
-  after the refactor.
+  after the refactor. Kevin then cut the trimmed lede TOO (devine
+  a4d1181): workroom screens do not introduce themselves; the sections
+  are the explanation, and copy about the page is what glaze.md already
+  says to cut. Do not re-add ledes to workroom screens; the one
+  exception is a lede that states a non-obvious operational fact (the
+  Weekly order page's transmits-nothing line stays).
 - **The Square-live summary pull VERIFIED end to end on production,
   2026-09-01, Kevin supplying the workroom PIN**: the deployed dashboard
   at /workroom/dashboard answered every range from Square's sandbox

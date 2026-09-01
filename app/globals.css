@@ -99,25 +99,23 @@
   h1 em svg path { stroke-dasharray: 210; animation: underline-draw .8s ease-out .4s both; }
   @keyframes underline-draw { from { stroke-dashoffset: 210; } to { stroke-dashoffset: 0; } }
   .hero p.sub { margin-top: 22px; font-size: 18px; color: #6B5747; line-height: 1.6; max-width: 480px; }
-  /* "it ships glazed": glossy pink-glaze letters, nothing behind them
-     (Kevin, fifth pass: "make it that pink glaze color"). The graveyard is
-     worth keeping so nothing comes back: green TEXT can never pass 4.5 on
-     cream in any slime-family green; fern passes but reads as a leaf; the
-     slime pill with drips was "a lot"; the highlighter swipe felt forced;
-     shiny brown was fine but pink is the donut. The gloss is a clipped
-     gradient, and it CANNOT use the donut's own stops as text: F887B2,
-     E84D8A, and CE3672 all fail 4.5 on cream (that is the whole three-pinks
-     story at the top of this file). So it runs raspberry-ink #C9356F (4.63,
-     the lightest passing pink) down to #9E2450 (6.9), light at the top like
-     glaze catching the window. The solid color line is the fallback for
-     anything that cannot clip. */
+  /* "it ships glazed": the same flat raspberry as crave in the h1, settled
+     on the sixth pass. The graveyard, kept so nothing comes back: green
+     TEXT can never pass 4.5 on cream in any slime-family green; fern reads
+     as a leaf; the slime pill with drips was "a lot"; the highlighter swipe
+     felt forced; shiny brown, then a darkened-pink gradient, were both
+     close but not the donut's pink.
+
+     The font-size is LOAD-BEARING, not styling: crave gets away with
+     raspberry on cream (3.34) only because headline text is large, where
+     3:1 applies. At the sub's 18px, even bold, the threshold is 4.5 and
+     raspberry fails; at 19px/800 the word crosses the 18.67px-bold
+     large-text line and 3.34 passes. Shrink it and this becomes the exact
+     violation the token comment at the top of this file warns about. */
   .hero p.sub .glazed {
     font-weight: 800;
-    color: var(--raspberry-ink);
-    background: linear-gradient(180deg, #C9356F 0%, #B52D60 45%, #9E2450 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-size: 19px;
+    color: var(--raspberry);
   }
   .hero .ctas { margin-top: 30px; display: flex; gap: 14px; flex-wrap: wrap; }
   @media (max-width: 800px) { .hero .ctas, .hero p.sub { justify-content: center; margin-left: auto; margin-right: auto; } }

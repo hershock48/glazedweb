@@ -277,6 +277,27 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   blank-paidAt sales; its windowed Cost/stem column stays deliberately
   different, with the why beside it. One seeded dataset reconciled by
   hand across all three screens; auditors clean.
+- **Stems and Inventory merged into one Stems tab, 2026-09-01, on
+  Kevin's header-crowding call and the stems improvement pass** (devine
+  81b0686): one job, one tab; /workroom/inventory redirects. New on the
+  merged page: recipe coverage with a worth-writing-first list (biggest
+  sellers without a recipe, register sales counted, one tap loads the
+  form; gift items excluded from the denominator); a Shrink column and
+  a "Dying in the cooler" line naming the worst varieties with their
+  dominant reason (the number that changes the Tuesday order); a Toss
+  button on every cooler row so a cleanout is logged from the row, not
+  a form; and the week's margins table now counts item-rung register
+  sales beside board lines (it was board-only while the cooler
+  decremented for both). The week report's Order revenue figure was
+  cut: the Dashboard owns money. IA DIRECTION, agreed with Kevin: the
+  workroom header goes Orders / Dashboard / Stems / Weekly order /
+  Plants / Quotes; nothing runs "through" the dashboard (it stays the
+  read-only glance layer); Weekly order + Plants are the natural next
+  merge candidates (the buying pair) when he asks. Trap for the next
+  person: sr-only spans are position:absolute, and inside a scroll
+  wrapper with no positioned ancestor one escaped the clip and
+  stretched the document to 688px at 390; scroll wrappers holding
+  sr-only content need position:relative.
 - **The Square-live summary pull VERIFIED end to end on production,
   2026-09-01, Kevin supplying the workroom PIN**: the deployed dashboard
   at /workroom/dashboard answered every range from Square's sandbox

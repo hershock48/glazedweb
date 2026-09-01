@@ -447,6 +447,25 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   for what it is: "what you paid the wholesaler for that buy, off the
   invoice" is the P&L input; the label says so now. If a session finds
   "blended average" stated as policy anywhere, that text is stale.
+- **The order sheet reads the cooler before it asks for a quantity
+  (Kevin, 2026-09-01).** He asked whether Weekly order and Inventory
+  were redundant; the answer on file is no (purchasing motion vs stock
+  ledger, bridged by receive), and the agreed connector is two quiet
+  read-only columns in the order lines table, between Variety and Qty:
+  On hand (the same FIFO lot walk Inventory runs) and Last wk (stems
+  used and tossed over the last COMPLETE Mon-Sun week, the dashboard's
+  consumption rule). The ledger fetches only when the composer opens
+  and refetches each open. Deliberately absent, per his "don't make it
+  clunky" note: no banners, no per-row stat sentences, no auto-filled
+  quantities; the number typed stays a decision. Cross-checked on a
+  seeded production build: both tabs read 68/35 on hand from the same
+  facts. Same commit fixes this table's scroll wrapper missing
+  position:relative (the sr-only absolute-child escape, second
+  sighting; 503px of sideways page at 390). Kevin also said the
+  workroom is starting to "'feel' ugly and against our glazedweb style
+  standards... needs a glaze": a dedicated whole-workroom polish pass
+  is WANTED and should be proposed as its own piece of work, not
+  smuggled into feature commits.
 
 ## Permissions
 

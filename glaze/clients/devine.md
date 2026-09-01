@@ -244,6 +244,30 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   10/20/50 with clean halves); auto-fill left a phantom fifth column
   (auto-fit). Square-live pull is code-verified against a stub only;
   exercising it against the sandbox register is owed.
+  SAME-DAY REVISIONS (Kevin, 2026-09-01): the board took the front door
+  BACK within hours (orders at /workroom, dashboard second tab at
+  /workroom/dashboard; both retired addresses redirect because counter
+  tabs remember; do not re-litigate which screen leads). And the fee
+  total was ordered OFF the dashboard face ("quit doing that"): the
+  order fee is the customer's line item, never a shop metric; no fee
+  totals on any shop-facing screen, ever, unless he asks.
+- **Eight-angle review of the dashboard, same day, findings fixed and
+  committed** (devine ba1db0a): unchecked r.ok rendering error bodies as
+  $0 days; a dead null-guard in the summary route (Number(null) is 0)
+  that would have walked her whole Square history on a missing param;
+  ASC+LIMIT truncation in the store dropping the NEWEST rows at the cap
+  (now oldest-first inside the LIMIT); stale summaries keyed to their
+  window and rendered dimmed with a failure line instead of as truth;
+  midnight rollover as a real state change; Year range exempt from the
+  90s summary poll (it re-walked a year of Square pages per tick); the
+  returning scan rebuilt on prebuilt identity maps; phoneKey shared via
+  ui.tsx. Known-accepted: two DST quirks (the elapsed comparison cut is
+  off by an hour on the two changeover days; the fall-back 1a bucket
+  covers both 1 o'clock hours), documented in makeWindow's header. Open
+  follow-up, spawned as a session task: stem costing/consumption math is
+  triplicated across Dashboard, Stems, and Inventory with diverging
+  windows and can disagree on the same week's Tossed dollars; extract
+  one shared derivation module.
 
 - **Online card checkout built 2026-09-01, behind the CHECKOUT_CARDS env
   switch, PICKUP ONLY**: the storefront half of the proven payment rails.

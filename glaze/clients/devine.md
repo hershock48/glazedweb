@@ -318,7 +318,25 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   says to cut. Do not re-add ledes to workroom screens; the one
   exception is a lede that states a non-obvious operational fact (the
   Weekly order page's transmits-nothing line stays).
-- **The Square-live summary pull VERIFIED end to end on production,
+- **The quotes pass and the search redesign, 2026-09-01** (devine
+  2511593), the same critique cycle the other screens got. Fixed: a
+  server/client markup disagreement (cleared field stored as x3, priced
+  on screen as x1, so the same quote totaled differently after reload);
+  the funeral pad's board button sticking on Sending when every piece
+  was unnamed; the delivery deadline now uses the earlier of viewing
+  and service; both builders fetch one quote by ?id= instead of the
+  whole table; the stem-price prefill uses derive.ts's blended average
+  (a fourth copy of the costing math, killed). Added: the wedding
+  builder's own "Put it on the board" mirroring the funeral pad, since
+  the board keeps far-future open orders by design. The list shows
+  funerals as "Service for [deceased]"; the invented --gold token died.
+  SEARCH: Kevin's report ("still not sure it works") was right in half:
+  hits on finished orders sat behind the collapsed pile while the page
+  said nothing matches, and only 60 days were loaded. Typing now flips
+  the board into one flat results view (count said out loud, finished
+  matches open, query widened to the full HISTORY_DAYS, Clear button);
+  clearing restores the board. The wedding pricing model itself stays
+  PROVISIONAL, untouched, still awaiting her spreadsheet.
   2026-09-01, Kevin supplying the workroom PIN**: the deployed dashboard
   at /workroom/dashboard answered every range from Square's sandbox
   Payments API directly (response source:"square", truncated:false),

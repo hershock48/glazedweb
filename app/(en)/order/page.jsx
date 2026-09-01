@@ -182,6 +182,23 @@ export default function OrderPage() {
                 <span className="flabel">Current website (if any)</span>
                 <input name="currentSite" placeholder="janesbakery.com, or none yet" />
               </label>
+              {/* The qualifying question, per the 2026-09-01 ordering/POS
+                  focus: which register a lead rings on decides the whole
+                  conversation before the first reply. Optional on purpose;
+                  a bakery that walked in for a plain site should not stall
+                  on it. */}
+              <label>
+                <span className="flabel">Do you take orders?</span>
+                <select name="register" defaultValue="">
+                  <option value="">Pick the closest</option>
+                  <option value="Yes, we ring on Square">Yes, we ring on Square</option>
+                  <option value="Yes, on Toast">Yes, on Toast</option>
+                  <option value="Yes, on Clover">Yes, on Clover</option>
+                  <option value="Yes, on another register">Yes, on another register</option>
+                  <option value="Phone orders only, want online">Phone orders only, want online ordering</option>
+                  <option value="We don't take orders">We don&apos;t take orders</option>
+                </select>
+              </label>
             </div>
             <label className="full">
               <span className="flabel">What do you need the site to do? <span className="req">*</span></span>

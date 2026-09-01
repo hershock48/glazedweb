@@ -381,6 +381,7 @@ export default function Home() {
                 <b>Services</b>
                 <a href="/restaurant-website-design-michigan">Restaurant websites</a>
                 <a href="/online-ordering-website-michigan">Online ordering</a>
+                <a href="/restaurant-pos-integration-michigan">POS integration</a>
                 <a href="/small-business-web-design-michigan">Small business sites</a>
               </div>
               <div className="col">

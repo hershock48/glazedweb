@@ -35,7 +35,7 @@ export default function RestaurantWebDesignMI() {
         ]}
         related={[
           { href: "/online-ordering-website-michigan", label: "online ordering websites" },
-          { href: "/small-business-web-design-michigan", label: "small business web design" },
+          { href: "/restaurant-pos-integration-michigan", label: "restaurant POS integration" },
         ]}
       >
         <h2>A restaurant website has one job</h2>

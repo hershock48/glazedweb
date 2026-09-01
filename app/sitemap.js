@@ -7,6 +7,7 @@ export default function sitemap() {
     { url: "https://www.glazedweb.com/schedule", lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: "https://www.glazedweb.com/restaurant-website-design-michigan", lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: "https://www.glazedweb.com/online-ordering-website-michigan", lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: "https://www.glazedweb.com/restaurant-pos-integration-michigan", lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: "https://www.glazedweb.com/small-business-web-design-michigan", lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: "https://www.glazedweb.com/agreement", lastModified: now, changeFrequency: "yearly", priority: 0.4 },
   ];

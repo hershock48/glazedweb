@@ -36,8 +36,8 @@ export default function OnlineOrderingMI() {
           { title: "Kitchen-ready", body: "Orders arrive where you work, on a screen or a printer. Your call." },
         ]}
         related={[
+          { href: "/restaurant-pos-integration-michigan", label: "restaurant POS integration" },
           { href: "/restaurant-website-design-michigan", label: "restaurant website design" },
-          { href: "/small-business-web-design-michigan", label: "small business web design" },
         ]}
       >
         <h2>The math on ordering apps</h2>

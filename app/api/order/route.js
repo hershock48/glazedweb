@@ -39,6 +39,7 @@ export async function POST(req) {
     ["Phone", body.phone],
     ["Town", body.town],
     ["Current site", body.currentSite],
+    ["Takes orders", body.register],
     ["Timeline", body.timeline],
   ]
     .filter(([, v]) => v)

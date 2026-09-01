@@ -185,6 +185,14 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   register sales never do. Agreement page, exhibit text, and letter all
   updated BEFORE she accepts.
 
+- **Customer autofill on the phone-order form, built 2026-09-01 on Kevin's
+  ask** (a weekly caller must not become 52 retypings): the customer base
+  IS the order history. The contacts projection carries each order's
+  delivery details and lines; typing two letters of name or three digits
+  of phone offers matching customers, one tap fills the form from their
+  latest order, and "Use the same lines" copies it wholesale. Deliberately
+  no separate customer table: nothing to maintain, nothing to drift.
+
 ## Permissions
 
 - **Product photographs were supplied by Kevin directly** (their host captchas

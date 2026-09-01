@@ -131,11 +131,22 @@
   @keyframes shimmer { 0%,100% { opacity: .55; } 50% { opacity: .95; } }
 
   /* ============ hero drip band ============ */
-  /* The old scrolling ticker's slot, now a slime glaze pour into #menu. The
-     drip svg's solid lip is only ~14px of its 54px, so the wrapper adds solid
-     slime above it; without that the band reads as a hairline, not a banner.
-     line-height: 0 kills the inline-svg baseline gap. */
-  .hero-drip { background: var(--slime); padding-top: 18px; line-height: 0; }
+  /* The old scrolling ticker's slot, now a glaze pour into #menu; the band's
+     anatomy (gradient, sheen, droplet markup) lives in components/Logo.jsx.
+     line-height: 0 kills the inline-svg baseline gap. pointer-events: none
+     because the droplets spend part of every fall at opacity 0 over the top
+     of #menu, and an invisible element still receives clicks. */
+  .hero-drip { position: relative; line-height: 0; pointer-events: none; }
+  .hero-drip-band { display: block; width: 100%; height: 72px; margin-bottom: -1px; }
+  /* Droplets fall off the two deep lobes (x 550 and 1132 of 1440; the band
+     stretches, so percentages track the lobes at every width) on the same
+     fall/fall2 clocks as the logo's droplets above — same weather, different
+     schedules, so they never read as a synchronized pair. Their whole travel
+     (translateY -16px to 38px) stays over cream-2: first the band's own
+     ground, then #menu's 84px of top padding. */
+  .hero-droplet { position: absolute; }
+  .hd-a { left: calc(38.2% - 6px); top: 52px; animation: fall 3.4s cubic-bezier(.5,.08,.85,.6) infinite -0.9s; }
+  .hd-b { left: calc(78.6% - 5px); top: 56px; animation: fall2 5.1s cubic-bezier(.5,.08,.85,.6) infinite -2.4s; }
 
   /* ============ sections ============ */
   section .inner { max-width: 1100px; margin: 0 auto; padding: 84px 24px; }
@@ -298,6 +309,15 @@
     .ban-counter.tick { animation: none; }
     .bok-bubble { transition: opacity .2s ease; transform: scale(1) rotate(-3deg); }
     .step.glazed .num::after { animation: none; }
+    /* droplets rest at the drip tips: a bead of glaze, not a hole in the band */
+    .hero-droplet { animation: none; }
+    /* The animated hero mark, at rest. These classes ran under reduced motion
+       from v0.1 until motion-check caught them during the hero-band build.
+       At rest the mark matches the static #mark symbol plus two hanging
+       droplets, which reads as beads; the sheen pins the static mark's .75
+       because with its keyframes off the attribute default is full white. */
+    .goo, .wob1, .wob2, .wob3, .wobB, .string, .droplet, .droplet2 { animation: none; }
+    .sheen { animation: none; opacity: 0.75; }
   }
 
   /* cta band */

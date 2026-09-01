@@ -1,6 +1,15 @@
 /* The glazedweb mark (v9): pink donut, green slime drip with rounded tips,
    thin glaze lip creeping over the donut's bottom edge. */
 
+/* One drip edge, two consumers: the #dripEdge symbol (the four flat section
+   dividers) and HeroDrip (which needs the raw path so it can translate it
+   inside its own taller viewBox — a <use> of the symbol would rescale the
+   60-unit viewBox to fit and stretch the drips). Edit the shape here and both
+   stay in step. Lobe centers, for anything that hangs off them: x 264, 550,
+   842, 1132, 1378; the deep pair is 550 (y48) and 1132 (y52). */
+const DRIP_EDGE_D =
+  "M0,0 H1440 V16 C1408 16 1400 44 1378 44 C1356 44 1362 16 1332 16 H1180 C1160 16 1156 52 1132 52 C1110 52 1116 16 1088 16 H880 C862 16 860 38 842 38 C824 38 828 16 802 16 H590 C574 16 572 48 550 48 C528 48 532 16 506 16 H300 C284 16 282 36 264 36 C246 36 250 16 224 16 H0 Z";
+
 export function LogoDefs() {
   return (
     <svg width="0" height="0" style={{ position: "absolute" }} aria-hidden="true">
@@ -22,6 +31,17 @@ export function LogoDefs() {
         <linearGradient id="dgGrad" x1="0" y1="92" x2="0" y2="165" gradientUnits="userSpaceOnUse">
           <stop offset="0%" stopColor="#5FA850" />
           <stop offset="100%" stopColor="#43813A" />
+        </linearGradient>
+        {/* The hero band's glaze: the same three stops as lgGrad, remapped to
+            the band's own user space (y -18 lip top to y 60 drip tips; see
+            HeroDrip). lgGrad itself cannot be reused here because it is
+            userSpaceOnUse over y 92-215, the mark's coordinates; inside the
+            band's viewBox every pixel would sit before the first stop and
+            render flat #D9EDA0. */}
+        <linearGradient id="heroBandGrad" x1="0" y1="-18" x2="0" y2="60" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#D9EDA0" />
+          <stop offset="55%" stopColor="#BFE07A" />
+          <stop offset="100%" stopColor="#A3CE55" />
         </linearGradient>
       </defs>
       <symbol id="mark" viewBox="0 0 200 250" overflow="visible">
@@ -54,7 +74,7 @@ export function LogoDefs() {
         <circle cx="92" cy="26" r="3.5" fill="#FFFFFF" opacity="0.75" />
       </symbol>
       <symbol id="dripEdge" viewBox="0 0 1440 60" preserveAspectRatio="none">
-        <path d="M0,0 H1440 V16 C1408 16 1400 44 1378 44 C1356 44 1362 16 1332 16 H1180 C1160 16 1156 52 1132 52 C1110 52 1116 16 1088 16 H880 C862 16 860 38 842 38 C824 38 828 16 802 16 H590 C574 16 572 48 550 48 C528 48 532 16 506 16 H300 C284 16 282 36 264 36 C246 36 250 16 224 16 H0 Z" />
+        <path d={DRIP_EDGE_D} />
       </symbol>
     </svg>
   );
@@ -73,6 +93,49 @@ export function DripDivider({ fill, bg }) {
     <svg className="drip-divider" viewBox="0 0 1440 60" preserveAspectRatio="none" style={{ background: bg }} aria-hidden="true">
       <use href="#dripEdge" fill={fill} />
     </svg>
+  );
+}
+
+/* The hero band: the old ticker's slot, a slime glaze pour into #menu. Unlike
+   the flat DripDivider it carries the mark's own glaze treatment — the lgGrad
+   stops via #heroBandGrad, pale sheen strokes down the two deep lobes like the
+   strokes on the mark's drips — and two droplets that fall off those lobes on
+   the logo's existing fall/fall2 clocks. Requires LogoDefs on the page.
+
+   Sizing: viewBox "0 -18 1440 78" at 72px tall — the drip edge stays in its
+   natural 0-60 coordinates and the viewBox is slid up 18 units to make room
+   for the solid lip above it, so there are no transforms and the
+   userSpaceOnUse gradient reads the same coordinates everywhere (a translate
+   on the path would shift the gradient with it and print a seam at the lip).
+   That 18 + 60 at 72px reproduces the old wrapper's 18px + 54px footprint.
+   The band paints its own cream-2 ground (the color of #menu below), and the
+   droplets are position:absolute so they can fall past the svg into the
+   section without the band reserving blank height for the travel. */
+export function HeroDrip() {
+  return (
+    <div className="hero-drip" aria-hidden="true">
+      <svg className="hero-drip-band" viewBox="0 -18 1440 78" preserveAspectRatio="none" style={{ background: "var(--cream-2)" }}>
+        {/* rect overlaps the path's top edge by half a unit so antialiasing
+            cannot open a hairline of ground between them */}
+        <rect x="0" y="-18" width="1440" height="18.5" fill="url(#heroBandGrad)" />
+        <path d={DRIP_EDGE_D} fill="url(#heroBandGrad)" />
+        {/* sheen down the two deep lobes and a short one on the middle lobe,
+            the same pale stroke the mark's drips carry */}
+        <g stroke="#F1F8DC" fill="none" strokeLinecap="round">
+          <path d="M 542 22 C 540 30, 541 38, 545 43" strokeWidth="3.5" opacity="0.8" />
+          <path d="M 1123 22 C 1121 32, 1122 41, 1127 47" strokeWidth="3.5" opacity="0.8" />
+          <path d="M 835 21 C 834 26, 835 31, 838 34" strokeWidth="3" opacity="0.75" />
+        </g>
+      </svg>
+      <svg className="hero-droplet hd-a" viewBox="0 0 16 16" width="13" height="13">
+        <circle cx="8" cy="8" r="6.5" fill="var(--slime-bright)" />
+        <circle cx="6" cy="6" r="2" fill="#F1F8DC" opacity="0.9" />
+      </svg>
+      <svg className="hero-droplet hd-b" viewBox="0 0 16 16" width="10" height="10">
+        <circle cx="8" cy="8" r="6.5" fill="var(--slime-bright)" />
+        <circle cx="6.2" cy="6.2" r="1.8" fill="#F1F8DC" opacity="0.9" />
+      </svg>
+    </div>
   );
 }
 

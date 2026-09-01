@@ -1,6 +1,6 @@
 "use client";
 
-import { LogoDefs, Mark, AnimatedMark, DripDivider, BeANumberMark, ChismEggs } from "@/components/Logo";
+import { LogoDefs, Mark, AnimatedMark, DripDivider, HeroDrip, BeANumberMark, ChismEggs } from "@/components/Logo";
 import {
   CONTACT_EMAIL,
   DO_REP_NAME,
@@ -109,11 +109,10 @@ export default function HomeDO() {
         </div>
       </div>
 
-      {/* Slime glaze drip in place of the old scrolling ticker, same as the EN
-          page: hero is --cream and #menu is --cream-2, so the band is slime. */}
-      <div className="hero-drip" aria-hidden="true">
-        <DripDivider fill="var(--slime)" bg="var(--cream-2)" />
-      </div>
+      {/* Glaze band in place of the old scrolling ticker, same as the EN page:
+          hero is --cream and #menu is --cream-2, so the band wears the mark's
+          glaze — gradient, sheen, droplets — all inside HeroDrip. */}
+      <HeroDrip />
 
       <section id="menu">
         <div className="inner">

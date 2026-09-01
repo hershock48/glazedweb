@@ -1,6 +1,6 @@
 "use client";
 
-import { LogoDefs, Mark, AnimatedMark, DripDivider, BeANumberMark, ChismEggs } from "@/components/Logo";
+import { LogoDefs, Mark, AnimatedMark, DripDivider, HeroDrip, BeANumberMark, ChismEggs } from "@/components/Logo";
 import { CONTACT_EMAIL } from "@/lib/contact";
 import { PRICING, usd, num } from "@/lib/pricing";
 import { useHomeEffects } from "@/components/homeEffects";
@@ -80,12 +80,11 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Slime glaze drip in place of the old scrolling ticker. The hero sits on
+      {/* Glaze band in place of the old scrolling ticker. The hero sits on
           --cream and #menu on --cream-2, so a cream-on-cream drip would be
-          invisible; the band is slime, like the glaze on the mark. */}
-      <div className="hero-drip" aria-hidden="true">
-        <DripDivider fill="var(--slime)" bg="var(--cream-2)" />
-      </div>
+          invisible; the band wears the mark's glaze instead — gradient, sheen,
+          falling droplets — all inside HeroDrip. */}
+      <HeroDrip />
 
       <section id="menu">
         <div className="inner">

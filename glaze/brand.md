@@ -53,7 +53,7 @@ Verify by pixel diff: zero interior pixels should differ from the backdrop.
 
 ### Gradients
 
-Four, all in `LogoDefs`. If you namespace the ids, **rewrite both ends**:
+Five, all in `LogoDefs`. If you namespace the ids, **rewrite both ends**:
 `url(#x)` and `id="x"`. Catching one and not the other resolves every gradient to
 nothing and renders invisible shapes.
 
@@ -63,6 +63,7 @@ nothing and renders invisible shapes.
 | `lgGrad` | linear, y 92→215 | `#D9EDA0` → `#BFE07A` 55% → `#A3CE55` |
 | `creepGrad` | linear, y 90→124 | `#E3F2B0` → `#C3E181` |
 | `dgGrad` | linear, y 92→165 | `#5FA850` → `#43813A` |
+| `heroBandGrad` | linear, y -18→60 | `lgGrad`'s stops remapped to the hero band's user space |
 
 ### Raster copies
 

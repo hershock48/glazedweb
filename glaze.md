@@ -94,8 +94,8 @@ more than the work it saves.
 
 | | Build | Monthly | What it is |
 |---|---|---|---|
-| **The Original** | $750 (market $1,500) | $59 | One sharp page. Contact form, map, hours. Live in two weeks. |
-| **The Baker's Dozen** | $1,900 (market $3,900) | $99 | Up to six pages. Booking, menus, or light e-commerce, one of them. SEO foundations plus a Google Business tune-up. |
+| **The Original** | $750 (market $1,500) | $99 | One sharp page. Contact form, map, hours. Live in two weeks. |
+| **The Baker's Dozen** | $2,000 (market $3,900) | $150 | Up to six pages. Online ordering or booking built in. SEO foundations plus a Google Business tune-up. |
 | **Custom Order** | Quoted | Scoped to fit | Stores, membership, web apps, rebrands. |
 
 Real quotes on file, for range: Chism Chicken Ranch at $500 plus $50 a month (an

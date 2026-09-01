@@ -4,10 +4,23 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { CONTACT_EMAIL } from "@/lib/contact";
 import { LogoDefs, Mark } from "@/components/Logo";
+import { PRICING, usd } from "@/lib/pricing";
 
+// Prices derive from lib/pricing.js; this file used to carry its own typed
+// copy of them, which is exactly the drift the one-place rule exists for.
 const FLAVORS = {
-  original: { key: "original", name: "The Original", price: "$750 + $59/mo", blurb: "One-pager · classic glaze" },
-  dozen: { key: "dozen", name: "The Baker's Dozen", price: "$1,900 + $99/mo", blurb: "Full site · double dipped" },
+  original: {
+    key: "original",
+    name: "The Original",
+    price: `${usd(PRICING.us.original.build)} + ${usd(PRICING.us.original.monthly)}/mo`,
+    blurb: "One-pager · classic glaze",
+  },
+  dozen: {
+    key: "dozen",
+    name: "The Baker's Dozen",
+    price: `${usd(PRICING.us.dozen.build)} + ${usd(PRICING.us.dozen.monthly)}/mo`,
+    blurb: "Full site · double dipped",
+  },
   custom: { key: "custom", name: "Custom Order", price: "Let's talk", blurb: "Special recipe" },
 };
 

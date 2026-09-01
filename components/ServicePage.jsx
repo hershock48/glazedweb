@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LogoDefs, Mark } from "@/components/Logo";
+import { LogoDefs, Mark, HeroDrip } from "@/components/Logo";
 import { CONTACT_EMAIL } from "@/lib/contact";
 
 // The shell for the SEO service pages (/restaurant-website-design-michigan
@@ -32,50 +32,59 @@ export default function ServicePage({ kicker, title, lead, highlights, related, 
         </div>
       </header>
 
-      <main className="legal-wrap">
-        <div className="sec-kicker" style={{ color: "var(--fern)" }}>
-          {kicker}
-        </div>
-        <h1>{title}</h1>
-        <p className="legal-lead">{lead}</p>
-
-        {highlights && (
-          <div className="legal-highlights">
-            {highlights.map((h) => (
-              <div key={h.title}>
-                <b>{h.title}</b>
-                <span>{h.body}</span>
-              </div>
-            ))}
+      <main>
+        <div className="legal-wrap svc-intro">
+          <div className="sec-kicker" style={{ color: "var(--fern)" }}>
+            {kicker}
           </div>
-        )}
+          <h1>{title}</h1>
+          <p className="legal-lead">{lead}</p>
 
-        <section className="legal">{children}</section>
+          {highlights && (
+            <div className="legal-highlights">
+              {highlights.map((h) => (
+                <div key={h.title}>
+                  <b>{h.title}</b>
+                  <span>{h.body}</span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
 
-        <div className="legal-cta">
-          <p>
-            Pricing is on the menu: one build price, one small monthly, no surprise invoices. Every site is baked from
-            scratch in Marshall, and everything is handed over: code, content, and accounts.
-            {related && related.length > 0 && (
-              <>
-                {" "}
-                Also see{" "}
-                {related.map((r, i) => (
-                  <span key={r.href}>
-                    <Link href={r.href}>{r.label}</Link>
-                    {i < related.length - 1 ? " and " : "."}
-                  </span>
-                ))}
-              </>
-            )}
-          </p>
-          <div className="legal-actions">
-            <Link className="btn big" href="/order">
-              Start your order →
-            </Link>
-            <Link className="btn big ghost" href="/#menu">
-              See the menu
-            </Link>
+        {/* the homepage hero's glaze pour, full-bleed between the pitch and
+            the article, so a search landing feels like the same shop.
+            LogoDefs above provides the gradient it references. */}
+        <HeroDrip />
+
+        <div className="legal-wrap svc-body">
+          <section className="legal">{children}</section>
+
+          <div className="legal-cta">
+            <p>
+              Pricing is on the menu: one build price, one small monthly, no surprise invoices. Every site is baked
+              from scratch in Marshall, and everything is handed over: code, content, and accounts.
+              {related && related.length > 0 && (
+                <>
+                  {" "}
+                  Also see{" "}
+                  {related.map((r, i) => (
+                    <span key={r.href}>
+                      <Link href={r.href}>{r.label}</Link>
+                      {i < related.length - 1 ? " and " : "."}
+                    </span>
+                  ))}
+                </>
+              )}
+            </p>
+            <div className="legal-actions">
+              <Link className="btn big" href="/order">
+                Start your order →
+              </Link>
+              <Link className="btn big ghost" href="/#menu">
+                See the menu
+              </Link>
+            </div>
           </div>
         </div>
       </main>

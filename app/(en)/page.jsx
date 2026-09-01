@@ -93,8 +93,8 @@ export default function Home() {
           </div>
           <h2 className="sec-title">Order it like a donut.</h2>
           <p className="sec-sub">
-            Three flavors. One build price, one small monthly that keeps your site hosted, secure, and fresh, with no
-            surprise invoices. Every site is baked from scratch, never from a template.
+            Three flavors. One build price, one small monthly that keeps your site hosted, secure, and up to date,
+            with no surprise invoices. Every site is made from scratch, never from a template.
           </p>
           <div className="menu-grid">
             <div className="mcard reveal">
@@ -129,7 +129,7 @@ export default function Home() {
               <ul>
                 <li>Up to 6 pages: services, about, gallery, the works</li>
                 <li>Custom design that looks like you, not a theme</li>
-                <li>Booking, menus, or e-commerce lite, one baked in</li>
+                <li>Booking, menus, or e-commerce lite, one built in</li>
                 <li>SEO foundations + Google Business tune-up</li>
                 <li>Monthly covers hosting, updates, edits, and a check-in</li>
               </ul>
@@ -145,7 +145,7 @@ export default function Home() {
                 <li>Online stores, membership sites, web apps</li>
                 <li>Rebrands and redesigns of existing sites</li>
                 <li>Care plan scoped to fit: hosting, updates, and edits</li>
-                <li>If you can sketch it on a napkin, we can bake it</li>
+                <li>If you can sketch it on a napkin, we can build it</li>
               </ul>
               <a className="btn ghost" href="/order?flavor=custom">
                 Get a quote
@@ -162,7 +162,7 @@ export default function Home() {
           <div className="sec-kicker" style={{ color: "var(--fern)" }}>
             The process
           </div>
-          <h2 className="sec-title">Fresh out of the fryer in four steps.</h2>
+          <h2 className="sec-title">Out of the fryer in four steps.</h2>
           <div className="steps">
             <div className="step reveal">
               <div className="num">1</div>
@@ -198,9 +198,9 @@ export default function Home() {
         <div className="inner">
           <div className="sec-kicker">The case</div>
           <h2 className="sec-title" style={{ color: "#F3EAE1" }}>
-            Fresh from the shop.
+            Straight from the shop.
           </h2>
-          <p className="sec-sub">Recent bakes, and room in the case for yours.</p>
+          <p className="sec-sub">Recent work, and room in the case for yours.</p>
           <div className="work-grid">
             <a
               id="chism-card"

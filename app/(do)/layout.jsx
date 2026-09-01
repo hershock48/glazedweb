@@ -103,9 +103,12 @@ const localBusinessSchema = {
 };
 
 export default function DoRootLayout({ children }) {
+  // suppressHydrationWarning + the .js gate script: same as the English
+  // layout, see the comment there. Keep the two in sync.
   return (
-    <html lang="es">
+    <html lang="es" suppressHydrationWarning>
       <body>
+        <script dangerouslySetInnerHTML={{ __html: `document.documentElement.classList.add("js")` }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}

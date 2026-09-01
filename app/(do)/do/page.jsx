@@ -122,7 +122,7 @@ export default function HomeDO() {
           <h2 className="sec-title">Pídela como una dona.</h2>
           <p className="sec-sub">
             Tres sabores. Un precio de construcción y una mensualidad pequeña que mantiene tu página alojada, segura y
-            al día, sin facturas sorpresa. Cada página se hornea desde cero, nunca de una plantilla.
+            al día, sin facturas sorpresa. Cada página se hace desde cero, nunca de una plantilla.
           </p>
           <div className="menu-grid">
             <div className="mcard reveal">
@@ -179,7 +179,7 @@ export default function HomeDO() {
                 <li>Tiendas online, membresías, aplicaciones web</li>
                 <li>Rediseños de páginas que ya existen</li>
                 <li>Plan de cuidado a tu medida: alojamiento, actualizaciones y ediciones</li>
-                <li>Si lo puedes dibujar en una servilleta, lo podemos hornear</li>
+                <li>Si lo puedes dibujar en una servilleta, lo podemos construir</li>
               </ul>
               <a
                 className="btn ghost"

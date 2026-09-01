@@ -76,9 +76,16 @@ const localBusinessSchema = {
 };
 
 export default function RootLayout({ children }) {
+  // suppressHydrationWarning: the .js gate script below adds a class to <html>
+  // before React hydrates, and React would otherwise warn about the mismatch.
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
+        {/* The .js gate. reveal-on-scroll hides elements via `html.js .reveal`
+            so a blocked script leaves the page complete instead of blank; this
+            runs synchronously before anything below it paints, so there is no
+            flash of visible-then-hidden. Keep in sync with the /do layout. */}
+        <script dangerouslySetInnerHTML={{ __html: `document.documentElement.classList.add("js")` }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}

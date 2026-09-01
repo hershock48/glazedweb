@@ -89,3 +89,17 @@ week.
 The mark is sized in `em` (2.15em ≈ 26px against a 12px footer line). At 22px the hole closes
 to 3px and it starts reading as a lollipop; at 30px it dominates the bar. Both ends were
 rendered before that number was picked.
+
+## The host footer link-rule trap (devine, 2026-09-01)
+
+A site-wide footer rule like `.site-foot a { display: inline-block; padding;
+margin; border-bottom }` outguns bare `.gw-credit` (0-1-1 vs 0-1-0): the
+credit loses its inline-flex, the mark wraps under the words, and the host
+hover paints its underline on Glazed ground. Symptom: the donut on its own
+line below "Double Dipped by".
+
+Fix at the plate scope, which already exists at winning specificity: add to
+`.gw-plate .gw-credit` the declarations `display: inline-flex; padding: 0;
+margin: 0; border-bottom: 0;` and neutralize `:hover`/`:focus-visible`
+color and border the same way. When the credit mis-renders on any site,
+check that site's own footer link rule FIRST before touching the asset.

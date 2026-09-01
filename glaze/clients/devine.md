@@ -195,6 +195,19 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   Sympathy on a birthday order is the kind of wrong that ships. No
   separate customer table: nothing to maintain, nothing to drift.
 
+- **Workroom payments verified end to end in sandbox 2026-09-01**, Kevin
+  driving: three card charges through the order-card SDK pane (each
+  itemized in Square with the customer-paid $0.99 line and linked back by
+  workroomOrderId) and one cash recording (no fee, linked). The fee is
+  named "Order fee" everywhere as of the same day (Kevin's palatability
+  ask; concrete labels tolerate best, and the pre-rename sale correctly
+  keeps its historical "Service fee" line). Board polish from the same
+  test pass: receipt-style fee rows instead of a nagging sentence, phone
+  link beside the customer's name, paid badge trimmed, done-but-unpaid
+  living in its own "Out the door, not paid" section that never ages off.
+  SDK trap recorded: the script lives on web.squarecdn.com (squareup.com
+  does not resolve).
+
 ## Permissions
 
 - **Product photographs were supplied by Kevin directly** (their host captchas

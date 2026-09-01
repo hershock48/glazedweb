@@ -15,6 +15,7 @@ artwork into a build at usable resolution, or to make it move.
 | Photo processing | `devine/tools/process-supplied.py` | Supplied photography normalized with derived (not eyeballed) color matching. |
 | Badge layering | `stagecoach/tools/cut-mark.py` | Cuts a client badge into animatable layers without redrawing it. Same technique as the Lemoncello build. |
 | Link-card rendering | `devine/tools/og.mjs`, `og-products.mjs`, `stagecoach/tools/make-og.mjs` | Render og.jpg from a real route so the card is the site, not a mock. |
+| Photo ingest (drop to site) | `devine/tools/ingest-photo.mjs` | One command from the photo drop email to the site: attachments arrive named <slug>.jpg, so the filename is the match — point it at a file or a whole downloads folder and each slug-named image becomes the product 1000px + 400px webp pair, its image-manifest entry, and its 1200x630 link card (runs og-products.mjs). Non-slug filenames skipped loudly. Sharp is a pinned devDependency there. |
 | Shirt-print preflight | `beanumber/` (scripts around the shirt SVGs) | Raster preflight at 20px/mm: distance-transform thickness gates, erosion survival, washout floors. For anything screen-printed. |
 | Video renders | `beanumber/src/remotion/` | Remotion impact-report and reel compositions — the account's only programmatic video. |
 | Logo→raster | `beanumber/scripts/convert-logo-to-jpg.js` | SVG → JPG at set sizes. |

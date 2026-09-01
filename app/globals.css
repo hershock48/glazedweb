@@ -99,18 +99,22 @@
   h1 em svg path { stroke-dasharray: 210; animation: underline-draw .8s ease-out .4s both; }
   @keyframes underline-draw { from { stroke-dashoffset: 210; } to { stroke-dashoffset: 0; } }
   .hero p.sub { margin-top: 22px; font-size: 18px; color: #6B5747; line-height: 1.6; max-width: 480px; }
-  /* "it ships glazed": a slime highlighter swipe behind the word's lower
-     half, chocolate letters untouched. Third pass at this word, and each
-     retraction earned a rule: green TEXT is out because no slime-family
-     green passes 4.5 on cream (fern passes but reads as a leaf, not glaze),
-     and the full pill with drips was out as "a lot" per Kevin. The swipe
-     keeps the glaze under the ink, where contrast is chocolate-on-slime
-     (~8) at worst. */
+  /* "it ships glazed": glossy chocolate letters, nothing behind them.
+     Fourth and settled pass (Kevin: "just make it a shiny brown"), and the
+     graveyard is worth keeping: green TEXT can never pass 4.5 on cream in
+     any slime-family green; fern passes but reads as a leaf; the slime pill
+     with drips was "a lot"; the highlighter swipe still felt forced. The
+     gloss is a clipped gradient from caramel to the body chocolate; the
+     lightest stop #8A5230 measures 5.9 on cream, so every pixel of the
+     letterforms clears 4.5, and the solid color line is the fallback for
+     anything that cannot clip. */
   .hero p.sub .glazed {
-    font-weight: 800; color: var(--chocolate);
-    padding: 0 4px;
-    background: linear-gradient(180deg, transparent 54%, #C9E68C 54%, #A9D65C 96%, transparent 96%);
-    border-radius: 0 0 6px 6px;
+    font-weight: 800;
+    color: #4A2E1C;
+    background: linear-gradient(180deg, #8A5230 0%, #6B3F24 42%, #2B1E16 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
   .hero .ctas { margin-top: 30px; display: flex; gap: 14px; flex-wrap: wrap; }
   @media (max-width: 800px) { .hero .ctas, .hero p.sub { justify-content: center; margin-left: auto; margin-right: auto; } }

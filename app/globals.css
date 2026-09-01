@@ -99,11 +99,28 @@
   h1 em svg path { stroke-dasharray: 210; animation: underline-draw .8s ease-out .4s both; }
   @keyframes underline-draw { from { stroke-dashoffset: 210; } to { stroke-dashoffset: 0; } }
   .hero p.sub { margin-top: 22px; font-size: 18px; color: #6B5747; line-height: 1.6; max-width: 480px; }
-  /* "it ships glazed": the word wears the brand green, so it reads as the
-     slang and the donut at once. --fern, not --slime, because this is 18px
-     body text on cream and slime fails contrast there; fern is the token
-     already validated for small green text on this ground (4.65). */
-  .hero p.sub .glazed { color: var(--fern); font-weight: 800; }
+  /* "it ships glazed": the word is dipped, not tinted. First pass set the
+     text itself green and Kevin read it as flat, correctly: slime TEXT on
+     cream can never pass 4.5 at body size (slime-bright measures ~1.6), and
+     the only green that passes is fern, which is a leaf, not a glaze. So the
+     glaze goes behind the word instead: chocolate on the slime gradient
+     measures ~8, and the pill gets a little drip off its underside. */
+  .hero p.sub .glazed {
+    position: relative; display: inline-block;
+    background: linear-gradient(180deg, #D9EDA0, #A9D65C);
+    color: var(--chocolate); font-weight: 800;
+    padding: 0 9px 1px; border-radius: 9px;
+  }
+  .hero p.sub .glazed::after {
+    content: ""; position: absolute; left: 20%; bottom: -7px;
+    width: 7px; height: 11px; background: #A9D65C;
+    border-radius: 4px 4px 8px 8px;
+  }
+  .hero p.sub .glazed::before {
+    content: ""; position: absolute; right: 24%; bottom: -4px;
+    width: 5px; height: 7px; background: #A9D65C;
+    border-radius: 3px 3px 6px 6px;
+  }
   .hero .ctas { margin-top: 30px; display: flex; gap: 14px; flex-wrap: wrap; }
   @media (max-width: 800px) { .hero .ctas, .hero p.sub { justify-content: center; margin-left: auto; margin-right: auto; } }
   .hero .proof { margin-top: 26px; font-size: 13px; color: var(--taupe); }

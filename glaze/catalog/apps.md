@@ -30,11 +30,27 @@ never needed: stem purchases, shrink with reasons, and per-product recipes
 that price a week's margin. If the kitchen system gets extracted, the
 workroom's store/auth are the newest TS copies to extract FROM.
 
+**Third copy, 2026-09-01: `anchor/app/workroom/` + `lib/workroom/`.** The
+lightest one, and the proof the shape ports to a business with no inventory:
+devine's quotes queue becomes a LEADS queue (the site's own quote form writes
+the row; statuses new → called → quoted → won/lost; the agency's notes kept
+visibly apart from the customer's words) and its Square pay controls become a
+READ-ONLY Stripe window. Two divergences worth stealing back: the gate is a
+passcode rather than a PIN, with the session cookie carrying a HASH so a
+stolen cookie never yields the secret (devine stores the PIN itself), because
+this one guards customer contact details rather than an order board; and the
+lead types live in an import-safe `lib/workroom/leads.ts`, because the screens
+import a status constant as a value and `pg` followed it into the client
+bundle. Also the reason anchor now has an `app/(site)/` route group: a
+back-office tool inside the customer root layout inherits the shopfront header
+and a second nested `<main>`, which is three landmark violations per screen.
+
 ## The rest
 
 | App | Lives in | What it is |
 |---|---|---|
 | Florist workroom | `devine/src/app/workroom/`, `src/lib/workroom/` | Order board (web orders land automatically, phone orders written up at the counter, one button moves an order along) + stem/shrink/recipe tracker with a Monday-morning week report + a wedding/funeral QUOTE BUILDER: stems in, priced quote out, autosaving, with a client-facing print view and a wholesale buy list. One importless math file (`quote-math.ts`) shared by list, builder and print. Never guesses a number it was not given. Since 2026-08-31 also the INVENTORY CORE: a master stem list seeded from the shop's laminated selling-price lists, a weekly distributor order that starts from last week and logs the whole truck as purchases in one tap (bunches converted by a stems-per-bunch the shop teaches it once), a plant par sheet with derived Need, and a cooler ledger (bought minus tossed minus made over a short window) with per-recipe can-make counts, fed by both the order board and recipe-mapped Square register sales. The shape for any Phase-3 floral SaaS. |
+| Agency workroom (leads + payments) | `anchor/app/workroom/`, `lib/workroom/` | The small owner-dashboard: a leads queue fed by the site's own quote form (statuses, per-lead agency notes, one-tap call links) and a read-only Stripe view of payments and running autopays, labelled from session metadata. Passcode gate with a hashed cookie, Postgres-or-memory store that announces the memory state on screen, quote handler that stores AND logs so a storage fault never costs a submission. The shape for any client whose "dashboard" is really a work queue plus a money window, and who should NOT be sold a half-built CRM when their real book lives in an industry system. |
 | Sponsorship platform | `beanumber/` | The account's largest system: Stripe subscriptions + one-time gifts, webhook with Postgres-first mirror and idempotent retries, magic-link auth, shirt-number claiming, admin roster with uploads and compliance digests, drip email pipeline, newsletter engine with per-sponsor links, Remotion video, an Expo mobile app, a rep program (Airtable-backed — see the retirement memo before touching). Steal subsystems, not the whole. |
 | Grant pipeline | `bangrants/` | Discovery dashboard: grants.gov ingest, page-change monitoring, funders/inbox/pipeline/watchlist views, Supabase auth. The shape for any "watch external sources, triage into a pipeline" tool. |
 | Insurance pitch site + quote engine | `anchor/` | Content site with a working quote intake, a giving ledger, and a public calculator. |

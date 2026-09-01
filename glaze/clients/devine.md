@@ -287,6 +287,16 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   only recipe-eligible designs, split Needs-a-recipe / Already-written
   in words. Pattern worth keeping: every workroom data type needs its
   read view before its editor feels finished.
+- **Recipes reference the stem list; only facts create names (Kevin's
+  question, 2026-09-01; devine ad66cda)**: the recipe form accepted any
+  typed variety and the route REGISTERED strangers onto the master list
+  rather than refuse (retired rule, recorded as a retraction in the
+  route). Now ledger facts (purchases) still auto-register, but a
+  recipe's unknown variety is refused by name, flagged while typing,
+  with a one-tap Add-it for a deliberate new name. normalizeVariety
+  lives in derive.ts (client-safe), store re-exports. Her price list
+  proved the stakes: it says "rose" SINGULAR, so a typed "roses" would
+  have silently forked the namespace under the old rule.
 - **Stems and Inventory merged into one Stems tab, 2026-09-01, on
   Kevin's header-crowding call and the stems improvement pass** (devine
   81b0686): one job, one tab; /workroom/inventory redirects. New on the

@@ -220,6 +220,19 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   from the same pass: focus rings turn inward inside scroll regions (the
   clipped-ring catch), and the fee's paid badge trimmed.
 
+- **Online card checkout built 2026-09-01, behind the CHECKOUT_CARDS env
+  switch, PICKUP ONLY**: the storefront half of the proven payment rails.
+  Pay-now-by-card at checkout shows the Order fee as its own row, charges
+  through her Square with the board id as reference, and the ticket lands
+  born confirmed and already wearing the paid badge. Pickup-only because
+  the delivery fee is still her unanswered question and a charged total a
+  fee might change would be the checkout lying; deliveries keep pay-on-
+  call and say so. Switch off = byte-for-byte the phase-1 flow. The
+  Exhibit A line "when both parties agree in writing" is satisfied by
+  Kevin flipping the switch after that writing exists. Sandbox test of
+  the full customer flow still pending (needs CHECKOUT_CARDS=on in
+  Vercel + a redeploy).
+
 ## Permissions
 
 - **Product photographs were supplied by Kevin directly** (their host captchas

@@ -379,6 +379,30 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   Kevin flipping the switch after that writing exists. Sandbox test of
   the full customer flow still pending (needs CHECKOUT_CARDS=on in
   Vercel + a redeploy).
+- **The inventory pass, 2026-09-01, on Kevin's read of the merged Stems
+  page** ("I really don't understand the flow"; the master list "is what
+  everything is built on, and it's at the bottom"). Rulings, all his:
+  the tab is INVENTORY (/workroom/inventory hosts it, /workroom/stems
+  redirects); the page reads top to bottom in dependency order as
+  collapsible blocks (Stem library, Log a buy / Log a toss, In the
+  cooler, Recipes low and closed, Recent entries); the master list is
+  the STEM LIBRARY and NOTHING creates a name implicitly anywhere (the
+  stems POST, the weekly-order receive and every variety field refuse an
+  unknown name and offer one tap to add it; receive refuses BEFORE
+  writing any purchase); "Paid, total" is now "Invoice total" with the
+  average paid so far offered as a one-tap fill, never a silent
+  estimate; the week table left the page for the Dashboard, which
+  gained a "Stems in what sold" tile and a per-product margins table
+  keyed by slug (three products share a name); every dashboard delta
+  chip now carries its basis ("100 last week", "0 last Tuesday")
+  because "was 0" said nothing; and the "No database is connected"
+  flash on the dashboard was a real bug (every screen started its
+  backend state at "memory" for the half second before the first fetch;
+  now null, and the warning waits for the server to say). Third-person
+  "her" copy retired from the seed buttons ("Load the price lists",
+  "Load the par sheet"): workroom copy talks TO the shop. Trap: two
+  sessions took this critique at once and both edited the tree; check
+  git status before assuming an uncommitted change is yours.
 
 ## Permissions
 

@@ -298,6 +298,21 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   wrapper with no positioned ancestor one escaped the clip and
   stretched the document to 688px at 390; scroll wrappers holding
   sr-only content need position:relative.
+- **Plants folded into Weekly order, same day** (devine 3e23ad2): same
+  weekly buying motion, one page; /workroom/plants redirects; header is
+  five tabs (Orders / Dashboard / Stems / Weekly order / Quotes). The
+  lede answers the question Kevin asked out loud: the page is the
+  prebook and the receiving log, and it TRANSMITS NOTHING; she orders
+  with her rep the way she always has. PlantsSection is a section, not
+  a page: the host screen owns the gate and the memory warning.
+- **Stems wordiness and logic pass, same day, on Kevin's read** ("a
+  little complicated, too wordy"; devine 7f19d32): prose counted down
+  to data-plus-one-sentence throughout; the stem-list copy switched
+  from third person (hers to fill) to second (workroom copy talks TO
+  the shop); recipeCost() is the one costing rule for the week figure
+  and the margins table; the 115-variety master list collapsed behind
+  a details disclosure. Seeded numbers verified identical before and
+  after the refactor.
 - **The Square-live summary pull VERIFIED end to end on production,
   2026-09-01, Kevin supplying the workroom PIN**: the deployed dashboard
   at /workroom/dashboard answered every range from Square's sandbox

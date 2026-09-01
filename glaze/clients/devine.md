@@ -277,6 +277,16 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   blank-paidAt sales; its windowed Cost/stem column stays deliberately
   different, with the why beside it. One seeded dataset reconciled by
   hand across all three screens; auditors clean.
+- **The recipes section gets a read view, 2026-09-01, on Kevin's
+  "feels half done"** (devine 4b24f2a): he was right and it was not an
+  industry gap; the section was an editor with no reader (the only way
+  to see a recipe was picking its product in a dropdown marked with a
+  bare dot). Written recipes now list first (product, parts, stem cost
+  against price, margin, Edit into the form); the empty state teaches
+  the concept with one concrete example sentence; the picker offers
+  only recipe-eligible designs, split Needs-a-recipe / Already-written
+  in words. Pattern worth keeping: every workroom data type needs its
+  read view before its editor feels finished.
 - **Stems and Inventory merged into one Stems tab, 2026-09-01, on
   Kevin's header-crowding call and the stems improvement pass** (devine
   81b0686): one job, one tab; /workroom/inventory redirects. New on the

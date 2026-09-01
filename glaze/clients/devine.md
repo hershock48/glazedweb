@@ -418,6 +418,22 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   stems-per-bunch) that ends with a visible "Added" line saying where
   the blanks can be filled. The weekly-order add-them-all batch button
   died with the same catch: the reflexive click at scale.
+- **Costing is by LOT, oldest first; the blended average is RETIRED
+  (Kevin, 2026-09-01).** His example killed the average: week 1 buys 15
+  roses at A and sells 14; week 2 buys 15 at B, sells 1, tosses 15. The
+  average priced the toss at the midpoint though 14 of those stems were
+  week-2 roses at B, and one holiday buy would have repriced a year of
+  tosses. Now every buy is a lot at its invoice price; tosses and made
+  arrangements draw from the oldest lot with stems left and cost what
+  they drew; stems no lot can cover are UNPRICED and counted, never
+  guessed. lotCosting() in devine derive.ts is the one walk, read by
+  the Dashboard (tossed dollars, stems in what sold, margins by ticket)
+  and the Inventory page (cost of what is on hand, recipe book, oldest
+  lot age per row). Quote prefills and the buy form one-tap use the
+  LAST invoice price, not an average. Kevin also named the cost field
+  for what it is: "what you paid the wholesaler for that buy, off the
+  invoice" is the P&L input; the label says so now. If a session finds
+  "blended average" stated as policy anywhere, that text is stale.
 
 ## Permissions
 

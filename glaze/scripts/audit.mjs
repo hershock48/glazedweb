@@ -51,6 +51,15 @@ const WIDTHS = [
   [1440, 900, "desk"],
 ];
 
+// --cookie name=value lets the auditor through a gate. The account's
+// back-of-house screens (devine's workroom, kidniche's panel) sit behind a
+// PIN cookie, and without this the auditor audits the PIN gate at every
+// route and calls each one clean. Added 2026-09-01 for the devine dashboard.
+const cookieRaw = arg("cookie", "");
+const COOKIE = cookieRaw.includes("=")
+  ? { name: cookieRaw.slice(0, cookieRaw.indexOf("=")), value: cookieRaw.slice(cookieRaw.indexOf("=") + 1), url: BASE }
+  : null;
+
 // axe is injected into the page rather than imported, so it runs in the page's
 // own context against the real rendered DOM.
 //
@@ -83,6 +92,7 @@ const unreachable = [];
 for (const route of ROUTES) {
   for (const [w, h, tag] of WIDTHS) {
     const page = await browser.newPage({ viewport: { width: w, height: h }, deviceScaleFactor: 1 });
+    if (COOKIE) await page.context().addCookies([COOKIE]);
     page.on("console", (m) => m.type() === "error" && errors.push(`${route} ${tag}: ${m.text().slice(0, 120)}`));
     page.on("pageerror", (e) => errors.push(`${route} ${tag}: uncaught ${e.message.slice(0, 120)}`));
     page.on("response", (r) => {

@@ -36,6 +36,14 @@ const BASE = arg("base", "http://127.0.0.1:4490");
 const ROUTES = arg("routes", "/").split(",").map((r) => r.trim()).filter(Boolean);
 const WIDTHS = arg("widths", "320,768").split(",").map((w) => parseInt(w.trim(), 10)).filter(Boolean);
 
+// --cookie name=value lets the harness through a gate; see the matching
+// note in audit.mjs (the PIN-gated workroom screens audit as the gate
+// otherwise, at every route, and read as clean).
+const cookieRaw = arg("cookie", "");
+const COOKIE = cookieRaw.includes("=")
+  ? { name: cookieRaw.slice(0, cookieRaw.indexOf("=")), value: cookieRaw.slice(cookieRaw.indexOf("=") + 1), url: BASE }
+  : null;
+
 const here = path.dirname(fileURLToPath(import.meta.url));
 const axePath = [
   path.join(process.cwd(), "node_modules/axe-core/axe.min.js"),
@@ -55,6 +63,7 @@ let consoleErrors = 0;
 
 for (const width of WIDTHS) {
   const context = await browser.newContext({ viewport: { width, height: 900 } });
+  if (COOKIE) await context.addCookies([COOKIE]);
   const page = await context.newPage();
   page.on("console", (m) => {
     if (m.type() === "error") {

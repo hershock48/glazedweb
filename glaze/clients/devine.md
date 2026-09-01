@@ -218,7 +218,32 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   critique of stems-and-shrink ("you put the info in there, so what?");
   the stems page now states where its data goes, right at the top. Also
   from the same pass: focus rings turn inward inside scroll regions (the
-  clipped-ring catch), and the fee's paid badge trimmed.
+  clipped-ring catch), and the fee's paid badge trimmed. SUPERSEDED the
+  same day by the dashboard below; /workroom/week now redirects.
+- **The dashboard, built 2026-09-01 on Kevin's second critique of the week
+  screen** (right numbers, wrong shape: too wordy, one fixed window, hidden
+  behind a tab): the workroom's front door at /workroom is now a dashboard
+  and the order board moved to /workroom/orders. Shape researched against
+  Square/Stripe/Toast/Shopify and NN/g and Few before building: one range
+  control (Day / Week / Month / Year with steppers), a four-tile stat row
+  in Square's own vocabulary, ONE chart, best sellers as a list, zero
+  sentences on the face (provenance lives in one closed details block).
+  Comparisons are like-for-like or they lie: a Tuesday compares to LAST
+  Tuesday (weekday rhythm), a partial window to the same elapsed point of
+  the prior one, and the one caption under the control names the basis.
+  Register money comes from /api/workroom/summary, which asks Square's
+  Payments API directly when the link is live (so Month/Year show her
+  real pre-webhook register history) and falls back to the stored webhook
+  rows, the response naming which ledger answered. Windows and bucket
+  edges are computed on the counter device's own calendar and passed as
+  epoch ms, because serverless runs in UTC and "today" means today in
+  Marshall. Orders/stems APIs take a days param (max 400). Traps caught
+  in verification: stale summary buckets against a new window's labels
+  crashed the year view (buckets now sliced to the window); a 1-2-5 cent
+  axis printed "$0/$1/$1" on a quiet day (tick ladder is now whole-dollar
+  10/20/50 with clean halves); auto-fill left a phantom fifth column
+  (auto-fit). Square-live pull is code-verified against a stub only;
+  exercising it against the sandbox register is owed.
 
 - **Online card checkout built 2026-09-01, behind the CHECKOUT_CARDS env
   switch, PICKUP ONLY**: the storefront half of the proven payment rails.

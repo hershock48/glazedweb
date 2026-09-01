@@ -161,6 +161,22 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   preview row (cookie via `/api/season`) is the demo move for the meeting:
   flip her site through the whole year across the table.
 
+- **The register/board seam, verified in code 2026-09-01**: a Square ring
+  never creates a board order (createOrder is called only by web checkout
+  and the phone write-up), and money is never double-counted (Square is
+  the only money ledger; board subtotals are worksheet numbers). But STEM
+  consumption counts both board orders marked made/done AND recipe-mapped
+  Square sales with no linkage, so an arrangement written on the board and
+  ALSO rung by its product tile decrements stems twice. The counter rule
+  that resolves it, part of her training: product tile = leaving the store
+  now; custom amount = the work is on the board. Custom-amount rings carry
+  no line items and cannot decrement, and the inventory page counts them
+  visibly. Possible later build if the habit does not hold: push board
+  orders into Square via the Orders API (payment then carries our order id
+  and inventory can dedupe); deferred until real use shows the seam rubs,
+  and Square-POS-free-plan behavior for collecting API orders needs
+  verifying on her hardware first.
+
 ## Permissions
 
 - **Product photographs were supplied by Kevin directly** (their host captchas

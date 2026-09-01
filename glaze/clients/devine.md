@@ -268,6 +268,16 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   triplicated across Dashboard, Stems, and Inventory with diverging
   windows and can disagree on the same week's Tossed dollars; extract
   one shared derivation module.
+- **The Square-live summary pull VERIFIED end to end on production,
+  2026-09-01, Kevin supplying the workroom PIN**: the deployed dashboard
+  at /workroom/dashboard answered every range from Square's sandbox
+  Payments API directly (response source:"square", truncated:false),
+  showing the real test charges: Week $736.80 across 10 rings ($120.95
+  Monday Aug 31 + $615.85 Tuesday Sep 1, cash $150), Day and Month
+  agreeing with their slices, Year the full $737, buckets summing
+  exactly to totals, weekday-aligned comparison captions correct, zero
+  console errors. The owed sandbox exercise is paid; production flip to
+  her real register remains gated on her Allow click, as before.
 
 - **Online card checkout built 2026-09-01, behind the CHECKOUT_CARDS env
   switch, PICKUP ONLY**: the storefront half of the proven payment rails.

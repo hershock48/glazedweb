@@ -106,7 +106,7 @@ took a full audit to find.**
 | `--raspberry` | `#E84D8A` | The brand pink. Accents, borders, the h1 flourish, hovers, focus rings, list bullets. **Never as text on cream and never under white text.** |
 | `--raspberry-deep` | `#CE3672` | Backgrounds that carry white text: buttons, badges, the CTA band. White on it is 4.78. |
 | `--raspberry-ink` | `#C9356F` | Link text on a light ground. 4.63 on cream, 4.89 on the white cards. |
-| `--slime` | `#BFE07A` | The glaze green. Dark grounds, the ticker, hover states in the footer. |
+| `--slime` | `#BFE07A` | The glaze green. Dark grounds, the hero drip band, hover states in the footer. |
 | `--slime-bright` | `#A9D65C` | Focus borders, card hover edges, the numbered step discs. |
 | `--fern` | `#467C3D` | Small bold text on a light ground: kickers, flavours, step labels. 4.65. |
 | `--chocolate` | `#2B1E16` | Body ink. |

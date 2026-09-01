@@ -130,11 +130,12 @@
   .sheen { animation: shimmer 6s ease-in-out infinite; }
   @keyframes shimmer { 0%,100% { opacity: .55; } 50% { opacity: .95; } }
 
-  /* ============ ticker ============ */
-  .ticker { background: var(--slime); overflow: hidden; padding: 13px 0; border-top: 2px solid var(--chocolate); border-bottom: 2px solid var(--chocolate); }
-  .ticker-inner { display: flex; gap: 0; width: max-content; animation: scroll 28s linear infinite; }
-  .ticker span { font-weight: 800; font-size: 14px; letter-spacing: .18em; text-transform: uppercase; color: var(--chocolate); padding: 0 18px; white-space: nowrap; }
-  @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  /* ============ hero drip band ============ */
+  /* The old scrolling ticker's slot, now a slime glaze pour into #menu. The
+     drip svg's solid lip is only ~14px of its 54px, so the wrapper adds solid
+     slime above it; without that the band reads as a hairline, not a banner.
+     line-height: 0 kills the inline-svg baseline gap. */
+  .hero-drip { background: var(--slime); padding-top: 18px; line-height: 0; }
 
   /* ============ sections ============ */
   section .inner { max-width: 1100px; margin: 0 auto; padding: 84px 24px; }

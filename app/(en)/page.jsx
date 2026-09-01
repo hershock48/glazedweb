@@ -80,25 +80,11 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="ticker" aria-hidden="true">
-        <div className="ticker-inner">
-          {[0, 1].map((i) => (
-            <span key={i} style={{ display: "contents" }}>
-              <span>Fresh sites</span>
-              <span>◦</span>
-              <span>No templates</span>
-              <span>◦</span>
-              <span>Simple pricing</span>
-              <span>◦</span>
-              <span>2-week launches</span>
-              <span>◦</span>
-              <span>You own the code</span>
-              <span>◦</span>
-              <span>Baked in Marshall, MI</span>
-              <span>◦</span>
-            </span>
-          ))}
-        </div>
+      {/* Slime glaze drip in place of the old scrolling ticker. The hero sits on
+          --cream and #menu on --cream-2, so a cream-on-cream drip would be
+          invisible; the band is slime, like the glaze on the mark. */}
+      <div className="hero-drip" aria-hidden="true">
+        <DripDivider fill="var(--slime)" bg="var(--cream-2)" />
       </div>
 
       <section id="menu">

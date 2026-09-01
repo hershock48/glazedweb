@@ -109,25 +109,10 @@ export default function HomeDO() {
         </div>
       </div>
 
-      <div className="ticker" aria-hidden="true">
-        <div className="ticker-inner">
-          {[0, 1].map((i) => (
-            <span key={i} style={{ display: "contents" }}>
-              <span>Páginas frescas</span>
-              <span>◦</span>
-              <span>Nada de plantillas</span>
-              <span>◦</span>
-              <span>Precios claros</span>
-              <span>◦</span>
-              <span>Lista en 2 semanas</span>
-              <span>◦</span>
-              <span>El código es tuyo</span>
-              <span>◦</span>
-              <span>Servida caliente en RD</span>
-              <span>◦</span>
-            </span>
-          ))}
-        </div>
+      {/* Slime glaze drip in place of the old scrolling ticker, same as the EN
+          page: hero is --cream and #menu is --cream-2, so the band is slime. */}
+      <div className="hero-drip" aria-hidden="true">
+        <DripDivider fill="var(--slime)" bg="var(--cream-2)" />
       </div>
 
       <section id="menu">

@@ -171,11 +171,19 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   that resolves it, part of her training: product tile = leaving the store
   now; custom amount = the work is on the board. Custom-amount rings carry
   no line items and cannot decrement, and the inventory page counts them
-  visibly. Possible later build if the habit does not hold: push board
-  orders into Square via the Orders API (payment then carries our order id
-  and inventory can dedupe); deferred until real use shows the seam rubs,
-  and Square-POS-free-plan behavior for collecting API orders needs
-  verifying on her hardware first.
+  visibly. SUPERSEDED same day by Kevin's ruling to close the seam now:
+  board orders settle their own money in the workroom (PayControls on each
+  order card: Take card via the Web Payments SDK, or Record cash), creating
+  a real Square order + payment in her account with reference_id set, so
+  the webhook links the sale, marks the order paid, and inventory counts
+  stems exactly once. Researched first: unpaid API orders collected at the
+  POS are explicitly unsupported (Square staff, dev forum 2026-08-18), so
+  the register-side version was never viable. The DV-number-in-the-note
+  match survives as the fallback recognizer. FEE SCOPE also widened by
+  Kevin 2026-09-01: ALL remote card payments carry the 99c customer-paid
+  fee (keyed phone orders now, online checkout later); cash and in-person
+  register sales never do. Agreement page, exhibit text, and letter all
+  updated BEFORE she accepts.
 
 ## Permissions
 

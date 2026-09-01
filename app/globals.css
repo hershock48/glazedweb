@@ -99,27 +99,18 @@
   h1 em svg path { stroke-dasharray: 210; animation: underline-draw .8s ease-out .4s both; }
   @keyframes underline-draw { from { stroke-dashoffset: 210; } to { stroke-dashoffset: 0; } }
   .hero p.sub { margin-top: 22px; font-size: 18px; color: #6B5747; line-height: 1.6; max-width: 480px; }
-  /* "it ships glazed": the word is dipped, not tinted. First pass set the
-     text itself green and Kevin read it as flat, correctly: slime TEXT on
-     cream can never pass 4.5 at body size (slime-bright measures ~1.6), and
-     the only green that passes is fern, which is a leaf, not a glaze. So the
-     glaze goes behind the word instead: chocolate on the slime gradient
-     measures ~8, and the pill gets a little drip off its underside. */
+  /* "it ships glazed": a slime highlighter swipe behind the word's lower
+     half, chocolate letters untouched. Third pass at this word, and each
+     retraction earned a rule: green TEXT is out because no slime-family
+     green passes 4.5 on cream (fern passes but reads as a leaf, not glaze),
+     and the full pill with drips was out as "a lot" per Kevin. The swipe
+     keeps the glaze under the ink, where contrast is chocolate-on-slime
+     (~8) at worst. */
   .hero p.sub .glazed {
-    position: relative; display: inline-block;
-    background: linear-gradient(180deg, #D9EDA0, #A9D65C);
-    color: var(--chocolate); font-weight: 800;
-    padding: 0 9px 1px; border-radius: 9px;
-  }
-  .hero p.sub .glazed::after {
-    content: ""; position: absolute; left: 20%; bottom: -7px;
-    width: 7px; height: 11px; background: #A9D65C;
-    border-radius: 4px 4px 8px 8px;
-  }
-  .hero p.sub .glazed::before {
-    content: ""; position: absolute; right: 24%; bottom: -4px;
-    width: 5px; height: 7px; background: #A9D65C;
-    border-radius: 3px 3px 6px 6px;
+    font-weight: 800; color: var(--chocolate);
+    padding: 0 4px;
+    background: linear-gradient(180deg, transparent 54%, #C9E68C 54%, #A9D65C 96%, transparent 96%);
+    border-radius: 0 0 6px 6px;
   }
   .hero .ctas { margin-top: 30px; display: flex; gap: 14px; flex-wrap: wrap; }
   @media (max-width: 800px) { .hero .ctas, .hero p.sub { justify-content: center; margin-left: auto; margin-right: auto; } }

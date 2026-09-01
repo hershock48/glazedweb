@@ -208,6 +208,18 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   SDK trap recorded: the script lives on web.squarecdn.com (squareup.com
   does not resolve).
 
+- **"This week" analytics screen built 2026-09-01 on Kevin's ruling not to
+  wait**: /workroom/week narrates what the ledgers add up to, the
+  florist-native numbers Square cannot compute (money split
+  counter/board/by-hand with linked payments summed once; owed-right-now;
+  order mix, occasions, returning share, median lead time; stems
+  bought/tossed/made with shrink percent and reasons). Every section names
+  which ledger feeds it; unknowables counted, never guessed. Born from his
+  critique of stems-and-shrink ("you put the info in there, so what?");
+  the stems page now states where its data goes, right at the top. Also
+  from the same pass: focus rings turn inward inside scroll regions (the
+  clipped-ring catch), and the fee's paid badge trimmed.
+
 ## Permissions
 
 - **Product photographs were supplied by Kevin directly** (their host captchas

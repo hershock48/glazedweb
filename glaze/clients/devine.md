@@ -267,7 +267,16 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   follow-up, spawned as a session task: stem costing/consumption math is
   triplicated across Dashboard, Stems, and Inventory with diverging
   windows and can disagree on the same week's Tossed dollars; extract
-  one shared derivation module.
+  one shared derivation module. CLOSED the same day (devine b7c417d):
+  lib/workroom/derive.ts holds the one copy of cost-per-stem, shrink
+  pricing, consumption, the Monday anchor, the sale instant, and the
+  date formatter, with the policies stated once (blended costing over
+  the whole loaded history, same HISTORY_DAYS everywhere, sales
+  windowed by instant, never a sliced ISO string). Stems now loads the
+  full history (week picker reaches a year); Inventory stops dropping
+  blank-paidAt sales; its windowed Cost/stem column stays deliberately
+  different, with the why beside it. One seeded dataset reconciled by
+  hand across all three screens; auditors clean.
 - **The Square-live summary pull VERIFIED end to end on production,
   2026-09-01, Kevin supplying the workroom PIN**: the deployed dashboard
   at /workroom/dashboard answered every range from Square's sandbox

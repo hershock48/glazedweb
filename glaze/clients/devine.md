@@ -187,11 +187,13 @@ the concept site at `/demo`. A meeting with the owner is set for late August
 
 - **Customer autofill on the phone-order form, built 2026-09-01 on Kevin's
   ask** (a weekly caller must not become 52 retypings): the customer base
-  IS the order history. The contacts projection carries each order's
-  delivery details and lines; typing two letters of name or three digits
-  of phone offers matching customers, one tap fills the form from their
-  latest order, and "Use the same lines" copies it wholesale. Deliberately
-  no separate customer table: nothing to maintain, nothing to drift.
+  IS the order history. Typing two letters of name or three digits of
+  phone offers matching customers; one tap fills WHO and WHERE (name,
+  phone, fulfillment, address) from their latest order. Kevin's same-day
+  refinement, do not resurrect: NOT the lines and NOT the occasion; what
+  they are ordering and why is each call's own business, and a prefilled
+  Sympathy on a birthday order is the kind of wrong that ships. No
+  separate customer table: nothing to maintain, nothing to drift.
 
 ## Permissions
 

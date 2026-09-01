@@ -239,6 +239,25 @@ export function AnimatedMark({ width = 230, height = 290 }) {
   );
 }
 
+/* The OPEN sign: an old LED sign hung from the glaze band on two cords,
+   swinging gently, tubes flickering on once at load (Kevin's ask,
+   2026-09-01). Homepage #menu only, both languages; /do passes ABIERTO.
+   The flicker is one-shot and stays under three light-dark transitions per
+   second, and under reduced motion the sign hangs still and fully lit; both
+   live with the .open-sign rules in globals.css. */
+export function OpenSign({ label = "OPEN" }) {
+  return (
+    <div className="open-sign-hang" aria-hidden="true">
+      <svg className="sign-cords" viewBox="0 0 120 56" width="108" height="56">
+        <path d="M 60 0 L 16 56 M 60 0 L 104 56" stroke="#7F6D5B" strokeWidth="2.5" fill="none" />
+      </svg>
+      <div className="open-sign-board">
+        <span style={{ fontSize: label.length > 4 ? "13.5px" : "19px" }}>{label}</span>
+      </div>
+    </div>
+  );
+}
+
 /* Be A Number International mark — © Be A Number, used with permission on the work card */
 export function BeANumberMark({ size = 56, style, className }) {
   return (

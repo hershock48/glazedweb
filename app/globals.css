@@ -99,6 +99,11 @@
   h1 em svg path { stroke-dasharray: 210; animation: underline-draw .8s ease-out .4s both; }
   @keyframes underline-draw { from { stroke-dashoffset: 210; } to { stroke-dashoffset: 0; } }
   .hero p.sub { margin-top: 22px; font-size: 18px; color: #6B5747; line-height: 1.6; max-width: 480px; }
+  /* "it ships glazed": the word wears the brand green, so it reads as the
+     slang and the donut at once. --fern, not --slime, because this is 18px
+     body text on cream and slime fails contrast there; fern is the token
+     already validated for small green text on this ground (4.65). */
+  .hero p.sub .glazed { color: var(--fern); font-weight: 800; }
   .hero .ctas { margin-top: 30px; display: flex; gap: 14px; flex-wrap: wrap; }
   @media (max-width: 800px) { .hero .ctas, .hero p.sub { justify-content: center; margin-left: auto; margin-right: auto; } }
   .hero .proof { margin-top: 26px; font-size: 13px; color: var(--taupe); }
@@ -182,9 +187,39 @@
   .sec-sub { margin-top: 14px; font-size: 16.5px; color: #6B5747; max-width: 560px; line-height: 1.6; }
 
   /* menu */
-  #menu { background: var(--cream-2); }
+  #menu { background: var(--cream-2); position: relative; }
   .menu-note { margin-top: 28px; text-align: center; font-size: 14px; color: var(--taupe); }
   .menu-note a { color: var(--raspberry-ink); font-weight: 700; }
+  /* the OPEN sign hangs off the glaze band's lip (cord tips reach the lip's
+     underside at -56px; on phone widths that x lands on a drip lobe and it
+     reads as hung from the drip instead, which is fine). It paints over the
+     band because it comes later in the DOM; do not give .hero-drip a
+     z-index, or the cords disappear behind the band's ground. Slime letters
+     on chocolate measure far past 4.5, and the swing is 3 degrees about the
+     hook, a few px of travel at this size. */
+  .open-sign-hang {
+    position: absolute; top: -56px; right: 7%; width: 108px; pointer-events: none;
+    transform-origin: 50% 0;
+    animation: sign-swing 4.6s ease-in-out infinite -1.2s;
+  }
+  .sign-cords { display: block; margin: 0 auto; }
+  .open-sign-board {
+    background: var(--chocolate-2); border: 3px solid var(--chocolate); border-radius: 12px;
+    margin-top: -2px; padding: 13px 4px; text-align: center;
+    box-shadow: 0 10px 22px -10px rgba(43,30,22,.45);
+  }
+  .open-sign-board span {
+    font-weight: 800; letter-spacing: .22em; color: var(--slime);
+    text-shadow: 0 0 8px rgba(191,224,122,.85), 0 0 20px rgba(169,214,92,.5);
+    animation: led-on 1.8s ease-out .5s both;
+  }
+  @keyframes sign-swing { 0%, 100% { transform: rotate(3deg); } 50% { transform: rotate(-3deg); } }
+  /* buzzy warm-up: five brightness steps over 1.8s, well under three
+     transitions a second, then steady */
+  @keyframes led-on {
+    0% { opacity: 0; } 6% { opacity: .8; } 10% { opacity: .15; } 17% { opacity: .9; }
+    23% { opacity: .3; } 32% { opacity: 1; } 100% { opacity: 1; }
+  }
   .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 44px; }
   @media (max-width: 800px) { .menu-grid { grid-template-columns: 1fr; } }
   .mcard {
@@ -356,9 +391,12 @@
     .step.glazed .num::after { animation: none; }
     /* droplets rest at the drip tips: a bead of glaze, not a hole in the band */
     .hero-droplet { animation: none; }
-    /* the crave underline rests fully drawn; the menu cards rest unglazed */
+    /* the crave underline rests fully drawn; the menu cards rest unglazed;
+       the OPEN sign hangs still, fully lit */
     h1 em svg path { animation: none; }
     .mcard:hover::after { animation: none; }
+    .open-sign-hang { animation: none; }
+    .open-sign-board span { animation: none; }
     /* The animated hero mark, at rest. These classes ran under reduced motion
        from v0.1 until motion-check caught them during the hero-band build.
        At rest the mark matches the static #mark symbol plus two hanging

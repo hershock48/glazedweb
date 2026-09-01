@@ -1,6 +1,6 @@
 "use client";
 
-import { LogoDefs, Mark, AnimatedMark, DripDivider, HeroDrip, BeANumberMark, ChismEggs } from "@/components/Logo";
+import { LogoDefs, Mark, AnimatedMark, DripDivider, HeroDrip, OpenSign, BeANumberMark, ChismEggs } from "@/components/Logo";
 import { CONTACT_EMAIL } from "@/lib/contact";
 import { PRICING, usd, num } from "@/lib/pricing";
 import { useHomeEffects } from "@/components/homeEffects";
@@ -60,8 +60,9 @@ export default function Home() {
             </em>
           </h1>
           <p className="sub">
-            Hand-built sites for restaurants and shops that take orders. No templates, no per-order apps, no
-            six-month timelines. Order it like a donut: pick a flavor, we bake it fresh, it ships glazed.
+            Hand-built sites for restaurants, shops, and anywhere with a counter. No templates, no third-party
+            apps, no off-brand widgets. Order it like a donut: pick a flavor, we bake it fresh, it ships{" "}
+            <span className="glazed">glazed</span>.
           </p>
           <div className="ctas">
             <a className="btn big" href="/order">
@@ -87,6 +88,7 @@ export default function Home() {
       <HeroDrip />
 
       <section id="menu">
+        <OpenSign />
         <div className="inner">
           <div className="sec-kicker" style={{ color: "var(--fern)" }}>
             The menu

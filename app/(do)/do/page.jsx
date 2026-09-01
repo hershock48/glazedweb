@@ -1,6 +1,6 @@
 "use client";
 
-import { LogoDefs, Mark, AnimatedMark, DripDivider, HeroDrip, BeANumberMark, ChismEggs } from "@/components/Logo";
+import { LogoDefs, Mark, AnimatedMark, DripDivider, HeroDrip, OpenSign, BeANumberMark, ChismEggs } from "@/components/Logo";
 import {
   CONTACT_EMAIL,
   DO_REP_NAME,
@@ -87,7 +87,8 @@ export default function HomeDO() {
           </h1>
           <p className="sub">
             Páginas web hechas a mano para negocios dominicanos. Sin plantillas, sin relleno, sin esperar seis meses.
-            Pídela como una dona: eliges el sabor, la horneamos fresca y te la entregamos glaseada.
+            Pídela como una dona: eliges el sabor, la horneamos fresca y te la entregamos{" "}
+            <span className="glazed">glaseada</span>.
           </p>
           <div className="ctas">
             <a
@@ -115,6 +116,7 @@ export default function HomeDO() {
       <HeroDrip />
 
       <section id="menu">
+        <OpenSign label="ABIERTO" />
         <div className="inner">
           <div className="sec-kicker" style={{ color: "var(--fern)" }}>
             El menú

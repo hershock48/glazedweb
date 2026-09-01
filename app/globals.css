@@ -148,6 +148,28 @@
   .hd-a { left: calc(38.2% - 6px); top: 52px; animation: fall 3.4s cubic-bezier(.5,.08,.85,.6) infinite -0.9s; }
   .hd-b { left: calc(78.6% - 5px); top: 56px; animation: fall2 5.1s cubic-bezier(.5,.08,.85,.6) infinite -2.4s; }
 
+  /* ============ narrow/wide divider swap ============ */
+  /* Every drip divider (the four flat ones and the hero band) ships a 1440-
+     unit svg and a 2880-unit double-period svg; the wide one takes over at
+     1460px so the drawn drip shape never stretches past ~1:1 on big monitors
+     (at 2560px the single period rendered 78% too fat). Compression below
+     1:1 is the phone look and stays. The droplets move to the wide band's
+     deep lobes: x 1132 (depth 52, tip 65px, so top 56px) and x 1990, which
+     is the second period's 550 lobe (depth 48, tip 61px, so top 52px) —
+     percentages are lobe-x over 2880. Depths hold in px at every width
+     because the band's vertical scale is pinned by its CSS height. */
+  /* svg-qualified on purpose: these fight .drip-divider's display: block,
+     which sits LATER in this file and would win a plain class-vs-class tie.
+     It did — the flat dividers rendered both variants stacked until this
+     gained the extra point of specificity. */
+  svg.drip-wide { display: none; }
+  @media (min-width: 1460px) {
+    svg.drip-narrow { display: none; }
+    svg.drip-wide { display: block; }
+    .hd-a { left: calc(39.31% - 6px); top: 56px; }
+    .hd-b { left: calc(69.1% - 5px); top: 52px; }
+  }
+
   /* ============ sections ============ */
   section .inner { max-width: 1100px; margin: 0 auto; padding: 84px 24px; }
   .sec-kicker { font-size: 12px; letter-spacing: .3em; text-transform: uppercase; font-weight: 700; margin-bottom: 14px; }

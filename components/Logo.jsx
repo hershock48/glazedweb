@@ -1,14 +1,28 @@
 /* The glazedweb mark (v9): pink donut, green slime drip with rounded tips,
    thin glaze lip creeping over the donut's bottom edge. */
 
-/* One drip edge, two consumers: the #dripEdge symbol (the four flat section
-   dividers) and HeroDrip (which needs the raw path so it can translate it
-   inside its own taller viewBox — a <use> of the symbol would rescale the
-   60-unit viewBox to fit and stretch the drips). Edit the shape here and both
-   stay in step. Lobe centers, for anything that hangs off them: x 264, 550,
-   842, 1132, 1378; the deep pair is 550 (y48) and 1132 (y52). */
+/* One drip edge, two consumers: the #dripEdge symbol (the section dividers)
+   and HeroDrip (which needs the raw path so it can translate it inside its
+   own taller viewBox — a <use> of the symbol would rescale the 60-unit
+   viewBox to fit and stretch the drips). Edit the shape here and both stay
+   in step. Lobe centers, for anything that hangs off them: x 264, 550, 842,
+   1132, 1378; the deep pair is 550 (y48) and 1132 (y52).
+
+   The path is a seamless 1440-unit period: it enters x=0 and leaves x=1440
+   on the same flat y=16 lip, so a copy translated 1440 right continues it
+   without a joint. The wide divider variants lean on that (see DripDivider);
+   keep both ends on the flat lip if you reshape it. */
 const DRIP_EDGE_D =
   "M0,0 H1440 V16 C1408 16 1400 44 1378 44 C1356 44 1362 16 1332 16 H1180 C1160 16 1156 52 1132 52 C1110 52 1116 16 1088 16 H880 C862 16 860 38 842 38 C824 38 828 16 802 16 H590 C574 16 572 48 550 48 C528 48 532 16 506 16 H300 C284 16 282 36 264 36 C246 36 250 16 224 16 H0 Z";
+
+/* The hero band's top edge: a gentle wave (crests at y -18, troughs at -13.5,
+   about 4px of swell at the rendered scale) so the glaze reads as a poured
+   surface instead of a ruled line. Same seamless-period contract as the drip
+   edge: both ends sit at the crest with flat approach, so the wide variant
+   tiles it. The fill closes down to y 0.5 to overlap the drip path's top by
+   half a unit, for the same antialiasing reason as everywhere else. */
+const HERO_WAVE_TOP =
+  "M0,-18 C160,-18 200,-13.5 380,-14 C560,-14.5 600,-17.5 760,-17 C920,-16.5 980,-13.5 1120,-14 C1280,-14.5 1360,-18 1440,-18";
 
 export function LogoDefs() {
   return (
@@ -88,11 +102,26 @@ export function Mark({ width = 24, height = 31, hole = "#FDF6EC" }) {
   );
 }
 
+/* Every divider ships two svgs and CSS shows one: the 1440-unit period below
+   1460px, and a 2880-unit double period (the same path, plus a copy
+   translated one period right) above it. preserveAspectRatio="none" fits the
+   viewBox to the element, so a 1440 path alone fattens with the viewport —
+   at 2560px every drip renders 78% wider and shallower than the drawn shape.
+   Compression reads as goop (see the phone) and is left alone; only the
+   stretch past 1:1 is capped. The wide svg cannot <use> the #dripEdge symbol
+   because a symbol rescales its own viewBox to fill the host and would
+   stretch anyway; it needs the raw path twice. */
 export function DripDivider({ fill, bg }) {
   return (
-    <svg className="drip-divider" viewBox="0 0 1440 60" preserveAspectRatio="none" style={{ background: bg }} aria-hidden="true">
-      <use href="#dripEdge" fill={fill} />
-    </svg>
+    <>
+      <svg className="drip-divider drip-narrow" viewBox="0 0 1440 60" preserveAspectRatio="none" style={{ background: bg }} aria-hidden="true">
+        <use href="#dripEdge" fill={fill} />
+      </svg>
+      <svg className="drip-divider drip-wide" viewBox="0 0 2880 60" preserveAspectRatio="none" style={{ background: bg }} aria-hidden="true">
+        <path d={DRIP_EDGE_D} fill={fill} />
+        <path d={DRIP_EDGE_D} fill={fill} transform="translate(1440, 0)" />
+      </svg>
+    </>
   );
 }
 
@@ -104,27 +133,44 @@ export function DripDivider({ fill, bg }) {
 
    Sizing: viewBox "0 -18 1440 78" at 72px tall — the drip edge stays in its
    natural 0-60 coordinates and the viewBox is slid up 18 units to make room
-   for the solid lip above it, so there are no transforms and the
-   userSpaceOnUse gradient reads the same coordinates everywhere (a translate
-   on the path would shift the gradient with it and print a seam at the lip).
-   That 18 + 60 at 72px reproduces the old wrapper's 18px + 54px footprint.
-   The band paints its own cream-2 ground (the color of #menu below), and the
-   droplets are position:absolute so they can fall past the svg into the
-   section without the band reserving blank height for the travel. */
+   for the wavy lip above it, so there are no transforms on the single-period
+   art and the userSpaceOnUse gradient reads the same coordinates everywhere.
+   (The wide variant's translate(1440, 0) is safe with that gradient because
+   it moves nothing vertically.) That 18 + 60 at 72px reproduces the old
+   wrapper's 18px + 54px footprint; the vertical scale is fixed by the CSS
+   height, so drip depths in px hold at every viewport width. The band paints
+   its own cream-2 ground (the color of #menu below), and the droplets are
+   position:absolute so they can fall past the svg into the section without
+   the band reserving blank height for the travel. Their narrow/wide lobe
+   positions live with the .hd-a/.hd-b rules in globals.css. */
+function HeroBandArt() {
+  return (
+    <>
+      <path d={`${HERO_WAVE_TOP} V0.5 H0 Z`} fill="url(#heroBandGrad)" />
+      <path d={DRIP_EDGE_D} fill="url(#heroBandGrad)" />
+      {/* light catching the poured surface, then sheen down the two deep
+          lobes and a short one on the middle lobe, the same pale stroke the
+          mark's drips carry */}
+      <g stroke="#F1F8DC" fill="none" strokeLinecap="round">
+        <path d={HERO_WAVE_TOP} strokeWidth="2.5" opacity="0.45" />
+        <path d="M 542 22 C 540 30, 541 38, 545 43" strokeWidth="3.5" opacity="0.8" />
+        <path d="M 1123 22 C 1121 32, 1122 41, 1127 47" strokeWidth="3.5" opacity="0.8" />
+        <path d="M 835 21 C 834 26, 835 31, 838 34" strokeWidth="3" opacity="0.75" />
+      </g>
+    </>
+  );
+}
+
 export function HeroDrip() {
   return (
     <div className="hero-drip" aria-hidden="true">
-      <svg className="hero-drip-band" viewBox="0 -18 1440 78" preserveAspectRatio="none" style={{ background: "var(--cream-2)" }}>
-        {/* rect overlaps the path's top edge by half a unit so antialiasing
-            cannot open a hairline of ground between them */}
-        <rect x="0" y="-18" width="1440" height="18.5" fill="url(#heroBandGrad)" />
-        <path d={DRIP_EDGE_D} fill="url(#heroBandGrad)" />
-        {/* sheen down the two deep lobes and a short one on the middle lobe,
-            the same pale stroke the mark's drips carry */}
-        <g stroke="#F1F8DC" fill="none" strokeLinecap="round">
-          <path d="M 542 22 C 540 30, 541 38, 545 43" strokeWidth="3.5" opacity="0.8" />
-          <path d="M 1123 22 C 1121 32, 1122 41, 1127 47" strokeWidth="3.5" opacity="0.8" />
-          <path d="M 835 21 C 834 26, 835 31, 838 34" strokeWidth="3" opacity="0.75" />
+      <svg className="hero-drip-band drip-narrow" viewBox="0 -18 1440 78" preserveAspectRatio="none" style={{ background: "var(--cream-2)" }}>
+        <HeroBandArt />
+      </svg>
+      <svg className="hero-drip-band drip-wide" viewBox="0 -18 2880 78" preserveAspectRatio="none" style={{ background: "var(--cream-2)" }}>
+        <HeroBandArt />
+        <g transform="translate(1440, 0)">
+          <HeroBandArt />
         </g>
       </svg>
       <svg className="hero-droplet hd-a" viewBox="0 0 16 16" width="13" height="13">

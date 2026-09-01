@@ -95,6 +95,38 @@ of those launches finished. One message per client closes it.
 
 ---
 
+## Who the menu is for now
+
+**The studio's focus, ruled by Kevin 2026-09-01: businesses that take or want
+online ordering (restaurants, flower shops, and the like) and POS
+integrations, with the studio as the brain behind the register. Farm sites,
+nonprofit sites, and other plain-brochure work are no longer what the copy
+sells, even though past builds of that kind stay in the portfolio and get
+honored.** The homepage hero, the Baker's Dozen bullet order, and the Custom
+card were reframed the same day; ordering leads everywhere it appears. A
+dedicated ordering flavor with its own price is still open with Kevin, so the
+menu structure (three flavors) has not changed, only what it leads with.
+
+---
+
+## How the order fee is worded in public
+
+**Public copy never says "we never charge per order." The true and rulable
+sentence, per Kevin 2026-09-01: no percentage commission, a flat 99¢ order
+fee added at checkout, paid by the customer and named plainly before they
+pay.** The fee mechanics live in the payments memory and the client files
+(`app_fee_money`, all remote card payments, named in the client agreement
+before cards go live).
+
+> The ordering service page shipped "We never charge per order" while the
+> 99¢-per-order fee model was being decided in the devine and beans builds.
+> Both were true in their own file and false together, and a client could
+> have quoted the site back at the first invoice. Retired 2026-09-01; if the
+> old sentence turns up in a pitch or a client README, it is the dangerous
+> copy.
+
+---
+
 ## What almost lived here and lives elsewhere instead
 
 So the next session does not re-add them: the mobile compositing budget

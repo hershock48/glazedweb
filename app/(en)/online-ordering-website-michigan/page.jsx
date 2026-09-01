@@ -18,7 +18,7 @@ export const metadata = {
 const schema = serviceSchema({
   name: "Online Ordering Website Development",
   description:
-    "Online ordering websites for restaurants: order-ahead and pickup ordering built directly into the restaurant's own website, with no per-order commission to a third-party app.",
+    "Online ordering websites for restaurants: order-ahead and pickup ordering built directly into the restaurant's own website, with no percentage commission to a third-party app.",
   url: "https://www.glazedweb.com/online-ordering-website-michigan",
 });
 
@@ -31,7 +31,7 @@ export default function OnlineOrderingMI() {
         title="Online ordering websites for Michigan restaurants."
         lead="Order-ahead and pickup ordering built into your own website, on your domain, in your brand. No app between you and your customers taking a bite of every ticket."
         highlights={[
-          { title: "No per-order cut", body: "The order goes from your customer to your kitchen. Nobody skims it." },
+          { title: "No percentage cut", body: "A flat 99¢ order fee, paid by your customer. The food money is all yours." },
           { title: "Your site, your brand", body: "Ordering lives on your domain, styled like your place." },
           { title: "Kitchen-ready", body: "Orders arrive where you work, on a screen or a printer. Your call." },
         ]}
@@ -67,9 +67,10 @@ export default function OnlineOrderingMI() {
         <p>
           Ordering ships as part of a full glazedweb build. It is one of the things baked into the{" "}
           {usd(PRICING.us.dozen.build)} package on the menu, alongside the site itself, your Google setup, and a
-          monthly that covers hosting and edits. We never charge per order; the whole point is that nobody stands
-          between your customer and your kitchen. We are a small-batch studio in Marshall, and we build this for
-          restaurants across the state.
+          monthly that covers hosting and edits. There is no percentage commission: a flat 99¢ order fee is added
+          at checkout, paid by your customer and shown plainly before they pay. You keep the menu price of
+          everything you sell. We are a small-batch studio in Marshall, and we build this for restaurants across
+          the state.
         </p>
       </ServicePage>
     </>

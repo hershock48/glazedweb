@@ -60,8 +60,8 @@ export default function Home() {
             </em>
           </h1>
           <p className="sub">
-            Hand-built sites for small businesses. No templates, no bloat, no six-month timelines. Order it like a
-            donut: pick a flavor, we bake it fresh, it ships glazed.
+            Hand-built sites for restaurants and shops that take orders. No templates, no per-order apps, no
+            six-month timelines. Order it like a donut: pick a flavor, we bake it fresh, it ships glazed.
           </p>
           <div className="ctas">
             <a className="btn big" href="/order">
@@ -127,9 +127,12 @@ export default function Home() {
                 $<span className="price-num" data-from={PRICING.us.dozen.market} data-to={PRICING.us.dozen.build}>{num(PRICING.us.dozen.build)}</span> <small>+ {usd(PRICING.us.dozen.monthly)}/mo</small>
               </div>
               <ul>
+                {/* Ordering leads, per Kevin's 2026-09-01 focus ruling: the
+                    studio's audience is businesses that take orders, and the
+                    most differentiated line item goes first, not third. */}
+                <li>Online ordering or booking, built into your own site</li>
                 <li>Up to 6 pages: services, about, gallery, the works</li>
                 <li>Custom design that looks like you, not a theme</li>
-                <li>Booking, menus, or e-commerce lite, one built in</li>
                 <li>SEO foundations + Google Business tune-up</li>
                 <li>Monthly covers hosting, updates, edits, and a check-in</li>
               </ul>
@@ -142,7 +145,7 @@ export default function Home() {
               <div className="flavor">Special recipe</div>
               <div className="price">Let&apos;s talk</div>
               <ul>
-                <li>Online stores, membership sites, web apps</li>
+                <li>Online ordering, POS integration, stores, web apps</li>
                 <li>Rebrands and redesigns of existing sites</li>
                 <li>Care plan scoped to fit: hosting, updates, and edits</li>
                 <li>If you can sketch it on a napkin, we can build it</li>
@@ -152,6 +155,13 @@ export default function Home() {
               </a>
             </div>
           </div>
+          {/* The counter, named where the menu is read. EN-only because it
+              points at an English SEO page; /do mirrors the bullet order but
+              its ordering story is still WhatsApp-first. */}
+          <p className="menu-note">
+            Take orders? We build the counter too: ordering on your own site, tied into your register, with no
+            percentage commission. <a href="/online-ordering-website-michigan">How ordering works</a>
+          </p>
         </div>
       </section>
 

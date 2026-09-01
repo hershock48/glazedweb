@@ -158,9 +158,13 @@ export default function HomeDO() {
                 RD$<span className="price-num" data-from={PRICING.do.dozen.market} data-to={PRICING.do.dozen.build}>{num(PRICING.do.dozen.build)}</span> <small>+ {rd(PRICING.do.dozen.monthly)}/mes</small>
               </div>
               <ul>
+                {/* Pedidos primero, en paralelo con la página EN (regla del
+                    2026-09-01: el estudio se enfoca en negocios que toman
+                    pedidos). El hero se queda como está: la historia de
+                    pedidos en RD sigue siendo WhatsApp, no un portal. */}
+                <li>Pedidos en línea o reservas, integrados en tu propia página</li>
                 <li>Hasta 6 páginas: servicios, nosotros, galería, lo que haga falta</li>
                 <li>Diseño propio que se ve como tu negocio, no como un tema genérico</li>
-                <li>Reservas, menú digital o tienda básica, una incluida</li>
                 <li>Base de SEO + puesta a punto de tu perfil de Google</li>
                 <li>La mensualidad cubre alojamiento, actualizaciones, ediciones y seguimiento</li>
               </ul>
@@ -176,7 +180,7 @@ export default function HomeDO() {
               <div className="flavor">Receta especial</div>
               <div className="price">Hablemos</div>
               <ul>
-                <li>Tiendas online, membresías, aplicaciones web</li>
+                <li>Pedidos en línea, integración con tu caja, tiendas, aplicaciones web</li>
                 <li>Rediseños de páginas que ya existen</li>
                 <li>Plan de cuidado a tu medida: alojamiento, actualizaciones y ediciones</li>
                 <li>Si lo puedes dibujar en una servilleta, lo podemos construir</li>

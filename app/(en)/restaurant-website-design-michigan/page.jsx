@@ -51,7 +51,7 @@ export default function RestaurantWebDesignMI() {
           A menu that is real text, not a blurry PDF, so Google reads it and phones render it well. Hours that are
           easy to change the week a holiday moves them. A map, tap-to-call, and links to wherever your customers
           already are. If you take orders for pickup, delivery, or catering, we build the ordering into the site
-          itself, with no per-order commission. And it looks like your place, because we design from your room, your
+          itself, with no percentage commission. And it looks like your place, because we design from your room, your
           food, and your name.
         </p>
 

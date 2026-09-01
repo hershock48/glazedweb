@@ -183,6 +183,8 @@
 
   /* menu */
   #menu { background: var(--cream-2); }
+  .menu-note { margin-top: 28px; text-align: center; font-size: 14px; color: var(--taupe); }
+  .menu-note a { color: var(--raspberry-ink); font-weight: 700; }
   .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 44px; }
   @media (max-width: 800px) { .menu-grid { grid-template-columns: 1fr; } }
   .mcard {

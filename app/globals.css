@@ -99,19 +99,22 @@
   h1 em svg path { stroke-dasharray: 210; animation: underline-draw .8s ease-out .4s both; }
   @keyframes underline-draw { from { stroke-dashoffset: 210; } to { stroke-dashoffset: 0; } }
   .hero p.sub { margin-top: 22px; font-size: 18px; color: #6B5747; line-height: 1.6; max-width: 480px; }
-  /* "it ships glazed": glossy chocolate letters, nothing behind them.
-     Fourth and settled pass (Kevin: "just make it a shiny brown"), and the
-     graveyard is worth keeping: green TEXT can never pass 4.5 on cream in
-     any slime-family green; fern passes but reads as a leaf; the slime pill
-     with drips was "a lot"; the highlighter swipe still felt forced. The
-     gloss is a clipped gradient from caramel to the body chocolate; the
-     lightest stop #8A5230 measures 5.9 on cream, so every pixel of the
-     letterforms clears 4.5, and the solid color line is the fallback for
+  /* "it ships glazed": glossy pink-glaze letters, nothing behind them
+     (Kevin, fifth pass: "make it that pink glaze color"). The graveyard is
+     worth keeping so nothing comes back: green TEXT can never pass 4.5 on
+     cream in any slime-family green; fern passes but reads as a leaf; the
+     slime pill with drips was "a lot"; the highlighter swipe felt forced;
+     shiny brown was fine but pink is the donut. The gloss is a clipped
+     gradient, and it CANNOT use the donut's own stops as text: F887B2,
+     E84D8A, and CE3672 all fail 4.5 on cream (that is the whole three-pinks
+     story at the top of this file). So it runs raspberry-ink #C9356F (4.63,
+     the lightest passing pink) down to #9E2450 (6.9), light at the top like
+     glaze catching the window. The solid color line is the fallback for
      anything that cannot clip. */
   .hero p.sub .glazed {
     font-weight: 800;
-    color: #4A2E1C;
-    background: linear-gradient(180deg, #8A5230 0%, #6B3F24 42%, #2B1E16 100%);
+    color: var(--raspberry-ink);
+    background: linear-gradient(180deg, #C9356F 0%, #B52D60 45%, #9E2450 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;

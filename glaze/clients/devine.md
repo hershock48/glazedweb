@@ -403,6 +403,21 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   "Load the par sheet"): workroom copy talks TO the shop. Trap: two
   sessions took this critique at once and both edited the tree; check
   git status before assuming an uncommitted change is yours.
+- **Adding a variety is a considered moment, 2026-09-01, on Kevin's
+  follow-up** ("I click add and it just goes away; shouldn't adding be
+  more of a process?"; devine 2c67878). Both halves of his worry were
+  right: the one-tap add would enshrine the typo the gate existed to
+  catch, and a correct add left a bare library row with no feedback.
+  VarietyGate (ui.tsx) now sits under every variety field, one
+  component for the buy form, the toss form, recipe parts and
+  weekly-order lines: it offers the CLOSEST existing names first
+  ("rosse" suggests "rose", "peonis" suggests "peony"; her lists use
+  the singular, which is exactly the fork this catches), and behind
+  the suggestions Add opens a small deliberate form (the name shown
+  again for a second look, kind, optional sell price and
+  stems-per-bunch) that ends with a visible "Added" line saying where
+  the blanks can be filled. The weekly-order add-them-all batch button
+  died with the same catch: the reflexive click at scale.
 
 ## Permissions
 

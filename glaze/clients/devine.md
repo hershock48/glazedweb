@@ -266,7 +266,18 @@ six tokens and re-run the auditor.
 
 ## Open
 
-- Delivery fee, order minimum, same-day cutoff: on the owner.
+- ~~Delivery fee, order minimum~~ ANSWERED 2026-09-01 by a photo of the
+  shop's laminated IRIS zip sheet (transcribed with the alignment caveat
+  in devine `research/delivery-fees.md`): per-zip fees $8.95 (Marshall)
+  to $32, minimums handwritten $45 in Marshall / $55 outside. OWNER
+  VERIFIES before any number goes live; the read-back question is whether
+  Marshall 49068 = $8.95 (the count and geography say yes). The sheet
+  also gave us the owner's name as IRIS knows it: Katy DeVine. Once
+  verified, fees go in site.ts and delivery card-at-checkout unblocks.
+  Same-day cutoff STILL open, and whether the minimum counts the fee.
+- Big-order threshold: at what order size does she want a confirmation
+  call even for paid, future-dated orders? (Same-day paid orders already
+  flag for a timing call.)
 - Team roles and portraits: on the owner.
 - 37 remaining product photographs: on the owner/Kevin.
 - Whether "Classic Red Dozen" is still meant to be on sale at $75: on the owner.

@@ -418,6 +418,19 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   stems-per-bunch) that ends with a visible "Added" line saying where
   the blanks can be filled. The weekly-order add-them-all batch button
   died with the same catch: the reflexive click at scale.
+- **A wedding inquiry announces itself, 2026-09-01, on Kevin's question**
+  ("how would someone know we got anything without clicking and checking
+  frequently?"; devine defcf8a). Two channels, layered: the inquiry
+  email to the shop was already the record (INQUIRY_TO overrides it to
+  a Glazed inbox during the build; UNSET AT LAUNCH, on the checklist),
+  and now the workroom chrome wears a count on the Quotes tab for
+  web-seeded quotes nobody has opened (source: "web" + seenAt on the
+  Quote type; new /api/workroom/badges route). The row is tagged "New,
+  from the website" on first view; opening the list marks seen.
+  Shop-made quotes never badge. The badges GET answers zeros when
+  locked instead of 401ing, so the chrome polls from the gate without
+  console spray (the pjs lesson). Verified end to end against a live
+  SMTP sink on a production build.
 - **Costing is by LOT, oldest first; the blended average is RETIRED
   (Kevin, 2026-09-01).** His example killed the average: week 1 buys 15
   roses at A and sells 14; week 2 buys 15 at B, sells 1, tosses 15. The

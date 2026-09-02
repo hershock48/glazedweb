@@ -484,6 +484,31 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   library summary says "with a shop price", never bare "priced", beside
   a wholesale-cost column. Verified: both auditors zero across all five
   routes at 320/390/768/1440; deployed at 319eaa0.
+- **The workroom debug pass ran 2026-09-02 (Kevin: "make sure the small
+  things work and have endpoints").** Every fetch in the workroom is
+  statically matched to an exported route method; 27 API edge cases are
+  scripted (scratch api-edge-tests.ps1 pattern: unauthed 401s, badges
+  answering zeros while locked, refusals naming their problem, receive
+  writing nothing when refused, pickup-cannot-go-out, double-pay 409,
+  variety deletion with ledger history surviving); every UI flow was
+  click-driven on the production build with network and console
+  watched. Two real faults found and fixed at 3269d65: the funeral pad
+  lacked Delete this quote (wedding builder had it; abandoned funeral
+  quotes were immortal), and the weekly-order receive confirmation
+  unmounted the frame it was set (status line lived inside the
+  open-composer block; it now renders outside and survives the close).
+  Deliberate non-gates, checked and kept: quote flower names are NOT
+  gated to the stem library (special-ordered event stems never touch
+  the cooler ledger; the datalist suggests, nothing refuses). Verified
+  behaviors worth not re-deriving: Record cash and Take card both ring
+  through Square and 503 with a plain sentence when it is not
+  connected (manual "Paid another way" works regardless); legacy
+  /workroom/stems, /week and /plants 308 to their merged tabs. Flow
+  test trap for next time: a Playwright dialog auto-accept plus a loose
+  "first Remove button" locator DELETED a library variety mid-run, and
+  tr locators match invisible rows inside collapsed details blocks;
+  assert on accessible names, and remember refusal messages can be the
+  PASS condition.
 
 ## Permissions
 

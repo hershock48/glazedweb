@@ -566,6 +566,70 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   delivery ticket would build on. Gather the real paper Friday
   before designing anything; do not scope from imagination.
 
+- **Katy's text drop, 2026-09-02 (screenshots relayed by Kevin): most
+  of the remaining owner facts, transcribed here so no one re-reads
+  photos of a phone.**
+  - FUNERAL RANGES (hers, applied to FUNERAL_MENU at once): funeral
+    vases $75-$250ish; easels and casket sprays $150-$550; urn
+    surrounds $125-$350 usually. Rows she did not name keep industry
+    stand-ins. "Pedestal arrangement" renamed "Funeral vase" - her
+    own word for the piece.
+  - ORDER MINIMUMS $45 Marshall / $55 outside - independently matches
+    the fee sheet confirmed 2026-09-01; a fact confirmed twice.
+  - SAME-DAY: "It's rare we don't accept an order for same day."
+    There is NO fixed cutoff; site.ts cutoff null is the answer, not
+    a gap. Also: "We do not accept from 3rd parties or order takers"
+    (the no-wire-services stance, restated).
+  - TEAM & RESPONSIBILITIES (her printed chart, for the bio pass):
+    Katy - owner: accounting/payroll/admin, marketing strategy, new
+    business development. Shawna Wilcox - Grower & Floral Artist:
+    designer, delivery, foraging expert. Gayle Scantlen - Floral
+    Artist: designer, silk & dried expert. Lacey Andrews - Plant
+    Expert/Floral Artist: designer, wedding consult & quoting, tech
+    lead (website, photography), social media lead, flower orders
+    (HS dances co-lead, daily/weekly/holidays, special event,
+    weddings), plant ordering, wedding & bereavement consult. Becky
+    Moore - Certified Floral Artist/Plant Expert: designer, corporate
+    account lead (FireKeepers, Eatons, St. Mary's Church, Victory
+    Life Church, Woodland Church, Kempf & Lighthouse, Oaklawn
+    Hospital, Schuler's), wedding & bereavement consult. Daily,
+    everyone: customer service, phones, flower processing, areas
+    clean, delivery (Shawna, Becky), funeral consults, cooler
+    cleaning, watering. Headline roles are on the site now; SHE WANTS
+    PORTRAITS RETAKEN, BIOS ADDED, AND HERSELF ADDED - that redesign
+    waits for her materials.
+  - HEADCOUNT: "4 not including me" = 5 with Katy, which fits Square
+    Shifts Free's 5-member time-tracking cap exactly.
+  - THE WEDDING SHEET EXISTS: Google Sheets "2026WeddingQuotes",
+    docs.google.com/spreadsheets/d/1LsUU6zCZZiatW8BfO5bddgxtIsbJpjPUU0rpYXu3laY
+    (gid 750071296), one tab per booked wedding (Jessica Knight
+    1-17-26, Emily 4-25-26, Anna Wetzel 5-9-26, Lyndsey Katz 5-16-26,
+    Grace 5-30-26, Abbey...). Model decoded from the screenshot:
+    per-stem RETAIL prices (white/pale pink peony $13, hydrangeas
+    $7-$13, italian ruscus $7, seeded eucalyptus $4.50), hardgoods
+    lines (oasis $1, vases $7, ivory ribbon $5), LABOR = 2/3 of
+    materials exactly (268 -> 178.67; 116 -> 77.33), x piece
+    quantity, then 6% Michigan SALES TAX, plus a Pick Up line. TWO
+    GAPS AGAINST OUR BUILDER: quote-math has no sales-tax line, and
+    our model is wholesale-cost x markup while hers is retail-per-stem
+    + 2/3 labor. DO NOT rewrite from the angled screenshot - Kevin
+    gets view access or an export first.
+  - DELIVERY TICKETS: Smurfit Westrock (John Henry) FB2200-style
+    custom Teleflora POS work ticket, 8.5x14 laser, perforated:
+    delivery ticket + enclosure card + enclosure envelope panel in
+    one, No. 4 Baronial envelope, minimum 3000 per design. Her stock
+    is custom-printed: rose-photo wash, script logo, address block.
+    The workroom's angle for Friday: print the same layout on plain
+    letter/legal from the board, no 3000-sheet minimum.
+  - ADDRESS CONFLICT, ASK FRIDAY: her printed ticket stock says **810
+    Industrial Road**; her website (and our site.ts) says **800**.
+    Third-party listings also say 810. One of these is wrong on paper
+    she hands to drivers. Do not change site.ts until she answers.
+  - PHOTOS: her Gmail tab showed "Link for photo dump" - the 31
+    uploads came through the /photos page; the 3 wedding classics
+    (boutonniere, wrist corsage, bridesmaid bouquet) are still the
+    only gaps.
+
 ## Permissions
 
 - **Product photographs were supplied by Kevin directly** (their host captchas

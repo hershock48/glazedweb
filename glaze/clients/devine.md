@@ -530,6 +530,22 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   workroom-math drawers) sit behind an owner-tier PIN so not every
   employee sees money and margins? Needs his call on the PIN scheme
   (a second WORKROOM_OWNER_PIN env is the natural shape).
+- **The owner tier shipped 2026-09-02 (91f4dde), Kevin's ruling.** Two
+  PINs, one login field: WORKROOM_OWNER_PIN (set by Kevin in Vercel)
+  beside WORKROOM_PIN; the cookie holds whichever was typed and the
+  auth helpers grade it per request. The owner cookie opens every
+  staff door (never two sign-ins). Owner-only: the whole Dashboard
+  (staff meets a one-field gate that says why, and a staff PIN typed
+  there is told it is the staff PIN; the summary API 403s a staff
+  cookie so takings are gated at the DATA), and the funeral pad's
+  For-the-workroom drawer (does not render for staff). DELIBERATE:
+  the wedding builder's markup/labor inputs stay open to staff - they
+  are the composing tool, not a report. Unset owner env in production
+  = owner tier closed to everyone (the closed-door rule). Dev fallback
+  0831; the local devine-alt launch entry carries a TEST owner pin
+  (4646), never the real one. Ribbon wording confirmed free-text (the
+  presets only fill the box) and the hint now says "type anything the
+  family wants."
 
 ## Permissions
 

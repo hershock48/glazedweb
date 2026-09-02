@@ -466,6 +466,24 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   standards... needs a glaze": a dedicated whole-workroom polish pass
   is WANTED and should be proposed as its own piece of work, not
   smuggled into feature commits.
+- **The workroom glaze pass ran 2026-09-01 (Kevin: "run the glaze
+  polish pass"), screenshot-first.** Method for the next pass: seed a
+  realistic week through the APIs on the memory backend, render every
+  screen at 390 and 1440, LOOK, fix, re-render, and measure claims with
+  small harnesses (the nav fix shipped with a row-count check, not an
+  eyeball). What it settled: workroom h1s are TOOL SCALE, one clamp(30,
+  4.6vw, 46px) rule in the workroom layout, deliberately smaller than
+  the shop's display serif - the counter screen does not spend a third
+  of a phone on a word the tab bar already says. Five tabs must hold
+  one row at 390 and wrap balanced (3+2) at 320; a lone orphaned tab on
+  row two reads as a mistake. SVG charts never combine width:100% with
+  a fixed height (letterboxes on phones); measure the container and
+  draw at that width. Inventory/editor section heads: 22px on pages, 20
+  reserved for the two-column quote editors' internal heads. Paired
+  start buttons ride .btnrow for the under-480 pill conversion. The
+  library summary says "with a shop price", never bare "priced", beside
+  a wholesale-cost column. Verified: both auditors zero across all five
+  routes at 320/390/768/1440; deployed at 319eaa0.
 
 ## Permissions
 

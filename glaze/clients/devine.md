@@ -546,6 +546,25 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   (4646), never the real one. Ribbon wording confirmed free-text (the
   presets only fill the box) and the hint now says "type anything the
   family wants."
+- **Photo drop status, checked 2026-09-02 against the production
+  ledger: 31 of 34 needed photos submitted.** The three missing are
+  all wedding classics: classic-boutonniere, classic-wrist-corsage,
+  classic-bridesmaid-bouquet. The ledger row writes only AFTER a
+  successful send, so all 31 provably reached kevin@glazedweb.com
+  (subject "Photo: <name> (<slug>)", one JPEG attached each). Next
+  step is Kevin's: pull the attachments, run the product pipeline
+  into public/img/product/ + the manifest, and /photos empties
+  itself on deploy.
+- **The owner's Friday agenda (relayed 2026-09-02), two NEW scope
+  items not yet discussed or priced:** (1) staff CLOCK IN/OUT in the
+  software - note the synergy: per-employee sign-in codes could give
+  time-clock AND replace the shared staff PIN, folding neatly into
+  the two-tier auth just built; (2) the shop's ORDER PAPER and
+  DELIVERY TICKETS - what the girls hand the driver and staple to
+  orders today. The workroom's print isolation (chrome hidden in
+  @media print, family-clean documents) is the foundation a printed
+  delivery ticket would build on. Gather the real paper Friday
+  before designing anything; do not scope from imagination.
 
 ## Permissions
 

@@ -509,6 +509,27 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   tr locators match invisible rows inside collapsed details blocks;
   assert on accessible names, and remember refusal messages can be the
   PASS condition.
+- **The funeral-pad counter walkthrough (Kevin, 2026-09-02), shipped at
+  ad663e8.** Rulings it produced: menu price chips wear their state
+  (green + count) with a minus beside a selected chip that decrements
+  before it removes; the chip tap always ADDS because paired sprays
+  are real - never a destructive toggle. Build arithmetic (per-piece
+  flower budgets, markup, labor) is NOT shown in the family-facing
+  moment: it lives in a closed "For the workroom" drawer in the rail;
+  Kevin's test is "is that something the employee really needs to
+  know?" while a family watches. Ribbon means the printed sash across
+  a piece; the panel says so in one line because Kevin himself did not
+  know. A funeral order carries NO card message; ribbon and who-from
+  ride the order line the maker builds from (the old mapping printed
+  "card message: daughter" on the board). Printouts are family-clean:
+  the workroom layout hides ALL chrome in @media print (this fixed the
+  wedding builder too - the chrome lives outside each pad's own
+  print-hidden wrapper, so any new print surface gets this free), and
+  printed documents write dates long-form via ui.longDate. OPEN
+  QUESTION Kevin raised, not yet built: should the Dashboard (and the
+  workroom-math drawers) sit behind an owner-tier PIN so not every
+  employee sees money and margins? Needs his call on the PIN scheme
+  (a second WORKROOM_OWNER_PIN env is the natural shape).
 
 ## Permissions
 

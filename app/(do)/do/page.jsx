@@ -178,13 +178,18 @@ export default function HomeDO() {
               </a>
             </div>
             <div className="mcard reveal">
-              <h3>Pedido Especial</h3>
-              <div className="flavor">Receta especial</div>
+              {/* Espejo de "The Counter" en la página EN (regla del
+                  2026-09-02): la tercera tarjeta es el sistema detrás de la
+                  caja, y se nombra como producto. El hero se queda: en RD la
+                  historia de pedidos sigue siendo WhatsApp. */}
+              <h3>La Caja</h3>
+              <div className="flavor">Receta especial · pedidos, membresías, panel</div>
               <div className="price">Hablemos</div>
               <ul>
-                <li>Pedidos en línea, integración con tu caja, tiendas, aplicaciones web</li>
-                <li>Rediseños de páginas que ya existen</li>
-                <li>Plan de cuidado a tu medida: alojamiento, actualizaciones y ediciones</li>
+                <li>Pedidos en línea y cobros en tu propia página, conectados a tu caja</li>
+                <li>Membresías, suscripciones y recompensas para tus clientes de siempre</li>
+                <li>Tu propio panel: pedidos, inventario y los números que muestran qué funciona</li>
+                <li>Mensualidad a tu medida: alojamiento, actualizaciones y soporte</li>
                 <li>Si lo puedes dibujar en una servilleta, lo podemos construir</li>
               </ul>
               <a
@@ -411,8 +416,8 @@ export default function HomeDO() {
                 </span>
               </div>
               <p style={{ marginTop: 14, fontSize: 13.5, maxWidth: 260, lineHeight: 1.6 }}>
-                Páginas web artesanales para negocios. Horneadas en Michigan, servidas calientes en República
-                Dominicana.
+                Páginas web y los sistemas detrás de ellas, para negocios que toman pedidos. Horneadas en Michigan,
+                servidas calientes en República Dominicana.
               </p>
             </div>
             <div className="foot-links">

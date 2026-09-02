@@ -610,10 +610,19 @@ the concept site at `/demo`. A meeting with the owner is set for late August
     lines (oasis $1, vases $7, ivory ribbon $5), LABOR = 2/3 of
     materials exactly (268 -> 178.67; 116 -> 77.33), x piece
     quantity, then 6% Michigan SALES TAX, plus a Pick Up line. TWO
-    GAPS AGAINST OUR BUILDER: quote-math has no sales-tax line, and
-    our model is wholesale-cost x markup while hers is retail-per-stem
-    + 2/3 labor. DO NOT rewrite from the angled screenshot - Kevin
-    gets view access or an export first.
+    GAPS AGAINST OUR BUILDER, both CLOSED at d076d63: Kevin overruled
+    the wait-for-access plan ("no plz rewrite w what we were given"),
+    and the model was rebuilt from the screenshots and PROVEN by
+    reproducing the Grace tab to the cent (grand total 4998.02, which
+    only reproduces with tax on the unrounded sum). The model now:
+    retail per-stem prices (prefill from the library's sellStem, not
+    wholesale invoices), markup x1 for weddings, labor 66.67% of
+    materials INCLUDING hardgoods, flat pieces carry no labor, 6% MI
+    tax on piece money only (never delivery), tax rides the board and
+    print as its own line. Old quotes keep taxPct 0 so sent totals
+    never gain 6%. Funerals keep x3/25/tax-0 dials until Friday.
+    Getting the real sheet is still worth it for HER stem price list
+    (only 7 varieties visible in the screenshot).
   - DELIVERY TICKETS: Smurfit Westrock (John Henry) FB2200-style
     custom Teleflora POS work ticket, 8.5x14 laser, perforated:
     delivery ticket + enclosure card + enclosure envelope panel in
@@ -626,9 +635,15 @@ the concept site at `/demo`. A meeting with the owner is set for late August
     Third-party listings also say 810. One of these is wrong on paper
     she hands to drivers. Do not change site.ts until she answers.
   - PHOTOS: her Gmail tab showed "Link for photo dump" - the 31
-    uploads came through the /photos page; the 3 wedding classics
-    (boutonniere, wrist corsage, bridesmaid bouquet) are still the
-    only gaps.
+    uploads came through the /photos page. Kevin 2026-09-02: THE 3
+    WEDDING CLASSICS ARE NOT COMING (boutonniere, wrist corsage,
+    bridesmaid bouquet). Options logged, undecided: shoot them at the
+    shop (bouts get made for every HS dance), or launch those three
+    with the no-photo treatment. Extraction path for the 31 so Kevin
+    never saves files one at a time: in Apple Mail or Outlook desktop,
+    select all the "Photo:" messages and Save All Attachments in one
+    action; in Gmail web, label them and pull one Takeout of the
+    label, and a session extracts the attachments from the mbox.
 
 ## Permissions
 

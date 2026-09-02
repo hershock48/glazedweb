@@ -637,6 +637,23 @@ the concept site at `/demo`. A meeting with the owner is set for late August
     "WEBSITE TEST (please ignore)" wedding draft and one test-looking
     accepted funeral ("family contactname") - the shop's data, left
     for Kevin or Katy to delete, not silently cleaned.
+- **The constructor audit (Kevin: "see if that bug is isolated - that
+  scares me"), 2026-09-02, d7a339d: the class is CLOSED.** Method,
+  reusable: every store object is minted via newId(), so grepping its
+  callers enumerates every construction site; any TYPE with two or
+  more constructors gets a field-by-field drift check. Results: Quote
+  (2 sites - the fixed seeder bug); WorkroomOrder (3 sites, clean -
+  web checkout funnels through one toWorkroomOrder helper; bonus:
+  Katy's 45/55 minimums are already ENFORCED on card-paid
+  deliveries); StemEvent (2 sites, ONE REAL SIBLING: the truck
+  receive wrote $0-cost purchases from blank prebook prices, which
+  the stems form refuses - a $0 lot silently poisons cost/stem and
+  margins). Receive now refuses unpriced lines by name BEFORE
+  writing; drafts still save with blanks (a prebook in progress may
+  be unfinished; only the ledger write is gated). Proven: $0 receive
+  = 400 + zero ledger writes; priced receive still logs. Varieties,
+  quote pieces (client-minted, PUT-sanitized) and all
+  single-constructor types checked clean.
   - DELIVERY TICKETS: Smurfit Westrock (John Henry) FB2200-style
     custom Teleflora POS work ticket, 8.5x14 laser, perforated:
     delivery ticket + enclosure card + enclosure envelope panel in

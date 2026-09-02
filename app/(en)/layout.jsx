@@ -8,7 +8,7 @@ export const metadata = {
   // casts the whole-state net; the old Marshall & Battle Creek title fished
   // one county. Marshall stays in the copy as where we bake, not who we serve.
   title: "Web Design in Michigan | glazedweb",
-  description: `Hand-built websites and online ordering for Michigan restaurants and shops, from ${usd(PRICING.us.original.build)}, live in 2 weeks. The site out front and the brain behind the register. Marshall studio serving all of Michigan.`,
+  description: `Hand-built websites for Michigan small businesses from ${usd(PRICING.us.original.build)}, live in 2 weeks. Small-batch studio in Marshall serving all of Michigan. Start your order today.`,
   // languages tells Google the Dominican page at /do is this page in Spanish,
   // not duplicate content. x-default keeps the English site as the answer for
   // every country we haven't localized.
@@ -25,7 +25,7 @@ export const metadata = {
   },
   openGraph: {
     title: "Web Design in Michigan | glazedweb",
-    description: `Hand-built websites and online ordering for Michigan restaurants and shops, from ${usd(PRICING.us.original.build)}, live in 2 weeks. Order it like a donut: pick a flavor, we bake it fresh, it ships glazed.`,
+    description: `Hand-built websites for Michigan small businesses from ${usd(PRICING.us.original.build)}, live in 2 weeks. Order it like a donut: pick a flavor, we bake it fresh, it ships glazed.`,
     type: "website",
     url: "https://www.glazedweb.com",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "glazedweb: a pink donut with a green glaze dripping off it, over the line Websites, fresh daily." }],
@@ -46,7 +46,7 @@ const localBusinessSchema = {
   "@id": "https://www.glazedweb.com/#business",
   name: "glazedweb",
   description:
-    "Small-batch web studio building hand-made websites and online ordering systems for restaurants, shops, and other small businesses. Based in Marshall, Michigan, serving the entire state of Michigan.",
+    "Small-batch web design studio building hand-made custom websites for small businesses. Based in Marshall, Michigan, serving the entire state of Michigan.",
   url: "https://www.glazedweb.com",
   email: CONTACT_EMAIL,
   image: "https://www.glazedweb.com/brand/logo-800.png",

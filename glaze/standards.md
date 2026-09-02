@@ -107,21 +107,6 @@ card were reframed the same day; ordering leads everywhere it appears. A
 dedicated ordering flavor with its own price is still open with Kevin, so the
 menu structure (three flavors) has not changed, only what it leads with.
 
-**Narrowed 2026-09-02.** The studio sells two things: the site out front, and
-the system behind the register (ordering, checkout, memberships, the owner's
-back office) for owner-run businesses with a counter, tied into the POS they
-already have. The hero line is "The site out front. The brain behind the
-register." The Custom card became **The Counter** (La Caja on /do), still
-priced "Let's talk" because the ordering price is the open ruling above. The
-/do hero was left alone on purpose: the Dominican ordering story is WhatsApp.
-
-Two things public copy never argues, from the September market read:
-"cheaper" (Square's $49 plan with free online ordering is the price floor for
-the ordering line by itself, and a flat model does not beat it on raw fees)
-and "we replace your register" (we do not sell a POS; we sit on top of one).
-The argument is flat monthly, no percentage, no contract, and a system that
-fits how the place actually runs.
-
 ---
 
 ## How the order fee is worded in public

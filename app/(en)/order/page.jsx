@@ -21,7 +21,7 @@ const FLAVORS = {
     price: `${usd(PRICING.us.dozen.build)} + ${usd(PRICING.us.dozen.monthly)}/mo`,
     blurb: "Full site · double dipped",
   },
-  custom: { key: "custom", name: "The Counter", price: "Let's talk", blurb: "Special recipe · ordering, memberships, back office" },
+  custom: { key: "custom", name: "Custom Order", price: "Let's talk", blurb: "Special recipe" },
 };
 
 export default function OrderPage() {

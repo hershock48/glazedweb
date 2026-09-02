@@ -44,14 +44,10 @@ export default function Home() {
       <div className="hero">
         <div>
           <div className="kicker">Small-batch web studio · Marshall, MI</div>
-          {/* Ruled 2026-09-02: the studio sells the site out front and the
-              system behind the register. "Websites people actually crave"
-              was the line while the menu was three website tiers; the
-              underline now sits on the half of the sentence that is new. */}
           <h1>
-            The site out front. The{" "}
+            Websites people actually{" "}
             <em>
-              brain
+              crave
               <svg viewBox="0 0 200 14" preserveAspectRatio="none">
                 <path
                   d="M4 10 C 40 2, 90 2, 120 7 C 150 11, 180 9, 196 5"
@@ -61,13 +57,12 @@ export default function Home() {
                   strokeLinecap="round"
                 />
               </svg>
-            </em>{" "}
-            behind the register.
+            </em>
           </h1>
           <p className="sub">
-            Hand-built for restaurants, shops, and anywhere with a counter. Your website first, then the ordering,
-            checkout, memberships, and owner tools that run on it, on top of the POS you already have. Pick a
-            flavor, we bake it fresh, it ships <span className="glazed">glazed</span>.
+            Hand-built sites for restaurants, shops, and anywhere with a counter. No templates, no third-party
+            apps, no off-brand widgets. Order it like a donut: pick a flavor, we bake it fresh, it ships{" "}
+            <span className="glazed">glazed</span>.
           </p>
           <div className="ctas">
             <a className="btn big" href="/order">
@@ -78,7 +73,7 @@ export default function Home() {
             </a>
           </div>
           <div className="proof">
-            Live in as little as <b>2 weeks</b> · Flat monthly, no percentage · You own everything
+            Launched in as little as <b>2 weeks</b> · Simple pricing · You own everything
           </div>
         </div>
         <div className="mark">
@@ -148,19 +143,13 @@ export default function Home() {
               </a>
             </div>
             <div className="mcard reveal">
-              {/* Was "Custom Order / Special recipe" with a grab-bag bullet
-                  list. Renamed 2026-09-02: this card is the second thing the
-                  studio sells, and it gets named like a product. Still
-                  "Let's talk" because the ordering price is an open ruling
-                  in glaze/standards.md. */}
-              <h3>The Counter</h3>
-              <div className="flavor">Special recipe · ordering, memberships, back office</div>
+              <h3>Custom Order</h3>
+              <div className="flavor">Special recipe</div>
               <div className="price">Let&apos;s talk</div>
               <ul>
-                <li>Online ordering and checkout on your own site, synced with your POS</li>
-                <li>Memberships, subscriptions, and rewards for your regulars</li>
-                <li>Your own back office: orders, inventory, and the numbers that show what is working</li>
-                <li>Flat monthly scoped to fit: hosting, updates, and support</li>
+                <li>Online ordering, POS integration, stores, web apps</li>
+                <li>Rebrands and redesigns of existing sites</li>
+                <li>Care plan scoped to fit: hosting, updates, and edits</li>
                 <li>If you can sketch it on a napkin, we can build it</li>
               </ul>
               <a className="btn ghost" href="/order?flavor=custom">
@@ -172,9 +161,8 @@ export default function Home() {
               points at an English SEO page; /do mirrors the bullet order but
               its ordering story is still WhatsApp-first. */}
           <p className="menu-note">
-            Take orders? That is The Counter: ordering on your own site, tied into your register, with a flat 99¢
-            per order paid by the customer and no percentage commission.{" "}
-            <a href="/online-ordering-website-michigan">How ordering works</a>
+            Take orders? We build the counter too: ordering on your own site, tied into your register, with no
+            percentage commission. <a href="/online-ordering-website-michigan">How ordering works</a>
           </p>
         </div>
       </section>
@@ -376,8 +364,8 @@ export default function Home() {
                 </span>
               </div>
               <p style={{ marginTop: 14, fontSize: 13.5, maxWidth: 260, lineHeight: 1.6 }}>
-                Websites and the systems behind them, for businesses that take orders. Baked in Marshall, Michigan,
-                serving the whole state and everywhere else.
+                Small-batch websites for small businesses. Baked in Marshall, Michigan, serving the whole state and
+                everywhere else.
               </p>
             </div>
             <div className="foot-links">

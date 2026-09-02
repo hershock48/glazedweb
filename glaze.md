@@ -64,21 +64,12 @@ before assuming anything**, including whether Tailwind is 3.x
 
 ## 1. Who we are
 
-Glazed Web is a one-person studio in Marshall, Michigan, run by Kevin Hershock,
-for owner-run businesses with a counter. It builds the site out front, then the
-system behind the register: online ordering, checkout, memberships, and the
-owner's own back office, tied into the POS the business already has. Flat
-monthly, no percentage commission, and the client owns all of it.
+Glazed Web is a one-person website studio in Marshall, Michigan, run by Kevin
+Hershock. Hand-built sites for small local businesses: a sports bar, a poultry
+farm, a bakery, a brewery, a food truck, a barbershop, a cannabis cultivation
+consultant, a caterer, a nonprofit.
 
-**The line, ruled 2026-09-02: "The site out front. The brain behind the
-register."** The website is how a business finds us; the counter is why it
-stays. Past builds span a sports bar, a poultry farm, a bakery, a brewery, a
-food truck, a barbershop, a florist, an insurance agency, a caterer, a
-nonprofit. The ones the copy sells now are the ones that take orders.
-
-No templates. No page builders. No plugin stacks. Every site is written. And
-the studio does not sell the register itself: Toast, Square, Clover and the
-like stay where they are, and the work sits on top of them.
+No templates. No page builders. No plugin stacks. Every site is written.
 
 The pitch is "order it like a donut: pick a flavor, we bake it fresh, it ships
 glazed." That last word is the standard, not the branding. A site is not done when

@@ -622,7 +622,21 @@ the concept site at `/demo`. A meeting with the owner is set for late August
     print as its own line. Old quotes keep taxPct 0 so sent totals
     never gain 6%. Funerals keep x3/25/tax-0 dials until Friday.
     Getting the real sheet is still worth it for HER stem price list
-    (only 7 varieties visible in the screenshot).
+    (only 7 varieties visible in the screenshot). SAME-NIGHT DEBUG
+    PASS (dca7843): the wedding-INQUIRY route had its own hardcoded
+    markup 3 / labor 25 and survived the rewrite unnoticed - every
+    web inquiry would have seeded the retired model with no visible
+    dial. It now spreads QUOTE_DEFAULTS.wedding; proven on production
+    with a live test inquiry (seeded markup 1 / labor 66.67 / tax 6,
+    then deleted). Lesson for every future model change: grep for
+    EVERY constructor of the type, not just the obvious route - quote
+    objects are built in TWO places (quotes POST and inquiry seed).
+    Also added: a wedding quote carrying markup above x1 discloses
+    "includes x N markup, an older quote" in the rail instead of
+    multiplying invisibly. Production still holds one 0-piece
+    "WEBSITE TEST (please ignore)" wedding draft and one test-looking
+    accepted funeral ("family contactname") - the shop's data, left
+    for Kevin or Katy to delete, not silently cleaned.
   - DELIVERY TICKETS: Smurfit Westrock (John Henry) FB2200-style
     custom Teleflora POS work ticket, 8.5x14 laser, perforated:
     delivery ticket + enclosure card + enclosure envelope panel in

@@ -17,6 +17,12 @@ The first Glazed Web client.
 $500 build plus $50 a month. An early friend price that predates the menu, and
 worth knowing when quoting anyone else.
 
+No proposal was ever written for them; they predate proposals. A Custom Order
+agreement on those terms was drafted 3 September 2026 in `contracts-private`
+(`build-chism-agreement.js`, docx and pdf), unsigned. Exhibit A Part 3 carries
+the reservation and Square deposit terms: their own Square account, no fee from
+us, the reservation email as the order record.
+
 ## Decisions on file
 
 **The short name is "Chism", not "CCR".** Tiffany raised that CCR is Creedence

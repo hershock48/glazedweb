@@ -87,7 +87,7 @@ export async function POST(req) {
         `Session:      ${obj.id}`,
         `When:         ${new Date((obj.created || 0) * 1000).toISOString()}`,
         ``,
-        `The circle on /agreement/${order.slug} is a check now.`,
+        `The circle on /agreement/${order.slug} is green now.`,
       ]);
       break;
     }

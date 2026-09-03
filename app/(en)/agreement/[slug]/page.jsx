@@ -19,7 +19,7 @@ import CustomOrderAccept from "@/components/CustomOrderAccept";
  *
  * Everything about the client comes from lib/customOrders.js. The monthly
  * status is read live from Stripe on every view (lib/monthly.js), so the
- * circle becomes a check the moment the plan starts, with no database.
+ * circle turns green the moment the plan starts, with no database.
  *
  * Noindex, not in the sitemap, not in any nav: the link Kevin sends is the
  * only way in. The URL is not a secret, and does not need to be; there is
@@ -37,12 +37,6 @@ export async function generateMetadata({ params }) {
     robots: { index: false, follow: false },
   };
 }
-
-const Check = () => (
-  <svg viewBox="0 0 16 16" aria-hidden="true">
-    <path d="M3 8.5l3.2 3L13 4.5" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
 
 function niceDate(iso) {
   return new Date(iso).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
@@ -102,9 +96,7 @@ export default async function CustomOrderPage({ params, searchParams }) {
           <h2>Where things stand</h2>
           <ul className="agr-status">
             <li>
-              <span className={`st-ic ${order.buildFeePaid ? "done" : "open"}`} aria-hidden="true">
-                {order.buildFeePaid ? <Check /> : null}
-              </span>
+              <span className={`st-ic ${order.buildFeePaid ? "done" : "open"}`} aria-hidden="true" />
               <div>
                 <b>
                   Build fee, {money(order.buildFee)}
@@ -118,9 +110,7 @@ export default async function CustomOrderPage({ params, searchParams }) {
               </div>
             </li>
             <li>
-              <span className={`st-ic ${monthlyRunning ? "done" : "open"}`} aria-hidden="true">
-                {monthlyRunning ? <Check /> : null}
-              </span>
+              <span className={`st-ic ${monthlyRunning ? "done" : "open"}`} aria-hidden="true" />
               <div>
                 <b>
                   Monthly care, {money(order.monthly)} a month{monthlyRunning ? ": running" : ""}
@@ -134,8 +124,8 @@ export default async function CustomOrderPage({ params, searchParams }) {
                   </span>
                 ) : status.state === "off" ? (
                   <span>
-                    Not started yet. The card link is not switched on yet; Kevin will text you when it is, and this page
-                    will show a check once the plan is running.
+                    Not started yet. The card link is not switched on yet; Kevin will text you when it is, and this circle
+                    turns green once the plan is running.
                   </span>
                 ) : (
                   <span>

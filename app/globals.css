@@ -633,9 +633,10 @@
   .agr-status { list-style: none; display: grid; gap: 12px; margin: 6px 0 10px; }
   .agr-status li { display: grid; grid-template-columns: 30px 1fr; gap: 14px; align-items: start; background: var(--cream-2); border: 2px solid rgba(43,30,22,0.09); border-radius: 16px; padding: 16px 18px; }
   .st-ic { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; margin-top: 1px; }
-  .st-ic.done { background: var(--fern); color: #fff; }
+  /* A solid green disc, no glyph: the check drew off-center at 30px and the
+     words "paid" and "running" already carry the state (Kevin, 2026-09-03). */
+  .st-ic.done { background: var(--fern); }
   .st-ic.open { border: 3px solid rgba(43,30,22,0.28); }
-  .st-ic svg { width: 16px; height: 16px; }
   .agr-status b { display: block; font-size: 15.5px; margin-bottom: 4px; }
   .agr-status span { display: block; font-size: 13.5px; color: #6B5747; line-height: 1.5; }
   .agr-status .btn { display: inline-block; margin-top: 12px; white-space: normal; text-align: center; }

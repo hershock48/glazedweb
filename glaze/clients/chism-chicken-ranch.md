@@ -23,6 +23,13 @@ agreement on those terms was drafted 3 September 2026 in `contracts-private`
 the reservation and Square deposit terms: their own Square account, no fee from
 us, the reservation email as the order record.
 
+**The $500 is paid** (Kevin, 3 September 2026). The page to send Derek is
+`glazedweb.com/agreement/chism` (entry in `glazedweb/lib/customOrders.js`):
+the build fee shows a green check, the monthly plan an open circle with a
+button that starts the $50 as a Stripe subscription on glazedweb's account,
+and the acceptance emails both parties. Kevin is emailed by the Stripe webhook
+when the plan starts. Edit allowance 1 hour a month, house guess, unconfirmed.
+
 ## Decisions on file
 
 **The short name is "Chism", not "CCR".** Tiffany raised that CCR is Creedence

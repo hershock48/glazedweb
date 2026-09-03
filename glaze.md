@@ -137,7 +137,17 @@ move the number, and the reasoning is in `contracts/README.md`.
 `/agreement`, tick the unchecked box on `/order`, and the order email records the
 agreement version and an acceptance timestamp. That is a formed agreement under
 ESIGN/UETA. Custom Orders: fill the bracketed fields, complete Exhibit A with
-scope and pricing, export to PDF, send through an e-signature service.
+scope and pricing, export to PDF, send through an e-signature service. Or, since
+2026-09-03, give the client their own page: an entry in `lib/customOrders.js`
+renders `glazedweb.com/agreement/{slug}` with Exhibit A in plain English, where
+things stand (build fee paid, monthly plan running, read live from Stripe), a
+button that starts the monthly fee as a subscription on glazedweb's own Stripe
+(`/api/pay/{slug}`), and the same clickwrap acceptance emailed to both parties
+(`/api/agreement`). The Stripe webhook (`/api/stripe/webhook`) emails Kevin when
+a plan starts, a charge fails, or a plan ends. Needs `STRIPE_SECRET_KEY` and
+`STRIPE_WEBHOOK_SECRET` in Vercel; without them the page says the card link is
+not switched on yet. The paper draft in `contracts-private` carries its own
+copy of every number, so a change is two edits in one commit.
 
 Not legal advice. Worth an hour with a Michigan attorney before real money runs
 through it.

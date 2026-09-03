@@ -107,6 +107,38 @@ guessed inbox is worse than none: Resend accepts the message, the route answers
 bounce anyone sees. Now that the address is confirmed the default is safe.
 Anything unconfirmed should go back to failing loudly.
 
+## Custom Orders: /agreement/{slug} and the monthly plan
+
+A Custom Order client gets their own page, `/agreement/{slug}`, rendered from
+one entry in `lib/customOrders.js` (Chism was the first, 2026-09-03): Exhibit
+A in plain English, a where-things-stand list (a green check on the build fee
+once it is paid, an open circle on the monthly plan that becomes a check the
+moment the plan is running), the clickwrap acceptance emailed to both parties
+through `POST /api/agreement` (same Resend key as `/order`; no key means the
+page hands the client a prefilled email carrying the record), and a plain link
+to `/api/pay/{slug}` that opens a Stripe Checkout subscription for the monthly
+fee on **glazedweb's own Stripe account**. The status is read live from
+Stripe's subscription list on every view, tied to the client by
+`metadata.client`; there is no database.
+
+Three variables in Vercel, all read per request:
+
+- `STRIPE_SECRET_KEY`, the studio's own key. `sk_test_` walks the whole flow
+  with Stripe's test cards and the page says "test mode"; until any key is
+  set the page says the card link is not switched on yet, and never a false
+  "not started".
+- `STRIPE_WEBHOOK_SECRET`, from the endpoint added in Stripe at
+  `https://www.glazedweb.com/api/stripe/webhook` with the events
+  `checkout.session.completed`, `invoice.payment_failed` and
+  `customer.subscription.deleted`. Each one becomes a plain email to Kevin.
+- `AGREEMENT_TO`, optional; acceptance and Stripe notes go to `ORDER_TO`
+  otherwise.
+
+`GET /api/agreement` says which of these are present, never what they are.
+The paper draft for each client lives in the private contracts folder and
+carries its own copy of every number, so a price change is two edits in one
+commit.
+
 All contact addresses come from `lib/contact.js`. It was hardcoded in eight
 places before that file existed, including the `ProfessionalService` JSON-LD in
 `app/layout.jsx` that Google reads as the studio's contact address. `kevin@` is

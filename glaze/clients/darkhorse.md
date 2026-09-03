@@ -20,9 +20,20 @@ merch, Wix Events for tickets, and the 4,800-member Mug Club run from one
 staff inbox. The audit in the repo README lists every finding with a link
 and an M/R tag.
 
-**The Mug Club system is the Custom Order line.** Everything else in the
-scope fits the Baker's Dozen. Price is open with Kevin; do not write a
-number into a proposal until he rules.
+**Priced like Griffin Claw, ruled by Kevin 2026-09-03: $4,500 build plus
+$195 a month.** The proposal (`pitch/darkhorse/index.html` in the repo)
+puts the Mug Club signup and renewal system inside that number. If that is
+more than the price is meant to carry, change the price-card line and the
+Mug Club row of the build table before sending, not after.
+
+**They own their domain.** `darkhorsebrewery.com` is registered through
+Network Solutions, since February 2005, paid to 2029, on worldnic
+nameservers. The proposal says so; it is the one ownership fact in their
+favor and it is what the rebuild sits behind.
+
+**The proposal is not sendable until `/demo` exists.** Section four links
+to it and describes it as built. The HTML carries a PLACEHOLDER comment at
+that spot and the README checklist names it as blocking.
 
 **Toast stays behind their own hostname if they keep it.** On-page embedding
 is impossible (frame policy, see `glaze.md`); `order.darkhorsebrewery.com`

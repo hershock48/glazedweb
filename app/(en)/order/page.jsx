@@ -43,7 +43,7 @@ export default function OrderPage() {
     payload.flavor = FLAVORS[flavor].name;
     payload.flavorPrice = FLAVORS[flavor].price;
     payload.agreementAcceptedAt = new Date().toISOString();
-    payload.agreementVersion = "v1.0 (2026-08)";
+    payload.agreementVersion = "v1.1 (2026-09)";
     setStatus("sending");
     try {
       const res = await fetch("/api/order", {
@@ -247,7 +247,7 @@ export default function OrderPage() {
                 </li>
               </ul>
               <p className="terms-link">
-                Full terms: <Link href="/agreement">Glazed Web Service Agreement</Link> (v1.0). It&apos;s two pages and
+                Full terms: <Link href="/agreement">glazedweb Service Agreement</Link> (v1.1). It&apos;s two pages and
                 written in plain English.
               </p>
             </div>

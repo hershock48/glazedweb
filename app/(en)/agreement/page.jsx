@@ -5,7 +5,7 @@ import { CONTACT_EMAIL } from "@/lib/contact";
 export const metadata = {
   title: "Service Agreement | glazedweb",
   description:
-    "The Glazed Web service agreement in plain English: you own your website, your domain, and your accounts. No lock-in, no hostage-taking.",
+    "The glazedweb service agreement in plain English: you own your website, your domain, and your accounts. No lock-in, no hostage-taking.",
   alternates: { canonical: "/agreement" },
 };
 
@@ -32,11 +32,11 @@ export default function AgreementPage() {
 
       <main className="legal-wrap">
         <div className="sec-kicker" style={{ color: "var(--fern)" }}>
-          Service agreement · v1.0
+          Service agreement · v1.1
         </div>
         <h1>The deal, in plain English.</h1>
         <p className="legal-lead">
-          Every Glazed Web project runs on these terms. No surprises, no fine print designed to trap you. If anything
+          Every glazedweb project runs on these terms. No surprises, no fine print designed to trap you. If anything
           here is unclear, ask before you sign. <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
         </p>
 
@@ -58,7 +58,7 @@ export default function AgreementPage() {
         <section className="legal">
           <h2>1. What we build</h2>
           <p>
-            Glazed Web designs, builds, and launches a custom website for your business. The pages, features, and scope
+            glazedweb designs, builds, and launches a custom website for your business. The pages, features, and scope
             are whatever we agree to in writing before work starts, usually the flavor you picked from the menu, plus
             anything we add by mutual agreement. Your build includes <b>two rounds of revisions</b> to the design before
             launch. Work beyond the agreed scope is quoted and approved by you before it begins; nothing gets added to
@@ -131,7 +131,9 @@ export default function AgreementPage() {
 
           <h2>8. Housekeeping</h2>
           <p>
-            Glazed Web is an independent contractor, not your employee or partner. This agreement is governed by
+            The provider under this agreement is glazedweb LLC, a Michigan limited liability company in Marshall,
+            Michigan, represented by Kevin Hershock. glazedweb is an independent contractor, not your employee or
+            partner. This agreement is governed by
             Michigan law. If a court finds part of it unenforceable, the rest still stands. Changes have to be in
             writing, and either of us can assign this agreement only with the other&apos;s consent.
           </p>
@@ -139,9 +141,15 @@ export default function AgreementPage() {
 
         <div className="legal-cta">
           <p>
-            <b>Version 1.0</b> · effective August 2026. Accepting this on the order form creates a binding agreement; we
-            record the version and timestamp with your order and email you a copy. Want it for your records, or for your
-            attorney? Download the signable document below. Nothing here changes between the page and the paper.
+            <b>Version 1.1</b> · effective September 2026. Accepting this on the order form creates a binding agreement;
+            we record the version and timestamp with your order and email you a copy. Want it for your records, or for
+            your attorney? Download the signable document below. Nothing here changes between the page and the paper.
+            What changed from 1.0: the provider is named as glazedweb LLC rather than Kevin personally. Orders accepted
+            under 1.0 stay on 1.0; that document is{" "}
+            <a href="/glazed-web-agreement-v1.pdf" target="_blank" rel="noopener noreferrer">
+              still here
+            </a>
+            .
           </p>
           {/* No "Start your order" CTA down here, deliberately (Kevin, 2026-08-31):
               this page is read by custom clients sent from their own acceptance
@@ -149,7 +157,7 @@ export default function AgreementPage() {
               a sales button reads wrong for both. The header keeps the standard
               nav path to /order; the document ends like a document. */}
           <div className="legal-actions">
-            <a className="btn big ghost" href="/glazed-web-agreement-v1.pdf" target="_blank" rel="noopener noreferrer">
+            <a className="btn big ghost" href="/glazed-web-agreement-v1-1.pdf" target="_blank" rel="noopener noreferrer">
               Download PDF
             </a>
           </div>

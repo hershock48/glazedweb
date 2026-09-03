@@ -11,15 +11,16 @@ Reference copies of the Glazed Web client agreement.
 
 | File | What it is |
 |---|---|
-| `Glazed_Web_Client_Agreement_v1.docx` | **The master.** Editable template with bracketed fields. This is the source of truth for the terms. |
-| `Glazed_Web_Client_Agreement_v1.pdf` | Rendered copy of the same text. A duplicate is served publicly at `/glazed-web-agreement-v1.pdf` (from `public/`). |
+| `Glazed_Web_Client_Agreement_v1.1.docx` | **The master.** Editable template with bracketed fields. This is the source of truth for the terms. |
+| `Glazed_Web_Client_Agreement_v1.1.pdf` | Rendered copy of the same text. A duplicate is served publicly at `/glazed-web-agreement-v1-1.pdf` (from `public/`). |
+| `Glazed_Web_Client_Agreement_v1.docx`, `.pdf` | v1.0, kept as accepted by the orders that recorded it. Do not edit; `/glazed-web-agreement-v1.pdf` stays published. |
 | `build-agreement.js` | Script that generates the .docx. Run it to regenerate the document after editing the terms in code rather than in Word. |
 
 ## The three places the terms live — keep them in sync
 
 1. **`contracts/*.docx`** — the master text, and the paper that gets signed for Custom Orders.
 2. **`app/agreement/page.jsx`** → published at **glazedweb.com/agreement** — the web mirror. This is what menu-order clients actually accept via the clickwrap on `/order`.
-3. **`public/glazed-web-agreement-v1.pdf`** — the downloadable copy linked from that page.
+3. **`public/glazed-web-agreement-v1-1.pdf`** — the downloadable copy linked from that page.
 
 If the terms change, all three change together and the version number goes up in all three. Drift between the page and the paper is exactly the problem v1.0 was written to fix.
 
@@ -39,10 +40,21 @@ To also refresh the PDF and the public copy:
 
 ```bash
 soffice --headless --convert-to pdf Glazed_Web_Client_Agreement_v1.docx
-cp Glazed_Web_Client_Agreement_v1.pdf public/glazed-web-agreement-v1.pdf
+cp Glazed_Web_Client_Agreement_v1.1.pdf ../public/glazed-web-agreement-v1-1.pdf
 ```
 
 ## Version history
+
+- **v1.1** (2 September 2026). **The Provider is glazedweb LLC**, a Michigan
+  limited liability company represented by Kevin Hershock, in place of "Kevin
+  Hershock, doing business as Glazed Web", and the studio is written
+  "glazedweb" throughout. A party change is a terms change, so the number
+  moved; orders accepted under v1.0 stay on v1.0 and its PDF stays published
+  at the old URL. Nothing else in the terms changed. The order form now
+  records `v1.1 (2026-09)`; the DeVine and Anchor custom-order pages
+  incorporate v1.1 by reference from the same day. On this machine the PDF is
+  made from the .docx through Word (no LibreOffice): open the .docx, Save As
+  PDF, copy to `public/`.
 
 - **v1.0, typographic revision** (17 August 2026). Em dashes replaced throughout,
   in `build-agreement.js` and in `app/agreement/page.jsx`, then the .docx and PDF

@@ -131,7 +131,7 @@ the concept site at `/demo`. A meeting with the owner is set for late August
 
 - **She said YES at the meeting (Kevin, 2026-08-31), and the paper went up
   the same day**: /agreement on the pitch host is a clickwrap acceptance of
-  the Client Agreement v1.0 (incorporated by reference, never restated)
+  the Client Agreement (v1.0 when written, v1.1 since 2026-09-02; incorporated by reference, never restated)
   plus her Exhibit A. Terms: $2,000 build with $1,000 on acceptance and
   balance at launch, $150 monthly including store and workroom, 2 hours of
   edits a month, $125/hour beyond scope quoted in advance, timeline agreed

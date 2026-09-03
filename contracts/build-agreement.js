@@ -90,7 +90,7 @@ const sigCell = (heading, lines) =>
 const doc = new Document({
   creator: "Glazed Web",
   title: "Website Design & Services Agreement",
-  description: "Glazed Web client agreement, v1.0",
+  description: "glazedweb client agreement, v1.1",
   numbering: {
     config: [
       {
@@ -122,7 +122,7 @@ const doc = new Document({
       },
       children: [
         // ---- masthead ----
-        p([t("GLAZED WEB", { size: 22, bold: true, color: INK, characterSpacing: 60 })], {
+        p([t("GLAZEDWEB", { size: 22, bold: true, color: INK, characterSpacing: 60 })], {
           alignment: AlignmentType.CENTER,
           spacing: { after: 40 },
         }),
@@ -134,7 +134,7 @@ const doc = new Document({
           alignment: AlignmentType.CENTER,
           spacing: { after: 80 },
         }),
-        p([t("Version 1.0  ·  Effective August 2026", { size: 18, color: PINK })], {
+        p([t("Version 1.1  ·  Effective September 2026", { size: 18, color: PINK })], {
           alignment: AlignmentType.CENTER,
           spacing: { after: 260 },
         }),
@@ -144,7 +144,7 @@ const doc = new Document({
         body(
           "This Website Design & Services Agreement (the “Agreement”) is made effective as of the date of the last signature below (the “Effective Date”), by and between:"
         ),
-        sub("", "Kevin Hershock, doing business as Glazed Web (“Glazed Web” or “Provider”), of Marshall, Michigan; and", "Provider:"),
+        sub("", "glazedweb LLC, a Michigan limited liability company (“glazedweb” or “Provider”), of Marshall, Michigan, represented by Kevin Hershock; and", "Provider:"),
         sub("", "[CLIENT LEGAL NAME] (“Client”), of [CLIENT ADDRESS], represented by [CONTACT NAME], [TITLE].", "Client:"),
         body(
           "Provider and Client may each be referred to as a “Party” and together as the “Parties.” This Agreement is written to be read and understood without a lawyer. If anything in it is unclear, ask before signing."
@@ -245,7 +245,7 @@ const doc = new Document({
                   children: [
                     p(t("PROVIDER", { size: 19, bold: true, color: FERN }), { spacing: { after: 300 } }),
                     p(t("_".repeat(32), { size: 21, color: "C9BBAA" }), { spacing: { after: 30 } }),
-                    p(t("Kevin Hershock, Glazed Web", { size: 18, color: GREY }), { spacing: { after: 240 } }),
+                    p(t("Kevin Hershock, for glazedweb LLC", { size: 18, color: GREY }), { spacing: { after: 240 } }),
                     p(t("_".repeat(32), { size: 21, color: "C9BBAA" }), { spacing: { after: 30 } }),
                     p(t("Date", { size: 18, color: GREY }), { spacing: { after: 200 } }),
                     p(t("kevin@glazedweb.com", { size: 18, color: GREY })),
@@ -291,10 +291,10 @@ const doc = new Document({
         fill("Target launch date:", 32),
         fill("Client materials due by:", 32),
         rule(),
-        p([t("Glazed Web  ·  Marshall, Michigan  ·  kevin@glazedweb.com  ·  glazedweb.com", { size: 17, color: GREY })], {
+        p([t("glazedweb LLC  ·  Marshall, Michigan  ·  kevin@glazedweb.com  ·  glazedweb.com", { size: 17, color: GREY })], {
           alignment: AlignmentType.CENTER,
         }),
-        p([t("Agreement v1.0, matches the published terms at glazedweb.com/agreement", { size: 16, color: GREY, italics: true })], {
+        p([t("Agreement v1.1, matches the published terms at glazedweb.com/agreement", { size: 16, color: GREY, italics: true })], {
           alignment: AlignmentType.CENTER,
         }),
       ],
@@ -303,6 +303,6 @@ const doc = new Document({
 });
 
 Packer.toBuffer(doc).then((buf) => {
-  fs.writeFileSync("Glazed_Web_Client_Agreement_v1.docx", buf);
-  console.log("wrote Glazed_Web_Client_Agreement_v1.docx", buf.length, "bytes");
+  fs.writeFileSync("Glazed_Web_Client_Agreement_v1.1.docx", buf);
+  console.log("wrote Glazed_Web_Client_Agreement_v1.1.docx", buf.length, "bytes");
 });

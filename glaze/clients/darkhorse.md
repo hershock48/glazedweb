@@ -31,9 +31,18 @@ Network Solutions, since February 2005, paid to 2029, on worldnic
 nameservers. The proposal says so; it is the one ownership fact in their
 favor and it is what the rebuild sits behind.
 
-**The proposal is not sendable until `/demo` exists.** Section four links
-to it and describes it as built. The HTML carries a PLACEHOLDER comment at
-that spot and the README checklist names it as blocking.
+**The demo exists, at `/demo`, built 2026-09-03.** Static pages generated
+from `demo/data.mjs` by `demo/build.mjs`; the weekday under an event is
+derived from its date, hours print from one table. Two event dates in the
+data are inferred from their own description and marked PLACEHOLDER; the
+Mug Club price and perks are unpublished and the page says so rather than
+inventing them. Ordering still links to Toast's URL; there is no workroom.
+Both are said out loud in the proposal's build table.
+
+**Assets.** Pulled from their Wix CDN at layout sizes. The CDN serves AVIF
+with alpha when asked with `enc_auto` and an `image/avif` Accept header,
+which is a quarter the weight of the WebP it gives by default for PNG
+sources. Originals from them before any real launch.
 
 **Toast stays behind their own hostname if they keep it.** On-page embedding
 is impossible (frame policy, see `glaze.md`); `order.darkhorsebrewery.com`

@@ -50,6 +50,10 @@ export default async function CustomOrderPage({ params, searchParams }) {
   const status = await monthlyStatus(order, typeof sp.session_id === "string" ? sp.session_id : undefined);
   const payHref = `/api/pay/${order.slug}`;
   const monthlyRunning = status.state === "active";
+  /* A missing array is a typo in the registry, not a reason to 500 a legal
+     page in front of the client who was sent the link. */
+  const scope = Array.isArray(order.scope) ? order.scope : [];
+  const payments = Array.isArray(order.payments) ? order.payments : [];
 
   let payNote = null;
   if (sp.pay === "cancelled") payNote = "No charge was made. The button is here whenever you are ready.";
@@ -84,8 +88,8 @@ export default async function CustomOrderPage({ params, searchParams }) {
           Two documents make the whole deal, and both are on this page or one tap from it. The first is the{" "}
           <Link href="/agreement">{AGREEMENT_VERSION}</Link>, the same published terms every glazedweb client gets: you
           own the site outright, month to month, thirty days&rsquo; notice, no penalty, Michigan law. The second is the
-          Exhibit A below, which fills in what was built for you, what it costs, and how the reservations and deposits
-          work. Accepting at the bottom accepts both together.
+          Exhibit A below, which fills in what was built for you, what it costs
+          {payments.length ? `, and ${order.paymentsSummary}` : ""}. Accepting at the bottom accepts both together.
         </p>
         <p className="agr-note">
           If anything is unclear, ask before accepting: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> or a
@@ -155,7 +159,7 @@ export default async function CustomOrderPage({ params, searchParams }) {
               : "."}
           </p>
           <ol className="agr-scope">
-            {order.scope.map((s) => (
+            {scope.map((s) => (
               <li key={s.slice(0, 40)}>{s}</li>
             ))}
           </ol>
@@ -178,16 +182,14 @@ export default async function CustomOrderPage({ params, searchParams }) {
               <tr>
                 <td>Monthly service fee</td>
                 <td>
-                  {money(order.monthly)} a month, starting the day you start it above. Hosting, SSL, security updates,
-                  backups, domain renewal where we hold it, and each season&rsquo;s round opened for you. Month to month;
-                  thirty days&rsquo; notice ends it, and the site stays yours.
+                  {money(order.monthly)} a month, starting the day you start it above. {order.monthlyCovers} Month to
+                  month; thirty days&rsquo; notice ends it, and the site stays yours.
                 </td>
               </tr>
               <tr>
                 <td>Included edits</td>
                 <td>
-                  Up to {order.editAllowance} of small edits: prices, the pickup window, a photo, a line of copy. Opening
-                  the next round is within it.
+                  Up to {order.editAllowance} of small edits: {order.editExamples}
                 </td>
               </tr>
               <tr>
@@ -207,19 +209,26 @@ export default async function CustomOrderPage({ params, searchParams }) {
             </tbody>
           </table>
 
-          <h2>Exhibit A, part 3: reservations and deposits</h2>
-          <p>
-            The site lets your customers reserve birds from the open round, see an estimate, and pay the reservation
-            deposit by card on a checkout page hosted by Square. These terms apply to that flow and are part of the
-            agreement.
-          </p>
-          <ol className="agr-scope">
-            {order.payments.map((p) => (
-              <li key={p.lead}>
-                <b>{p.lead}</b> {p.text}
-              </li>
-            ))}
-          </ol>
+          {/*
+            Part 3 is the clause the master agreement has no home for, and it
+            differs per client: Chism's is Square deposits, True North's is the
+            flavor feed and who owns that data. A client with no such clause
+            gets no part 3 at all, because an empty list under a live "these
+            terms apply" heading is worse than no section.
+          */}
+          {payments.length ? (
+            <>
+              <h2>Exhibit A, part 3: {order.paymentsTitle}</h2>
+              <p>{order.paymentsIntro}</p>
+              <ol className="agr-scope">
+                {payments.map((p) => (
+                  <li key={p.lead}>
+                    <b>{p.lead}</b> {p.text}
+                  </li>
+                ))}
+              </ol>
+            </>
+          ) : null}
 
           <h2>Accept</h2>
           <p>

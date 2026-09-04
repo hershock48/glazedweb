@@ -44,11 +44,18 @@ function recordText(order, a) {
     `  Edit allowance ${order.editAllowance}. Additional work ${money(order.hourlyRate)}/hour, quoted and approved in advance.`,
     `  The site is ${order.live ? "live" : "to be published"} at ${order.domain}.`,
     ``,
-    ...order.scope.map((s, i) => `  Scope ${i + 1}. ${s}`),
+    /* Same guard as the page: a registry typo must not throw inside the one
+       request that records a client's acceptance. And part 3 is per client,
+       so a client without one gets no heading for it. */
+    ...(Array.isArray(order.scope) ? order.scope : []).map((s, i) => `  Scope ${i + 1}. ${s}`),
     `  Not included: ${order.notIncluded}`,
     ``,
-    `  Exhibit A, part 3:`,
-    ...order.payments.map((p, i) => `  ${i + 1}. ${p.lead} ${p.text}`),
+    ...(Array.isArray(order.payments) && order.payments.length
+      ? [
+          `  Exhibit A, part 3, ${order.paymentsTitle}:`,
+          ...order.payments.map((p, i) => `  ${i + 1}. ${p.lead} ${p.text}`),
+        ]
+      : []),
   ].join("\n");
 }
 

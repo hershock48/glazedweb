@@ -676,6 +676,27 @@ the concept site at `/demo`. A meeting with the owner is set for late August
     action; in Gmail web, label them and pull one Takeout of the
     label, and a session extracts the attachments from the mbox.
 
+- **THE FEE NARROWS TO THE WEBSITE (Kevin, 2026-09-04, superseding the
+  2026-09-01 every-remote-card rule; shipped b0199c3, exhibit revised
+  2026-09-04).** The 99c customer-paid order fee applies ONLY to
+  orders placed through the website's checkout. A phone order keyed at
+  the board charges exactly its lines; cash and in-person register
+  sales never carried it. Mechanics: chargeBoardOrder now REQUIRES
+  applyOrderFee from every caller (web checkout true, workroom pay
+  false; a third caller cannot compile without deciding - the
+  two-constructors lesson applied to a flag). The workroom card panel
+  lost its Order fee row and only itemizes when delivery makes the
+  total differ. Wording updated in the same commit everywhere the fee
+  is promised: agreement scope + pricing row, acceptance page, pitch
+  letter. PROVEN LIVE both ways on the sandbox: workroom Take card
+  charged 7500c with feeCents 0 (PAID CARD $75.00, no fee row);
+  website checkout still 7599c with feeCents 99. Board cards still
+  show an Order fee receipt row on WEB orders that paid one - correct,
+  it happened. Test orders left on the production board for Kevin to
+  clear: two "FEE SPLIT TEST (clear me)" (one paid $75.00 no-fee, one
+  unpaid), "FEE SPLIT WEB (clear me)" (paid $75.99), and 2026-09-03's
+  "CARD TEST (clear me)" (paid $75.99).
+
 ## Permissions
 
 - **Product photographs were supplied by Kevin directly** (their host captchas

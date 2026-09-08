@@ -13,7 +13,7 @@ import { CONTACT_EMAIL } from "@/lib/contact";
  * cannot send it. A false "you're all set" on a legal record would be the
  * worst version of the bug.
  */
-export default function CustomOrderAccept({ slug, business, contactName, contactTitle, email, payHref }) {
+export default function CustomOrderAccept({ slug, business, contactName, contactTitle, email, payHref, buildHref, bothHref }) {
   const [state, setState] = useState({ step: "form" });
   const [name, setName] = useState(contactName || "");
   const [title, setTitle] = useState(contactTitle || "");
@@ -26,7 +26,19 @@ export default function CustomOrderAccept({ slug, business, contactName, contact
       <div className="agr-done" role="status">
         <h3>Accepted. Thank you.</h3>
         <p>A copy of the signed record is on its way to your email, and to ours.</p>
-        {payHref ? (
+        {bothHref ? (
+          <p>
+            Two things left, and one card form does both: <a href={bothHref}>pay the build and start the monthly</a>.
+            Or take them one at a time: <a href={buildHref}>pay the build in full</a>, or{" "}
+            <a href={payHref}>start the monthly plan</a>. Same card form as any online checkout; the monthly can be
+            stopped any time. If you would rather we invoice the build, do nothing here and it arrives by email.
+          </p>
+        ) : buildHref ? (
+          <p>
+            One thing left: <a href={buildHref}>pay the build in full</a> by card, or do nothing here and we invoice
+            it, half to start and half at launch.
+          </p>
+        ) : payHref ? (
           <p>
             One thing left: <a href={payHref}>start the monthly plan</a>. It is the same card form as any online
             checkout, and you can stop it any time.

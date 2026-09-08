@@ -115,11 +115,17 @@ A in plain English, a where-things-stand list (a green check on the build fee
 once it is paid, an open circle on the monthly plan that becomes a check the
 moment the plan is running), the clickwrap acceptance emailed to both parties
 through `POST /api/agreement` (same Resend key as `/order`; no key means the
-page hands the client a prefilled email carrying the record), and a plain link
-to `/api/pay/{slug}` that opens a Stripe Checkout subscription for the monthly
-fee on **glazedweb's own Stripe account**. The status is read live from
-Stripe's subscription list on every view, tied to the client by
-`metadata.client`; there is no database.
+page hands the client a prefilled email carrying the record), and plain links
+to `/api/pay/{slug}` that open Stripe Checkout on **glazedweb's own Stripe
+account**: the monthly fee as a subscription (the default), the build fee in
+full as a one-time payment (`?what=build`), or both in one card form
+(`?what=both`, subscription mode with the build fee as a one-time line on the
+first invoice; Kevin, 8 Sep 2026). Status is read live from Stripe on every
+view, the monthly from the subscription list and the build from the Checkout
+session list, both tied to the client by `metadata.client` (`metadata.kind`
+says build or both); there is no database. A build paid by invoice is still
+`buildFeePaid: true` in the registry by hand, and the pay route refuses to
+sell a paid build twice.
 
 Three variables in Vercel, all read per request:
 

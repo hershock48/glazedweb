@@ -4,6 +4,7 @@ import { LogoDefs, Mark } from "@/components/Logo";
 import { CONTACT_EMAIL } from "@/lib/contact";
 import { getCustomOrder, money, AGREEMENT_VERSION, PROVIDER } from "@/lib/customOrders";
 import { monthlyStatus } from "@/lib/monthly";
+import { buildStatus } from "@/lib/buildfee";
 import CustomOrderAccept from "@/components/CustomOrderAccept";
 
 /**
@@ -14,8 +15,9 @@ import CustomOrderAccept from "@/components/CustomOrderAccept";
  * reference, exactly the way the menu-order clickwrap works. What this page
  * adds is what the master leaves blank: Exhibit A with the client's scope
  * and numbers, where things stand (build fee paid, monthly plan running),
- * the button that starts the monthly plan on glazedweb's Stripe, and the
- * acceptance itself.
+ * the buttons that pay the build fee and start the monthly plan on
+ * glazedweb's Stripe (lib/buildfee.js, lib/monthly.js), and the acceptance
+ * itself.
  *
  * Everything about the client comes from lib/customOrders.js. The monthly
  * status is read live from Stripe on every view (lib/monthly.js), so the
@@ -47,9 +49,15 @@ export default async function CustomOrderPage({ params, searchParams }) {
   const order = getCustomOrder(slug);
   if (!order) notFound();
   const sp = (await searchParams) || {};
-  const status = await monthlyStatus(order, typeof sp.session_id === "string" ? sp.session_id : undefined);
+  const sessionId = typeof sp.session_id === "string" ? sp.session_id : undefined;
+  const [status, build] = await Promise.all([monthlyStatus(order, sessionId), buildStatus(order, sessionId)]);
   const payHref = `/api/pay/${order.slug}`;
+  const buildHref = `${payHref}?what=build`;
+  const bothHref = `${payHref}?what=both`;
   const monthlyRunning = status.state === "active";
+  const buildPaid = build.state === "paid";
+  // Which row a ?pay= note belongs under: the build row for build and both.
+  const noteOnBuild = sp.what === "build" || sp.what === "both";
   /* A missing array is a typo in the registry, not a reason to 500 a legal
      page in front of the client who was sent the link. */
   const scope = Array.isArray(order.scope) ? order.scope : [];
@@ -58,6 +66,7 @@ export default async function CustomOrderPage({ params, searchParams }) {
   let payNote = null;
   if (sp.pay === "cancelled") payNote = "No charge was made. The button is here whenever you are ready.";
   if (sp.pay === "failed") payNote = `The card page could not be opened just now. Try again in a minute, or email ${CONTACT_EMAIL}.`;
+  if (sp.pay === "paid") payNote = "The build fee is already paid; nothing more is owed on it.";
 
   return (
     <>
@@ -100,17 +109,40 @@ export default async function CustomOrderPage({ params, searchParams }) {
           <h2>Where things stand</h2>
           <ul className="agr-status">
             <li>
-              <span className={`st-ic ${order.buildFeePaid ? "done" : "open"}`} aria-hidden="true" />
+              <span className={`st-ic ${buildPaid ? "done" : "open"}`} aria-hidden="true" />
               <div>
                 <b>
                   Build fee, {money(order.buildFee)}
-                  {order.buildFeePaid ? ": paid" : ""}
+                  {buildPaid ? ": paid" : ""}
+                  {!buildPaid && build.mode === "test" ? <span className="agr-mode">test mode</span> : null}
                 </b>
-                <span>
-                  {order.buildFeePaid
-                    ? "Paid in full. The site is yours: code, content, and accounts."
-                    : "Due on acceptance. We invoice it; nothing is owed until the invoice arrives."}
-                </span>
+                {buildPaid ? (
+                  <span>
+                    Paid in full{build.how === "card" && build.when ? ` by card on ${niceDate(build.when)}` : ""}. The site is
+                    yours: code, content, and accounts.
+                  </span>
+                ) : build.state === "off" ? (
+                  <span>Due on acceptance. We invoice it; nothing is owed until the invoice arrives.</span>
+                ) : (
+                  <span>
+                    Due on acceptance. Pay it by card here, in one go, or we invoice it, half to start and half at
+                    launch; nothing is owed until the invoice arrives.
+                    {build.unsure ? " (We could not reach Stripe to check just now; if you already paid, refresh in a minute.)" : ""}
+                  </span>
+                )}
+                {!buildPaid && build.state !== "off" ? (
+                  <span className="agr-btns">
+                    <a className="btn" href={buildHref}>
+                      Pay the build in full
+                    </a>
+                    {!monthlyRunning ? (
+                      <a className="btn ghost" href={bothHref}>
+                        Pay the build and start the monthly, {money(order.buildFee + order.monthly)} today
+                      </a>
+                    ) : null}
+                  </span>
+                ) : null}
+                {payNote && noteOnBuild && !buildPaid ? <span className="agr-paynote">{payNote}</span> : null}
               </div>
             </li>
             <li>
@@ -143,7 +175,7 @@ export default async function CustomOrderPage({ params, searchParams }) {
                     Start the monthly plan
                   </a>
                 ) : null}
-                {payNote && !monthlyRunning ? <span className="agr-paynote">{payNote}</span> : null}
+                {payNote && !noteOnBuild && !monthlyRunning ? <span className="agr-paynote">{payNote}</span> : null}
               </div>
             </li>
           </ul>
@@ -174,9 +206,9 @@ export default async function CustomOrderPage({ params, searchParams }) {
                 <td>Build fee</td>
                 <td>
                   {money(order.buildFee)}, one time.{" "}
-                  {order.buildFeePaid
+                  {buildPaid
                     ? "Paid in full; nothing further is owed on it."
-                    : "Due on acceptance and invoiced separately."}
+                    : "Due on acceptance: by card above, in full, or invoiced separately, half to start and half at launch."}
                 </td>
               </tr>
               <tr>
@@ -243,6 +275,8 @@ export default async function CustomOrderPage({ params, searchParams }) {
             contactTitle={order.contactTitle}
             email={order.email}
             payHref={!monthlyRunning && status.state !== "off" ? payHref : null}
+            buildHref={!buildPaid && build.state !== "off" ? buildHref : null}
+            bothHref={!buildPaid && !monthlyRunning && build.state !== "off" ? bothHref : null}
           />
 
           <p className="agr-note agr-foot">

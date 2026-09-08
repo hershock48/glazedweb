@@ -5,7 +5,8 @@ import { ORDER_TO } from "@/lib/contact";
 /**
  * Stripe tells us what happened on a monthly plan, and we tell Kevin.
  *
- *   checkout.session.completed      a client started their plan
+ *   checkout.session.completed      a client started their plan, paid the
+ *                                   build fee, or both in one go
  *   invoice.payment_failed          a monthly charge bounced
  *   customer.subscription.deleted   a plan ended
  *
@@ -78,6 +79,28 @@ export async function POST(req) {
 
   switch (event.type) {
     case "checkout.session.completed": {
+      const kind = obj.metadata?.kind;
+      if (kind === "build" || kind === "both") {
+        await tell(
+          kind === "both"
+            ? `${order.client} paid the build fee and started the monthly plan${tag}`
+            : `${order.client} paid the build fee${tag}`,
+          [
+            kind === "both"
+              ? `${order.client} just paid the ${money(order.buildFee)} build fee and started the ${money(order.monthly)} a month plan, in one checkout on glazedweb.com.`
+              : `${order.client} just paid the ${money(order.buildFee)} build fee in full on glazedweb.com.`,
+            ``,
+            `Paid by:      ${obj.customer_details?.email || obj.customer_email || "unknown"}`,
+            `Amount:       ${money((obj.amount_total || 0) / 100)}`,
+            kind === "both" ? `Subscription: ${obj.subscription || "pending"}` : `Payment:      ${obj.payment_intent || "unknown"}`,
+            `Session:      ${obj.id}`,
+            `When:         ${new Date((obj.created || 0) * 1000).toISOString()}`,
+            ``,
+            `The build circle on /agreement/${order.slug} is green now. Under the agreement the site is theirs: code, content, and accounts.`,
+          ]
+        );
+        break;
+      }
       if (obj.mode !== "subscription") break;
       await tell(`${order.client} started the monthly plan${tag}`, [
         `${order.client} just started the ${money(order.monthly)} a month plan on glazedweb.com.`,

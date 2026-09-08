@@ -640,6 +640,8 @@
   .agr-status b { display: block; font-size: 15.5px; margin-bottom: 4px; }
   .agr-status span { display: block; font-size: 13.5px; color: #6B5747; line-height: 1.5; }
   .agr-status .btn { display: inline-block; margin-top: 12px; white-space: normal; text-align: center; }
+  .agr-status .agr-btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+  .agr-status .agr-btns .btn { margin-top: 0; }
   .agr-status .agr-paynote { margin-top: 10px; color: var(--raspberry-ink); font-weight: 700; }
   .agr-status .agr-mode { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--raspberry-ink); border: 1.5px solid currentColor; border-radius: 999px; padding: 2px 8px; margin-left: 8px; vertical-align: middle; }
   .agr-scope { padding-left: 22px; display: grid; gap: 10px; margin-bottom: 14px; }

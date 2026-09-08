@@ -1,11 +1,13 @@
 import { getCustomOrder } from "@/lib/customOrders";
 import { createMonthlyCheckout } from "@/lib/monthly";
+import { createBuildCheckout } from "@/lib/buildfee";
 import { stripeKey } from "@/lib/stripe";
 
 /**
- * "Start the monthly plan." A plain link on /agreement/{slug} lands here; we
- * open a Stripe Checkout session for that client's monthly fee and send them
- * to it. No JavaScript needed on the page, and nothing about the amount
+ * "Start the monthly plan", "Pay the build in full", or both at once. A plain
+ * link on /agreement/{slug} lands here with ?what=monthly (the default),
+ * ?what=build or ?what=both; we open a Stripe Checkout session for that and
+ * send them to it. No JavaScript needed on the page, and nothing about the amount
  * comes from the browser: the number is read from lib/customOrders.js.
  *
  * Every failure goes back to the agreement page with a reason in the query,
@@ -24,12 +26,18 @@ export async function GET(req, { params }) {
   const origin = `${proto}://${host}`;
   const back = `${origin}/agreement/${order.slug}`;
 
-  if (!stripeKey()) return Response.redirect(`${back}?pay=off`, 303);
+  const what = new URL(req.url).searchParams.get("what");
+  const kind = what === "build" || what === "both" ? what : "monthly";
+  if (!stripeKey()) return Response.redirect(`${back}?pay=off&what=${kind}`, 303);
+  // The build fee has one door: once it is paid, both build links go away on
+  // the page, but a stale tab could still hold one. Refuse to sell it twice.
+  if (kind !== "monthly" && order.buildFeePaid) return Response.redirect(`${back}?pay=paid`, 303);
   try {
-    const url = await createMonthlyCheckout(order, origin);
+    const url =
+      kind === "monthly" ? await createMonthlyCheckout(order, origin) : await createBuildCheckout(order, origin, kind === "both");
     return Response.redirect(url, 303);
   } catch (err) {
-    console.error(`[pay] checkout for ${order.slug} failed:`, err);
-    return Response.redirect(`${back}?pay=failed`, 303);
+    console.error(`[pay] ${kind} checkout for ${order.slug} failed:`, err);
+    return Response.redirect(`${back}?pay=failed&what=${kind}`, 303);
   }
 }

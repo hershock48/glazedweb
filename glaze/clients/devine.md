@@ -697,6 +697,66 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   unpaid), "FEE SPLIT WEB (clear me)" (paid $75.99), and 2026-09-03's
   "CARD TEST (clear me)" (paid $75.99).
 
+- **THE REQUIREMENTS MEETING (the shop's list, relayed by Kevin
+  2026-09-04). The backlog of record; work it down from here.**
+  QUICK WINS SHIPPED SAME DAY (7c4ee5f): finished/canceled rows open
+  to the full record; phone orders take email + address on both
+  fulfillments (pickup address optional, "for their file"); same-day
+  paid confirmation says "we'll handle it from here"; card-message
+  field says Printed (no handwriting in the store); homepage drops
+  "that morning". Recipient-on-phone-orders already existed.
+  BUILDABLE NEXT, no new dependencies:
+  - Manual delivery-fee adjust on phone orders (default by zip,
+    editable at write-up).
+  - Order EDITING after placement: lines, card message, address,
+    the lot. (Today nothing is editable.)
+  - Delivery time windows ("before 2pm", "between 1 and 3"), on web
+    checkout and phone orders, editable after; "flex delivery" is
+    their word for it.
+  - Wedding deposits: quotes show deposit paid / balance owed.
+  - Buyer history: look up a customer, see orders AND previous
+    recipients (their current system has a previous-recipients
+    section per customer).
+  - Confirm email receipts send everywhere; ADD a
+    delivery-confirmation email (out the door -> "it's delivered"?
+    clarify trigger).
+  NEEDS DESIGN OR A DECISION BEFORE BUILDING:
+  - 3% card fee ON TOP of everything: every card payment carries 3%
+    of the total (fee itself untaxed). ONLINE orders show ONE
+    combined "convenience fee" line (3% + the 99c); all other card
+    orders 3% only, no 99c. Supersedes-in-part the 09-04 fee
+    narrowing (the 99c stays website-only; the 3% is new and
+    everywhere cards are). Michigan surcharge rules + card-network
+    caps apply; agreement wording changes again when built.
+  - Address verification (Google-style "did you mean") + miles from
+    store on the order: both need a geocoding API (Google Address
+    Validation / Maps). PAID DEPENDENCY - the client must hear the
+    cost first per glaze.md; free tiers likely cover their volume.
+  - HOUSE / BUSINESS ACCOUNTS, the big one: per-customer account
+    toggle + credit limit, orders charged to account, a workroom
+    invoicing section (who owes what, laid out nicely), month-end
+    invoice sends, stored cards (Square Cards-on-File; card data
+    lives with Square, never us) for business AND personal
+    customers. Bronson example: three orders in a call, one card,
+    one combined charge.
+  - SPLIT PAYMENTS: half card half cash, two cards, etc.
+  - Wedding-page gallery/portfolio treatment (needs her real wedding
+    photos; ties to the awaited full-bleed band).
+  ANSWERED / INVESTIGATED:
+  - "Open and close a day": that is Square's own register drawer
+    (open/close cash drawer in Square POS); nothing of ours.
+  - "Service for john... delete this": it is the notes block the
+    funeral pad writes onto the board order ("Service for john.
+    Service 12:00 pm... Deliver by...") - found verbatim on the live
+    board from Katy's own test (DV-0910-P154, which also proves she
+    is actively test-driving; her internal note "family is not nice"
+    correctly never printed). Do NOT delete blind: the driver needs
+    whose service it is. Proposal pending: render service facts as a
+    labeled block on funeral orders instead of a sentence pile.
+  - Online orders are card-only at launch (no pay-on-call once cards
+    are live): pickup or delivery both fine, but paid online. Copy
+    and flow change when the production Square flip happens.
+
 ## Permissions
 
 - **Product photographs were supplied by Kevin directly** (their host captchas

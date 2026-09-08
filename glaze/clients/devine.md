@@ -757,6 +757,33 @@ the concept site at `/demo`. A meeting with the owner is set for late August
     are live): pickup or delivery both fine, but paid online. Copy
     and flow change when the production Square flip happens.
 
+- **THE FEE MODEL, final form (Kevin, 2026-09-04 evening; 45596b1) +
+  THE DELIVERED NOTE.** Every card payment the platform takes carries
+  the shop's OWN 3% card fee (site.cardFeePct, HER money); website
+  orders additionally carry the 99c platform fee (Glazed's, as
+  app_fee_money). Online: ONE combined "Convenience fee" line. Board:
+  "Card fee (3%)". Cash: nothing. In-person register: Square's
+  business, not ours. chargeBoardOrder requires cardFee {name, cents,
+  appFeeCents} from every caller. payment.feeCents now stores the FULL
+  customer-paid fee (web 324 on a $75 order, board 225), and board
+  receipts label it by source. PROVEN LIVE both ways on the sandbox:
+  board charge $77.25 (fee 225), web charge $78.24 (fee 324, 99 to the
+  platform). Agreement scope + acceptance page + letter all state the
+  split. DELIVERED NOTE: a delivery order marked done emails its
+  customer (transition-checked, so repeat taps never re-send; proven
+  against the sink, exactly one email). ANSWERS BANKED: IRIS uses
+  SMARTY for verify-while-typing + distance-from-shop; our plan is the
+  free US Census Bureau geocoder (no key, no vendor) for
+  verify-on-entry + coordinates, haversine miles to the shop -
+  autocomplete-while-typing would mean paid Smarty/Google later if she
+  misses it. Cards-on-File approved by Kevin (Square vault, never our
+  DB). Invoicing: Kevin leans Square Invoices if sufficient - design
+  pending: workroom accumulates house-account orders, month-end one
+  tap builds+sends a Square invoice; credit limits and the
+  account-toggle live in OUR customer records. Test orders to clear
+  keep growing: FEE MODEL TEST/WEB, FEE SPLIT TEST x2/WEB, CARD TEST,
+  Delivered Note Test (local only).
+
 ## Permissions
 
 - **Product photographs were supplied by Kevin directly** (their host captchas

@@ -30,7 +30,10 @@ export async function GET(req, { params }) {
   const proto = req.headers.get("x-forwarded-proto") || "https";
   const host = req.headers.get("x-forwarded-host") || req.headers.get("host") || "www.glazedweb.com";
   const origin = `${proto}://${host}`;
-  const back = `${origin}/agreement/${order.slug}`;
+  // A client whose agreement lives on its own host (devine) goes back
+  // there, never to a twin page here; lib/buildfee and lib/monthly honor
+  // the same field for Stripe's success and cancel returns.
+  const back = order.agreementUrl || `${origin}/agreement/${order.slug}`;
 
   const what = new URL(req.url).searchParams.get("what");
   const kind = what === "build" || what === "both" || what === "half" ? what : "monthly";

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { LogoDefs, Mark } from "@/components/Logo";
 import { CONTACT_EMAIL } from "@/lib/contact";
 import { getCustomOrder, money, AGREEMENT_VERSION, PROVIDER } from "@/lib/customOrders";
@@ -48,6 +48,9 @@ export default async function CustomOrderPage({ params, searchParams }) {
   const { slug } = await params;
   const order = getCustomOrder(slug);
   if (!order) notFound();
+  // A pay-rail-only entry (devine): the agreement's one home is on the
+  // client's own host, and this page must never render a sparse twin of it.
+  if (order.agreementUrl) redirect(order.agreementUrl);
   const sp = (await searchParams) || {};
   const sessionId = typeof sp.session_id === "string" ? sp.session_id : undefined;
   const [status, build] = await Promise.all([monthlyStatus(order, sessionId), buildStatus(order, sessionId)]);

@@ -67,6 +67,12 @@ online way to join or renew," never "one employee" or "one inbox," and the
 "if she is out for a month" question is gone. Grep for
 `emily|inbox|mailbox|employee|one person` before any send.
 
+**The price melts from Untappd's own guide** (2026-09-09, "like the other
+proposals"): fully custom $10,000 to $20,000+ upfront, $100 to $500 a month,
+lounge.untappd.com/how-much-should-a-website-cost/. Count from $10,000 to
+$4,500; monthly card cites the band beside $195. Melt lifted verbatim from
+Sprinkles. Launch window is two to four weeks (was four to six).
+
 **The proposal tracks the demo.** Sections three and four describe what is
 built; when the demo changes, re-read both before a send. Findings carry
 dates and get re-verified against their live site before a send.

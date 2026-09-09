@@ -61,8 +61,9 @@ The proposal says so in a sentence under the price. Do not split it out as
 an add-on or a phase.
 
 **The proposal goes to Emily, and nothing in it may point at a person**
-(Kevin, 2026-09-09, "remove the emily critiques immediately"). The Mug Club
-runs through her inbox today; the proposal now says "no system" and "no
+(Kevin, 2026-09-09, "remove the emily critiques immediately"). Her address
+is the Mug Club renewal contact on their site; she does not manage the
+website, someone else does, and that person is off limits too. The proposal the proposal now says "no system" and "no
 online way to join or renew," never "one employee" or "one inbox," and the
 "if she is out for a month" question is gone. Grep for
 `emily|inbox|mailbox|employee|one person` before any send.

@@ -56,10 +56,13 @@ script goes with nothing in its place. Do not add one back. The audit in the rep
 and an M/R tag.
 
 **Priced like Griffin Claw, ruled by Kevin 2026-09-03: $4,500 build plus
-$195 a month.** The proposal (`pitch/darkhorse/index.html` in the repo)
-puts the Mug Club signup and renewal system inside that number. If that is
-more than the price is meant to carry, change the price-card line and the
-Mug Club row of the build table before sending, not after.
+$195 a month. The Mug Club system is inside the $4,500, ruled 2026-09-09.**
+The proposal says so in a sentence under the price. Do not split it out as
+an add-on or a phase.
+
+**The proposal tracks the demo.** Sections three and four describe what is
+built; when the demo changes, re-read both before a send. Findings carry
+dates and get re-verified against their live site before a send.
 
 **They own their domain.** `darkhorsebrewery.com` is registered through
 Network Solutions, since February 2005, paid to 2029, on worldnic

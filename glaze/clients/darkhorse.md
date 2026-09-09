@@ -29,10 +29,16 @@ no post date; the structured data said `startDate 2026-09-07`, and on
 the Sept 19 Boy Mob show off the site ten days early. Kevin raised the
 post-date reading on 2026-09-09; it was checked and does not hold.
 
-**Toast, two dated visits:** Thu 2026-09-03 7:15 PM "Currently not accepting
-online orders"; Wed 2026-09-09 10:00 AM "Only accepting scheduled orders."
-The Toast menu disagrees with the website menu on soup prices and lists
-items the site never mentions. State both; conclude nothing about why. The audit in the repo README lists every finding with a link
+**Toast:** the finding is the Thursday-evening visit (2026-09-03, 7:15 PM,
+mid-service, "Currently not accepting online orders"). The Wed 2026-09-09
+10:00 AM visit showed "scheduled orders only," which Kevin pointed out is
+correct before the 11 AM opening; it is stated as expected behavior, not
+evidence. The Toast menu disagrees with the website menu on soup prices and
+lists items the site never mentions; that stays.
+
+**No age gate, ruled by Kevin 2026-09-09.** Everyone is welcome at the
+brewery. The demo has none; the proposal's build table says the 655KB
+script goes with nothing in its place. Do not add one back. The audit in the repo README lists every finding with a link
 and an M/R tag.
 
 **Priced like Griffin Claw, ruled by Kevin 2026-09-03: $4,500 build plus

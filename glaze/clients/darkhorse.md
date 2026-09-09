@@ -41,8 +41,11 @@ page carries the whole board as JSON in `data-react-props`; `demo/taps.mjs`
 parses it, `build.mjs` bakes it, `/api/taps` serves it with a five-minute
 edge cache. They edit the board (last on 2026-09-05). Real build: Untappd
 for Business API with their token. InkSoft is a print shop's storefront
-(publisher #20305); ask Chuck which shop, it decides whether merch can ever
-come in-house.
+(publisher #20305), almost certainly printer-fulfilled. In-house merch means
+the goods the General Store already stocks, fulfilled by them; the printer's
+on-demand catalog stays with the printer unless Chuck wants to change
+printers. Ask: who the printer is, what is held in stock, what the split is.
+Full reasoning in the repo README under the demo placeholders.
 
 **Cans are trimmed to alpha bounds** (`tools/trim-cans.mjs`) because the
 source PNGs carry different margins. Re-run it if a can is re-pulled.

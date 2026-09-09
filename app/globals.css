@@ -637,6 +637,9 @@
      words "paid" and "running" already carry the state (Kevin, 2026-09-03). */
   .st-ic.done { background: var(--fern); }
   .st-ic.open { border: 3px solid rgba(43,30,22,0.28); }
+  /* Half the build fee paid: the disc fills from the bottom to the middle, so
+     it reads as exactly what it is between the open ring and the green dot. */
+  .st-ic.half { border: 3px solid rgba(43,30,22,0.28); background: linear-gradient(to top, var(--fern) 50%, transparent 50%); }
   .agr-status b { display: block; font-size: 15.5px; margin-bottom: 4px; }
   .agr-status span { display: block; font-size: 13.5px; color: #6B5747; line-height: 1.5; }
   .agr-status .btn { display: inline-block; margin-top: 12px; white-space: normal; text-align: center; }

@@ -4,7 +4,7 @@ import { LogoDefs, Mark } from "@/components/Logo";
 import { CONTACT_EMAIL } from "@/lib/contact";
 import { getCustomOrder, money, AGREEMENT_VERSION, PROVIDER } from "@/lib/customOrders";
 import { monthlyStatus } from "@/lib/monthly";
-import { buildStatus } from "@/lib/buildfee";
+import { buildStatus, halfFee } from "@/lib/buildfee";
 import CustomOrderAccept from "@/components/CustomOrderAccept";
 
 /**
@@ -53,11 +53,22 @@ export default async function CustomOrderPage({ params, searchParams }) {
   const [status, build] = await Promise.all([monthlyStatus(order, sessionId), buildStatus(order, sessionId)]);
   const payHref = `/api/pay/${order.slug}`;
   const buildHref = `${payHref}?what=build`;
-  const bothHref = `${payHref}?what=both`;
+  const halfHref = `${payHref}?what=half`;
   const monthlyRunning = status.state === "active";
   const buildPaid = build.state === "paid";
-  // Which row a ?pay= note belongs under: the build row for build and both.
-  const noteOnBuild = sp.what === "build" || sp.what === "both";
+  const buildHalf = build.state === "half";
+  const half = halfFee(order);
+  /*
+    The monthly does not start until the build is paid in full AND the site
+    is live on their domain (Kevin, 9 Sep 2026: "that should probably start
+    once it's paid in full and launched"). Until then the row says when, and
+    offers no button. `order.live` is the registry's word for launched.
+    The "pay the build and start the monthly today" door went with it, for
+    the same reason: it started the monthly before launch.
+  */
+  const canStartMonthly = buildPaid && order.live === true;
+  // Which row a ?pay= note belongs under: the build row for the build doors.
+  const noteOnBuild = sp.what === "build" || sp.what === "both" || sp.what === "half";
   /* A missing array is a typo in the registry, not a reason to 500 a legal
      page in front of the client who was sent the link. */
   const scope = Array.isArray(order.scope) ? order.scope : [];
@@ -74,6 +85,7 @@ export default async function CustomOrderPage({ params, searchParams }) {
   if (sp.pay === "cancelled") payNote = "No charge was made. The button is here whenever you are ready.";
   if (sp.pay === "failed") payNote = `The card page could not be opened just now. Try again in a minute, or email ${CONTACT_EMAIL}.`;
   if (sp.pay === "paid") payNote = "The build fee is already paid; nothing more is owed on it.";
+  if (sp.pay === "half-paid") payNote = "The deposit is already paid. Only the balance is left, and it is due at launch.";
 
   return (
     <>
@@ -122,11 +134,11 @@ export default async function CustomOrderPage({ params, searchParams }) {
           <h2>Where things stand</h2>
           <ul className="agr-status">
             <li>
-              <span className={`st-ic ${buildPaid ? "done" : "open"}`} aria-hidden="true" />
+              <span className={`st-ic ${buildPaid ? "done" : buildHalf ? "half" : "open"}`} aria-hidden="true" />
               <div>
                 <b>
                   Build fee, {money(order.buildFee)}
-                  {buildPaid ? ": paid" : ""}
+                  {buildPaid ? ": paid" : buildHalf ? ": half paid" : ""}
                   {!buildPaid && build.mode === "test" ? <span className="agr-mode">test mode</span> : null}
                 </b>
                 {buildPaid ? (
@@ -134,25 +146,34 @@ export default async function CustomOrderPage({ params, searchParams }) {
                     Paid in full{build.how === "card" && build.when ? ` by card on ${niceDate(build.when)}` : ""}. The site is
                     yours: code, content, and accounts.
                   </span>
+                ) : buildHalf ? (
+                  <span>
+                    Half paid, {money(build.paid)} by card on {niceDate(build.when)}. The balance, {money(build.remaining)},
+                    is due at launch, from the same button below whenever you are ready.
+                  </span>
                 ) : build.state === "off" ? (
-                  <span>Due on acceptance. We invoice it; nothing is owed until the invoice arrives.</span>
+                  <span>Due on acceptance. We invoice it, half to start and half at launch; nothing is owed until the invoice arrives.</span>
                 ) : (
                   <span>
-                    Due on acceptance. Pay it by card here, in one go, or we invoice it, half to start and half at
-                    launch; nothing is owed until the invoice arrives.
+                    Due on acceptance. Half now and half at launch, or all of it in one go, by card here; or we invoice
+                    it on the same terms. Nothing is owed until you choose.
                     {build.unsure ? " (We could not reach Stripe to check just now; if you already paid, refresh in a minute.)" : ""}
                   </span>
                 )}
-                {!buildPaid && build.state !== "off" ? (
+                {buildHalf ? (
                   <span className="agr-btns">
-                    <a className="btn" href={buildHref}>
-                      Pay the build in full
+                    <a className="btn" href={halfHref}>
+                      Pay the balance, {money(build.remaining)}, at launch
                     </a>
-                    {!monthlyRunning ? (
-                      <a className="btn ghost" href={bothHref}>
-                        Pay the build and start the monthly, {money(order.buildFee + order.monthly)} today
-                      </a>
-                    ) : null}
+                  </span>
+                ) : !buildPaid && build.state !== "off" ? (
+                  <span className="agr-btns">
+                    <a className="btn" href={halfHref}>
+                      Pay half now, {money(half)}
+                    </a>
+                    <a className="btn ghost" href={buildHref}>
+                      Pay the build in full, {money(order.buildFee)}
+                    </a>
                   </span>
                 ) : null}
                 {payNote && noteOnBuild && !buildPaid ? <span className="agr-paynote">{payNote}</span> : null}
@@ -171,6 +192,11 @@ export default async function CustomOrderPage({ params, searchParams }) {
                     with thirty days&rsquo; notice, and the site stays yours.
                     {status.pastDue ? " The last payment did not go through; Stripe will retry and email you." : ""}
                   </span>
+                ) : !canStartMonthly ? (
+                  <span>
+                    Not started yet, and not due yet. It begins once the build fee is paid in full and the site is live on
+                    your domain; we send you the link then, and this circle turns green once the plan is running.
+                  </span>
                 ) : status.state === "off" ? (
                   <span>
                     Not started yet. The card link is not switched on yet; Kevin will text you when it is, and this circle
@@ -183,7 +209,7 @@ export default async function CustomOrderPage({ params, searchParams }) {
                     {status.unsure ? " (We could not reach Stripe to check just now; if you already started it, refresh in a minute.)" : ""}
                   </span>
                 )}
-                {!monthlyRunning && status.state !== "off" ? (
+                {canStartMonthly && !monthlyRunning && status.state !== "off" ? (
                   <a className="btn" href={payHref}>
                     Start the monthly plan
                   </a>
@@ -221,14 +247,19 @@ export default async function CustomOrderPage({ params, searchParams }) {
                   {money(order.buildFee)}, one time.{" "}
                   {buildPaid
                     ? "Paid in full; nothing further is owed on it."
-                    : "Due on acceptance: by card above, in full, or invoiced separately, half to start and half at launch."}
+                    : buildHalf
+                      ? `Half paid, ${money(build.paid)}. The balance, ${money(build.remaining)}, is due at launch.`
+                      : "Due on acceptance: half to start and half at launch, or in full, by card above or invoiced separately."}
                 </td>
               </tr>
               <tr>
                 <td>Monthly service fee</td>
                 <td>
-                  {money(order.monthly)} a month, starting the day you start it above. {order.monthlyCovers} Month to
-                  month; thirty days&rsquo; notice ends it, and the site stays yours.
+                  {money(order.monthly)} a month,{" "}
+                  {order.live
+                    ? "starting the day you start it above."
+                    : "starting once the build fee is paid in full and the site is live on your domain; we send you the link then."}{" "}
+                  {order.monthlyCovers} Month to month; thirty days&rsquo; notice ends it, and the site stays yours.
                 </td>
               </tr>
               <tr>

@@ -80,6 +80,22 @@ export async function POST(req) {
   switch (event.type) {
     case "checkout.session.completed": {
       const kind = obj.metadata?.kind;
+      if (kind === "half") {
+        // Deposit or balance? The page decides by counting paid halves; the
+        // email says what it can prove from this one event and points at
+        // the page for the rest, rather than guessing which half this was.
+        await tell(`${order.client} paid half of the build fee${tag}`, [
+          `${order.client} just paid ${money((obj.amount_total || 0) / 100)}, half of the ${money(order.buildFee)} build fee, on glazedweb.com.`,
+          `If this is the first half it is the deposit and the balance is due at launch; if it is the second, the build is paid in full. /agreement/${order.slug} shows which.`,
+          ``,
+          `Paid by:      ${obj.customer_details?.email || obj.customer_email || "unknown"}`,
+          `Amount:       ${money((obj.amount_total || 0) / 100)}`,
+          `Payment:      ${obj.payment_intent || "unknown"}`,
+          `Session:      ${obj.id}`,
+          `When:         ${new Date((obj.created || 0) * 1000).toISOString()}`,
+        ]);
+        break;
+      }
       if (kind === "build" || kind === "both") {
         await tell(
           kind === "both"

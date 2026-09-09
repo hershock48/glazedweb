@@ -127,16 +127,18 @@ export default async function ProjectPage({ params }) {
               </div>
             </li>
             <li>
-              <Circle done={buildPaid} />
+              <span className={`st-ic ${buildPaid ? "done" : build.state === "half" ? "half" : "open"}`} aria-hidden="true" />
               <div>
                 <b>
                   Build fee, {money(order.buildFee)}
-                  {buildPaid ? ": paid" : ""}
+                  {buildPaid ? ": paid" : build.state === "half" ? ": half paid" : ""}
                 </b>
                 <span>
                   {buildPaid
                     ? "Paid in full. The site is yours: code, content, and accounts."
-                    : "Due on acceptance. Half to start and half at launch, or in one go on the agreement page. Nothing is owed until the invoice arrives."}
+                    : build.state === "half"
+                      ? `Half paid, ${money(build.paid)}. The balance, ${money(build.remaining)}, is due at launch, from the agreement page.`
+                      : "Due on acceptance. Half to start and half at launch, or all of it in one go, by card on the agreement page; or we invoice it. Nothing is owed until you choose."}
                 </span>
               </div>
             </li>
@@ -149,7 +151,7 @@ export default async function ProjectPage({ params }) {
                 <span>
                   {monthlyRunning
                     ? "Running. Charged to your card on the same day each month; stop it any time with thirty days’ notice, and the site stays yours."
-                    : "Starts when you start it, from the agreement page. It does not begin until the site is yours to care for."}
+                    : "Not due yet. It begins once the build fee is paid in full and the site is live on your domain; we send you the link then."}
                 </span>
               </div>
             </li>

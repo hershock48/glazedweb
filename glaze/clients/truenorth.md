@@ -38,6 +38,13 @@ proposals on the same street have to be explainable by scope.
 
 The Custom Order agreement is `glazedweb.com/agreement/truenorth`, entry in
 `lib/customOrders.js`. Edit allowance 2 hours a month, the $150-tier convention.
+
+The project page is `glazedweb.com/build/truenorth` (the `project` block on the
+same registry row, spec in `glaze/project-page.md`), built 9 September 2026
+once the owner had said yes to the letter. It is what he opens after signing:
+where things stand, the eleven things only he can supply (his name and the
+registered entity first, since they block the agreement), what happens in what
+order, and his links. We tick the boxes as content arrives, by editing `done`.
 **Flavors are explicitly outside the edit allowance**, because they change those
 themselves in Scooplist, which is the whole point of the deal.
 

@@ -649,6 +649,10 @@
   .agr-terms { width: 100%; border-collapse: collapse; margin: 6px 0 10px; }
   .agr-terms td { padding: 12px 0; border-top: 1px solid rgba(43,30,22,0.1); font-size: 15px; color: #5A4A3A; line-height: 1.6; vertical-align: top; }
   .agr-terms td:first-child { width: 168px; padding-right: 16px; font-weight: 800; color: var(--chocolate); }
+  /* A bare URL is one unbreakable word. scooplist.glazedweb.com/board/truenorth/battlecreek
+     is 49 characters and pushed /build/truenorth 23px past a 390 viewport;
+     overflow-wrap lets it break anywhere rather than nowhere. */
+  .agr-terms a { overflow-wrap: anywhere; }
   @media (max-width: 560px) {
     .agr-terms, .agr-terms tbody, .agr-terms tr, .agr-terms td { display: block; width: auto; }
     .agr-terms tr { border-top: 1px solid rgba(43,30,22,0.1); padding: 12px 0; }

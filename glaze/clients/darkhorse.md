@@ -36,6 +36,17 @@ correct before the 11 AM opening; it is stated as expected behavior, not
 evidence. The Toast menu disagrees with the website menu on soup prices and
 lists items the site never mentions; that stays.
 
+**The tap list is live (2026-09-09).** Their Untappd for Business board
+page carries the whole board as JSON in `data-react-props`; `demo/taps.mjs`
+parses it, `build.mjs` bakes it, `/api/taps` serves it with a five-minute
+edge cache. They edit the board (last on 2026-09-05). Real build: Untappd
+for Business API with their token. InkSoft is a print shop's storefront
+(publisher #20305); ask Chuck which shop, it decides whether merch can ever
+come in-house.
+
+**Cans are trimmed to alpha bounds** (`tools/trim-cans.mjs`) because the
+source PNGs carry different margins. Re-run it if a can is re-pulled.
+
 **No age gate, ruled by Kevin 2026-09-09.** Everyone is welcome at the
 brewery. The demo has none; the proposal's build table says the 655KB
 script goes with nothing in its place. Do not add one back. The audit in the repo README lists every finding with a link

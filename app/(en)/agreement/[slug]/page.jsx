@@ -335,15 +335,26 @@ export default async function CustomOrderPage({ params, searchParams }) {
             will get a copy of the signed record by email, and so will we. That email records the version, the scope,
             the numbers, your name, and the time.
           </p>
+          {/*
+            What the accept panel offers AFTER "Accepted" mirrors the rows
+            above: the half-down and full doors while the build is unpaid, the
+            balance once a deposit is in, and the monthly only when it may
+            start (paid in full and live). The "pay the build and start the
+            monthly today" door is gone (Kevin, 9 Sep 2026), so bothHref is
+            null, the value the panel already handled for every other state.
+          */}
           <CustomOrderAccept
             slug={order.slug}
             business={order.client}
             contactName={order.contactName}
             contactTitle={order.contactTitle}
             email={order.email}
-            payHref={!monthlyRunning && status.state !== "off" ? payHref : null}
-            buildHref={!buildPaid && build.state !== "off" ? buildHref : null}
-            bothHref={!buildPaid && !monthlyRunning && build.state !== "off" ? bothHref : null}
+            payHref={canStartMonthly && !monthlyRunning && status.state !== "off" ? payHref : null}
+            buildHref={!buildPaid && !buildHalf && build.state !== "off" ? buildHref : null}
+            halfHref={!buildPaid && build.state !== "off" ? halfHref : null}
+            halfAmount={money(buildHalf ? build.remaining : half)}
+            balance={buildHalf}
+            bothHref={null}
           />
 
           <p className="agr-note agr-foot">

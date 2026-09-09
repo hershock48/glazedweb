@@ -13,7 +13,27 @@ import { CONTACT_EMAIL } from "@/lib/contact";
  * cannot send it. A false "you're all set" on a legal record would be the
  * worst version of the bug.
  */
-export default function CustomOrderAccept({ slug, business, contactName, contactTitle, email, payHref, buildHref, bothHref }) {
+/*
+  What is left to do after "Accepted" depends on what is still open, and the
+  page decides that (it reads Stripe); this component only renders the props
+  it is handed. halfHref is the half-down door: with buildHref beside it, it
+  is the deposit; alone with `balance` set, it is the balance at launch.
+  payHref arrives only once the monthly may start (paid in full and live),
+  bothHref is kept for callers that still pass it and is null everywhere now.
+*/
+export default function CustomOrderAccept({
+  slug,
+  business,
+  contactName,
+  contactTitle,
+  email,
+  payHref,
+  buildHref,
+  bothHref,
+  halfHref,
+  halfAmount,
+  balance = false,
+}) {
   const [state, setState] = useState({ step: "form" });
   const [name, setName] = useState(contactName || "");
   const [title, setTitle] = useState(contactTitle || "");
@@ -32,6 +52,17 @@ export default function CustomOrderAccept({ slug, business, contactName, contact
             Or take them one at a time: <a href={buildHref}>pay the build in full</a>, or{" "}
             <a href={payHref}>start the monthly plan</a>. Same card form as any online checkout; the monthly can be
             stopped any time. If you would rather we invoice the build, do nothing here and it arrives by email.
+          </p>
+        ) : halfHref && buildHref ? (
+          <p>
+            One thing left, the build fee, and it is your choice how: <a href={halfHref}>pay half now, {halfAmount}</a>,
+            with the balance at launch, or <a href={buildHref}>pay it in full</a>. Same card form as any online
+            checkout. Or do nothing here and we invoice it on the same terms.
+          </p>
+        ) : halfHref && balance ? (
+          <p>
+            The deposit is paid. The balance, {halfAmount}, is due at launch: <a href={halfHref}>pay it by card</a>{" "}
+            whenever you are ready, or we invoice it then.
           </p>
         ) : buildHref ? (
           <p>

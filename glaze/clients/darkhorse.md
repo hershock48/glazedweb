@@ -47,6 +47,15 @@ on-demand catalog stays with the printer unless Chuck wants to change
 printers. Ask: who the printer is, what is held in stock, what the split is.
 Full reasoning in the repo README under the demo placeholders.
 
+**They have a distillery and a wine label, and the website says nothing
+about either.** Table-top menus photographed by Kevin 2026-09-09: DH Gin and
+DH Vodka cocktails (their own spirits, 90 proof, bottles at the Commons and
+General Store), Crooked Tree Cellars wine with Fennville Winery, a third
+dessert. All in `demo/data.mjs` under `drinks`; the demo menu has Cocktails
+and Wine sections. "Sivarticus" is cheese bread with jalapeños and bacon
+(on the printed menu), so it is not a Toast phantom; the proposal no longer
+says it is.
+
 **Cans are trimmed to alpha bounds** (`tools/trim-cans.mjs`) because the
 source PNGs carry different margins. Re-run it if a can is re-pulled.
 

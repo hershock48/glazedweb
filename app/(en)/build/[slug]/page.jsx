@@ -74,12 +74,14 @@ export default async function ProjectPage({ params }) {
       <LogoDefs />
       <header>
         <div className="navwrap">
-          <Link className="brand" href="/">
+          {/* Same rule as the agreement page: the mark goes back to the
+              proposal he arrived from, not to the studio's homepage. */}
+          <a className="brand" href={order.pitchUrl || "/"} aria-label={order.pitchUrl ? "Back to the proposal" : "glazedweb home"}>
             <Mark />
             <span className="bw">
               glazed<span>web</span>
             </span>
-          </Link>
+          </a>
           <nav>
             <Link href={agreementHref}>The agreement</Link>
             <a className="btn" href={`mailto:${CONTACT_EMAIL}`}>

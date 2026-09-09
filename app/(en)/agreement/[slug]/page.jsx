@@ -80,12 +80,18 @@ export default async function CustomOrderPage({ params, searchParams }) {
       <LogoDefs />
       <header>
         <div className="navwrap">
-          <Link className="brand" href="/">
+          {/*
+            The mark goes back to where he came from, the proposal, when the
+            client has one (Kevin, 9 Sep 2026). A page that exists for one
+            client should not dump him on the studio's homepage. Clients
+            without a proposal, Chism, keep the default.
+          */}
+          <a className="brand" href={order.pitchUrl || "/"} aria-label={order.pitchUrl ? "Back to the proposal" : "glazedweb home"}>
             <Mark />
             <span className="bw">
               glazed<span>web</span>
             </span>
-          </Link>
+          </a>
           <nav>
             <Link href="/agreement">The terms</Link>
             <a className="btn" href={`mailto:${CONTACT_EMAIL}`}>

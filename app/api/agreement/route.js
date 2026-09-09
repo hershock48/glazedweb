@@ -56,6 +56,16 @@ function recordText(order, a) {
           ...order.payments.map((p, i) => `  ${i + 1}. ${p.lead} ${p.text}`),
         ]
       : []),
+    /* Further parts, numbered exactly as the page numbers them, so the
+       record of what was accepted matches what was shown, clause for clause. */
+    ...(Array.isArray(order.moreTerms) ? order.moreTerms : [])
+      .filter((t) => t && t.title)
+      .flatMap((t, i) => [
+        ``,
+        `  Exhibit A, part ${(Array.isArray(order.payments) && order.payments.length ? 4 : 3) + i}, ${t.title}:`,
+        ...(t.intro ? [`  ${t.intro}`] : []),
+        ...(Array.isArray(t.items) ? t.items : []).map((p, j) => `  ${j + 1}. ${p.lead} ${p.text}`),
+      ]),
   ].join("\n");
 }
 

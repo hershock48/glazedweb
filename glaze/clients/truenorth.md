@@ -79,8 +79,30 @@ of onboarding, free, alongside a mailbox on their own domain.
 
 **Ordering is built and switched off.** `ORDERING_LIVE` in `src/data/site.ts`.
 Order to inbox, pay at the counter, prices resolved server-side. Never describe
-it as live and never imply cards work; taking cards needs a payment account of
-theirs and is quoted separately.
+it as live and never imply cards work today.
+
+**Online ordering, when it goes on, is prepaid, pickup only, on his existing
+Square** (Kevin, 4 and 9 September 2026). He rings Square at the counter and
+runs it well, so we latch onto it rather than stand a second system beside it:
+payments settle to his Square account at his Square rate, a web order is a
+Square sale in his own reporting, and the 99¢ order fee rides as
+`app_fee_money` through the Glazed developer app. Square's own conditions for a
+paid `PICKUP` order to print as an online ticket are met by prepaid plus pickup;
+the letter says it prints and that we confirm it on his printer before launch.
+Square Terminal does not support external orders, so what box rings his sales is
+the first question for the room.
+
+**The fee is a term, not a footnote.** Exhibit A part 4 (`moreTerms` on the
+registry row), added 9 September 2026 on Kevin's ruling that "this will
+basically all be one build out": whose money, that the 99¢ is a customer line
+item and glazedweb's revenue, website orders only, tax and reporting, thirty
+days' notice on any change, and records and responsibility. Before that the fee
+was named in the scope line and nowhere else.
+
+**Still open, Kevin's call:** whether connecting his Square for card payment is
+inside the $2,000 or a separate quote. The scope line still says separate; the
+"one build out" remark points the other way. Flip the scope line and the
+not-included line together when he rules.
 
 **"Strawberry Lemondade"** on their live flavors page is corrected to Lemonade in
 the rebuild. Small, and exactly the kind of thing that proves somebody read the

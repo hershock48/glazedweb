@@ -62,6 +62,13 @@ export default async function CustomOrderPage({ params, searchParams }) {
      page in front of the client who was sent the link. */
   const scope = Array.isArray(order.scope) ? order.scope : [];
   const payments = Array.isArray(order.payments) ? order.payments : [];
+  const moreTerms = Array.isArray(order.moreTerms) ? order.moreTerms.filter((t) => t && t.title) : [];
+  // "…what it costs, and how the flavor feed and your data work, and how
+  // online ordering and its fee work." One clause per part that has terms.
+  const summaries = [
+    ...(payments.length && order.paymentsSummary ? [order.paymentsSummary] : []),
+    ...moreTerms.map((t) => t.summary).filter(Boolean),
+  ];
 
   let payNote = null;
   if (sp.pay === "cancelled") payNote = "No charge was made. The button is here whenever you are ready.";
@@ -98,7 +105,7 @@ export default async function CustomOrderPage({ params, searchParams }) {
           <Link href="/agreement">{AGREEMENT_VERSION}</Link>, the same published terms every glazedweb client gets: you
           own the site outright, month to month, thirty days&rsquo; notice, no penalty, Michigan law. The second is the
           Exhibit A below, which fills in what was built for you, what it costs
-          {payments.length ? `, and ${order.paymentsSummary}` : ""}. Accepting at the bottom accepts both together.
+          {summaries.map((s) => `, and ${s}`).join("")}. Accepting at the bottom accepts both together.
         </p>
         <p className="agr-note">
           If anything is unclear, ask before accepting: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> or a
@@ -261,6 +268,29 @@ export default async function CustomOrderPage({ params, searchParams }) {
               </ol>
             </>
           ) : null}
+
+          {/*
+            Further terms, one part each, numbered after part 3. True North's
+            first is online ordering and the order fee (Kevin, 9 Sep 2026:
+            "this will basically all be one build out"). Same shape as part 3
+            so the acceptance record (api/agreement) and this page cannot
+            disagree about what was accepted.
+          */}
+          {moreTerms.map((t, i) => (
+            <div key={t.title}>
+              <h2>
+                Exhibit A, part {(payments.length ? 4 : 3) + i}: {t.title}
+              </h2>
+              {t.intro ? <p>{t.intro}</p> : null}
+              <ol className="agr-scope">
+                {(Array.isArray(t.items) ? t.items : []).map((p) => (
+                  <li key={p.lead}>
+                    <b>{p.lead}</b> {p.text}
+                  </li>
+                ))}
+              </ol>
+            </div>
+          ))}
 
           <h2>Accept</h2>
           <p>

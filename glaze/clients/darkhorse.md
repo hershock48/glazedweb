@@ -16,8 +16,23 @@ studio; same town.
 
 **The wedge is ownership, five ways.** Wix for the site, Toast for ordering
 (at a URL carrying the ROAK name), Untappd for the tap list, InkSoft for
-merch, Wix Events for tickets, and the 4,800-member Mug Club run from one
-staff inbox. The audit in the repo README lists every finding with a link
+merch, Wix Events for tickets, and the Mug Club, more than 5,000 members,
+run from one staff inbox.
+
+**Mug Club facts, ruled by Kevin 2026-09-09:** say "more than 5,000" (never
+4,800, which is their Mug Club page's stale number); the perk is "every
+sixth fill is $1, on the punch card." Annual price still unpublished.
+
+**The Sep 7 event dates were show dates, not post dates.** Wix Events has
+no post date; the structured data said `startDate 2026-09-07`, and on
+2026-09-09 both listings had dropped off Upcoming Events as past, taking
+the Sept 19 Boy Mob show off the site ten days early. Kevin raised the
+post-date reading on 2026-09-09; it was checked and does not hold.
+
+**Toast, two dated visits:** Thu 2026-09-03 7:15 PM "Currently not accepting
+online orders"; Wed 2026-09-09 10:00 AM "Only accepting scheduled orders."
+The Toast menu disagrees with the website menu on soup prices and lists
+items the site never mentions. State both; conclude nothing about why. The audit in the repo README lists every finding with a link
 and an M/R tag.
 
 **Priced like Griffin Claw, ruled by Kevin 2026-09-03: $4,500 build plus

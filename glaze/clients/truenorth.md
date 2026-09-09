@@ -95,9 +95,12 @@ the first question for the room.
 **The fee is a term, not a footnote.** Exhibit A part 4 (`moreTerms` on the
 registry row), added 9 September 2026 on Kevin's ruling that "this will
 basically all be one build out": whose money, that the 99¢ is a customer line
-item and glazedweb's revenue, website orders only, tax and reporting, thirty
-days' notice on any change, and records and responsibility. Before that the fee
-was named in the scope line and nowhere else.
+item and glazedweb's revenue, website orders only, tax and reporting, what the
+service is, and records and responsibility. Before that the fee was named in the
+scope line and nowhere else. A "changing the fee" item (thirty days' notice,
+never on an order already placed, his right to end ordering) was drafted and
+**removed the same day on Kevin's instruction**; the agreement is silent on
+fee changes. Do not put it back without asking.
 
 **Still open, Kevin's call:** whether connecting his Square for card payment is
 inside the $2,000 or a separate quote. The scope line still says separate; the

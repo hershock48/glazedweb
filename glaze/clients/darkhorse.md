@@ -60,6 +60,13 @@ $195 a month. The Mug Club system is inside the $4,500, ruled 2026-09-09.**
 The proposal says so in a sentence under the price. Do not split it out as
 an add-on or a phase.
 
+**The proposal goes to Emily, and nothing in it may point at a person**
+(Kevin, 2026-09-09, "remove the emily critiques immediately"). The Mug Club
+runs through her inbox today; the proposal now says "no system" and "no
+online way to join or renew," never "one employee" or "one inbox," and the
+"if she is out for a month" question is gone. Grep for
+`emily|inbox|mailbox|employee|one person` before any send.
+
 **The proposal tracks the demo.** Sections three and four describe what is
 built; when the demo changes, re-read both before a send. Findings carry
 dates and get re-verified against their live site before a send.

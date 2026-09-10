@@ -200,17 +200,23 @@ Per `glaze/launch-page.md`. The `migas` row in `glazedweb/lib/customOrders.js`
 renders both; the proposal closes on "Launch" (header pill, hero ghost button,
 step 1 of "What happens next", the closing band).
 
-- **Build page** `glazedweb.com/build/migas`: fourteen needs, seven steps, one
+- **Build page** `glazedweb.com/build/migas`: fourteen needs, eight steps
+  (including the September 3 wording pass, which is inside the build fee), one
   freebie (the post-call scope at the August price), three links (the demo, the
   availability editor, the one-pager). **No try-it list on purpose**: the editor
   is off until `MIGAS_ADMIN_PIN` exists and the mail until SMTP does, so nothing
   on the demo leaves a trace he could find afterwards, which is what the page's
   try-it intro promises. Add one the day both are on.
 - **Agreement** `glazedweb.com/agreement/migas`: $3,500 build, $99 a month,
-  edit allowance 1 hour (house guess, unconfirmed), $125 an hour. Part 3 covers
-  the mailbox login, the private calendar address, what a grower sends through
-  the intake, his hours document, no card taken, and no legal advice on licence
-  wording. No `figures` yet.
+  edit allowance 2 hours and $125 an hour (house numbers, unconfirmed). Part 3
+  covers the mailbox login, the private calendar address, what a grower sends
+  through the intake, his hours document, no card taken, and no legal advice on
+  licence wording. No `figures` yet.
+- **The in-repo agreement is retired.** The migas repo carried its own
+  `/agreement` (Anchor's clickwrap ported, `lib/agreement.ts`, a server action
+  emailing the record) from 2026-09-03 to 2026-09-10. Same rule as Anchor: one
+  home. `next.config.ts` 308s `/agreement` to the studio page; the row above
+  absorbed its two facts (the wording pass in scope, the 2-hour allowance).
 - **Paper twin**: `contracts-private/Glazed_Web_Client_Agreement_v1_MIGAS_DRAFT`
   (v1.0, 2026-08-28) predates the registry, has no generator script, and still
   brackets the entity, the address, the last name, the edit allowance and the

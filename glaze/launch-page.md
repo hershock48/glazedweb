@@ -267,6 +267,6 @@ Rules:
 | True North | studio `/build/truenorth` | studio | The reference. |
 | Anchor | studio `/build/anchor` | studio | Adds `tryIt` and `figures`, now standard. Had an in-repo agreement for eight days; 308 now. |
 | Copper | studio `/build/copperac` | studio | No freebies beyond two; no try-it list yet, though the workroom and tap board would carry one. |
-| MI Gas | studio `/build/migas` | studio | No try-it list by design: the editor and the mail are both off until he supplies the PIN and the mailbox, so nothing on the demo leaves a findable trace yet. Letter's hero had no "see the site" button; one was added beside the ghost Launch. |
+| MI Gas | studio `/build/migas` | studio | No try-it list by design: the editor and the mail are both off until he supplies the PIN and the mailbox, so nothing on the demo leaves a findable trace yet. Letter's hero had no "see the site" button; one was added beside the ghost Launch. Had an in-repo agreement for seven days (Sept 3 to 10); 308 now. |
 | DeVine | client `/launch` in the devine repo | client host | Title "The launch plan."; six lights including "Square connected"; phases rather than steps; plans to retire at cutover rather than survive. Reads money via `api/build-status`. Align the title and the section names when next touched. |
 | Chism | none | studio | Paid and live with no proposal; the client the page would serve best, and he does not have one. |

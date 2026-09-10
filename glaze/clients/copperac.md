@@ -124,3 +124,5 @@ the 20-minute prep quote, which is a demo default, not a kitchen number.
 - The enquiry form's destination mailbox has never been confirmed to exist. It is
   a placeholder and it is both the mailto fallback target and the default inbox.
 - No founding year has been established. Ask, do not infer.
+
+**2026-09-10: project page.** /build/copperac exists (Kevin: "integrate a launch element into the coppers proposal"). The proposal's one action is now Launch, pointing at it, on the True North pattern; the call is gone from the letter. Seven `needs`, boxes ours to tick; `accepted` and `liveOnDomain` hand kept. The Copper README's cutover list is the studio-side twin of the needs list; resolve both in one commit.

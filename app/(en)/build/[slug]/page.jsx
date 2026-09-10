@@ -187,8 +187,8 @@ export default async function ProjectPage({ params }) {
 
           <h2>What we need from you</h2>
           <p>
-            Eleven things, none of them long, in the order they block other work. Each says why it is needed, because a
-            list without reasons reads like paperwork. We tick them as they arrive.
+            None of them long, and in the order they block other work. Each says why it is needed, because a list
+            without reasons reads like paperwork. We tick them as they arrive.
           </p>
           <ul className="agr-status">
             {needs.map((n) => (

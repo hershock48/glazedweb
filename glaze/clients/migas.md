@@ -217,10 +217,12 @@ step 1 of "What happens next", the closing band).
   emailing the record) from 2026-09-03 to 2026-09-10. Same rule as Anchor: one
   home. `next.config.ts` 308s `/agreement` to the studio page; the row above
   absorbed its two facts (the wording pass in scope, the 2-hour allowance).
-- **Paper twin**: `contracts-private/Glazed_Web_Client_Agreement_v1_MIGAS_DRAFT`
-  (v1.0, 2026-08-28) predates the registry, has no generator script, and still
-  brackets the entity, the address, the last name, the edit allowance and the
-  hourly rate. Same two numbers. Regenerate it at v1.1 from the Anchor generator
-  before anything is signed on paper.
+- **Paper twin**: `contracts-private/build-migas-agreement.js` (cloned from the
+  Anchor generator 2026-09-10) writes
+  `Glazed_Web_Client_Agreement_v1.1_MIGAS_DRAFT.docx` and `.pdf` (PDF via Word
+  COM). It mirrors the registry row's numbers, scope and part 3 by hand; change
+  both in one commit. The v1.0 draft of 2026-08-28 was deleted. Still bracketed:
+  the entity, the address, Jake's last name, the annual adjustment cap, the two
+  dates.
 - **Open on the row**: registered entity, Jake's last name, email, town, and the
   edit allowance.

@@ -77,6 +77,10 @@ export default async function CustomOrderPage({ params, searchParams }) {
   const scope = Array.isArray(order.scope) ? order.scope : [];
   const payments = Array.isArray(order.payments) ? order.payments : [];
   const moreTerms = Array.isArray(order.moreTerms) ? order.moreTerms.filter((t) => t && t.title) : [];
+  // Optional real screens of the build, sample data, between the scope and
+  // the price (Anchor first, 2026-09-10). Never a substitute for the scope
+  // text: a picture is not a term.
+  const figures = Array.isArray(order.figures) ? order.figures.filter((f) => f && f.src) : [];
   // "…what it costs, and how the flavor feed and your data work, and how
   // online ordering and its fee work." One clause per part that has terms.
   const summaries = [
@@ -240,6 +244,24 @@ export default async function CustomOrderPage({ params, searchParams }) {
           <p>
             <b>Not included</b>, and quoted separately if wanted: {order.notIncluded}
           </p>
+
+          {figures.length ? (
+            <>
+              <h2>What that looks like</h2>
+              <p className="agr-note">
+                Real screens from the build, with sample data. All of it is live and yours to click through before
+                you accept.
+              </p>
+              <div className="agr-figs">
+                {figures.map((f) => (
+                  <figure key={f.src} className={f.width && f.height && f.height > f.width ? "tall" : undefined}>
+                    <img src={f.src} width={f.width} height={f.height} alt={f.alt} loading="lazy" />
+                    {f.caption ? <figcaption>{f.caption}</figcaption> : null}
+                  </figure>
+                ))}
+              </div>
+            </>
+          ) : null}
 
           <h2>Exhibit A, part 2: what it costs</h2>
           <table className="agr-terms">

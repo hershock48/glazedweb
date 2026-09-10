@@ -641,6 +641,12 @@
      it reads as exactly what it is between the open ring and the green dot. */
   .st-ic.half { border: 3px solid rgba(43,30,22,0.28); background: linear-gradient(to top, var(--fern) 50%, transparent 50%); }
   .agr-status b { display: block; font-size: 15.5px; margin-bottom: 4px; }
+  /* Real screens on an agreement page (customOrders `figures`). */
+  .agr-figs { display: grid; grid-template-columns: 1fr; gap: 22px; margin: 18px 0 8px; }
+  .agr-figs figure { margin: 0; }
+  .agr-figs img { display: block; width: 100%; height: auto; border: 2px solid rgba(43,30,22,0.09); border-radius: 16px; background: var(--cream-2); }
+  .agr-figs figure.tall img { max-width: 390px; margin: 0 auto; }
+  .agr-figs figcaption { font-size: 14px; color: var(--taupe); line-height: 1.5; margin-top: 8px; }
   .agr-status span { display: block; font-size: 13.5px; color: #6B5747; line-height: 1.5; }
   .agr-status .btn { display: inline-block; margin-top: 12px; white-space: normal; text-align: center; }
   .agr-status .agr-btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }

@@ -67,6 +67,10 @@ export default async function ProjectPage({ params }) {
   const freebies = Array.isArray(p.freebies) ? p.freebies : [];
   const links = Array.isArray(p.links) ? p.links : [];
   const monthlyIs = Array.isArray(p.monthlyIs) ? p.monthlyIs : [];
+  // Optional: things the client can do on the demo right now, hands on
+  // (Anchor first, 2026-09-10: "a test me section"). Rendered under "Your
+  // stuff" so the links it needs are already on the page.
+  const tryIt = Array.isArray(p.tryIt) ? p.tryIt : [];
   const agreementHref = `/agreement/${order.slug}`;
 
   return (
@@ -256,6 +260,31 @@ export default async function ProjectPage({ params }) {
               </tr>
             </tbody>
           </table>
+
+          {tryIt.length ? (
+            <>
+              <h2 id="try">Try it yourself</h2>
+              <p>
+                Nothing here is a demo video. It is the real build, and every one of these leaves a trace you can
+                find in the workroom afterwards.
+              </p>
+              <ol className="agr-scope">
+                {tryIt.map((t) => (
+                  <li key={t.lead}>
+                    <b>{t.lead}</b> {t.text}
+                    {t.href ? (
+                      <>
+                        {" "}
+                        <a href={t.href} target="_blank" rel="noopener noreferrer">
+                          {t.href.replace(/^https?:\/\//, "")}
+                        </a>
+                      </>
+                    ) : null}
+                  </li>
+                ))}
+              </ol>
+            </>
+          ) : null}
 
           {monthlyIs.length ? (
             <>

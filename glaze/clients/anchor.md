@@ -12,6 +12,8 @@ August 2026.
 | Proposal | `/` |
 | Logo presentation | `/logo` |
 | Demo | `/demo` |
+| Agreement | `glazedweb.com/agreement/anchor` (registry row in glazedweb `lib/customOrders.js`; paper twin in contracts-private) |
+| Build page | `glazedweb.com/build/anchor`, the proposal's one action ("Launch"), with a try-it-yourself list at `#try` |
 | Client domain | Not bought. `lib/site.ts` assumes `anchorinsurancemi.com` and flags it |
 | Price quoted | $3,500 build, $150 a month |
 

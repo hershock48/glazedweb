@@ -207,7 +207,8 @@ step 1 of "What happens next", the closing band).
   is off until `MIGAS_ADMIN_PIN` exists and the mail until SMTP does, so nothing
   on the demo leaves a trace he could find afterwards, which is what the page's
   try-it intro promises. Add one the day both are on.
-- **Agreement** `glazedweb.com/agreement/migas`: $3,500 build, $99 a month,
+- **Agreement** `glazedweb.com/agreement/migas`: $3,500 build, $150 a month
+  (Kevin, 2026-09-10, up from the letter's $99; the letter's revision line says so),
   edit allowance 2 hours and $125 an hour (house numbers, unconfirmed). Part 3
   covers the mailbox login, the private calendar address, what a grower sends
   through the intake, his hours document, no card taken, and no legal advice on

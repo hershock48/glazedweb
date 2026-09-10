@@ -60,6 +60,9 @@ export default async function CustomOrderPage({ params, searchParams }) {
   const monthlyRunning = status.state === "active";
   const buildPaid = build.state === "paid";
   const buildHalf = build.state === "half";
+  // No build fee at all (beanumber): the row and the price table say so in
+  // words rather than printing "$0: paid", which reads like a bug.
+  const noBuild = order.buildFee === 0;
   const half = halfFee(order);
   /*
     The monthly does not start until the build is paid in full AND the site
@@ -144,11 +147,13 @@ export default async function CustomOrderPage({ params, searchParams }) {
               <span className={`st-ic ${buildPaid ? "done" : buildHalf ? "half" : "open"}`} aria-hidden="true" />
               <div>
                 <b>
-                  Build fee, {money(order.buildFee)}
-                  {buildPaid ? ": paid" : buildHalf ? ": half paid" : ""}
+                  {noBuild ? "No build fee" : `Build fee, ${money(order.buildFee)}`}
+                  {noBuild ? "" : buildPaid ? ": paid" : buildHalf ? ": half paid" : ""}
                   {!buildPaid && build.mode === "test" ? <span className="agr-mode">test mode</span> : null}
                 </b>
-                {buildPaid ? (
+                {noBuild ? (
+                  <span>None on this order. The site is yours: code, content, and accounts.</span>
+                ) : buildPaid ? (
                   <span>
                     Paid in full{build.how === "card" && build.when ? ` by card on ${niceDate(build.when)}` : ""}. The site is
                     yours: code, content, and accounts.
@@ -269,8 +274,10 @@ export default async function CustomOrderPage({ params, searchParams }) {
               <tr>
                 <td>Build fee</td>
                 <td>
-                  {money(order.buildFee)}, one time.{" "}
-                  {buildPaid
+                  {noBuild ? "None. " : `${money(order.buildFee)}, one time. `}
+                  {noBuild
+                    ? "The site was built and launched at no charge, and nothing is owed on it."
+                    : buildPaid
                     ? "Paid in full; nothing further is owed on it."
                     : buildHalf
                       ? `Half paid, ${money(build.paid)}. The balance, ${money(build.remaining)}, is due at launch.`

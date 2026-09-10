@@ -134,11 +134,13 @@ export default async function ProjectPage({ params }) {
               <span className={`st-ic ${buildPaid ? "done" : build.state === "half" ? "half" : "open"}`} aria-hidden="true" />
               <div>
                 <b>
-                  Build fee, {money(order.buildFee)}
-                  {buildPaid ? ": paid" : build.state === "half" ? ": half paid" : ""}
+                  {order.buildFee === 0 ? "No build fee" : `Build fee, ${money(order.buildFee)}`}
+                  {order.buildFee === 0 ? "" : buildPaid ? ": paid" : build.state === "half" ? ": half paid" : ""}
                 </b>
                 <span>
-                  {buildPaid
+                  {order.buildFee === 0
+                    ? "None on this order. The site is yours: code, content, and accounts."
+                    : buildPaid
                     ? "Paid in full. The site is yours: code, content, and accounts."
                     : build.state === "half"
                       ? `Half paid, ${money(build.paid)}. The balance, ${money(build.remaining)}, is due at launch, from the agreement page.`
@@ -155,7 +157,9 @@ export default async function ProjectPage({ params }) {
                 <span>
                   {monthlyRunning
                     ? "Running. Charged to your card on the same day each month; stop it any time with thirty days’ notice, and the site stays yours."
-                    : "Not due yet. It begins once the build fee is paid in full and the site is live on your domain; we send you the link then."}
+                    : buildPaid && order.live === true
+                      ? "Not started yet. The site is live and nothing is owed on the build, so it can start today, from the button on the agreement page."
+                      : "Not due yet. It begins once the build fee is paid in full and the site is live on your domain; we send you the link then."}
                 </span>
               </div>
             </li>
@@ -168,7 +172,9 @@ export default async function ProjectPage({ params }) {
                 <span>
                   {contentDone
                     ? "Everything we asked for is in. From here the date is ours to hit, not yours."
-                    : "The list is below, with why each thing is needed. This is the only step we cannot do for you, and it is the one that decides the launch date."}
+                    : p.liveOnDomain
+                      ? "The list is below, with why each thing is needed. The site is already live; these are the facts the agreement and the housekeeping wait on."
+                      : "The list is below, with why each thing is needed. This is the only step we cannot do for you, and it is the one that decides the launch date."}
                 </span>
               </div>
             </li>

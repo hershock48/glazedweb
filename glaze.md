@@ -32,6 +32,7 @@ something you cannot open.
 | **glaze/proposal.md** | Any pitch to a prospect. The six-section structure, the sample to lift verbatim, the host split. |
 | **glaze/intake.md** | At the start of every client build, and any time you are about to guess a fact about their business. |
 | **glaze/launch.md** | The full definition of done, the zero-to-live order, and the checklist you copy into their README. |
+| **glaze/launch-page.md** | Before finishing any proposal or setting up a signed client. The letter's one action ("Launch"), the page it opens (`glazedweb.com/build/{slug}`), its sections and rules, the try-it list, real screens on the agreement, and the setup order. |
 | **glaze/clients/** | One file per client. Durable facts only, no live state. Read the relevant one before touching that repo. |
 | **glaze/standards.md** | Account-wide rules earned in client builds that no other file carries, and the open rulings awaiting Kevin. Read it before re-litigating the JS budget or the spec-build credit line. |
 | **glaze/catalog/** | Before building any tool, harness, form flow, checkout, auth scheme, admin surface or asset pipeline. The inventory of bones the account already owns, categorized; the same file when you finish building one, because the entry ships in the same commit. |

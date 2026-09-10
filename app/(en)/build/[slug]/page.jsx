@@ -7,7 +7,7 @@ import { monthlyStatus } from "@/lib/monthly";
 import { buildStatus } from "@/lib/buildfee";
 
 /**
- * A signed client's project page: /build/{slug}. Spec: glaze/project-page.md.
+ * A signed client's project page: /build/{slug}. Spec: glaze/launch-page.md.
  *
  * WHAT IT IS. The page a client opens for the six weeks after yes instead of
  * texting "any update?": where things stand, what we still need from them,

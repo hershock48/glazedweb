@@ -641,6 +641,9 @@
      it reads as exactly what it is between the open ring and the green dot. */
   .st-ic.half { border: 3px solid rgba(43,30,22,0.28); background: linear-gradient(to top, var(--fern) 50%, transparent 50%); }
   .agr-status b { display: block; font-size: 15.5px; margin-bottom: 4px; }
+  /* A bare URL printed as link text (the build page's Your stuff and Try it
+     lists) is one unbreakable token; at 320 it pushed the page 19px wide. */
+  .legal-wrap a { overflow-wrap: anywhere; }
   /* Real screens on an agreement page (customOrders `figures`). */
   .agr-figs { display: grid; grid-template-columns: 1fr; gap: 22px; margin: 18px 0 8px; }
   .agr-figs figure { margin: 0; }

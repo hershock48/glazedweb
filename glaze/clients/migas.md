@@ -193,3 +193,28 @@ plus ONE of phone or email).
   domain cutover per the README's Going live section.
 - Whether to gate the live URL, the h1 weight, the price ticker placement, and
   where the `Totem` mark goes. All open, all Kevin's call.
+
+## Launch page and agreement (2026-09-10)
+
+Per `glaze/launch-page.md`. The `migas` row in `glazedweb/lib/customOrders.js`
+renders both; the proposal closes on "Launch" (header pill, hero ghost button,
+step 1 of "What happens next", the closing band).
+
+- **Build page** `glazedweb.com/build/migas`: fourteen needs, seven steps, one
+  freebie (the post-call scope at the August price), three links (the demo, the
+  availability editor, the one-pager). **No try-it list on purpose**: the editor
+  is off until `MIGAS_ADMIN_PIN` exists and the mail until SMTP does, so nothing
+  on the demo leaves a trace he could find afterwards, which is what the page's
+  try-it intro promises. Add one the day both are on.
+- **Agreement** `glazedweb.com/agreement/migas`: $3,500 build, $99 a month,
+  edit allowance 1 hour (house guess, unconfirmed), $125 an hour. Part 3 covers
+  the mailbox login, the private calendar address, what a grower sends through
+  the intake, his hours document, no card taken, and no legal advice on licence
+  wording. No `figures` yet.
+- **Paper twin**: `contracts-private/Glazed_Web_Client_Agreement_v1_MIGAS_DRAFT`
+  (v1.0, 2026-08-28) predates the registry, has no generator script, and still
+  brackets the entity, the address, the last name, the edit allowance and the
+  hourly rate. Same two numbers. Regenerate it at v1.1 from the Anchor generator
+  before anything is signed on paper.
+- **Open on the row**: registered entity, Jake's last name, email, town, and the
+  edit allowance.

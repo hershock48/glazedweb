@@ -644,6 +644,11 @@
   /* A bare URL printed as link text (the build page's Your stuff and Try it
      lists) is one unbreakable token; at 320 it pushed the page 19px wide. */
   .legal-wrap a { overflow-wrap: anywhere; }
+  /* A long domain is one unbreakable token as well, and in a status row it is
+     not a link: "Live on griffinclawbrewingcompany.com" is 29 characters of
+     plain text and pushed the page 32px wide at 320 on the first client whose
+     domain was long enough to show it. */
+  .agr-status b, .agr-status li > div { overflow-wrap: anywhere; }
   /* Real screens on an agreement page (customOrders `figures`). */
   .agr-figs { display: grid; grid-template-columns: 1fr; gap: 22px; margin: 18px 0 8px; }
   .agr-figs figure { margin: 0; }

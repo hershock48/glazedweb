@@ -1,7 +1,7 @@
 # Mike's Place
 
 **Repo** `hershock48/mikes` (local folder `mikesplace`; renamed from `mikesplace` 2026-09-11 at Kevin's request) · **Prospect**, not signed, not yet shown · Scouted 2026-09-11 ·
-**Pitch host** mikesplace.glazedweb.com (NOT attached yet) · **Live** nothing: no
+**Pitch host** mikesplace.glazedweb.com (attached by Kevin 2026-09-11; letter at /, demo at /demo, verified live) · **Live** nothing: no
 website exists.
 
 ## What they are

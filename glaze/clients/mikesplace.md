@@ -83,3 +83,18 @@ once those are set, per `../launch-page.md` section 6.
 ## Retired
 
 Nothing yet.
+
+## The improvement pass, 2026-09-11 (Kevin: "looks pretty standard")
+
+What made it Mike's rather than a template: a **Tonight strip** under the hero
+that reads the Detroit clock and lights the current part of the bar's own
+five-part day (lunch after church to the bar till two), with a true static
+sentence for no-JS; the pendant **lamps** in the one photograph warming up on
+load, 240 ms apart, then still; **What's On as a letterboard** with a
+Tonight/Tomorrow tag; **section chips** on the menu; reveal-on-scroll (the pjs
+copy). Link cards recomposed inside the 630 px band. Verified with audit,
+width, motion and perf harnesses; screenshots walked so reveals fire before
+capture (a full-page capture without a walk shows blank sections and is a
+harness fault, not a site fault). Env set by Kevin the same day: pitch host
+attached, ordering window held open, workroom passcode set, Neon on. Try-it
+list of five is on the build page.

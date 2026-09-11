@@ -10,6 +10,17 @@ Spec build complete, deployed, noindexed. Proposal built per `../proposal.md` on
 2026-09-03 and served at the pitch root; demo under `/demo`. Not yet shown to
 Brittany.
 
+**Launch page and agreement, 2026-09-11**, per `../launch-page.md`: registry row
+`sprinkles` in `lib/customOrders.js`, so the letter closes on Launch in the four
+standard places. **Build page** glazedweb.com/build/sprinkles · **Agreement**
+glazedweb.com/agreement/sprinkles. Eight needs, four steps, no try-it list
+(her Stripe key is not in the hosting project, so checkout answers "not
+connected yet" and leaves no trace). Part 3 covers her Stripe account, downloads
+delivered by link, and the files being hers. Two TODOs for Kevin on the row: the
+registered entity (sole prop guessed, same as Chism) and the edit allowance
+(one hour, house guess; the letter's price box says "Send a text" and names no
+cap).
+
 **Price: $500 build, $50 a month.** Kevin's number, 2026-09-03: an old friend-price
 pitch that predates the menu, same bracket as Chism. The proposal melts $500 down
 from Shopify's own published $1,000 floor for custom development (their website

@@ -61,11 +61,24 @@ glazedweb.com/agreement/mikesplace. Nine needs, seven steps, two freebies (claim
 Yelp; chase the mikesplace.com listing once the site is live), no try-it list
 until the demo and its kitchen screen exist.
 
-**The demo does not exist yet.** The letter is written as if it does, per
-`../proposal.md` (three deliverables go out together), and points at
-`mikesplace.glazedweb.com/demo`. DO NOT SEND until the demo answers. The README
-in the repo carries this as the first unchecked box. Shape when built: the copperac
-workroom line (menu editor, specials, kitchen screen), pitch pattern host split.
+**The demo exists (built 2026-09-11), at `/demo` on the pitch host once attached.**
+The repo is now a Next 16 app ported from copperac: home, menu, order ahead,
+what's on, about, contact, `/kitchen` (PIN falls back to 0116, the street
+number, a PLACEHOLDER), `/workroom` (what's on + menu editor; CLOSED until
+`WORKROOM_PASSCODE` is set). The orderable board is generated from
+`lib/menu.ts` with the workroom edits applied, so the workroom is the ONE price
+editor; Copper's kitchen menu editor was removed on purpose. Every price is a
+marked sample (`PRICES_ARE_PLACEHOLDERS`); dish names come from reviews. Hours
+are Yelp/Tripadvisor until confirmed and `HOURS_NOTE` says so on the page. One
+photograph: the Facebook avatar (the room), permission not yet asked. Audited
+clean at four widths; perf inside budget; order, 86 and workroom flows walked
+through the APIs.
+
+**Still needed on Vercel before showing** (project `mikesplace`, prj_85fblONVG72tTBEWOLqskgaP1uwF, created 2026-09-11 from the repo): attach
+`mikesplace.glazedweb.com`, set `ORDERING_DEMO_ALWAYS_OPEN=1` and
+`WORKROOM_PASSCODE`, add a Neon `DATABASE_URL` (memory storage cannot show a
+kitchen ticket across two devices). Add the try-it list to the registry row only
+once those are set, per `../launch-page.md` section 6.
 
 ## Retired
 

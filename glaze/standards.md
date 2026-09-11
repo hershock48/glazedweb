@@ -67,6 +67,15 @@ sizes are generated from it, not drawn beside it.
 
 ---
 
+**`app/favicon.ico` on Next 16 must carry bitmap payloads, not PNGs.** The
+build decodes the file and refuses a PNG-in-ICO whose PNG is not RGBA, and
+Chromium screenshots are RGB even with `omitBackground`. `mikesplace/tools/icons.mjs`
+reads the pixels back through a canvas and packs 32-bit DIBs, which every
+browser has read since Windows 95. Copy that packer rather than fighting the
+PNG route again.
+
+---
+
 ## Open rulings
 
 Recorded here so sessions stop re-litigating them per build. Each needs a call

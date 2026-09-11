@@ -16,6 +16,7 @@ Online ordering + kitchen display + receipt printer. API shape:
 | `stagecoach/` | Byte-identical to copperac. |
 | `cookinwithbeans/` | Same shape, separate copy. |
 | `pjs/` | DIVERGED — its fixes exist nowhere else, and vice versa. |
+| `mikesplace/` | Fifth copy, 2026-09-11, ported from copperac (TS, workroom included). Two divergences worth stealing back: the orderable board is GENERATED from `lib/menu.ts` with the workroom overrides applied (`lib/ordering/seed.ts`), so the workroom is the only price editor and the kitchen keeps only the 86 board; and `/api/kitchen/login` answers GET with `{authed}` so the board never 401s in the console on load. |
 
 **Standing hazard:** a bug fixed in one copy is alive in three others. "When a
 thing appears N times, check all N" (glaze.md) applies to whole apps. The next

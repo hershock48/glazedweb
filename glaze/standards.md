@@ -104,6 +104,39 @@ of those launches finished. One message per client closes it.
 
 ---
 
+## Write like a person, not like a model
+
+**Kevin, 2026-09-13, on a Mike's Place paragraph: "it reads like an AI wrote
+it." He was right, and the tells are known and listed.** Before any copy
+ships, read it once for these and remove every one:
+
+- **Sets of three by habit.** "Burgers, beer and Keno." "A pool table, two
+  dart boards, and Keno." Real lists have however many things there are.
+- **The contrast that corrects nobody.** "It is a bar. It is also..." "Not X,
+  but Y." "It's not about A, it's about B." The single most reliable tell.
+- **Fragments after a colon.** "From the sidewalk it looks like a bar. It is
+  a bar: an 1874 storefront..." Write the sentence.
+- **Montage sentences.** "A Sunday afternoon is kids on the pool table while
+  the tacos come out and the Lions come from behind." Cinema, not information.
+- **Things doing what people do.** Rooms fill, menus argue, kitchens go dark.
+  Say who did what.
+- **The neat landing.** A short punchline sentence closing every paragraph.
+  "The popcorn is free." once is fine; as a rhythm it is a machine.
+- **Reflexive flourish phrases.** "since Mike brought it back to life",
+  "the way it has been since", "for as long as anyone can remember",
+  "the one people write reviews about".
+- **Cute tautology and wordplay.** "The plain one, and it is not plain."
+  "Pick a fight." "Sunday's thing."
+
+What passes: one idea per sentence, subject then verb, the fact and nothing
+around it, the way the owner would say it across the bar. Sources for the
+pattern list: Wikipedia's "Signs of AI writing" (WikiProject AI Cleanup),
+Colin Gorrie's rhetorical analysis of LLM prose, and the tropes.fyi
+directory. The rule sits beside "Copy is counted" in glaze.md: count the
+threes and the contrasts the way you count the repeats.
+
+---
+
 ## Who the menu is for now
 
 **The studio's focus, ruled by Kevin 2026-09-01: businesses that take or want

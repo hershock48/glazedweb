@@ -329,6 +329,7 @@ if (flags.commit) {
       lat: c.lat,
       lon: c.lon,
       score: c.s.total,
+      scoreAuto: c.s.total,
       stage: "scouted",
       next: { action: `Research B and D, then the letter; stop-in on the ${centerName.split(",")[0]} run`, due: "" },
       events: [{ date: today, type: "scout", note: `Selected by select.mjs in the ${centerName} cluster. Auto score ${c.s.total}/${c.s.maxPossible}: ${c.s.why.join("; ") || "no site check yet"}.` }],

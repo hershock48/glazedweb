@@ -147,9 +147,35 @@ excluded because a text to a friend says nothing about a letter to a
 stranger. The table is empty today and prints as empty.
 
 **What it cannot do.** OpenStreetMap is a seed, not a census: it knew Hinkley
-and not Schlenker's. Demand proof and transition are research. And the
-scorecard's disqualifiers that need a person (an announced closure, a Toast
-contract signed last year) are still a person's.
+and not Schlenker's. Demand proof and transition are research, which is the
+next script. The scorecard's disqualifiers that need reading (an announced
+closure, a Toast contract signed last year) are the research agent's too.
+
+## The research agent
+
+**`glaze/scripts/research.mjs`** fills in what the selector marks as
+research: B (demand proof) and D (transition), the owner, the Google rating
+and count via Restaurantji or Wanderlog, the Tripadvisor rank and claim
+status, press, any sale or handoff with its date, cash only or not, what
+ordering exists today, where the hours live, and one verified sentence to
+open the letter with. One Claude call per business with web search and web
+fetch. The system prompt is the scorecard, the signals and the sources
+above, read out of this file at run time, so editing this page changes the
+agent.
+
+```bash
+node glaze/scripts/research.mjs --dry --slug schlenkers   # the prompt, no call
+node glaze/scripts/research.mjs --limit 5                 # every scouted row without research
+node glaze/scripts/research.mjs --slug masondepot --force
+```
+
+What comes back is written onto the ledger row as `research`, B and D are
+added to the auto score, a dated `research` event carries the hook, and the
+row's next action becomes "write the letter". A disqualifier moves the row
+to `passed` with the reason. Every figure carries its URL or sits under
+unverified; the Google Business Profile is never claimed as seen. Needs an
+Anthropic credential (`ANTHROPIC_API_KEY` or `ant auth login`); the usage
+line prints an estimated cost per run so the daily five has a price.
 
 ---
 

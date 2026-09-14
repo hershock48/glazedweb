@@ -17,7 +17,7 @@ export const EVENTS = {
   reply: "replied", meet: "meeting", confirm: "confirmed",
   "pay-part": "paid-part", pay: "paid", launch: "live", retain: "retained",
   pass: "passed", park: "dormant",
-  touch: null, note: null, decision: null,
+  touch: null, note: null, decision: null, research: null,
 };
 export const TERMINAL = new Set(["dormant", "passed"]);
 // How the first touch reached them. warm: an owner Kevin knows, usually a

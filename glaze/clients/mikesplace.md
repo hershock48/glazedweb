@@ -183,3 +183,14 @@ pickup order, then two linked stats. Sources read 2026-09-14:
 The add-on card now says "No commission" rather than "no percentage of
 anything", because card processing is a percentage Mike pays wherever the
 card is run; the last table row says that plainly.
+
+**Close pass, later 2026-09-14 (Kevin: "make the necessary changes to get
+the sale").** The letter is a closing document now (Mike replied
+interested), so every element has to move him toward Launch. Square Online
+row REMOVED from the fee table: it read as a free ad for a competitor (no
+commission, processing only). Rule learned: Square is not the fight for a
+Facebook-only bar; keep it off the page rather than being fair to it. The
+two studies are one sentence. The Mike row is stated once ("The $20 is
+yours"), not defended with processing caveats; processing is disclosed in
+agreement part 3. Do not add more to this letter; the next lever is a short
+follow-up with one ask and a date, and the entity/signer on Kevin side.

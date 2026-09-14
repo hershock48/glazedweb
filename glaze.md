@@ -29,6 +29,7 @@ something you cannot open.
 | **glaze.md** (this) | Always, first. Who we are, the bar, the process, the traps. |
 | **glaze/brand.md** | Any time the studio's own mark, palette, type or footer credit is involved. Has the hexes, the file paths, the mark's real painted bounds. |
 | **glaze/link-cards.md** | Before anything gets pasted into a text or posted anywhere. The OG spec, the proposal card versus the demo card, and the platform traps. |
+| **glaze/prospecting.md** | Before choosing who to pitch next. The 14-point scorecard, the signals that predict a fit, the sources that work, and the dated statewide scan with the five names on deck. |
 | **glaze/proposal.md** | Any pitch to a prospect. The six-section structure, the sample to lift verbatim, the host split. |
 | **glaze/intake.md** | At the start of every client build, and any time you are about to guess a fact about their business. |
 | **glaze/launch.md** | The full definition of done, the zero-to-live order, and the checklist you copy into their README. |

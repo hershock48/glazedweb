@@ -96,6 +96,63 @@ checked," as the Mike's Place letter does.
 
 ---
 
+## The scout and the selector
+
+Two scripts turn the card above into a daily pick, since 2026-09-13.
+
+**`glaze/scripts/scout.mjs`** fills a pool. It geocodes a town, asks
+OpenStreetMap for every restaurant, cafe, bar, bakery, florist, butcher and
+the like within a radius, drops chains, marks names already in the ledger,
+and with `--check` probes each candidate's site: the website tag if there is
+one, else the obvious domain for the name. The states it records (dead,
+parked, empty, free-host, live, own ordering, third-party ordering) are the
+presence-gap and rented-stack signals above, measured rather than guessed.
+First run, Jackson at ten miles: 125 named places, 66 chains dropped, 58
+candidates, 28 of them with no working site at all.
+
+```bash
+node glaze/scripts/scout.mjs --around "Jackson, Michigan" --radius 10 --check
+node glaze/scripts/scout.mjs list --status new
+node glaze/scripts/scout.mjs skip "Some Place" "franchise"
+```
+
+**`glaze/scripts/select.mjs`** picks the day's five inside one drive. It
+scores what the pool can score without a person (A presence gap, C
+order-shaped from the kind of business, E miles from Marshall, F rented
+stack, G a town with a signed client), stops on a site with its own
+ordering, and leaves B and D marked as research. Then every eligible
+candidate is tried as the center of a circle of the chosen radius, the top
+five inside each circle are summed, and the best circle wins. The output is
+a route from Marshall with miles, the score breakdown per pick, and what
+still needs a look before the letter. `--commit` writes the picks into the
+ledger as scouted rows with channel `visit`.
+
+```bash
+node glaze/scripts/select.mjs --radius 8
+node glaze/scripts/select.mjs --anchor "Jackson, Michigan" --kinds bakery,ice_cream --min 4
+node glaze/scripts/select.mjs --radius 8 --commit
+```
+
+Three things learned on the first run and now built in: a domain guessed
+from the name can turn out to be theirs (stevesranch.com was), so a title
+carrying the name counts as their site; a tagged domain can lapse and be
+taken over (yenkingrestaurant.com serves a gambling page), which is the top
+of the presence gap; and OSM carries some businesses twice, so one row per
+name.
+
+**What it learns.** From ledger rows with a kind and a send event, the reply
+rate per kind and per town, cold and visit channels only. Three sends with
+half replying is a point up, three with none a point down. Warm sends are
+excluded because a text to a friend says nothing about a letter to a
+stranger. The table is empty today and prints as empty.
+
+**What it cannot do.** OpenStreetMap is a seed, not a census: it knew Hinkley
+and not Schlenker's. Demand proof and transition are research. And the
+scorecard's disqualifiers that need a person (an announced closure, a Toast
+contract signed last year) are still a person's.
+
+---
+
 ## Appendix: statewide scan, 2026-09-13
 
 Five parallel scans (succession angle, Southwest, West and Lansing, Southeast

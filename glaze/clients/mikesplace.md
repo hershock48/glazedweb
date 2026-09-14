@@ -98,3 +98,53 @@ capture (a full-page capture without a walk shows blank sections and is a
 harness fault, not a site fault). Env set by Kevin the same day: pitch host
 attached, ordering window held open, workroom passcode set, Neon on. Try-it
 list of five is on the build page.
+
+## The copy pass, 2026-09-13 (Kevin: "so generic i could die. plz research")
+
+All 47 Tripadvisor reviews (2013 to 2021) read in full, plus the Yelp
+highlights and the Restaurantji summary. Facts now on the site, each with its
+source review beside it in `lib/site.ts` (HOUSE):
+
+- 1874 storefront, "a lot of wood on the walls" (Aug 2014); pool table by the
+  front window (2014); two dart boards (2014); Club Keno (2014); complimentary
+  popcorn while you wait (2014; "free popcorn" 2026); music in back and room to
+  dance (2016); TVs, the Lions (2014).
+- Family business: "her brother Mike owns it, and her mom and dad were both
+  working" (Jul 2014, server Missy); "Met the owner and his parents" (2016).
+  Do NOT name Missy or the parents on the site; 2014 is a long time ago.
+- New ownership 2013: earliest review Jul 2013 under this name; "Great start
+  for new ownership" Dec 2013; "New owner with great ideas!" Sep 2014; "from a
+  little hole-in-the-wall to a hidden gem" May 2014. A search snippet said
+  "remodeled from the old Charlie's Tavern" and another said "since 2011";
+  neither verified (the pages 403), so the site says "since 2013" and
+  "the old tavern", not Charlie's. CONFIRM the year and the predecessor with Mike.
+- Burgers: 1/3 lb, freshly pressed, grilled to order, grilled/toasted bun,
+  bacon cooked to order (2014, 2015). Named: jalapeño popper (cream cheese;
+  cheddar swap welcomed), olive Swiss, bacon pineapple BBQ / Hawaiian bacon,
+  hot pepper cheeseburger, mushroom Swiss, patty melt, bacon cheese, veggie.
+  Also: Reuben (repeatedly "best in years"), club sandwich, spicy chicken,
+  fish and chips, chicken strips, wing baskets, nachos "big enough to share",
+  chili fries, fried pickles with ranch, fried mushrooms, mac n cheese bites,
+  tater tots, shoestring fries, house coleslaw, BLT, chili dog, $1.25 Sunday
+  tacos (2015, 2018). Georgia Peach Punch (a drink, 2015). Dark Horse on tap,
+  Blue Moon, 6 taps in 2013.
+- Weekday specials as a regular listed them, Sep 2014: Sun tacos, Mon patty
+  melt w/fries, Tue hot dog day, Wed spicy chicken w/fries, Thu hot pepper
+  cheeseburger basket, Fri chicken strip basket, Sat wings. Twelve years old;
+  on the menu page as "the week, as regulars know it", no prices, on the
+  needs list to confirm.
+- "You will be asked to leave if you say the F word" (2015): rendered as
+  "the language stays clean, because somebody's kids are usually in the room."
+- Parking in the rear with rear entry (2016); a garage up the road (2026
+  summary); "not a lot open late in Marshall", safe to walk to (2013).
+- Quotes used, with attribution and date: "Marshall's untapped gem" (2015, in
+  the hero lede as "according to the people who drink here"); "Probably the
+  best bar burger I have ever had. They are all fresh, hand pressed and
+  grilled to order." (Jan 2015, the pull quote).
+
+**Letter, same day:** hook is now "Is the kitchen still open? Right now,
+nobody online can say." (Kevin: the ownership hook "doesn't sell"). Yelp card
+removed. Ordering card makes the offer. **Price $3,000 build + $150/mo**
+(Kevin), registry row updated; the letter says the ordering system and the
+workroom are inside the build price. The Tonight day-part strip on the demo
+was removed at Kevin's request ("dumb"; "these squares are so terrible").

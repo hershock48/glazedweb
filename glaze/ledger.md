@@ -124,6 +124,79 @@ under a different slug (`griffinclaw` carries `griffin-claw`).
 
 ---
 
+## The channel
+
+Every row carries `channel`: `warm`, `cold` or `visit`. The first ten pitches
+were texts to owners Kevin already knew, and five of six replied. That is a
+warm number. A letter to a stranger has a different base rate, and a letter
+followed by walking in has a third. The channel is set on the row, never
+inferred, and reply and close rates are read per channel or not at all.
+Pooling them would make the cold approach look like it works before it has
+been tried.
+
+```bash
+node glaze/scripts/ledger.mjs set schlenkers channel=cold
+node glaze/scripts/ledger.mjs add masondepot --name "Mason Depot Diner" --channel visit
+```
+
+---
+
+## The closing brief
+
+`glaze/scripts/close.mjs`. For every row with a letter out and no full
+payment in (stages sent, replied, meeting, confirmed, paid-part), one brief:
+
+- **Why today.** The digest's flags, plus "no touch since their reply",
+  which is the state every interested prospect was in on 2026-09-13.
+- **Money.** Build, monthly, paid or not, accepted or not, from the registry.
+- **Kevin still has to get.** The `TODO` comments on the registry row, parsed
+  out of `lib/customOrders.js` with their full text. These are the facts the
+  agreement cannot be signed without.
+- **They still owe.** The project needs not yet done, each with its WHY, in
+  the row's own order, which is already priority order.
+- **The follow-up.** A drafted email: the first four asks as a numbered list,
+  lifted verbatim from the needs, the build page as the one link, the
+  agreement link, Kevin's name and number. For a silent `sent` row it is a
+  second touch with the demo link and a plain way to say no.
+- **After it goes.** The exact `ledger.mjs log ... touch` command, and a
+  `decision` command if TODOs are open.
+
+```bash
+node glaze/scripts/close.mjs                 # the rows that need a touch today
+node glaze/scripts/close.mjs --all           # the whole call sheet
+node glaze/scripts/close.mjs --slug anchor   # one business
+node glaze/scripts/close.mjs --out           # also write contracts-private/closing/<date>.md
+node glaze/scripts/close.mjs --claude        # draft with Claude Opus 5 instead of the template
+node glaze/scripts/close.mjs --email         # also email the brief to Kevin (RESEND_API_KEY)
+node glaze/scripts/close.mjs --json          # for an agent
+```
+
+The template is house voice by construction and never invents an ask. With
+`--claude` the same brief goes to the model with the "Write like a person"
+rules from `glaze/standards.md` as the system prompt and the template as the
+floor; a draft that comes back with an em dash or without a subject line is
+discarded for the template. Credentials resolve the SDK's normal way
+(`ANTHROPIC_API_KEY` or an `ant auth login` profile); with none it says so
+and stops. The SDK is a devDependency of this repo.
+
+**Nothing in it sends to a client.** `--email` mails the brief to Kevin's
+own inbox from `ledger@glazedweb.com`. The follow-up is copied, sent by a
+person, and then logged as a `touch`. That is deliberate: the day a follow-up
+goes out unread is the day one goes out wrong, to a brewery in the middle of
+an ownership case.
+
+**To run it every morning** without a hand on it, a Windows scheduled task
+is one line. It is Kevin's to create, not a session's:
+
+```bash
+schtasks /Create /SC DAILY /ST 07:30 /TN "Glazed closing brief" /TR "\"C:\Program Files\nodejs\node.exe\" C:\Users\hersh\Glazedweb\glazedweb\glaze\scripts\close.mjs --out --email"
+```
+
+`--email` needs `RESEND_API_KEY` in the task's environment. Without it, drop
+the flag and read `contracts-private/closing/<date>.md`.
+
+---
+
 ## What the ledger is not
 
 Not the client file. Durable facts, decisions, permissions and retired lines
@@ -142,7 +215,8 @@ day a second person reads it.
 ## Seeded 2026-09-13
 
 Ten pitched or signed businesses and nine scouted names, from the memory
-notes and `glaze/prospecting.md`. Send and reply dates for the six September
+notes and `glaze/prospecting.md`. The ten are `warm`; Dark Horse's channel
+is blank because nobody recorded how the letter reached them. Send and reply dates for the six September
 pitches were not recorded when they happened, so those events carry the
 seeding date and say so in the note. The age the digest prints for them is
 therefore an underestimate, which is the safe direction. Nine client files

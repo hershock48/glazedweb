@@ -148,3 +148,38 @@ removed. Ordering card makes the offer. **Price $3,000 build + $150/mo**
 (Kevin), registry row updated; the letter says the ordering system and the
 workroom are inside the build price. The Tonight day-part strip on the demo
 was removed at Kevin's request ("dumb"; "these squares are so terrible").
+
+**Pricing split, 2026-09-14 (Kevin):** the site is $3,000 + $150/mo. Online
+ordering is an add-on: $500 one time, due when it is switched on, plus the
+99¢ order fee the customer pays at checkout. Letter, registry row (scope,
+not-included, part 3, project steps) and build page all say so; the
+agreement's part 3 opens with the add-on sentence.
+
+**Fee comparison + ticket-size stats, same day (Kevin: "I want them to
+understand the flat fee, customer facing, as opposed to a % that faces the
+business").** New block under the price cards, "What ordering usually costs,
+and who pays it": a table of published rate cards, each worked on a $20
+pickup order, then two linked stats. Sources read 2026-09-14:
+
+- DoorDash Marketplace pricing: 15% / 25% / 30% of subtotal on delivery,
+  6% on pickup, charged to the restaurant. merchants.doordash.com/en-us/pricing
+- Uber Eats: 20% / 25% / 30% on delivery, 7% pickup fee (10% without
+  validated in-store pricing). merchants.ubereats.com/us/en/pricing/
+- Grubhub: Basic / Plus / Premium marketing fee starting at 15% / 20% / 25%,
+  "includes 10% delivery fee". get.grubhub.com/blog/understanding-grubhub-fees/
+  (the /pricing/ page 404s)
+- Square: online processing 3.3% + 30¢ on the free plan, 2.9% + 30¢ on paid
+  plans, no commission. squareup.com/us/en/payments/our-fees. Stated as
+  processing only, per the never-pitch-cheaper-than-Square rule.
+- Toast press release, 2016-08-24: online checks 23% larger than in-store.
+  pos.toasttab.com/news/restaurants-online-ordering-23-percent-larger-check-size
+  (403 to fetchers; read in the browser). Dated in the letter.
+- Paytronix 2024 Online Ordering Report (GlobeNewswire, 2024-04-01):
+  first-party guests order 35% more items per check, spend 30% more per
+  transaction than third-party marketplace guests.
+- Toast's own online-ordering fee (3.5% + 15¢ in third-party write-ups) is
+  NOT cited: no primary page found.
+
+The add-on card now says "No commission" rather than "no percentage of
+anything", because card processing is a percentage Mike pays wherever the
+card is run; the last table row says that plainly.

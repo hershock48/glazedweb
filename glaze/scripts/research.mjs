@@ -13,6 +13,17 @@
  *   node glaze/scripts/research.mjs --force         redo rows that already have research
  *   node glaze/scripts/research.mjs --dry           print what would be asked, call nothing
  *   node glaze/scripts/research.mjs --json
+ *   node glaze/scripts/research.mjs --brief <slug>              the full brief for one row, rules and JSON shape included
+ *   node glaze/scripts/research.mjs --write <slug> --from file.json   ingest a result produced elsewhere
+ *
+ * TWO WAYS TO RUN THE MODEL. Kevin, 2026-09-14: no API key, the Max
+ * subscription is what pays for Claude, and API usage is outside it. So the
+ * everyday runtime is a Claude Code session: `--brief <slug>` prints the
+ * same system rules, scorecard and facts the API path would send, the
+ * session does the searching with its own tools and files the JSON, and
+ * `--write <slug> --from file.json` puts it on the ledger row exactly as the
+ * API path would. The API path stays for the day a key exists; both write
+ * the same shape.
  *
  * HOW IT WORKS. One Claude Opus 5 call per business with web search and web
  * fetch, the scorecard and the "signals that predicted a fit" lifted from
@@ -64,10 +75,11 @@ const pool = fs.existsSync(POOL) ? JSON.parse(fs.readFileSync(POOL, "utf8")) : {
 
 // ---------------------------------------------------------------- targets
 
+const one = flags.brief || flags.write || flags.slug;
 const targets = Object.entries(book.rows)
-  .filter(([slug, row]) => (flags.slug ? slug === flags.slug : row.stage === "scouted" && (flags.force || !row.research)))
-  .slice(0, flags.slug ? 1 : LIMIT);
-if (!targets.length) fail(flags.slug ? `no row "${flags.slug}"` : "nothing to research: every scouted row has research. --force to redo.");
+  .filter(([slug, row]) => (one ? slug === one : row.stage === "scouted" && (flags.force || !row.research)))
+  .slice(0, one ? 1 : LIMIT);
+if (!targets.length) fail(one ? `no row "${one}"` : "nothing to research: every scouted row has research. --force to redo.");
 
 // ---------------------------------------------------------------- the card, from the file
 
@@ -235,6 +247,37 @@ function writeBack(row, r) {
   } else if (row.next?.action?.startsWith("Research B and D")) {
     row.next = { action: `Write the letter. Hook: ${p.hook || "see research"}`, due: "" };
   }
+}
+
+// ---------------------------------------------------------------- brief / write (the Claude Code path)
+
+if (flags.brief) {
+  const [slug, row] = targets[0];
+  console.log(`# Research brief: ${slug}\n\n${SYSTEM}\n\n---\n\n${facts(slug, row)}\n`);
+  process.exit(0);
+}
+
+if (flags.write) {
+  const [slug, row] = targets[0];
+  const from = flags.from || fail("--write needs --from <file.json>");
+  if (!fs.existsSync(from)) fail(`no file ${from}`);
+  const raw = fs.readFileSync(from, "utf8");
+  let parsed;
+  try {
+    const fence = raw.match(/```json\s*([\s\S]*?)```/);
+    parsed = JSON.parse(fence ? fence[1] : raw);
+  } catch (e) {
+    fail(`${from} is not JSON (${e.message})`);
+  }
+  if (row.research && !flags.force) fail(`${slug} already has research from ${row.research.date}; --force to replace`);
+  writeBack(row, { parsed, prose: "", model: flags.model || "claude-code", stop: "end_turn" });
+  const gitRoot = insideGit(LEDGER);
+  if (gitRoot && !flags["allow-git"]) fail(`refusing to write ${LEDGER} inside the git tree at ${gitRoot}`);
+  book.updated = today;
+  fs.writeFileSync(LEDGER, `${JSON.stringify(book, null, 2)}\n`);
+  const p = parsed;
+  console.log(`${slug}: B ${p.B ?? "?"} D ${p.D ?? "?"}${p.disqualified ? ` DISQUALIFIED (${p.disqualified}) -> passed` : ` -> score ${row.score}`}. ${p.hook || ""}`);
+  process.exit(0);
 }
 
 // ---------------------------------------------------------------- main

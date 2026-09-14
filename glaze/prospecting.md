@@ -163,19 +163,25 @@ fetch. The system prompt is the scorecard, the signals and the sources
 above, read out of this file at run time, so editing this page changes the
 agent.
 
+**How it runs.** Kevin's Claude is a Max subscription, not an API key, and
+API usage sits outside it (2026-09-14). So the everyday runtime is a Claude
+Code session, not the SDK: the script prints the brief, the session does the
+searching with its own tools, one subagent per business in parallel, and
+the script ingests the JSON. The first batch of five ran that way on
+2026-09-14.
+
 ```bash
-node glaze/scripts/research.mjs --dry --slug schlenkers   # the prompt, no call
-node glaze/scripts/research.mjs --limit 5                 # every scouted row without research
-node glaze/scripts/research.mjs --slug masondepot --force
+node glaze/scripts/research.mjs --brief schlenkers              # rules + card + facts, for a session to work from
+node glaze/scripts/research.mjs --write schlenkers --from result.json   # file what came back
+node glaze/scripts/research.mjs --limit 5                       # the API path, if a key ever exists
 ```
 
 What comes back is written onto the ledger row as `research`, B and D are
 added to the auto score, a dated `research` event carries the hook, and the
 row's next action becomes "write the letter". A disqualifier moves the row
 to `passed` with the reason. Every figure carries its URL or sits under
-unverified; the Google Business Profile is never claimed as seen. Needs an
-Anthropic credential (`ANTHROPIC_API_KEY` or `ant auth login`); the usage
-line prints an estimated cost per run so the daily five has a price.
+unverified; the Google Business Profile is never claimed as seen. Both
+paths write the same shape, so nothing downstream knows which ran.
 
 ---
 

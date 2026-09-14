@@ -10,6 +10,7 @@
 | Perf check | `glaze/scripts/perf-check.mjs` | LCP, CLS, JS weight on a throttled connection. |
 | Browser loader | `glaze/scripts/lib/browser.mjs` | Shared driver resolution: CHROMIUM_PATH aware, sandbox pin fallback, Windows-safe. New scripts import this, never resolve their own. |
 | Plate renderer | `glaze/scripts/plate.mjs` | Renders the Glazed credit plate. |
+| Ledger | `glaze/scripts/ledger.mjs`, spec in `glaze/ledger.md` | The prospect and client ledger: one row per business, dated events (scout, send, reply, meet, pay...), one next action, and a digest that flags silent, quiet and overdue rows with the number behind each flag. Reads build fee, needs done and TODO count live from `lib/customOrders.js` instead of copying them. Data file is `contracts-private/ledger.json`, outside the public repo, and the script refuses to write one inside any git tree. Built 2026-09-13 after six sent pitches were on record as unsent. `--json` for an agent. |
 
 ## Field cousins (port on second use; merge when touched)
 

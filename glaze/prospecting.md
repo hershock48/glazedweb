@@ -105,6 +105,9 @@ checked for a site of its own; "no site" means only scraper pages and social
 rank. Google counts are via Restaurantji or Wanderlog. Drive times are from
 Marshall.
 
+Each of the five has a row in the ledger (`glaze/ledger.md`) as of
+2026-09-13, so what happens to them next is logged there, not here.
+
 ### The five
 
 **1. Schlenker's Sandwich Shop, Jackson. 10 of 14.**

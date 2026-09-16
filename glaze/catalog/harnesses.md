@@ -1,6 +1,6 @@
 # Harnesses: audit and QA tooling
 
-## Canonical (this repo — improve these, not the cousins)
+## Canonical (this repo. Improve these, not the cousins)
 
 | Tool | Path | What it does |
 |---|---|---|
@@ -14,6 +14,7 @@
 | Closing brief | `glaze/scripts/close.mjs`, same spec | For every row with a letter out and no full payment in: the registry TODOs (parsed from the comments, full text), the needs not done with their WHY, the money, and a follow-up drafted in house voice from the needs verbatim, plus the ledger command to run once it went. `--claude` drafts through the Anthropic SDK (Opus 5, server-side fallbacks) with the "Write like a person" rules as the system prompt and the template as the floor; `--out` writes `contracts-private/closing/<date>.md`; `--email` mails it to Kevin via Resend. Never sends to a client. Shared bones in `glaze/scripts/lib/ledger.mjs`. |
 | Scout | `glaze/scripts/scout.mjs`, geo bones in `lib/geo.mjs`, spec in `glaze/prospecting.md` | Fills `contracts-private/pool.json` from OpenStreetMap (Nominatim + Overpass, no keys) around a town: every food, drink, florist and butcher place within a radius, chains dropped by brand tag and name list, ledger names marked, prospecting.md set-asides skipped. `--check` probes each site or the domain guessed from the name and records dead / parked / empty / free-host / live plus own or third-party ordering, calibrated against masondepotdiner.com, mikesplace.com, jacksoncoffeeco.com. |
 | Selector | `glaze/scripts/select.mjs` | The day's N inside one drive. Auto-scores A, C, E, F, G of the 14-point card from the pool, stops on own ordering, marks B and D as research; tries every candidate as a cluster center, sums the top N in the radius, picks the best circle; prints the nearest-neighbor route from Marshall with miles and a no-overlap runner-up for tomorrow. Learns reply rates per kind and town from cold and visit ledger rows only. `--commit` writes scouted rows with channel visit, kind, coordinates and the pool id. |
+| Second opinion | `glaze/scripts/second.mjs` | Hands files or a question to OpenAI's model through the Codex CLI, signed in with the ChatGPT subscription (no API key, per the 2026-09-14 rule), and prints the answer. Four modes: `review` (ranked defects in copy or code), `prose` (the "Write like a person" tells, lifted from `glaze/standards.md` at run time, one per line with line numbers), `judge` (every section of a proposal against "does it move the reader to Launch", rules lifted from `glaze/proposal.md`), `ask` (freeform). Codex runs read-only, ephemeral, approvals off, in a temp folder unless `--repo`; it can only talk. Finds the CLI through `GLAZE_CODEX`, PATH, `CODEX_CLI_PATH` in `~/.codex/config.toml`, or the newest hashed app folder, and warns if auth is not the subscription. `--json` for an agent, `--dry` prints the prompt. Built 2026-09-16 so a second reader with different blind spots is one command; its findings are advisory, the audit and a real render still gate a ship. |
 | Research agent | `glaze/scripts/research.mjs` | One Claude Opus 5 call per scouted row with web search and web fetch; the scorecard, signals and sources are read from `glaze/prospecting.md` at run time as the system prompt (cached). Returns B and D with sourced evidence, owner, Google rating and count via the mirrors, Tripadvisor rank and claim, press, transition news, cash-only, ordering today, hours source, a disqualifier if any, and the letter's hook, as a JSON block written onto the ledger row as `research`. Handles pause_turn, refusal, and server-side fallbacks; `--dry` prints the prompts; the usage line estimates dollars. |
 
 ## Field cousins (port on second use; merge when touched)
@@ -21,7 +22,7 @@
 | Tool | Lives in | What it does |
 |---|---|---|
 | practice-check + claim-check | `Schulers/tools/` | Parse the PROPOSAL itself and assert the demo delivers every claim in it. Found six empty claims on first run. The pair that keeps a pitch honest; wants generalizing badly. |
-| flow-checks | `Schulers/tools/`, `pjs/tools/` | Behaviour checks against a production server — "the checks that would otherwise be somebody remembering." |
+| flow-checks | `Schulers/tools/`, `pjs/tools/` | Behaviour checks against a production server, "the checks that would otherwise be somebody remembering." |
 | degrade checks | `Schulers/tools/degrade-check.mjs`, `ink-degrade-check.mjs` | Assert the no-JS / reduced-motion state is a finished page, per the motion rules. |
 | copy-check | `campbarber/scripts/copy-check.mjs` | Guards against copy that was "fixed" but never actually changed. |
 | done | `campbarber/scripts/done.mjs` | Launch gate that prints the measured value with every verdict, because "pass" with no number is a claim. |
@@ -29,8 +30,8 @@
 | scrim-check | `pjs/tools/scrim-check.mjs` | Text-over-photograph contrast measured on the composite, not the palette. |
 | sticky-check | `pjs/tools/sticky-check.mjs` | Two sticky bars measured against each other. |
 | motion samplers ×3 | `devine/tools/motion.mjs`, `donna/tools/frames.js`, `campbarber/scripts/motion.mjs` | Pre-port cousins of the house motion check; frames.js pauses via getAnimations() so wall-clock cannot race the animation. |
-| leak checks | `donna/tools/leak.js`, `leak.py` | "Is anything lit ahead of the pen?" — pixel-level check that a write-on reveal never shows ink early. |
+| leak checks | `donna/tools/leak.js`, `leak.py` | "Is anything lit ahead of the pen?" A pixel-level check that a write-on reveal never shows ink early. |
 | share/meta audit | `donna/tools/share.js` | canonical / og:url / twitter audit, written after a site shipped a day with all of them wrong. |
 | ux + walk audits | `donna/tools/ux.js`, `walk.js` | Numbers pulled out of a real render; a walk of the one conversion path the site exists for. |
 | clock-logic test | `stagecoach/tools/test-tonight.mjs` | Tests time-of-day logic against a supplied clock instead of the real one. |
-| filmstrip / shots | `devine/tools/filmstrip.mjs`, `shots.mjs`, `griffin-claw-rebuild/{check,loc,shot}.mjs`, `migas/live.mjs` | Contact sheets and screenshots for looking at rather than measuring. The griffin/migas ones hardcode the sandbox Chromium path — see the portability note in glaze.md. |
+| filmstrip / shots | `devine/tools/filmstrip.mjs`, `shots.mjs`, `griffin-claw-rebuild/{check,loc,shot}.mjs`, `migas/live.mjs` | Contact sheets and screenshots for looking at rather than measuring. The griffin/migas ones hardcode the sandbox Chromium path. See the portability note in glaze.md. |

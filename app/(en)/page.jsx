@@ -1,6 +1,7 @@
 "use client";
 
-import { LogoDefs, Mark, AnimatedMark, DripDivider, HeroDrip, OpenSign, BeANumberMark, ChismEggs } from "@/components/Logo";
+import { LogoDefs, Mark, DripDivider, HeroDrip, OpenSign, BeANumberMark } from "@/components/Logo";
+import BrandMotion from "@/components/BrandMotion";
 import { CONTACT_EMAIL } from "@/lib/contact";
 import { PRICING, usd, num } from "@/lib/pricing";
 import { useHomeEffects } from "@/components/homeEffects";
@@ -26,7 +27,7 @@ export default function Home() {
           </a>
           <nav>
             <a href="#menu">Menu</a>
-            <a href="#process">Process</a>
+            <a href="#jelly">Jelly</a>
             <a href="#work">Work</a>
             <a className="btn" href="/order">
               Get a site
@@ -60,8 +61,8 @@ export default function Home() {
             </em>
           </h1>
           <p className="sub">
-            Hand-built sites for restaurants, shops, and anywhere with a counter. No templates, no third-party
-            apps, no off-brand widgets. Order it like a donut: pick a flavor, we bake it fresh, it ships{" "}
+            Hand-built websites, ordering, and custom tools for the way your business works.
+            Beautiful for your customers. Connected for your team. Built together, served{" "}
             <span className="glazed">glazed</span>.
           </p>
           <div className="ctas">
@@ -77,7 +78,7 @@ export default function Home() {
           </div>
         </div>
         <div className="mark">
-          <AnimatedMark />
+          <BrandMotion />
         </div>
       </div>
 
@@ -160,10 +161,18 @@ export default function Home() {
           {/* The counter, named where the menu is read. EN-only because it
               points at an English SEO page; /do mirrors the bullet order but
               its ordering story is still WhatsApp-first. */}
-          <p className="menu-note">
-            Take orders? We build the counter too: ordering on your own site, tied into your register, with no
-            percentage commission. <a href="/online-ordering-website-michigan">How ordering works</a>
-          </p>
+          <div className="jelly-feature" id="jelly">
+            <div className="sec-kicker">Meet Jelly</div>
+            <h3>Your counter. All connected.</h3>
+            <p>Jelly is our ordering program, built into your own site. A natural experience for your customers,
+              with the tools behind the counter shaped around how your team works.</p>
+            <ol className="jelly-flow">
+              <li><b>Customers order.</b><span>A menu and checkout that feel like your business, on your own website.</span></li>
+              <li><b>Your team takes over.</b><span>Orders, availability, and the kitchen view in one connected workflow.</span></li>
+              <li><b>We fit the pieces.</b><span>We scope payments, compatible POS connections, and custom admin tools with you.</span></li>
+            </ol>
+            <a className="btn" href="/order?flavor=custom">Let’s talk Jelly →</a>
+          </div>
         </div>
       </section>
 
@@ -212,49 +221,41 @@ export default function Home() {
           <h2 className="sec-title" style={{ color: "#F3EAE1" }}>
             Straight from the shop.
           </h2>
-          <p className="sec-sub">Recent work, and room in the case for yours.</p>
+          <p className="sec-sub">Sites, shops, and the systems behind them. Concept builds are labeled.</p>
           <div className="work-grid">
             <a
-              id="chism-card"
+              id="ban-card"
               className="wcard reveal"
-              href="https://www.chismchickenranch.com"
+              href="https://www.beanumber.org"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <div className="bok-bubble" aria-hidden="true">
-                bok bok bok
-              </div>
               <div
                 className="thumb"
                 style={{
-                  background: "linear-gradient(135deg,#B5532A,#8A3C1C)",
-                  color: "#FFF7EA",
+                  background: "linear-gradient(160deg,#1E1B17,#0d0d0d)",
+                  color: "#FFF8F0",
                   flexDirection: "column",
-                  gap: 4,
+                  gap: 8,
                 }}
               >
-                <svg
-                  viewBox="0 0 220 54"
-                  width="200"
-                  height="49"
-                  aria-hidden="true"
-                  style={{ overflow: "visible", marginBottom: -10 }}
-                >
-                  <defs>
-                    <path id="chismArcPath" d="M 14 48 Q 110 6 206 48" fill="none" />
-                  </defs>
-                  <text fill="#FFF7EA" fontSize="13.5" fontWeight="800" letterSpacing="2">
-                    <textPath href="#chismArcPath" startOffset="50%" textAnchor="middle">
-                      CHISM CHICKEN RANCH
-                    </textPath>
-                  </text>
-                </svg>
-                <ChismEggs className="chism-eggs" />
+                <BeANumberMark size={54} style={{ color: "#D4A843" }} className="ban-logo" />
+                <span className="ban-counter" style={{ fontSize: 30, fontWeight: 800, letterSpacing: "-1px" }}>
+                  № <span id="ban-num">001</span>
+                </span>
+                <span style={{ fontSize: 10.5, letterSpacing: ".22em", opacity: 0.8 }}>EVERY NUMBER IS A CHILD</span>
               </div>
               <div className="meta">
-                <b>Chism Chicken Ranch</b>
-                <span>Pasture-raised poultry · Marshall, MI</span>
+                <b>Be A Number International</b>
+                <span>Nonprofit · child sponsorship · beanumber.org</span>
               </div>
+            </a>
+            <a className="wcard reveal" href="https://devine.glazedweb.com/demo" target="_blank" rel="noopener noreferrer">
+              <div className="thumb" style={{ background: "#233B30", color: "#FFF8F0", flexDirection: "column", gap: 12 }}>
+                <span className="devine-word">DeVine’s</span>
+                <span style={{ fontSize: 11, letterSpacing: ".2em" }}>FLOWERS &amp; BOTANICALS</span>
+              </div>
+              <div className="meta"><b>DeVine’s Flowers &amp; Botanicals</b><span>Florist storefront + custom workroom · concept</span></div>
             </a>
             {/* Copper Athletic Club. Points at /demo, not the root of that
                 host: the root is the proposal document, which is written for
@@ -305,33 +306,7 @@ export default function Home() {
                 <span>Sports bar · Marshall, MI · in progress</span>
               </div>
             </a>
-            <a
-              id="ban-card"
-              className="wcard reveal"
-              href="https://www.beanumber.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div
-                className="thumb"
-                style={{
-                  background: "linear-gradient(160deg,#1E1B17,#0d0d0d)",
-                  color: "#FFF8F0",
-                  flexDirection: "column",
-                  gap: 8,
-                }}
-              >
-                <BeANumberMark size={54} style={{ color: "#D4A843" }} className="ban-logo" />
-                <span className="ban-counter" style={{ fontSize: 30, fontWeight: 800, letterSpacing: "-1px" }}>
-                  № <span id="ban-num">001</span>
-                </span>
-                <span style={{ fontSize: 10.5, letterSpacing: ".22em", opacity: 0.8 }}>EVERY NUMBER IS A CHILD</span>
-              </div>
-              <div className="meta">
-                <b>Be A Number International</b>
-                <span>Nonprofit · child sponsorship · beanumber.org</span>
-              </div>
-            </a>
+
           </div>
         </div>
       </section>

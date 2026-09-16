@@ -77,8 +77,7 @@ export default function RestaurantPosIntegrationMI() {
         <p>
           Integration is scoped with your build and priced before any work starts, because every counter is a
           little different. On the orders themselves there is no percentage commission: a flat 99¢ order fee is
-          added at checkout, paid by your customer and shown plainly before they pay. The menu price of everything
-          you sell reaches you whole.
+          added at checkout, paid by your customer and shown plainly before they pay. Payment processor fees and any agreed third-party services are separate.
         </p>
       </ServicePage>
     </>

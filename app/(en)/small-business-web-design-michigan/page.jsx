@@ -66,7 +66,7 @@ export default function SmallBusinessWebDesignMI() {
         <p>
           We are a small-batch studio in Marshall, and we build for businesses across the whole state: trades, shops,
           farms, salons, nonprofits, and a lot of restaurants. One-page sites start at {usd(PRICING.us.original.build)};
-          full sites with up to six pages, booking or ordering, and an SEO foundation are {usd(PRICING.us.dozen.build)}.
+          full sites with up to six pages and search foundations start at {usd(PRICING.us.dozen.build)}. Ordering, integrations, and connected workflows start at {usd(PRICING.us.systems.build)}, with support scoped separately.
           Both are on the menu with exactly what they include.
         </p>
       </ServicePage>

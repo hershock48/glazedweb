@@ -1,5 +1,8 @@
 # The proposal
 
+**September 16, 2026:** New US proposals use the technology-partner positioning and current starting prices in `lib/pricing.js`: websites from $3,000, connected systems from $5,000 with separately scoped support. The one-page # The proposal
+,250 offer is secondary. Historical samples and sent proposals below are records, not today’s price list. /order is an inquiry only; arrange scope and agreement acceptance separately.
+
 For a prospect who has not signed. Three deliverables go out together: a real
 deployed rebuild, a proposal page, and a host split that keeps them apart.
 

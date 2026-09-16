@@ -26,7 +26,7 @@ export default function ServicePage({ kicker, title, lead, highlights, related, 
           <nav>
             <Link href="/#menu">Menu</Link>
             <Link className="btn" href="/order">
-              Start your order
+              Let’s talk
             </Link>
           </nav>
         </div>
@@ -62,8 +62,7 @@ export default function ServicePage({ kicker, title, lead, highlights, related, 
 
           <div className="legal-cta">
             <p>
-              Pricing is on the menu: one build price, one small monthly, no surprise invoices. Every site is baked
-              from scratch in Marshall, and everything is handed over: code, content, and accounts.
+              We start with your workflow and agree on a scope before the build. Website care and connected-system support are priced separately, so you know what is covered. Built in Marshall, Michigan.
               {related && related.length > 0 && (
                 <>
                   {" "}
@@ -79,7 +78,7 @@ export default function ServicePage({ kicker, title, lead, highlights, related, 
             </p>
             <div className="legal-actions">
               <Link className="btn big" href="/order">
-                Start your order →
+                Let’s talk →
               </Link>
               <Link className="btn big ghost" href="/#menu">
                 See the menu

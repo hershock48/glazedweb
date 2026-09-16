@@ -1,0 +1,36 @@
+name: Website checks
+on:
+  pull_request:
+    paths:
+      - 'app/**'
+      - 'components/**'
+      - 'lib/**'
+      - 'public/**'
+      - 'tools/inquiry.test.mjs'
+      - '.github/workflows/redesign-checks.yml'
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CHROMIUM_PATH: /usr/bin/google-chrome
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: node --test tools/inquiry.test.mjs
+      - run: npm run build
+      - run: npm install --no-save --package-lock=false axe-core@4.10.3 playwright-core@1.55.1
+      - name: Start production server
+        run: |
+          npm run start -- --port 4490 > /tmp/glazed-server.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:4490 > /dev/null && break; sleep 1; done
+      - run: node glaze/scripts/audit.mjs --base http://127.0.0.1:4490 --routes /,/order,/do,/restaurant-pos-integration-michigan,/online-ordering-website-michigan,/restaurant-website-design-michigan,/small-business-web-design-michigan,/agreement
+      - run: node glaze/scripts/width-check.mjs --base http://127.0.0.1:4490 --routes /,/order,/do
+      - run: node glaze/scripts/motion-check.mjs --base http://127.0.0.1:4490 --routes /,/order,/do
+      - run: node glaze/scripts/perf-check.mjs --base http://127.0.0.1:4490 --routes /,/order

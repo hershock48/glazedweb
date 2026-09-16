@@ -8,7 +8,7 @@ Written for whoever is doing the work: Kevin, an AI session, or a contractor.
 Everything before the appendix is true anywhere. The appendix is labelled as
 sandbox-only.
 
-Last revised August 2026. **If this file disagrees with the code, the code is
+Last revised September 16, 2026. **If this file disagrees with the code, the code is
 right.** Fix the file.
 
 ---
@@ -64,6 +64,10 @@ before assuming anything**, including whether Tailwind is 3.x
 (`tailwind.config.js`, `theme.extend`) or 4.x (CSS-first `@theme`).
 
 ---
+
+## September 16 positioning and pricing update
+
+Kevin now positions the studio as a technology partner: websites, Jelly ordering, POS integrations where supported, admin panels, and custom workflow tools. New US starting prices: $1,250 + $99/month for a secondary one-page offer; $3,000 + $150/month for websites; connected-business projects from $5,000 with separately scoped support. This supersedes the older public menu below. Existing quotes and client agreements keep their numbers. /order is an inquiry only; agreement acceptance happens separately after scope is agreed. See the September 16 README section.
 
 ## 1. Who we are
 

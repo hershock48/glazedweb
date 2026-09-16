@@ -65,8 +65,7 @@ export default function RestaurantWebDesignMI() {
         <h2>What it costs</h2>
         <p>
           A one-page site starts at {usd(PRICING.us.original.build)} with a small monthly that covers hosting,
-          security, and edits. When your prices change, send them over and they are updated. A full site with online
-          ordering, galleries, and catering pages is {usd(PRICING.us.dozen.build)}. Both are on the menu with
+          security, and edits. When your prices change, send them over and they are updated. A full website with galleries and catering pages starts at {usd(PRICING.us.dozen.build)}. Ordering and connected workflows start at {usd(PRICING.us.systems.build)}, scoped with your team. Both are on the menu with
           everything they include, and both come with the same promise: you own the code, the content, and every
           account.
         </p>

@@ -95,7 +95,7 @@
 .studio-home .mcard .btn {text-align:center;font-size:13px}
 .care-note {display:flex;gap:25px;align-items:flex-start;border-top:1px solid var(--studio-line);padding-top:26px;margin-top:18px;font-size:12px;line-height:1.8}
 .care-note b {white-space:nowrap}.care-note p {color:#675448;max-width:710px}.care-note a {color:var(--chocolate);white-space:nowrap}
-.studio-about {background:#f0e7dc}
+.studio-about {background:#f0e7dc;--fern:#35532d}
 .about-grid {display:grid;grid-template-columns:.8fr 1.2fr;gap:85px;align-items:flex-start}
 .about-grid figure img {width:100%;height:auto;max-height:560px;object-fit:cover;object-position:50% 30%;border-radius:3px;filter:saturate(.8)}
 .about-grid figcaption {font-size:10px;line-height:1.7;color:#675448;margin-top:10px}

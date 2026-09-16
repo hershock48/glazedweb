@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "verification": "Working copies inspected September 16, 2026; deployment versions unknown.",
+  "testCommand": "node --test --test-isolation=none glaze/assets/shared-components.test.mjs",
+  "components": [
+    {
+      "id": "workroom-session",
+      "version": "1.0.0",
+      "file": "glaze/assets/workroom-session/1.0.0/session.ts",
+      "capability": "Signed expiring owner/staff session tokens",
+      "source": {
+        "repo": "devine",
+        "commit": "182a42ca69eac855799264b65eccb33ce4f271e7",
+        "file": "src/lib/workroom/session.ts"
+      },
+      "copies": [
+        {
+          "repo": "devine",
+          "file": "src/lib/workroom/session.ts"
+        },
+        {
+          "repo": "copperac",
+          "file": "lib/workroom/session.ts"
+        }
+      ],
+      "limits": "Node crypto primitive only; each client supplies authentication, app-specific secret, secure cookies and persistent login throttling.",
+      "sha256LF": "05f92124e258bafc6a837be37516fff20d78c897738f1035d6cd0ea1971eb657"
+    },
+    {
+      "id": "option-pricing",
+      "version": "1.0.0",
+      "file": "glaze/assets/option-pricing/1.0.0/pricing.ts",
+      "capability": "Group-qualified option validation and integer-cent option totals",
+      "source": {
+        "repo": "copperac",
+        "commit": "3b182463cc78b684d54609faf597dfebd13adccd",
+        "file": "lib/ordering/pricing.ts"
+      },
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/ordering/pricing.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/ordering/pricing.ts"
+        }
+      ],
+      "limits": "Trusted validated menu prices in integer cents; does not calculate base price, quantity, tax, delivery fees or provider payments.",
+      "sha256LF": "495a0f4374cc547842bde81c28bcb259514928e051c77575d713d996c8b7b619"
+    }
+  ]
+}

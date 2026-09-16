@@ -75,13 +75,13 @@ export function LogoDefs() {
           fill="url(#creepGrad)"
         />
         <path d="M 68 106 A 42 42 0 0 0 84 116" fill="none" stroke="#F1F8DC" strokeWidth="4" strokeLinecap="round" opacity="0.85" />
-        <path className="wob2" d="M 97 144 Q 103 151 109 144" fill="none" stroke="#55974A" strokeWidth="4" strokeLinecap="round" />
+        <path d="M 97 144 Q 103 151 109 144" fill="none" stroke="#55974A" strokeWidth="4" strokeLinecap="round" />
         <g stroke="#F1F8DC" fill="none" strokeLinecap="round">
-          <path className="wob2" d="M 97 128 C 96 148, 97 166, 100 182" strokeWidth="4.5" opacity="0.85" />
-          <path className="wob1" d="M 69 118 C 68 132, 70 146, 71 156" strokeWidth="3.5" opacity="0.8" />
-          <path className="wob3" d="M 124 114 C 123 124, 125 138, 126 148" strokeWidth="3.5" opacity="0.8" />
+          <path d="M 97 128 C 96 148, 97 166, 100 182" strokeWidth="4.5" opacity="0.85" />
+          <path d="M 69 118 C 68 132, 70 146, 71 156" strokeWidth="3.5" opacity="0.8" />
+          <path d="M 124 114 C 123 124, 125 138, 126 148" strokeWidth="3.5" opacity="0.8" />
         </g>
-        <circle className="wob2" cx="100" cy="192" r="2.5" fill="#F1F8DC" opacity="0.9" />
+        <circle cx="100" cy="192" r="2.5" fill="#F1F8DC" opacity="0.9" />
         <circle cx="100" cy="72" r="13" fill="var(--hole, #FDF6EC)" />
         <circle cx="100" cy="72" r="13" fill="none" stroke="#C22F6B" strokeWidth="3" opacity="0.3" />
         <path d="M 62 46 A 44 44 0 0 1 82 28" fill="none" stroke="#FFFFFF" strokeWidth="8" strokeLinecap="round" opacity="0.75" />

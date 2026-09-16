@@ -1,6 +1,7 @@
 "use client";
 
-import { LogoDefs, Mark, AnimatedMark, DripDivider, HeroDrip, OpenSign, BeANumberMark } from "@/components/Logo";
+import { LogoDefs, Mark, DripDivider, HeroDrip, OpenSign, BeANumberMark } from "@/components/Logo";
+import BrandMotion from "@/components/BrandMotion";
 import { CONTACT_EMAIL } from "@/lib/contact";
 import { PRICING, usd, num } from "@/lib/pricing";
 import { useHomeEffects } from "@/components/homeEffects";
@@ -77,7 +78,7 @@ export default function Home() {
           </div>
         </div>
         <div className="mark">
-          <AnimatedMark />
+          <BrandMotion />
         </div>
       </div>
 

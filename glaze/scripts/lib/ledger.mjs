@@ -7,6 +7,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import {readAuthoritative,studioProjection} from './studio-authority.mjs';
+export {assertLegacyWritable} from './studio-authority.mjs';
 
 export const LADDER = [
   "scouted", "audited", "built", "sent", "replied", "meeting", "confirmed",
@@ -97,8 +99,11 @@ export function insideGit(p) {
 }
 
 export function loadBook(file) {
+  const authoritative=readAuthoritative(file);
+  if(authoritative)return authoritative;
   if (!fs.existsSync(file)) return null;
   const book = JSON.parse(fs.readFileSync(file, "utf8"));
+  if(Object.hasOwn(book,'revision')&&book.book)return studioProjection(book);
   if (!book.rows || typeof book.rows !== "object") throw new Error(`${file} has no "rows" object`);
   return book;
 }
@@ -167,7 +172,11 @@ function cleanTodo(s) {
     .trim();
 }
 
-export function registryFacts(registry, slug) {
+export function registryFacts(registry, slug, row) {
+  if(row?._studio){
+    const order=registry?.orders?.[slug],blockers=row.blockers||[],theirs=blockers.filter(b=>b.owner==='client'),ours=blockers.filter(b=>b.owner!=='client'&&!b.done);
+    return {client:row.name,contactName:row.contact||'',email:'',build:row.commercial?.build??null,monthly:row.commercial?.monthly??null,monthlyStatus:row.commercial?.monthlyStatus||'unknown',buildFeePaid:row.operations?.buildPayment==='paid',accepted:['agreed','signed'].includes(row.operations?.agreement),needsDone:theirs.filter(b=>b.done).length,needsTotal:theirs.length,needsOpen:theirs.filter(b=>!b.done).map(b=>({id:b.id,ask:b.text,why:b.source})),todos:ours.map(b=>b.text),todoCount:ours.length,live:['live','support'].includes(row.operations?.delivery),hasProject:!!order?.project,hasRegistry:!!order,source:'studio-dashboard'};
+  }
   if (!registry) return null;
   const order = registry.orders[slug];
   if (!order) return null;

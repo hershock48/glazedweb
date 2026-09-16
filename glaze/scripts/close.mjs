@@ -88,7 +88,7 @@ if (flags.slug && !rows.length) {
 // ---------------------------------------------------------------- the brief
 
 function brief(slug, row) {
-  const reg = registryFacts(registry, slug);
+  const reg = registryFacts(registry, slug, row);
   const last = lastEvent(row);
   const days = last ? daysBetween(last.date, today) : null;
   const reply = lastOf(row, "reply");
@@ -104,7 +104,7 @@ function brief(slug, row) {
   const theirs = reg ? reg.needsOpen : [];
 
   const money = reg
-    ? { build: reg.build, monthly: reg.monthly, buildFeePaid: reg.buildFeePaid, accepted: reg.accepted, source: "registry" }
+    ? { build: reg.build, monthly: reg.monthly, monthlyStatus:reg.monthlyStatus||'unknown', buildFeePaid: reg.buildFeePaid, accepted: reg.accepted, source: reg.source||"registry" }
     : row.price
       ? { build: row.price.build ?? null, monthly: row.price.monthly ?? null, buildFeePaid: false, accepted: null, source: "ledger" }
       : null;
@@ -123,11 +123,11 @@ function brief(slug, row) {
     contact: { name: reg?.contactName || "", email: reg?.email || "", ledger: row.contact || "" },
     ours,
     theirs,
-    hasRegistryRow: !!reg,
+    hasRegistryRow: !!reg&&reg.hasRegistry!==false,
     hasProjectPage: !!reg?.hasProject,
     next: row.next?.action ? row.next : null,
     draft,
-    afterSending: [
+    afterSending: row._studio ? ['Record the completed follow-up in this account’s dated dashboard history. Nothing is sent automatically.'] : [
       `node glaze/scripts/ledger.mjs log ${slug} touch "${draft.summary}"`,
       ...(ours.length ? [`node glaze/scripts/ledger.mjs log ${slug} decision "<which TODO got answered>"`] : []),
     ],
@@ -148,7 +148,7 @@ function firstNameOf(s) {
 function templateDraft({ slug, row, reg, theirs, firstName, reply, days }) {
   const name = reg?.client || row.name;
   const buildPage = reg?.hasProject ? `${SITE}/build/${slug}` : "";
-  const agreement = reg ? `${SITE}/agreement/${slug}` : "";
+  const agreement = reg&&reg.hasRegistry!==false ? `${SITE}/agreement/${slug}` : "";
   const demo = row.host ? `${row.host.replace(/\/$/, "")}/demo` : "";
   const greeting = firstName ? `Hi ${firstName},` : "Hi,";
   const lines = [];
@@ -170,7 +170,7 @@ function templateDraft({ slug, row, reg, theirs, firstName, reply, days }) {
       theirs.slice(0, MAX_ASKS).forEach((n, i) => lines.push(`${i + 1}. ${n.ask}`));
       if (theirs.length > MAX_ASKS) lines.push(`The rest of the list is on your page, ${theirs.length - MAX_ASKS} more.`);
       lines.push("");
-    } else if (!reg) {
+    } else if (!reg||reg.hasRegistry===false) {
       lines.push("The next step is a short call so I can put the agreement together. Any afternoon this week works on my end.");
     }
     if (row.stage === "confirmed") lines.push("Once the build fee is in, the build starts the same week.");
@@ -320,7 +320,7 @@ const text = rows.length
   : `${heading}\nNothing to close today. Run with --all for the whole call sheet.\n`;
 
 if (flags.json) {
-  console.log(JSON.stringify({ today, file: DATA, rows }, null, 2));
+  console.log(JSON.stringify({ today, file: DATA, authority:book.authority||null, rows }, null, 2));
 } else {
   console.log(text);
 }

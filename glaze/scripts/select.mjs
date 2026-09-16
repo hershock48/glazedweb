@@ -45,12 +45,13 @@
  */
 import fs from "node:fs";
 import path from "node:path";
-import { parseArgs, localDate, resolveDataPath, insideGit, loadBook, norm, pad } from "./lib/ledger.mjs";
+import { parseArgs, localDate, resolveDataPath, insideGit, loadBook, norm, pad, assertLegacyWritable } from "./lib/ledger.mjs";
 import { HOME, miles } from "./lib/geo.mjs";
 
 const { flags } = parseArgs(process.argv.slice(2));
 const today = flags.today || localDate();
 const LEDGER = resolveDataPath(flags);
+if(flags.commit)assertLegacyWritable(LEDGER);
 const POOL = path.resolve(flags.pool || process.env.GLAZE_POOL || path.join(path.dirname(LEDGER), "pool.json"));
 const N = Number(flags.n || 5);
 const RADIUS = Number(flags.radius || 12);
@@ -306,6 +307,7 @@ function fmt(v) { return v === null ? "?" : String(v); }
 // ---------------------------------------------------------------- commit
 
 if (flags.commit) {
+  assertLegacyWritable(LEDGER);
   const gitRoot = insideGit(LEDGER);
   if (gitRoot && !flags["allow-git"]) fail(`refusing to write ${LEDGER} inside the git tree at ${gitRoot}`);
   const realBook = loadBook(LEDGER);

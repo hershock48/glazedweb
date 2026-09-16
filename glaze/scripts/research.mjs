@@ -50,12 +50,14 @@
 import fs from "node:fs";
 import path from "node:path";
 import {
-  REPO, parseArgs, localDate, resolveDataPath, insideGit, loadBook, lastOf, norm,
+  REPO, parseArgs, localDate, resolveDataPath, insideGit, loadBook, lastOf, norm, assertLegacyWritable,
 } from "./lib/ledger.mjs";
 
 const { flags } = parseArgs(process.argv.slice(2));
 const today = flags.today || localDate();
 const LEDGER = resolveDataPath(flags);
+// Check before any paid research call, not after generating its result.
+if(flags.write||(!flags.brief&&!flags.dry&&!flags.draft))assertLegacyWritable(LEDGER);
 const POOL = path.resolve(flags.pool || process.env.GLAZE_POOL || path.join(path.dirname(LEDGER), "pool.json"));
 const MODEL = flags.model || "claude-opus-5";
 const LIMIT = Number(flags.limit || 5);
@@ -258,6 +260,7 @@ if (flags.brief) {
 }
 
 if (flags.write) {
+  assertLegacyWritable(LEDGER);
   const [slug, row] = targets[0];
   const from = flags.from || fail("--write needs --from <file.json>");
   if (!fs.existsSync(from)) fail(`no file ${from}`);
@@ -290,7 +293,8 @@ for (const [slug, row] of targets) {
   if (r && !r.declined) writeBack(row, r);
 }
 
-if (!flags.dry && results.some((r) => !r.declined)) {
+if (!flags.dry && !flags.draft && results.some((r) => !r.declined)) {
+  assertLegacyWritable(LEDGER);
   const gitRoot = insideGit(LEDGER);
   if (gitRoot && !flags["allow-git"]) fail(`refusing to write ${LEDGER} inside the git tree at ${gitRoot}`);
   book.updated = today;

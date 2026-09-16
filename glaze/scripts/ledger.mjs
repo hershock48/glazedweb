@@ -70,7 +70,7 @@ import fs from "node:fs";
 import path from "node:path";
 import {
   LADDER, EVENTS, TERMINAL, CHANNELS, parseArgs, localDate, isDate, daysBetween,
-  resolveDataPath, insideGit, loadBook, lastEvent, loadRegistry, registryFacts,
+  resolveDataPath, insideGit, loadBook, lastEvent, loadRegistry, registryFacts, assertLegacyWritable,
   clientFileSlugs, norm, flagsFor, pad, trunc,
 } from "./lib/ledger.mjs";
 
@@ -97,6 +97,7 @@ function load() {
 }
 
 function save(book) {
+  assertLegacyWritable(DATA);
   const gitRoot = insideGit(DATA);
   if (gitRoot && !flags["allow-git"]) {
     fail(`refusing to write ${DATA}\n  it sits inside the git working tree at ${gitRoot}. Deal state about named businesses does not belong in a repo, and glazedweb is public.\n  Pass --allow-git if that tree is private and you mean it.`);
@@ -119,7 +120,7 @@ async function digest(book) {
   const registry = await loadRegistry();
   const rows = Object.entries(book.rows).map(([slug, row]) => {
     const last = lastEvent(row);
-    const reg = registryFacts(registry, slug);
+    const reg = registryFacts(registry, slug, row);
     return {
       slug,
       ...row,
@@ -145,11 +146,11 @@ async function digest(book) {
   for (const s of clientFileSlugs()) if (!known.has(norm(s))) missing.push(`${s} (client file)`);
 
   if (flags.json) {
-    console.log(JSON.stringify({ today, file: DATA, rows, missing }, null, 2));
+    console.log(JSON.stringify({ today, file: DATA, authority:book.authority||null, rows, missing }, null, 2));
     return;
   }
 
-  console.log(`Ledger  ${today}  ${DATA}`);
+  console.log(`Ledger  ${today}  ${book.authority?`studio dashboard revision ${book.authority.revision} (read through archive pointer)`:DATA}`);
   const attention = rows.filter((r) => r.flags.length && !TERMINAL.has(r.stage));
   console.log("");
   console.log(attention.length ? "NEEDS A TOUCH" : "NEEDS A TOUCH: nothing today");

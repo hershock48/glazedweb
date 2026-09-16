@@ -2,7 +2,38 @@
 
 **One row per business, from scouted to retained, and the digest that reads
 it every morning.** The tool is `glaze/scripts/ledger.mjs`. The data is
-`../contracts-private/ledger.json`, outside this repo on purpose.
+the private studio dashboard when the local authority marker below is present.
+The original `../contracts-private/ledger.json` remains an archive outside this
+public repo.
+
+## Studio authority (September 2026)
+
+The local migration retains original account snapshots in the dashboard and
+uses `ledger.json.authority.json` beside the archived ledger to point to the
+current `glazedweb-admin/data/studio.json` storage envelope. The marker contains
+version 1, mode `studio-local`, and a file path relative to the marker. It and
+all account data stay private; neither belongs in this public repository.
+
+With that marker, digest/show, closing briefs, scouting comparisons, selection
+shortlists and research briefs read current dashboard records. If the target
+is missing or invalid, commands fail rather than falling back to old facts.
+Dashboard commercial facts and blockers take precedence over the public custom
+order registry. Archived research remains historical source material; proposed
+prices are not promoted to accepted fees.
+
+Record payments, meetings, next actions and other account changes in the studio
+dashboard. Legacy ledger mutations, research write-back and selector `--commit`
+are refused, even with `--allow-git`. Research `--brief` remains available;
+`--draft --json` produces reviewable research output without writing account
+state. That mode still uses the configured model provider and its normal costs.
+No automated outreach or charging is introduced. Adding selected prospects and
+reviewing research into structured dashboard fields remain manual until the
+ledger-native prospect workflow is implemented.
+
+The commands below document the old standalone format for unmigrated fixtures.
+Do not remove the authority marker to resume a second production ledger. Future
+hosted-database migration needs an authenticated adapter; this pointer supports
+the local pilot only.
 
 ---
 

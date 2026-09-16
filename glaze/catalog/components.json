@@ -48,6 +48,24 @@
       ],
       "limits": "Trusted validated menu prices in integer cents; does not calculate base price, quantity, tax, delivery fees or provider payments.",
       "sha256LF": "495a0f4374cc547842bde81c28bcb259514928e051c77575d713d996c8b7b619"
+    },
+    {
+      "sha256LF": "a1d159ec006729ea1556830baa19bb644a42d761916445918ff6fc1214c9fe37",
+      "file": "glaze/assets/owner-save/1.0.0/owner-save.ts",
+      "copies": [
+        {
+          "file": "lib/workroom/owner-save.ts",
+          "repo": "copperac"
+        },
+        {
+          "file": "lib/workroom/owner-save.ts",
+          "repo": "mikesplace"
+        }
+      ],
+      "limits": "Client save response handling only; caller disables fields while pending. Authorization, persistence, cross-window concurrency and audit remain server responsibilities.",
+      "capability": "Draft-preserving owner menu save results and response validation",
+      "version": "1.0.0",
+      "id": "owner-save"
     }
   ]
 }

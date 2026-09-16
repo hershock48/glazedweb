@@ -9,6 +9,7 @@ service. Existing designs, menus and provider choices stay in their repositories
 
 | Component | Version | Verified working copies | Boundary |
 |---|---|---|---|
+| owner-save | 1.0.0 | Copper, Mike's Place | Explicit save outcomes, bounded request, complete response validation; callers retain drafts and freeze submitted fields. |
 | workroom-session | 1.0.0 | DeVine, Copper | Signed owner/staff tokens with an 18-hour expiry; wrappers own app isolation, credentials, cookie flags and login throttling. |
 | option-pricing | 1.0.0 | Copper, Mike's Place | Group-qualified option picks, required/single/multiple selection rules, integer-cent option totals and disambiguated ticket labels. |
 
@@ -28,6 +29,8 @@ validated integer cents. Base prices, quantities, taxes, delivery and provider
 fees are separate contracts and are not covered by this release.
 
 ## Upgrade procedure
+
+See [owner controls](owner-controls.md) for the comparison, integration rules, and remaining concurrency/access/storage work. The owner-save helper is a client integration; it does not certify server persistence or deployment.
 
 1. Create a new immutable version directory and record its source commit,
    capability, limitations and change notes in the registry.

@@ -1,3 +1,4 @@
+import './owner-save/1.0.0/owner-save.test.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {issueSession,sessionRole,SESSION_SECONDS} from './workroom-session/1.0.0/session.ts';

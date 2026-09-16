@@ -31,7 +31,7 @@ export default function OnlineOrderingMI() {
         title="Online ordering websites for Michigan restaurants."
         lead="Order-ahead and pickup ordering built into your own website, on your domain, in your brand. No app between you and your customers taking a bite of every ticket."
         highlights={[
-          { title: "No percentage cut", body: "A flat 99¢ order fee, paid by your customer. Payment processing is separate." },
+          { title: "No percentage cut", body: "A flat 99¢ order fee, paid by your customer. The food money is all yours." },
           { title: "Your site, your brand", body: "Ordering lives on your domain, styled like your place." },
           { title: "Kitchen-ready", body: "Orders arrive where you work, on a screen or a printer. Your call." },
         ]}
@@ -59,14 +59,17 @@ export default function OnlineOrderingMI() {
         <p>
           Pizzerias, sandwich shops, food trucks, coffee shops, bakeries, any Michigan food business where people
           call ahead or line up. If your phone rings all lunch with read-back orders, this replaces the read-backs.
-          If a delivery app is your only online ordering, this gives your regulars a way to order that keeps your brand front and center.
+          If a delivery app is your only online ordering, this gives your regulars a way to order that costs you
+          nothing per ticket.
         </p>
 
         <h2>What it costs</h2>
         <p>
-          Jelly ordering is scoped around your business. Connected-business projects start at{" "}
-          {usd(PRICING.us.systems.build)}, with ongoing support quoted for the system we build together. There is no percentage commission: a flat 99¢ order fee is added
-          at checkout, paid by your customer and shown plainly before they pay. Payment processor fees and any agreed third-party services are separate. We are a small-batch studio in Marshall, and we build this for restaurants across
+          Ordering ships as part of a full glazedweb build. It is one of the things baked into the{" "}
+          {usd(PRICING.us.dozen.build)} package on the menu, alongside the site itself, your Google setup, and a
+          monthly that covers hosting and edits. There is no percentage commission: a flat 99¢ order fee is added
+          at checkout, paid by your customer and shown plainly before they pay. You keep the menu price of
+          everything you sell. We are a small-batch studio in Marshall, and we build this for restaurants across
           the state.
         </p>
       </ServicePage>

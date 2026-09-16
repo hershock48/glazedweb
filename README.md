@@ -87,7 +87,7 @@ way, and its Production Checklist keeps "Connect Git Repository" ticked, so
 neither end of this shows you anything. The only reliable signal is
 comparing a working project's latest deployment against a broken one's.
 
-## Historical /order implementation (superseded below)
+## The /order form is not delivering email yet
 
 `/order` is the funnel: flavour, business details, clickwrap acceptance of the
 agreement. `POST /api/order` sends it through Resend, and **one** variable
@@ -198,42 +198,3 @@ button.
 - Standalone assets in `public/brand/` (`logo.svg`, `logo-800.png`)
 - Favicons in `public/` (`favicon.svg`, `favicon.ico`, `icon-192/512.png`, `apple-touch-icon.png`)
 - Palette: Raspberry `#E84D8A` · Slime `#BFE07A` · Fern `#55974A` · Chocolate `#2B1E16` · Cream `#FDF6EC`
-
-## September 16, 2026: connected-business positioning
-
-Kevin’s direction: Glazed Web is a technology partner for independent businesses.
-The website is part of a coordinated customer and owner experience: Jelly ordering,
-POS connections where supported, custom apps, admin panels, and workflow tools.
-Lead with the business’s repeated work and disconnected services, then show the
-solution. The one-page site remains available as a secondary offer.
-
-New US inquiries: The Original from $1,250 + $99/month; custom websites from
-$3,000 + $150/month care; connected-business projects from $5,000, support scoped
-separately; larger custom solutions quoted. The US values live in lib/pricing.js.
-Existing signed scopes and sent quotes retain their historical prices. DR prices
-and its WhatsApp intake are unchanged. No market-price strikeouts on the US home.
-
-/order is now an inquiry, not agreement acceptance. No checkbox, inferred consent,
-or acceptance timestamp is collected. Agreement routes and existing clients stay
-separate; scope and acceptance must be completed before paid work begins. The
-API derives price labels from lib/inquiry.js, validates fields, and sends only to
-the existing operator inbox. It does not promise a customer copy. JSON and native
-HTML forms have an honest email fallback; all answers, including current tools,
-are preserved.
-
-The homepage is server-rendered; only the isolated Scooplist example is interactive.
-The example is labelled and never reads or writes a customer account. Real client
-site screenshots were captured September 16, 2026. Copper remains in-progress.
-Kevin’s photograph comes from beanumber/public/images/story/kevin-elder.jpg, with
-the original context retained. Assets are in public/work.
-
-Local verification on a runner that blocks child processes: set GLAZED_LOCAL_THREADS=1
-and run next build --experimental-build-mode compile, then next start -p 4490.
-This compiles the production server, but does not finish static generation. A
-normal npm run build remains the deployment check in an unrestricted environment.
-
-Launch checklist for this redesign:
-- [ ] Normal production build and static generation on Vercel
-- [ ] House accessibility, width, motion and performance harnesses on a browser-enabled runner
-- [ ] Confirm a genuine inquiry arrives in the production inbox
-- [ ] Review the new positioning and starting prices in the preview before production

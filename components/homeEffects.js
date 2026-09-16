@@ -9,6 +9,22 @@ import { useEffect } from "react";
 // look for (#ban-card, #chism-card, #menu, #process, .reveal), so the hook
 // binds by document query and neither page passes anything in.
 export function useHomeEffects() {
+  // Freeze decorative loops offscreen and in background tabs, resuming their
+  // existing phase rather than restarting the pour each time the hero returns.
+  useEffect(() => {
+    const nodes = [...document.querySelectorAll('.animated-mark, .hero-drip')];
+    const visible = new Set(nodes);
+    const sync = () => nodes.forEach(node => node.classList.toggle('motion-paused', document.hidden || !visible.has(node)));
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => entry.isIntersecting ? visible.add(entry.target) : visible.delete(entry.target));
+      sync();
+    });
+    nodes.forEach(node => observer.observe(node));
+    document.addEventListener('visibilitychange', sync);
+    sync();
+    return () => { observer.disconnect(); document.removeEventListener('visibilitychange', sync); nodes.forEach(node => node.classList.remove('motion-paused')); };
+  }, []);
+
   useEffect(() => {
     const io = new IntersectionObserver(
       (entries) => {
@@ -126,8 +142,6 @@ export function useHomeEffects() {
       if (raf) cancelAnimationFrame(raf);
     };
   }, []);
-
-  // Prices stay static. A scroll position must never change the offer.
 
   // Process steps: each number glazes as your scroll reaches it: 1 first,
   // then 2, 3, 4 as the section moves through the viewport. Recrossing a

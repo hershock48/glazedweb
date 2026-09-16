@@ -136,9 +136,6 @@ to the flagged element ships the fault again on the next page.
 
 ## Type
 
-September 16 homepage refinement: the system sans stack remains primary. A system Georgia serif accent is used for selected hero words; no font download or third-party dependency is introduced.
-
-
 **The studio's own site uses the system sans stack and no webfont:**
 
 ```css

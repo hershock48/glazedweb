@@ -122,36 +122,46 @@
   .hero .proof { margin-top: 26px; font-size: 13px; color: var(--taupe); }
   .hero .proof b { color: var(--chocolate); }
 
-  /* logo animations */
-  .goo { transform-box: fill-box; transform-origin: 50% 0%; animation: breathe 6s ease-in-out infinite; }
-  @keyframes breathe { 0%,100% { transform: scaleY(1); } 50% { transform: scaleY(1.02); } }
-  .wob1, .wob2, .wob3, .wobB { transform-box: fill-box; transform-origin: 50% 0%; }
-  .wob1 { animation: sagg 3.8s ease-in-out infinite -0.6s; }
-  .wob2 { animation: sagg 4.9s ease-in-out infinite -2.1s; }
-  .wob3 { animation: sagg 4.3s ease-in-out infinite -1.3s; }
-  .wobB { animation: sagg 5.6s ease-in-out infinite -3s; }
-  @keyframes sagg { 0%,100% { transform: scaleY(1) scaleX(1); } 50% { transform: scaleY(1.07) scaleX(0.98); } }
-  .string { transform-box: fill-box; transform-origin: 50% 0%; animation: stringy 3.4s cubic-bezier(.55,.1,.8,.5) infinite; }
-  @keyframes stringy {
-    0% { transform: scaleY(0.1); opacity: 0; } 25% { transform: scaleY(0.8); opacity: 1; }
-    60% { transform: scaleY(1.7); opacity: .85; } 80% { transform: scaleY(2.4); opacity: 0; } 100% { transform: scaleY(0.1); opacity: 0; }
+  /* A single six-second pour: weight gathers, a neck forms, then releases.
+     The highlights share the glaze's SVG origin so they stay on its surface. */
+  .wob1, .wob2, .wob3, .wobB { transform-box: view-box; transform-origin: 100px 100px; }
+  .wob1 { animation: glaze-settle 8s ease-in-out infinite -2s; }
+  .wob2 { animation: glaze-pour 6.4s ease-in-out infinite; }
+  .wob3 { animation: glaze-settle 9s ease-in-out infinite -5s; }
+  .wobB { animation: glaze-settle 8s ease-in-out infinite -4s; }
+  @keyframes glaze-pour {
+    0%, 32%, 100% { transform: scale(1); }
+    66% { transform: scale(.99, 1.035); }
+    77% { transform: scale(1.012, .985); }
+    88% { transform: scale(.998, 1.005); }
   }
-  .droplet { transform-box: fill-box; transform-origin: center; animation: fall 3.4s cubic-bezier(.5,.08,.85,.6) infinite; }
-  @keyframes fall {
-    0% { transform: translateY(-16px) scaleY(1.5) scaleX(.7); opacity: 0; }
-    22% { transform: translateY(-8px) scaleY(1.2) scaleX(.85); opacity: 1; }
-    60% { transform: translateY(10px) scale(1); opacity: 1; }
-    100% { transform: translateY(38px) scaleY(1.15) scaleX(.9); opacity: 0; }
+  @keyframes glaze-settle {
+    0%, 25%, 100% { transform: scaleY(1); }
+    65% { transform: scaleY(1.025); }
+    82% { transform: scaleY(.992); }
   }
-  .droplet2 { transform-box: fill-box; transform-origin: center; animation: fall2 5.1s cubic-bezier(.5,.08,.85,.6) infinite -2.4s; }
-  @keyframes fall2 {
-    0% { transform: translateY(-10px) scaleY(1.4) scaleX(.75); opacity: 0; }
-    25% { transform: translateY(-4px) scale(1); opacity: 1; }
-    65% { transform: translateY(8px) scale(1); opacity: 1; }
-    100% { transform: translateY(26px) scale(1); opacity: 0; }
+  .string { transform-box: fill-box; transform-origin: 50% 0%; animation: glaze-neck 6.4s ease-in-out infinite; }
+  @keyframes glaze-neck {
+    0%, 38%, 78%, 100% { opacity: 0; transform: translateY(2px) scaleY(.1); }
+    52% { opacity: 1; transform: translateY(2px) scale(.85,.5); }
+    66% { opacity: 1; transform: translateY(3px) scale(.65,1.1); }
+    72% { opacity: 0; transform: translateY(3px) scale(.2,1.7); }
   }
-  .sheen { animation: shimmer 6s ease-in-out infinite; }
-  @keyframes shimmer { 0%,100% { opacity: .55; } 50% { opacity: .95; } }
+  .droplet, .droplet2 { transform-box: fill-box; transform-origin: center; }
+  .droplet { animation: glaze-drop 6.4s linear infinite; }
+  .droplet2 { animation: glaze-drop 8s linear infinite -2s; }
+  @keyframes glaze-drop {
+    0%, 35% { opacity: 0; transform: translateY(-12px) scale(.2); }
+    48% { opacity: 1; transform: translateY(-9px) scale(.55,.7); }
+    64% { opacity: 1; transform: translateY(-3px) scale(.8,1.15); }
+    70% { opacity: 1; transform: translateY(3px) scale(.85,1.2); }
+    77% { opacity: 1; transform: translateY(18px) scale(.92,1.08); }
+    85% { opacity: 0; transform: translateY(42px) scale(1); }
+    100% { opacity: 0; transform: translateY(42px) scale(1); }
+  }
+  .sheen { animation: shimmer 9s ease-in-out infinite; }
+  @keyframes shimmer { 0%, 45%, 100% { opacity: .65; } 58% { opacity: .95; } 72% { opacity: .75; } }
+  .motion-paused *, .animated-mark.motion-paused { animation-play-state: paused !important; }
 
   /* ============ hero drip band ============ */
   /* The old scrolling ticker's slot, now a glaze pour into #menu; the band's
@@ -168,8 +178,8 @@
      (translateY -16px to 38px) stays over cream-2: first the band's own
      ground, then #menu's 84px of top padding. */
   .hero-droplet { position: absolute; }
-  .hd-a { left: calc(38.2% - 6px); top: 52px; animation: fall 3.4s cubic-bezier(.5,.08,.85,.6) infinite -0.9s; }
-  .hd-b { left: calc(78.6% - 5px); top: 56px; animation: fall2 5.1s cubic-bezier(.5,.08,.85,.6) infinite -2.4s; }
+  .hd-a { left: calc(38.2% - 6px); top: 52px; animation: glaze-drop 7.8s linear infinite -1.6s; }
+  .hd-b { left: calc(78.6% - 5px); top: 56px; animation: glaze-drop 9.2s linear infinite -5s; }
 
   /* ============ narrow/wide divider swap ============ */
   /* Every drip divider (the four flat ones and the hero band) ships a 1440-
@@ -683,3 +693,20 @@
   .agr-done p { font-size: 15px; color: #5A4A3A; line-height: 1.6; margin-bottom: 10px; }
   .agr-done a:not(.btn) { color: var(--raspberry-ink); font-weight: 700; }
   .agr-foot { margin-top: 40px; }
+
+/* Jelly fits the existing menu, with the same type, cream and glaze. */
+.jelly-feature { margin-top: 64px; padding: clamp(24px,4vw,42px); background: var(--cream); border: 1px solid #e5d9c8; border-radius: 24px; scroll-margin-top: 100px; }
+.jelly-feature .sec-kicker { color: var(--raspberry-ink); }
+.jelly-feature h3 { font-size: clamp(28px,3.5vw,38px); line-height: 1.12; letter-spacing: -1.2px; }
+.jelly-feature > p { max-width: 670px; margin-top: 16px; line-height: 1.65; color: #6B5747; }
+.jelly-flow { list-style: none; display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; margin: 28px 0; }
+.jelly-flow li { border-top: 3px solid var(--slime); padding-top: 14px; }
+.jelly-flow b { display: block; margin-bottom: 6px; }
+.jelly-flow span { font-size: 14px; line-height: 1.6; color: #6B5747; }
+.jelly-feature .btn { margin-top: 4px; }
+.devine-word { font-family: Georgia, serif; font-size: 42px; letter-spacing: -2px; }
+@media(max-width:600px) { .jelly-flow { grid-template-columns: 1fr; gap: 20px; } }
+
+.glaze-edge { transform-box: view-box; transform-origin: 0 16px; animation: glaze-edge-pour 7.8s ease-in-out infinite -1.6s; }
+@keyframes glaze-edge-pour { 0%,32%,100% { transform: scaleY(1); } 66% { transform: scaleY(1.065); } 78% { transform: scaleY(.985); } 88% { transform: scaleY(1.008); } }
+@media(prefers-reduced-motion:reduce) { .glaze-edge { animation:none; } }

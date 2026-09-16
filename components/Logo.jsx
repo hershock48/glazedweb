@@ -75,13 +75,13 @@ export function LogoDefs() {
           fill="url(#creepGrad)"
         />
         <path d="M 68 106 A 42 42 0 0 0 84 116" fill="none" stroke="#F1F8DC" strokeWidth="4" strokeLinecap="round" opacity="0.85" />
-        <path d="M 97 144 Q 103 151 109 144" fill="none" stroke="#55974A" strokeWidth="4" strokeLinecap="round" />
+        <path className="wob2" d="M 97 144 Q 103 151 109 144" fill="none" stroke="#55974A" strokeWidth="4" strokeLinecap="round" />
         <g stroke="#F1F8DC" fill="none" strokeLinecap="round">
-          <path d="M 97 128 C 96 148, 97 166, 100 182" strokeWidth="4.5" opacity="0.85" />
-          <path d="M 69 118 C 68 132, 70 146, 71 156" strokeWidth="3.5" opacity="0.8" />
-          <path d="M 124 114 C 123 124, 125 138, 126 148" strokeWidth="3.5" opacity="0.8" />
+          <path className="wob2" d="M 97 128 C 96 148, 97 166, 100 182" strokeWidth="4.5" opacity="0.85" />
+          <path className="wob1" d="M 69 118 C 68 132, 70 146, 71 156" strokeWidth="3.5" opacity="0.8" />
+          <path className="wob3" d="M 124 114 C 123 124, 125 138, 126 148" strokeWidth="3.5" opacity="0.8" />
         </g>
-        <circle cx="100" cy="192" r="2.5" fill="#F1F8DC" opacity="0.9" />
+        <circle className="wob2" cx="100" cy="192" r="2.5" fill="#F1F8DC" opacity="0.9" />
         <circle cx="100" cy="72" r="13" fill="var(--hole, #FDF6EC)" />
         <circle cx="100" cy="72" r="13" fill="none" stroke="#C22F6B" strokeWidth="3" opacity="0.3" />
         <path d="M 62 46 A 44 44 0 0 1 82 28" fill="none" stroke="#FFFFFF" strokeWidth="8" strokeLinecap="round" opacity="0.75" />
@@ -147,15 +147,15 @@ function HeroBandArt() {
   return (
     <>
       <path d={`${HERO_WAVE_TOP} V0.5 H0 Z`} fill="url(#heroBandGrad)" />
-      <path d={DRIP_EDGE_D} fill="url(#heroBandGrad)" />
+      <path className="glaze-edge" d={DRIP_EDGE_D} fill="url(#heroBandGrad)" />
       {/* light catching the poured surface, then sheen down the two deep
           lobes and a short one on the middle lobe, the same pale stroke the
           mark's drips carry */}
       <g stroke="#F1F8DC" fill="none" strokeLinecap="round">
         <path d={HERO_WAVE_TOP} strokeWidth="2.5" opacity="0.45" />
-        <path d="M 542 22 C 540 30, 541 38, 545 43" strokeWidth="3.5" opacity="0.8" />
-        <path d="M 1123 22 C 1121 32, 1122 41, 1127 47" strokeWidth="3.5" opacity="0.8" />
-        <path d="M 835 21 C 834 26, 835 31, 838 34" strokeWidth="3" opacity="0.75" />
+        <path className="glaze-edge" d="M 542 22 C 540 30, 541 38, 545 43" strokeWidth="3.5" opacity="0.8" />
+        <path className="glaze-edge" d="M 1123 22 C 1121 32, 1122 41, 1127 47" strokeWidth="3.5" opacity="0.8" />
+        <path className="glaze-edge" d="M 835 21 C 834 26, 835 31, 838 34" strokeWidth="3" opacity="0.75" />
       </g>
     </>
   );
@@ -187,7 +187,7 @@ export function HeroDrip() {
 
 export function AnimatedMark({ width = 230, height = 290 }) {
   return (
-    <svg width={width} height={height} viewBox="0 0 200 250" overflow="visible">
+    <svg className="animated-mark" aria-hidden="true" width={width} height={height} viewBox="0 0 200 250" overflow="visible">
       <g className="goo">
         <g fill="url(#dgGrad)">
           <ellipse cx="100" cy="110" rx="38" ry="15" />

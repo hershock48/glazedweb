@@ -1,19 +1,84 @@
 import { ORDER_TO } from "@/lib/contact";
-import { INQUIRY_OPTIONS, inquiryEmail } from "@/lib/inquiry";
+
 export const runtime = "nodejs";
-function esc(value){return String(value??"").replace(/[<>&"']/g,c=>({"<":"&lt;",">":"&gt;","&":"&amp;",'"':"&quot;","'":"&#39;"}[c]));}
-export async function POST(req){
-  const json=req.headers.get("content-type")?.includes("application/json");
-  let body;try{body=json?await req.json():Object.fromEntries(await req.formData());}catch{return Response.json({ok:false,reason:"bad_request"},{status:400});}
-  const limits={name:120,business:160,email:254,phone:60,town:120,currentSite:500,register:2000,timeline:100,details:6000,flavorChoice:40};
-  const data={};for(const [key,max]of Object.entries(limits)){if(body?.[key]!=null&&typeof body[key]!=="string")return Response.json({ok:false,reason:"bad_request"},{status:400});data[key]=(body?.[key]||"").trim();if(data[key].length>max)return Response.json({ok:false,reason:"too_long"},{status:400});}
-  if(!data.name||!data.business||!data.details||!/^\S+@\S+\.\S+$/.test(data.email))return Response.json({ok:false,reason:"missing_fields"},{status:400});
-  function fallback(reason){
-    if(json)return Response.json({ok:false,reason},{status:503});
-    return new Response(`<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Send your inquiry | Glazed Web</title><body style="margin:0;background:#FDF6EC;color:#2B1E16;font:18px/1.6 system-ui"><main style="max-width:640px;margin:10vh auto;padding:24px"><h1>One more step.</h1><p>Your inquiry has not been delivered. Your answers are ready in an email. Open it and send it to Kevin.</p><p><a href="${esc(inquiryEmail(data))}">Open your prepared email</a></p><h2>Your message</h2><pre style="white-space:pre-wrap;overflow-wrap:anywhere;font:inherit">${esc(Object.entries(data).map(([k,v])=>k+": "+v).join("\n"))}</pre><a href="/order">Back to the inquiry form</a></main></body></html>`,{headers:{"Content-Type":"text/html; charset=utf-8","Cache-Control":"no-store"}});
+
+const FROM = process.env.ORDER_FROM_EMAIL || "orders@glazedweb.com";
+
+function esc(s) {
+  return String(s ?? "").replace(/[<>&]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;" }[c]));
+}
+
+export async function POST(req) {
+  let body;
+  try {
+    body = await req.json();
+  } catch {
+    return Response.json({ ok: false, reason: "bad_request" }, { status: 400 });
   }
-  const key=process.env.RESEND_API_KEY;if(!key||!ORDER_TO)return fallback("not_configured");
-  const opt=INQUIRY_OPTIONS[data.flavorChoice]||INQUIRY_OPTIONS.unsure;
-  const rows=[["Interested in",opt.name],["Starting price",opt.price],["Name",data.name],["Business",data.business],["Email",data.email],["Phone",data.phone],["Town",data.town],["Website",data.currentSite],["Current tools",data.register],["Timing",data.timeline]].filter(([,v])=>v).map(([k,v])=>`<tr><th style="text-align:left;padding:8px">${esc(k)}</th><td style="padding:8px">${esc(v)}</td></tr>`).join("");
-  try{const result=await fetch("https://api.resend.com/emails",{method:"POST",headers:{Authorization:`Bearer ${key}`,"Content-Type":"application/json"},body:JSON.stringify({from:`glazedweb inquiries <${process.env.ORDER_FROM_EMAIL||"orders@glazedweb.com"}>`,to:[ORDER_TO],reply_to:data.email,subject:`Project inquiry: ${data.business}`,html:`<h2>New project inquiry</h2><table>${rows}</table><h3>What could work better</h3><p style="white-space:pre-wrap">${esc(data.details)}</p><p>This is an inquiry only. No agreement was accepted and no payment is due.</p>`}),signal:AbortSignal.timeout(12000)});if(!result.ok)return fallback("send_failed");return json?Response.json({ok:true}):new Response(`<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Inquiry received | Glazed Web</title><body style="font:18px/1.6 system-ui;background:#FDF6EC;color:#2B1E16;padding:40px"><main><h1>Good things start here.</h1><p>Your inquiry is with Kevin. I’ll reply within one business day. No payment or commitment is due.</p><a href="/">Back to the studio</a></main></body></html>`,{headers:{"Content-Type":"text/html; charset=utf-8","Cache-Control":"no-store"}});}catch{return fallback("send_failed");}
+
+  const { name, business, email } = body || {};
+  if (!name || !business || !email) {
+    return Response.json({ ok: false, reason: "missing_fields" }, { status: 400 });
+  }
+
+  // Both are required, and a missing one is a 503 rather than a best guess.
+  // The client turns a 503 into a pre-filled mailto, so the order survives
+  // either way. What must never happen is answering ok:true when the message
+  // went nowhere: the customer would be told we had their order and we would
+  // not, with nothing anywhere to notice it.
+  const key = process.env.RESEND_API_KEY;
+  if (!key || !ORDER_TO) {
+    return Response.json({ ok: false, reason: "not_configured" }, { status: 503 });
+  }
+
+  const rows = [
+    ["Flavor", `${body.flavor} — ${body.flavorPrice}`],
+    ["Name", name],
+    ["Business", business],
+    ["Email", email],
+    ["Phone", body.phone],
+    ["Town", body.town],
+    ["Current site", body.currentSite],
+    ["Takes orders", body.register],
+    ["Timeline", body.timeline],
+  ]
+    .filter(([, v]) => v)
+    .map(([k, v]) => `<tr><td style="padding:4px 14px 4px 0;color:#8A7663">${esc(k)}</td><td><b>${esc(v)}</b></td></tr>`)
+    .join("");
+
+  const html = `
+    <div style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#2B1E16">
+      <h2 style="margin:0 0 4px">New order — ${esc(body.flavor)}</h2>
+      <p style="margin:0 0 16px;color:#8A7663">${esc(business)} · ${esc(body.town || "")}</p>
+      <table style="border-collapse:collapse;font-size:14px">${rows}</table>
+      <h3 style="margin:20px 0 6px">What they need</h3>
+      <p style="white-space:pre-wrap;line-height:1.55;font-size:14px">${esc(body.details)}</p>
+      <hr style="border:none;border-top:1px solid #E6DACB;margin:22px 0" />
+      <p style="font-size:12px;color:#8A7663;line-height:1.6">
+        <b>Agreement acceptance record</b><br />
+        Accepted: ${esc(body.agreementAcceptedAt)}<br />
+        Version: ${esc(body.agreementVersion)}<br />
+        Method: clickwrap checkbox (unchecked by default) on /order
+      </p>
+    </div>`;
+
+  try {
+    const r = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        from: `glazedweb orders <${FROM}>`,
+        to: [ORDER_TO],
+        reply_to: email,
+        subject: `New order — ${body.flavor} — ${business}`,
+        html,
+      }),
+    });
+    if (!r.ok) {
+      return Response.json({ ok: false, reason: "send_failed" }, { status: 502 });
+    }
+    return Response.json({ ok: true });
+  } catch {
+    return Response.json({ ok: false, reason: "send_failed" }, { status: 502 });
+  }
 }

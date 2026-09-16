@@ -141,7 +141,8 @@ export default function AgreementPage() {
 
         <div className="legal-cta">
           <p>
-            <b>Version 1.1</b> · effective September 2026. New project inquiries do not accept this agreement. We confirm scope and arrange acceptance separately before work starts. Want it for your records, or for
+            <b>Version 1.1</b> · effective September 2026. Accepting this on the order form creates a binding agreement;
+            we record the version and timestamp with your order and email you a copy. Want it for your records, or for
             your attorney? Download the signable document below. Nothing here changes between the page and the paper.
             What changed from 1.0: the provider is named as glazedweb LLC rather than Kevin personally. Orders accepted
             under 1.0 stay on 1.0; that document is{" "}

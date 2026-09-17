@@ -50,12 +50,18 @@ test('session writer checks its contract before calling a relocated adapter',asy
   // Every refusal names the version this reader expects, what the writer
   // exports, and the repo to update. 'legacy' is the admin shape before
   // SESSION_WRITER_VERSION existed; it must refuse, not pass on its adapter id.
+  // 'string' and 'fraction' are present but not whole numbers, which is a
+  // different sentence from missing. 'split' has the two admin numbers
+  // disagreeing; the adapter record is checked, not only the writer version.
   for(const [name,contract,message]of [
    ['missing','',/expects session-writer version 1 and .*exports no SESSION_WRITER_VERSION, so update glazedweb-admin/],
    ['legacy',id,/expects session-writer version 1 and .*exports no SESSION_WRITER_VERSION, so update glazedweb-admin/],
+   ['string',id+'export const SESSION_WRITER_VERSION="1";',/exports SESSION_WRITER_VERSION "1", which is not a whole number, so update glazedweb-admin/],
+   ['fraction',id+'export const SESSION_WRITER_VERSION=1.5;',/exports SESSION_WRITER_VERSION 1\.5, which is not a whole number, so update glazedweb-admin/],
    ['older',id+'export const SESSION_WRITER_VERSION=0;',/expects session-writer version 1 and .*exports version 0, so update glazedweb-admin/],
    ['newer',id+'export const SESSION_WRITER_VERSION=2;',/expects session-writer version 1 and .*exports version 2, so update glazedweb;/],
    ['foreign',"export const SESSION_ADAPTER={id:'different-writer',version:1};export const SESSION_WRITER_VERSION=1;",/identifies itself as different-writer version 1, so update glazedweb-admin/],
+   ['split',"export const SESSION_ADAPTER={id:'glazedweb-studio-session',version:2};export const SESSION_WRITER_VERSION=1;",/identifies itself as glazedweb-studio-session version 2, so update glazedweb-admin/],
   ]){
    const adapter=path.join(dir,name+'.mjs');
    fs.writeFileSync(adapter,contract+"export async function writeSessionBook(){throw Error('writer was called');}");

@@ -75,16 +75,22 @@ export async function saveSessionBook(file,before,after,date){
  return true;
 }
 // The adapter is resolved by path into a sibling checkout, so nothing else ties
-// the two repos together. glazedweb-admin exports SESSION_WRITER_VERSION; this
-// file pins the number it was written against. Version first, then identity,
-// then the function, so the message names the most likely fix.
+// the two repos together. glazedweb-admin exports SESSION_WRITER_VERSION and
+// repeats it as SESSION_ADAPTER.version; this file pins the number it was
+// written against and checks both, so a writer whose two numbers disagree is
+// refused instead of trusted on one of them. Version first, then identity,
+// then the function, so the message names the most likely fix. The import in
+// saveSessionBook evaluates the adapter module before this check runs; an
+// import is not a write, and every refusal here leaves the store untouched.
 export const SESSION_ADAPTER_ID='glazedweb-studio-session';
 export const EXPECTED_SESSION_WRITER_VERSION=1;
 export function sessionWriterProblem(writer,adapter){
  const expected=EXPECTED_SESSION_WRITER_VERSION,found=writer?.SESSION_WRITER_VERSION,where=`the session writer at ${adapter}`;
- if(!Number.isInteger(found))return `Session writer version missing: glazedweb expects session-writer version ${expected} and ${where} exports no SESSION_WRITER_VERSION, so update glazedweb-admin; no account was changed.`;
+ if(found===undefined)return `Session writer version missing: glazedweb expects session-writer version ${expected} and ${where} exports no SESSION_WRITER_VERSION, so update glazedweb-admin; no account was changed.`;
+ if(!Number.isInteger(found))return `Session writer version invalid: glazedweb expects session-writer version ${expected} and ${where} exports SESSION_WRITER_VERSION ${typeof found==='string'?JSON.stringify(found):String(found)}, which is not a whole number, so update glazedweb-admin; no account was changed.`;
  if(found!==expected)return `Session writer version mismatch: glazedweb expects session-writer version ${expected} and ${where} exports version ${found}, so update ${found<expected?'glazedweb-admin':'glazedweb'}; no account was changed.`;
- if(writer?.SESSION_ADAPTER?.id!==SESSION_ADAPTER_ID)return `Session writer identity mismatch: glazedweb expects adapter ${SESSION_ADAPTER_ID} version ${expected} and ${where} identifies itself as ${writer?.SESSION_ADAPTER?.id??'no adapter'} version ${found}, so update glazedweb-admin; no account was changed.`;
+ const id=writer?.SESSION_ADAPTER?.id,repeated=writer?.SESSION_ADAPTER?.version;
+ if(id!==SESSION_ADAPTER_ID||repeated!==expected)return `Session writer identity mismatch: glazedweb expects adapter ${SESSION_ADAPTER_ID} version ${expected} and ${where} identifies itself as ${id??'no adapter'} version ${repeated??'none'}, so update glazedweb-admin; no account was changed.`;
  if(typeof writer.writeSessionBook!=='function')return `Session writer incomplete: ${where} exports version ${found} but no writeSessionBook function, so update glazedweb-admin; no account was changed.`;
  return null;
 }

@@ -19,9 +19,10 @@ briefs read the current dashboard. Ledger add/log/next/set, research --write and
 selector --commit write to that same store through the session adapter. They use
 the dashboard's exclusive file lock and revision check. Install the admin change
 first: the reader requires adapter ID `glazedweb-studio-session` and the
-`SESSION_WRITER_VERSION` (1) exported by glazedweb-admin/lib/session-writer.mjs.
-A missing or different version refuses the write before touching account data,
-and the refusal names both versions and which repo to update.
+`SESSION_WRITER_VERSION` (1) exported by glazedweb-admin/lib/session-writer.mjs,
+which the admin repeats as `SESSION_ADAPTER.version`; both numbers are checked.
+A missing, non-integer or different version refuses the write before touching
+account data, and the refusal names both versions and which repo to update.
 An optional `adapter` path in the private authority marker resolves relative to
 the marker; it lets test storage live outside the application data directory. A stale command fails
 with a short message; it cannot replace newer dashboard work. Missing or invalid

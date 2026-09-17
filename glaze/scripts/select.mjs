@@ -45,13 +45,12 @@
  */
 import fs from "node:fs";
 import path from "node:path";
-import { parseArgs, localDate, resolveDataPath, insideGit, loadBook, norm, pad, assertLegacyWritable } from "./lib/ledger.mjs";
+import { parseArgs, localDate, resolveDataPath, insideGit, loadBook, norm, pad, assertLegacyWritable, saveSessionBook } from "./lib/ledger.mjs";
 import { HOME, miles } from "./lib/geo.mjs";
 
 const { flags } = parseArgs(process.argv.slice(2));
 const today = flags.today || localDate();
-const LEDGER = resolveDataPath(flags);
-if(flags.commit)assertLegacyWritable(LEDGER);
+let LEDGER;try{LEDGER=resolveDataPath(flags);}catch(error){fail(error.message);}
 const POOL = path.resolve(flags.pool || process.env.GLAZE_POOL || path.join(path.dirname(LEDGER), "pool.json"));
 const N = Number(flags.n || 5);
 const RADIUS = Number(flags.radius || 12);
@@ -64,8 +63,10 @@ function fail(msg) {
 }
 
 if (!fs.existsSync(POOL)) fail(`no pool at ${POOL}. Fill it first:  node glaze/scripts/scout.mjs --around "Jackson, Michigan" --check`);
-const pool = JSON.parse(fs.readFileSync(POOL, "utf8"));
-const book = loadBook(LEDGER) || { rows: {} };
+const poolBytes=fs.readFileSync(POOL,'utf8');
+const pool = JSON.parse(poolBytes);
+let book;try{book=loadBook(LEDGER)||{rows:{}};}catch(error){fail(error.message);}
+const before=structuredClone(book);
 
 // ---------------------------------------------------------------- learning
 
@@ -92,7 +93,7 @@ function learn() {
     // row with no channel recorded teaches nothing at all.
     if (row.channel !== "cold" && row.channel !== "visit") continue;
     const replied = row.events.some((e) => ["reply", "meet", "confirm", "pay-part", "pay"].includes(e.type)) ? 1 : 0;
-    bump(byKind, row.kind ? `${row.channel || "?"}:${row.kind}` : "", sent, replied);
+    bump(byKind, (row.businessKind||row.kind) ? `${row.channel || "?"}:${row.businessKind||row.kind}` : "", sent, replied);
     bump(byTown, row.town ? `${row.channel || "?"}:${norm(row.town)}` : "", sent, replied);
   }
   const adjust = (table, key) => {
@@ -208,7 +209,12 @@ function score(c) {
 // some businesses (Los Tres Amigos twice on the first Jackson run). Keep the
 // one nearest home so the trip is honest.
 const byName = new Map();
+const existingPoolIds=new Set(Object.values(book.rows).map(row=>row.poolId).filter(Boolean));
+const existingNames=new Set(Object.values(book.rows).map(row=>norm(row.name)));
 for (const c of Object.values(pool.candidates)) {
+  // A prior ledger commit may have succeeded before its pool update failed.
+  // The authoritative account still prevents a duplicate on the next run.
+  if(existingPoolIds.has(c.id)||existingNames.has(norm(c.name)))continue;
   if (c.status !== "new" || (KINDS && !KINDS.includes(c.kind))) continue;
   const k = norm(c.name);
   if (!byName.has(k) || c.distanceHome < byName.get(k).distanceHome) byName.set(k, c);
@@ -307,10 +313,10 @@ function fmt(v) { return v === null ? "?" : String(v); }
 // ---------------------------------------------------------------- commit
 
 if (flags.commit) {
-  assertLegacyWritable(LEDGER);
-  const gitRoot = insideGit(LEDGER);
-  if (gitRoot && !flags["allow-git"]) fail(`refusing to write ${LEDGER} inside the git tree at ${gitRoot}`);
-  const realBook = loadBook(LEDGER);
+  try {
+  if(fs.readFileSync(POOL,'utf8')!==poolBytes)fail('Pool changed while selecting. Rerun the command.');
+  const poolGit=insideGit(POOL);if(poolGit&&!flags['allow-git'])fail('Refusing to write a private prospect pool inside a git tree.');
+  const realBook = structuredClone(book);
   if (!realBook) fail(`no ledger at ${LEDGER}`);
   const taken = new Set(Object.keys(realBook.rows));
   for (const c of best.picks) {
@@ -341,8 +347,16 @@ if (flags.commit) {
     if (!flags.json) console.log(`  ${pad(slug, 24)} ${c.name}`);
   }
   realBook.updated = today;
-  fs.writeFileSync(LEDGER, `${JSON.stringify(realBook, null, 2)}\n`);
+  if(!await saveSessionBook(LEDGER,before,realBook,today)){
+    assertLegacyWritable(LEDGER);
+    const gitRoot=insideGit(LEDGER);if(gitRoot&&!flags["allow-git"])fail(`refusing to write ${LEDGER} inside the git tree at ${gitRoot}`);
+    fs.writeFileSync(LEDGER, `${JSON.stringify(realBook, null, 2)}\n`);
+  }
   pool.updated = today;
-  fs.writeFileSync(POOL, `${JSON.stringify(pool, null, 2)}\n`);
+  if(fs.readFileSync(POOL,'utf8')!==poolBytes)fail('Ledger saved, but pool changed. Rerun selection; existing accounts will not be duplicated.');
+  const temporary=POOL+'.'+process.pid+'.tmp';
+  try{fs.writeFileSync(temporary,`${JSON.stringify(pool,null,2)}\n`,{flag:'wx'});fs.renameSync(temporary,POOL);}
+  finally{if(fs.existsSync(temporary))fs.unlinkSync(temporary);}
   if (!flags.json) console.log(`Wrote ${best.picks.length} rows to the ledger and marked them picked in the pool.`);
+  }catch(error){fail(error.message);}
 }

@@ -18,7 +18,6 @@
  *   node glaze/scripts/close.mjs --all             include rows nothing is flagging today
  *   node glaze/scripts/close.mjs --json            for an agent
  *   node glaze/scripts/close.mjs --out             also write contracts-private/closing/<date>.md
- *   node glaze/scripts/close.mjs --claude          draft the follow-ups with Claude instead of the template
  *   node glaze/scripts/close.mjs --email           also email the brief to Kevin (RESEND_API_KEY)
  *
  * Without --all a row is briefed only when the digest would flag it (quiet,
@@ -37,12 +36,9 @@
  * sentence, the asks as a numbered list lifted verbatim from the needs, the
  * build page as the one link, Kevin's name and number, nothing else. No
  * threes, no "not X but Y", no punchline closing (glaze/standards.md, "Write
- * like a person"). With --claude the same brief goes to Claude Opus 5 with
- * those rules as the system prompt and the template as the floor; the model
- * is asked to make it read like Kevin wrote it in two minutes, not to make
- * it better. Credentials resolve the SDK's usual way (ANTHROPIC_API_KEY or
- * an `ant auth login` profile); with none, --claude says so and stops rather
- * than silently shipping the template as if it were the model's.
+ * like a person"). --json includes the session voice prompt and sourced
+ * briefs for the signed-in assistant to draft from. No model API key or
+ * separate API charge is used, per Kevin's 2026-09-14 rule.
  *
  * NOTHING HERE SENDS TO A CLIENT. --email sends the brief to Kevin's own
  * inbox through the studio's Resend domain. The follow-up itself is copied
@@ -59,7 +55,8 @@ import {
 
 const { flags } = parseArgs(process.argv.slice(2));
 const today = flags.today || localDate();
-const DATA = resolveDataPath(flags);
+let DATA;try{DATA=resolveDataPath(flags);}catch(error){fail(error.message);}
+if(flags.claude)fail("Use --json for drafting in the signed-in session. The retired --claude API mode is disabled; no model API key is needed.");
 const SITE = "https://www.glazedweb.com";
 const KEVIN = { name: "Kevin", phone: "(269) 274-3203", email: "kevin@glazedweb.com" };
 const MAX_ASKS = 4;
@@ -69,7 +66,7 @@ function fail(msg) {
   process.exit(1);
 }
 
-const book = loadBook(DATA);
+let book;try{book=loadBook(DATA);}catch(error){fail(error.message);}
 if (!book) fail(`no ledger at ${DATA}; see glaze/ledger.md`);
 const registry = await loadRegistry();
 
@@ -205,72 +202,6 @@ Do not do any of these, they are the tells of machine writing:
 
 The asks must appear exactly as written in the brief, as a numbered list, in the brief's order, and no more than ${MAX_ASKS} of them. Keep the link or links from the brief and add none. Under 140 words. Output the email only: a first line "Subject: ..." then a blank line then the body. No commentary.`;
 
-async function claudeDraft(b) {
-  let Anthropic;
-  try {
-    ({ default: Anthropic } = await import("@anthropic-ai/sdk"));
-  } catch {
-    fail("--claude needs the SDK:  npm install --save-dev @anthropic-ai/sdk");
-  }
-  const client = new Anthropic();
-  const user = [
-    `Business: ${b.name} (${b.stage}, ${b.days ?? "?"} days since the last event).`,
-    b.contact.name ? `Contact first name: ${firstNameOf(b.contact.name) || "unknown"}.` : "Contact name unknown; no name in the greeting.",
-    b.reasons.length ? `Why today: ${b.reasons.join("; ")}.` : "",
-    b.theirs.length ? `Asks, in order, verbatim:\n${b.theirs.slice(0, MAX_ASKS).map((n, i) => `${i + 1}. ${n.ask}`).join("\n")}` : "No asks; the row has no needs list.",
-    `Links allowed: ${[b.hasProjectPage ? `${SITE}/build/${b.slug}` : "", b.hasRegistryRow && b.stage !== "paid-part" ? `${SITE}/agreement/${b.slug}` : "", b.stage === "sent" && book.rows[b.slug].host ? `${book.rows[b.slug].host.replace(/\/$/, "")}/demo` : ""].filter(Boolean).join(", ") || "none"}.`,
-    `Sign-off: ${KEVIN.name}, ${KEVIN.phone}.`,
-    "",
-    "The template draft, which is the floor. Keep its facts; make it read like Kevin wrote it in two minutes:",
-    "",
-    b.draft.body,
-  ].filter((l) => l !== "").join("\n");
-
-  let res;
-  try {
-    // Server-side fallbacks so a policy decline re-runs on another model
-    // inside the same call, per the API guidance for Opus 5 code.
-    res = await client.beta.messages.create({
-      model: "claude-opus-5",
-      max_tokens: 2000,
-      betas: ["server-side-fallback-2026-07-01"],
-      fallbacks: "default",
-      output_config: { effort: "medium" },
-      system: VOICE,
-      messages: [{ role: "user", content: user }],
-    });
-  } catch (err) {
-    // With no key and no profile the SDK throws a plain Error from its header
-    // builder before any request, so the typed classes never see it.
-    if (err instanceof Anthropic.AuthenticationError || /authentication method/i.test(err?.message || "")) {
-      fail("--claude: no working Anthropic credential. Set ANTHROPIC_API_KEY or run `ant auth login`, or drop --claude for the template.");
-    }
-    if (err instanceof Anthropic.RateLimitError) fail("--claude: rate limited; try again in a minute or drop --claude.");
-    if (err instanceof Anthropic.APIError) fail(`--claude: API error ${err.status}: ${err.message}`);
-    throw err;
-  }
-  if (res.stop_reason === "refusal") {
-    console.error(`close: Claude declined the ${b.slug} draft (${res.stop_details?.category ?? "no category"}); keeping the template.`);
-    return b.draft;
-  }
-  const text = res.content.filter((c) => c.type === "text").map((c) => c.text).join("").trim();
-  const m = text.match(/^Subject:\s*(.+)\n+([\s\S]+)$/);
-  if (!m) {
-    console.error(`close: Claude's ${b.slug} draft did not start with a Subject line; keeping the template.`);
-    return b.draft;
-  }
-  const body = m[2].trim();
-  if (/2014/.test(body) || /2014/.test(m[1])) {
-    console.error(`close: Claude's ${b.slug} draft contained an em dash; keeping the template.`);
-    return b.draft;
-  }
-  return { subject: m[1].trim(), body, summary: b.draft.summary, source: `claude (${res.model})` };
-}
-
-if (flags.claude) {
-  for (const b of rows) b.draft = await claudeDraft(b);
-}
-
 // ---------------------------------------------------------------- output
 
 function render(b) {
@@ -320,7 +251,7 @@ const text = rows.length
   : `${heading}\nNothing to close today. Run with --all for the whole call sheet.\n`;
 
 if (flags.json) {
-  console.log(JSON.stringify({ today, file: DATA, authority:book.authority||null, rows }, null, 2));
+  console.log(JSON.stringify({ today, file: DATA, authority:book.authority||null, sessionVoice:VOICE, rows }, null, 2));
 } else {
   console.log(text);
 }

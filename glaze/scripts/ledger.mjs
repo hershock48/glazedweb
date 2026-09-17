@@ -43,20 +43,20 @@
  * A stage never moves backwards by accident: a "meet" logged on a confirmed
  * client keeps the row confirmed. pass and park always apply. --stage forces.
  *
- * WHERE THE DATA LIVES, AND WHY NOT HERE. The glazedweb repo is public. A row
- * that says "paid half" or "sent, silent" about a named business is not.
- * The data file defaults to ../contracts-private/ledger.json next to the
- * paper agreements, which is a local folder and not a git repo. Override with
- * --file or GLAZE_LEDGER. The script refuses to write a ledger that sits
- * inside any git working tree unless --allow-git is passed, because the
- * first time this goes wrong it goes wrong in public.
+ * WHERE THE DATA LIVES. The active local pilot uses
+ * ../glazedweb-admin/data/studio.json, reached through the private marker
+ * ../contracts-private/ledger.json.authority.json. The old ledger.json is
+ * archived. Reads and session writes follow the marker; writes share the
+ * dashboard's lock and revision check. No API credential is involved.
+ * --file / GLAZE_LEDGER cannot silently bypass an active authority marker.
+ * Isolated fixtures must also pass --fixture; never remove the marker.
  *
- * WHAT THE DIGEST READS FROM THE REGISTRY. Build fee, monthly, build fee
- * paid, agreement accepted, needs done N of M, and the count of TODO comments
- * on the row. Prices are NOT copied into the ledger for a business that has a
- * registry row; the ledger's own build/monthly fields are the fallback for a
- * prospect who has not reached the registry yet (a Dark Horse). Facts live in
- * one place (glaze.md).
+ * MONEY FACTS. Kevin's prices on registry main are the price of record.
+ * Reviewed reconciliation brings those facts into the dashboard with dated
+ * evidence, while newer receipt and billing records remain independent.
+ * Compare changes with glazedweb-admin/scripts/reconcile-facts.mjs; do not
+ * silently let either source overwrite the other. Dashboard rows feed the
+ * digest and closing brief; a stored proposed quote is not an agreement.
  *
  * Dates are ISO, day math is UTC, and "days" in the digest means whole days
  * since the row's most recent event. A row seeded on the day it was written
@@ -70,14 +70,15 @@ import fs from "node:fs";
 import path from "node:path";
 import {
   LADDER, EVENTS, TERMINAL, CHANNELS, parseArgs, localDate, isDate, daysBetween,
-  resolveDataPath, insideGit, loadBook, lastEvent, loadRegistry, registryFacts, assertLegacyWritable,
+  resolveDataPath, insideGit, loadBook, lastEvent, loadRegistry, registryFacts, assertLegacyWritable, saveSessionBook,
   clientFileSlugs, norm, flagsFor, pad, trunc,
 } from "./lib/ledger.mjs";
 
 const { flags, positional } = parseArgs(process.argv.slice(2));
 const command = positional[0] && !positional[0].includes("=") ? positional.shift() : "digest";
 const today = flags.today || localDate();
-const DATA = resolveDataPath(flags);
+let DATA;try{DATA=resolveDataPath(flags);}catch(error){fail(error.message);}
+let before;
 
 function fail(msg) {
   console.error(`ledger: ${msg}`);
@@ -93,10 +94,12 @@ function load() {
   if (!book) {
     fail(`no ledger at ${DATA}\n  create it with:  node glaze/scripts/ledger.mjs add <slug> --name "..."\n  or point --file / GLAZE_LEDGER at the right one.`);
   }
+  before=structuredClone(book);
   return book;
 }
 
-function save(book) {
+async function save(book) {
+  if(await saveSessionBook(DATA,before,book,today))return;
   assertLegacyWritable(DATA);
   const gitRoot = insideGit(DATA);
   if (gitRoot && !flags["allow-git"]) {
@@ -201,7 +204,7 @@ function show(book) {
   for (const e of row.events) console.log(`    ${e.date}  ${pad(e.type, 9)} ${e.note || ""}`);
 }
 
-function add(book) {
+async function add(book) {
   const slug = positional[0] || fail("add needs a slug");
   if (!/^[a-z0-9-]+$/.test(slug)) fail(`slug "${slug}" must be lowercase letters, digits, hyphens`);
   if (book.rows[slug]) fail(`row "${slug}" exists; use log / set`);
@@ -225,11 +228,11 @@ function add(book) {
   if (flags.score !== undefined) row.score = Number(flags.score);
   if (flags.build || flags.monthly) row.price = { build: num(flags.build), monthly: num(flags.monthly) };
   book.rows[slug] = row;
-  save(book);
+  await save(book);
   console.log(`added ${slug} at ${stage}`);
 }
 
-function log(book) {
+async function log(book) {
   const slug = positional[0] || fail("log needs a slug");
   const type = positional[1] || fail(`log needs an event: ${Object.keys(EVENTS).join(", ")}`);
   if (!(type in EVENTS)) fail(`unknown event "${type}"; one of ${Object.keys(EVENTS).join(", ")}`);
@@ -245,25 +248,25 @@ function log(book) {
     moved = ` -> ${row.stage} (forced)`;
   } else {
     const to = EVENTS[type];
-    if (to && (TERMINAL.has(to) || LADDER.indexOf(to) > LADDER.indexOf(row.stage) || TERMINAL.has(row.stage))) {
+    if (to && (TERMINAL.has(to) || (!TERMINAL.has(row.stage) && LADDER.indexOf(to) > LADDER.indexOf(row.stage)))) {
       row.stage = to;
       moved = ` -> ${to}`;
     }
   }
-  save(book);
+  await save(book);
   console.log(`${slug}: ${type} on ${date}${moved}${note ? `  "${note}"` : ""}`);
 }
 
-function next(book) {
+async function next(book) {
   const slug = positional[0] || fail("next needs a slug");
   const row = getRow(book, slug);
   const action = positional[1] ?? "";
   row.next = { action, due: flags.due ? assertDate(flags.due, "--due") : "" };
-  save(book);
+  await save(book);
   console.log(action ? `${slug}: next "${action}"${row.next.due ? ` by ${row.next.due}` : ""}` : `${slug}: next cleared`);
 }
 
-function set(book) {
+async function set(book) {
   const slug = positional[0] || fail("set needs a slug");
   const row = getRow(book, slug);
   const pairs = positional.slice(1);
@@ -292,7 +295,7 @@ function set(book) {
       fail(`unknown key "${key}". Settable: name town repo host contact stage channel aliases build monthly score`);
     }
   }
-  save(book);
+  await save(book);
   console.log(`${slug}: set ${pairs.join(" ")}`);
 }
 
@@ -307,8 +310,11 @@ function num(v) {
 
 const commands = { digest, show, add, log, next, set };
 if (!(command in commands)) fail(`unknown command "${command}". One of: ${Object.keys(commands).join(", ")}`);
-if (command === "add" && !fs.existsSync(DATA)) {
+try {
+if (command === "add" && !fs.existsSync(DATA) && !fs.existsSync(DATA+'.authority.json')) {
   await commands.add({ rows: {} });
 } else {
   await commands[command](load());
 }
+
+} catch(error){fail(error.message);}

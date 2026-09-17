@@ -273,3 +273,72 @@ Earlier launch review: Glazed-Web-launch-readiness.md. Its old expected-payment 
 ### 2026-09-17 R1-R6 follow-up (codex)
 
 Verdicts and fixes are recorded in handoff.md and catalog/review-fixes-2026-09-17.md. The Documents backlog is a retirement pointer with its old contents archived. Cross-review is on the existing GitHub PRs. No main merge, hosted deployment, real provider action or account data change occurred.
+
+## Run order while Kevin is away (set 2026-09-17, Codex out of usage, Claude holding both lanes)
+
+Kevin's ask: work continuously toward all five programs without waiting on him, with the approvals pre-granted and the gates he alone can open listed up front. Order is by dependency. Each item names the acceptance check. A pull request is "clean" when the Claude GitHub review shows no HIGH or MEDIUM and the repo's tests pass from the committed tree.
+
+### Phase A. Close the open review items (tonight)
+- [ ] A1 (claude) DeVine R1 LF renormalize with .gitattributes, R2 audited owner override for stuck processing/unknown rows, R4 trusted-address message and docs. PR against fix/launch-readiness. Check: 43 baseline tests plus new ones pass; diff of R1 is line endings only.
+- [ ] A2 (claude) Ledger R3 session-writer version handshake, R6 REGISTRY DIFFERS flag in digest and closing brief; research.mjs header; drop the unused SDK dependency. PRs against the Codex branches in glazedweb and glazedweb-admin. Check: 5 and 46 baseline tests plus new ones; beanumber shows the flag.
+- [ ] A3 (claude) Answer the Claude GitHub reviews on every takeover PR until clean.
+- [ ] A4 (claude) Restore the reasoning comments Codex stripped in devine (L1): auth.ts, login/route.ts, pay/route.ts, order/route.ts, CartView.tsx, payments.ts, from origin/main where the old text still fits, rewritten where it does not.
+- [ ] A5 (kevin) Merge, in order: glazedweb-admin #1, glazedweb #1, then the takeover PRs into the Codex branches, then devine #1 and copperac #1 once clean.
+
+### Phase B. Program 2, demo to operating business (client repos, Claude authors, GitHub reviews, Kevin merges)
+- [ ] B1 (claude) DeVine L03/L04 remainder: surface unresolved payment attempts to the owner on the board, notification retry with a saved provider id (Resend idempotency key, 24 h window), no double charge. Check: PGlite tests for outage during notify and during storage.
+- [ ] B2 (claude) DeVine M2 webhook: memory backend returns 200 and logs instead of 500 looping; mismatch recorded as a review item, not a retry storm.
+- [ ] B3 (claude) True North M4: home page shows the stale-board caveat the README already promises; L05 freshness shown truthfully everywhere the board renders.
+- [ ] B4 (claude) Copper L06: trace contact and reserve intake end to end, owner access, Toast preserved. Check: route tests for intake, 404 on parked paths from the client host.
+- [ ] B5 (claude) L07 journey tests per repo: order or enquiry, payment where applicable, notification, fulfillment, cancellation, refund; owner side too. One test file per journey, provider faked, named in the README.
+- [ ] B6 (claude) L08: build, lint, audit.mjs and width-check on every changed route; record the numbers in the repo README, never "pass" without the number.
+- [ ] B7 (kevin) G01 gate: Square sandbox credentials for DeVine, a monitored test inbox, owner and domain confirmation. Until then every journey is proven against fakes only and the README says so.
+
+### Phase C. Program 1, the ledger drives the next action (glazedweb-admin, not deployed, Claude may merge when clean)
+- [ ] C1 (claude) D03 one account page: agreement source and version, build and monthly amounts and status, missing items with owner and deadline, next action, dated evidence. Reads the registry for scope, the store for facts.
+- [ ] C2 (claude) D04 launch evidence: link each open client fix (PR, test, deploy) to its account; local tests are never shown as live passes.
+- [ ] C3 (claude) Digest and closing brief print REGISTRY DIFFERS (from A2) and the weekly review reads it.
+- [ ] C4 (claude) Session write path exercised from a real Claude session against the store: log a send, a reply, a meeting; confirm revision fence and history. Then C02 in section 7 closes.
+- [ ] C5 (kevin) G02 gate: Vercel project for the dashboard, a Neon or Supabase Postgres, `npm run setup:login` for the password hash, SESSION_SECRET, APP_ORIGIN, domain admin.glazedweb.com. Claude prepares the exact env list and the import steps; Kevin sets secrets and DNS.
+
+### Phase D. Program 3, consolidate the repeated software
+- [ ] D1 (claude) R01 inventory: every copy of pricing, cart validation, provider payments, fulfillment and kitchen, notifications, owner auth and storage across copperac, devine, truenorth, louies, mikesplace, sprinkles. A table in glaze/catalog/shared-components.md with file paths and line counts.
+- [ ] D2 (claude) R02 comparison matrix: strongest implementation per concern, provider differences, known defects, tests, reuse boundary. Square, Stripe and Toast are not forced into one flow.
+- [ ] D3 (claude) R03 extract provider-independent money, quantity, pricing and order-state contracts into versioned source packages under glaze/assets, each with tests; order-quote 1.0.0 already exists, order-state is next.
+- [ ] D4 (claude) R04 provider adapters (retry and reconciliation), then notification and kitchen contracts where two copies really match.
+- [ ] D5 (claude) R05 adopt in two client copies with hash-pinned manifests; verify no design change and no lost client-specific behavior; R09 finish and close.
+- [ ] D6 (kevin) Decide the rule the consensus did not: does "Not the registry" and "Not a CRM" come back into ledger.md, or is the dashboard now the account store by design.
+
+### Phase E. Program 4, consistent owner controls
+- [ ] E1 (claude) O01 compare the workrooms (hours, prices, availability, photos, incoming orders, roles) across every client with one; a table.
+- [ ] E2 (claude) O02 common labels, navigation, validation, save and error handling, permissions, audit record, written as a spec in glaze/ with client branding left alone.
+- [ ] E3 (claude) O03 extract the controls into glaze/assets and adopt in two workrooms, exposing only what each business is entitled to.
+- [ ] E4 (claude) O04 verify owner and staff access, invalid input, persistence, public-site updates, uploads, fulfillment; write the handover guide per client.
+
+### Phase F. Program 5, measure the business
+- [ ] F1 (claude) M01 dated entries for time, revenue and cost per account, with collected revenue, transaction income, recurring fees and expenses kept apart; Stripe read through the MCP for collected and recurring, never treating unknown as zero.
+- [ ] F2 (claude) M02 per-account summary for a period: completeness, build and support time, contribution before unrecorded expenses.
+- [ ] F3 (claude) M03 sales cohorts by warm, cold and visit with dates, stages and denominators; no status count called a conversion rate.
+- [ ] F4 (claude) M04 import, export and correction workflow with source references and tests for duplicates and period boundaries.
+- [ ] F5 (kevin) The numbers only Kevin has: build hours and support time per account so far, hosting costs, any cash payments outside Stripe. Claude builds the entry screen and prefills what Stripe and Vercel expose; Kevin fills the rest once.
+
+### Phase G. Program 6, the pitch pipeline (Claude's lane, unchanged)
+- [ ] G1 (claude) C02 to C05 in section 7, in that order, once C4 proves the write path.
+- [ ] G2 (claude) P01 to P06 as written, drafts only, sends by Kevin, evidence-only tracking.
+
+### Approvals Kevin pre-grants for this run (answered "approved" 2026-09-17)
+1. Create worktrees under the scratchpad, run npm ci, tests, builds and local dev servers there. Never touch the main checkouts' dirty trees.
+2. Commit and push to claude/* branches in every hershock48 repo; open pull requests against Codex's branches or main.
+3. Merge to main without asking only in glazedweb-admin (not deployed) and in glazedweb for paths under glaze/ and .github/ (tooling and docs), and only when the PR is clean. Every client repo merge and every glazedweb app change stays Kevin's, because main deploys production.
+4. Write to contracts-private (reviews, scorecard) and to the local dashboard store only through the session write path with its revision fence, for events Claude observed (a PR merged, a review posted).
+5. Read Stripe and Vercel through their MCPs for numbers. No writes, no deploys, no purchases.
+6. Run agents in parallel on the Max plan; this spends Kevin's usage, and if it runs out the outage rule applies in reverse and work pauses with a handoff note.
+7. Never: send anything to a client or prospect, charge or refund, change DNS or domains, deploy a client site, handle a token or password, or edit Codex's unsaved checkouts.
+
+### What only Kevin can do, in the order it will block
+1. Codex automatic reviews toggle in ChatGPT (blocks nothing today, restores the second reader).
+2. Merges listed in A5 (blocks the client fixes reaching production).
+3. G02 hosting for the dashboard (blocks Program 1 being usable off this machine).
+4. G01 Square sandbox and test inbox (blocks Program 2 being proven for real).
+5. F5 numbers (blocks Program 5 saying anything).
+6. D6 ruling on the two ledger.md rules.

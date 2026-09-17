@@ -296,6 +296,10 @@ Kevin's ask: work continuously toward all five programs without waiting on him, 
 - [x] B8 (claude) Mike's Place still carries the global login lockout fixed in copperac and DeVine (inventory 2026-09-17): port the per-address, per-role limiter. Live pitch; letter and demo byte-identical.
 - [x] B9 (claude) PJ's and Cookin' with Beans (live client sites) keep the owner PIN itself in a cookie, compare it in plain text, and have no login throttle (inventory 2026-09-17). Port the shared signed session and a per-address limiter; Kevin sets the session secret before merging.
 - [ ] B10 (kevin) The review workflow runs only on pull requests whose base branch carries it, so PRs against Codex's feature branches got manual reviews on 2026-09-17. Merging admin #1, glazedweb #1, devine #1 and copperac #1 into main closes the gap; until then Claude reviews those by hand.
+- [ ] B11 (claude) Anchor owner sign-in: hash cookie with no secret and no server-side expiry, limiter keyed on the client-controlled first x-forwarded-for hop (matrix 2026-09-17). Another Claude session removed the money code from Anchor main on 2026-09-17 (49a0798); re-read main before touching, then give it the shared signed session and per-address limiter like pjs #1.
+- [ ] B12 (claude) Mike's Place carries copperac leftovers an owner could see: a Toast "lamp-pub" ticket placeholder and an inquiry comment about "the club's inbox" (workroom comparison 2026-09-17). Remove without touching the letter or demo.
+- [x] E1 (claude) O01 compare the workrooms: glaze/catalog/workrooms-2026-09-17.md (PR 12), 10 repos by 11 areas, 15 items for O02.
+- [x] D2 (claude) R02 comparison matrix: glaze/catalog/comparison-2026-09-17.md (PR 10); corrections from the fact-check in progress.
 
 ### Phase C. Program 1, the ledger drives the next action (glazedweb-admin, not deployed, Claude may merge when clean)
 - [x] C1 (claude) D03 one account page: agreement source and version, build and monthly amounts and status, missing items with owner and deadline, next action, dated evidence. Reads the registry for scope, the store for facts.
@@ -355,7 +359,7 @@ In the order they block. Each is one click or one secret; nothing else is waitin
 2. Merge the takeover PRs into the Codex branches once their review comments are answered: copperac #6, devine #6, truenorth #6, glazedweb #8, glazedweb-admin #9 and #10, mikes #6. Then devine #1, copperac #1 into main.
 3. Set KITCHEN_SESSION_SECRET (32 or more random characters) on the Vercel projects for pjs and cookinwithbeans, then merge pjs #1 and cookinwithbeans #1. Owners will be asked for their PIN once.
 4. Set CLAUDE_CODE_OAUTH_TOKEN on pjs and cookinwithbeans (same token, same file-based command as before), then merge pjs #2 and cookinwithbeans #2 so those repos get automatic reviews.
-5. Vercel: confirm "Automatically expose System Environment Variables" is on for copperac, devine and mikes before any of their sign-in changes reach production.
+5. Vercel: confirm "Automatically expose System Environment Variables" is on for copperac, devine, mikes, pjs and cookinwithbeans before any of their sign-in changes reach production; each now refuses sign-in without it.
 6. Flip True North to buildFeePaid: true in lib/customOrders.js on main; the dashboard already records the payment.
 7. Codex automatic reviews toggle in ChatGPT, whenever its window resets.
 8. Hosting for the dashboard (G02) and Square sandbox plus a test inbox for DeVine (G01), when ready; Claude hands over the exact env list on request.

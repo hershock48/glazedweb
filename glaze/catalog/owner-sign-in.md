@@ -6,7 +6,7 @@ The shared `workroom-session@1.0.0` source is copied into DeVine, Copper and Mik
 
 - The server checks the signed owner's token and its 18-hour expiry. Legacy credential-derived hash cookies and raw passcodes are rejected. App-specific key derivation prevents reuse of a Copper token. Staff tokens do not open this owner workroom.
 - A production passcode and separate signing secret of at least 32 characters are required. Mike's wrapper rejects using the same value for both. Rotating either invalidates existing tokens. Logout expires the browser cookie; copied tokens remain valid until expiry or credential rotation.
-- Cookies are HttpOnly, SameSite=Strict, Secure in production, and scoped to the site root. The kitchen has a separate PIN flow; this change does not certify it.
+- Cookies are HttpOnly, SameSite=Strict, Secure in production, and scoped to the site root. The kitchen has a separate staff session; its subsequent September 17 integration is documented in [kitchen access verification](kitchen-access-release.md).
 - PostgreSQL reserves each login attempt atomically. Five attempts are allowed per ten-minute account window across application instances; a successful login clears the count. No caller-supplied IP header can create another bucket. This means repeated bad attempts can temporarily prevent legitimate sign-in, while existing signed sessions continue to work.
 - Missing or failed persistent login storage returns 503 without issuing a cookie. Memory counters support development only. Status reports session configuration and storage type without exposing credentials.
 

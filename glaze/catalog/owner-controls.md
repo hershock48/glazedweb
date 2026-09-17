@@ -12,6 +12,8 @@ Source inspection: September 16, 2026. This is an implementation comparison, not
 | Access | Signed owner session and persistent login limiter in review branch | Signed owner session, persistent account login limit, and production memory-write refusal in review branch | Signed owner/staff roles; owner-only refund confirmation | Provider-owned feed access needs handover verification |
 | Save behavior changed here | Menu/event/contact drafts retained, pending fields locked, atomic conflict checks and history; recoverable event archive and validated photo uploads | Same menu/event/contact save behavior, conflict history, recoverable event archive and validated photo uploads | Existing forms still need broader error/pending-state audit | Last-good feed behavior already implemented; no new owner form added |
 
+Kitchen access was additionally reviewed September 17: signed staff sessions, separate persistent attempt limits and existing owner sessions now open the board; Copper's parked menu-price editor requires owner access. See [kitchen access verification](kitchen-access-release.md). Kitchen state/order writes, cancellation and notification recovery remain open.
+
 ## Common interaction rules
 
 Use task labels owners recognize: Menu, Orders, Availability, Hours and Photos when those tasks are actually supported. Retain specialist tasks such as florist quotes or a separate tap board. Only one navigation item should represent the active page; `/workroom` matches itself, while deeper pages may match their own subtree.

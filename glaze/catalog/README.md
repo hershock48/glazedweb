@@ -26,6 +26,7 @@ Two obligations, one per direction:
 | [web-bones.md](web-bones.md) | Components and flows that took a session or more to get right. |
 | [apps.md](apps.md) | Whole systems — things with routes, state and a second user. The kitchen system lives here. |
 | [inventory-2026-09-17.md](inventory-2026-09-17.md) | R01 inventory: every copy of pricing, cart validation, payments, kitchen, notifications, auth and storage across nine client repos, with line counts, identical pairs and the questions R02 must answer. |
+| [workrooms-2026-09-17.md](workrooms-2026-09-17.md) | E1 / O01: the owner and staff surfaces of ten repos compared across eleven control areas (hours, prices, availability, photos, orders, events, intake, roles, audit, save handling, sign-in), the controls already shared, the divergences an owner would notice, and the list O02 must settle. |
 
 ## The bar for an entry
 

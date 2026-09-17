@@ -296,6 +296,46 @@
       ],
       "sourceRepository": "https://github.com/hershock48/glazedweb",
       "sourceCommit": "318b17a09252ddf06b64b5c0b00370d05e96cca0"
+    },
+    {
+      "id": "printer-jobs",
+      "capability": "Durable printer job binding, atomic kitchen acceptance and owner reconciliation with saved receipts",
+      "limits": "Node/PostgreSQL helper needs READ COMMITTED leased transactions, authenticated identities and coordinated job-token/Basic-auth device rollout. Does not prove physical paper, exactly-once printing, refunds or notification delivery.",
+      "version": "1.0.0",
+      "file": "glaze/assets/printer-jobs/1.0.0/printer-jobs.ts",
+      "sha256LF": "72467f0dd5bbcdd85408493879c37b7bcac83588a3ff78c720e68cbbfd6a7aaf",
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/ordering/printer-jobs.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/ordering/printer-jobs.ts"
+        }
+      ],
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "789b7323acc03e54642e35e29c11a0e484469e87"
+    },
+    {
+      "id": "printer-review",
+      "capability": "Bounded owner printer review/check requests with complete command correlation",
+      "limits": "Caller retains the immutable command and refreshes saved state. No automatic retry or browser recovery across reload/sign-out. Requires matching private review APIs.",
+      "version": "1.0.0",
+      "file": "glaze/assets/printer-review/1.0.0/printer-review.ts",
+      "sha256LF": "1f9e8385353dab8f14acaee6179d4032560c71f7e92628c99f47cb0949901b24",
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/ordering/printer-review.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/ordering/printer-review.ts"
+        }
+      ],
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "789b7323acc03e54642e35e29c11a0e484469e87"
     }
   ]
 }

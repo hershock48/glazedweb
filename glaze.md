@@ -40,6 +40,7 @@ something you cannot open.
 | **glaze/catalog/** | Before building any tool, harness, form flow, checkout, auth scheme, admin surface or asset pipeline. The inventory of bones the account already owns, categorized; the same file when you finish building one, because the entry ships in the same commit. |
 | **glaze/starting-a-session.md** | Not for the session, for Kevin. The opening message to paste into a new Cowork chat, and why attaching the repos beats pasting a token. |
 | **glaze/scripts/** | The house harnesses. `audit.mjs` is the standing auditor, `plate.mjs` computes the credit plate, `width-check.mjs` covers 320 and 768, `motion-check.mjs` samples transient overflow and verifies reduced motion actually stops everything, `perf-check.mjs` measures LCP, CLS and JS weight on a throttled mobile profile. Run these rather than writing fresh ones; each has been sharpened by a real failure. |
+| **glaze/offline.md** | Before plugging in the backup drive, and any time the network is gone or cannot be trusted. What the local shelf holds (repo mirrors, model weights, Kiwix books, installers, npm proxy, sealed env files), the three tiers, the first fill and the monthly refresh with `glaze/scripts/offline.mjs`, and how to work from it with the cable out. |
 | **glaze/assets/glazed-credit/** | The credit components, `.tsx` and `.jsx`, plus their CSS. Copy, never rebuild. |
 
 ---

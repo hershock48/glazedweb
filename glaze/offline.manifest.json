@@ -1,0 +1,83 @@
+{
+  "$doc": "glaze/offline.md. What the shelf holds and where it goes. Names, not URLs, wherever an upstream can resolve them, so a monthly refresh picks up the new file on its own. Tier 1 is the studio's own work and the small references. Tier 2 is Wikipedia without pictures. Tier 3 is the big library. Sizes are September 2026 and only for planning; the script measures the real thing.",
+  "tiers": {
+    "1": "own work, model weights, installers, the small shelf (about 130 GB with the models)",
+    "2": "Wikipedia without pictures and the Docker images (about 55 GB)",
+    "3": "the full library: Wikipedia with pictures, Stack Overflow, Gutenberg (about 465 GB)"
+  },
+  "repos": {
+    "tier": 1,
+    "scan": "..",
+    "note": "Every sibling folder of the glazedweb repo that has a .git is mirrored, bare, from its origin. Folders with no remote (contracts-private, glazed-onchain, glazedweb-permaweb) mirror from the working copy. Uncommitted work is not captured; commit it."
+  },
+  "copies": [
+    { "id": "lmstudio-models", "tier": 1, "from": "~/.lmstudio/models", "to": "models/lmstudio", "note": "the verified model kit; 96 GB on 2026-09-17" },
+    { "id": "ollama-models", "tier": 1, "from": "~/.ollama", "to": "models/ollama", "optional": true },
+    { "id": "onedrive-desktop", "tier": 1, "from": "~/OneDrive/Desktop", "to": "assets/onedrive-desktop", "optional": true, "note": "client source images live here (see glaze/clients/cascarellis.md)" },
+    { "id": "codex-notes", "tier": 1, "from": "~/Documents/Codex", "to": "assets/documents-codex", "optional": true }
+  ],
+  "kiwix": [
+    { "name": "devdocs_en_javascript", "tier": 1 },
+    { "name": "devdocs_en_node", "tier": 1 },
+    { "name": "devdocs_en_npm", "tier": 1 },
+    { "name": "devdocs_en_react", "tier": 1 },
+    { "name": "devdocs_en_nextjs", "tier": 1 },
+    { "name": "devdocs_en_typescript", "tier": 1 },
+    { "name": "devdocs_en_css", "tier": 1 },
+    { "name": "devdocs_en_html", "tier": 1 },
+    { "name": "devdocs_en_dom", "tier": 1 },
+    { "name": "devdocs_en_http", "tier": 1 },
+    { "name": "devdocs_en_tailwindcss", "tier": 1 },
+    { "name": "devdocs_en_postgresql", "tier": 1 },
+    { "name": "devdocs_en_sqlite", "tier": 1 },
+    { "name": "devdocs_en_git", "tier": 1 },
+    { "name": "devdocs_en_bash", "tier": 1 },
+    { "name": "devdocs_en_nginx", "tier": 1 },
+    { "name": "devdocs_en_docker", "tier": 1 },
+    { "name": "ifixit_en_all", "tier": 1, "note": "repair manuals, about 3.6 GB" },
+    { "name": "wikipedia_en_medicine", "flavour": "maxi", "tier": 1, "note": "WikiMed, about 2.2 GB" },
+    { "name": "wikem_en_all", "flavour": "maxi", "tier": 1, "note": "emergency medicine reference, under 0.4 GB" },
+    { "name": "nhs.uk_en_medicines", "tier": 1 },
+    { "name": "wiktionary_en_all", "flavour": "nopic", "tier": 1, "note": "about 9 GB" },
+    { "name": "wikipedia_en_all", "flavour": "mini", "tier": 1, "note": "lead sections only, about 14 GB; the fast one" },
+    { "name": "wikipedia_en_all", "flavour": "nopic", "tier": 2, "note": "full text, no pictures, about 53 GB" },
+    { "name": "wikipedia_en_all", "flavour": "maxi", "tier": 3, "note": "full text with pictures, about 127 GB" },
+    { "name": "stackoverflow.com_en_all", "tier": 3, "note": "about 115 GB" },
+    { "name": "gutenberg_en_all", "tier": 3, "note": "about 221 GB" }
+  ],
+  "downloads": [
+    { "id": "kiwix-tools", "tier": 1, "to": "tools", "url": "https://download.kiwix.org/release/kiwix-tools/kiwix-tools_win-i686.zip", "file": "kiwix-tools_win-i686.zip", "note": "kiwix-serve for the LAN; serve unpacks it" },
+    { "id": "kiwix-desktop", "tier": 1, "to": "tools", "url": "https://download.kiwix.org/release/kiwix-desktop/kiwix-desktop_windows_x64.zip", "file": "kiwix-desktop_windows_x64.zip" },
+    { "id": "node-lts", "tier": 1, "to": "installers", "resolve": "node-lts" },
+    { "id": "git-for-windows", "tier": 1, "to": "installers", "resolve": "github-latest", "repo": "git-for-windows/git", "asset": "^Git-.*-64-bit\\.exe$" },
+    { "id": "ventoy", "tier": 1, "to": "installers", "resolve": "github-latest", "repo": "ventoy/Ventoy", "asset": "-windows\\.zip$", "note": "makes the boot USB from the ISOs below" },
+    { "id": "ubuntu-desktop", "tier": 1, "to": "installers", "resolve": "ubuntu", "series": "noble", "pattern": "desktop-amd64\\.iso$" },
+    { "id": "ollama", "tier": 1, "to": "installers", "url": "https://ollama.com/download/OllamaSetup.exe", "file": "OllamaSetup.exe" },
+    { "id": "vscode", "tier": 1, "to": "installers", "url": "https://update.code.visualstudio.com/latest/win32-x64-user/stable", "file": "VSCodeUserSetup-x64.exe" },
+    { "id": "docker-desktop", "tier": 2, "to": "installers", "url": "https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe", "file": "DockerDesktopInstaller.exe" },
+    { "id": "michigan-osm", "tier": 1, "to": "maps", "url": "https://download.geofabrik.de/north-america/us/michigan-latest.osm.pbf", "file": "michigan-latest.osm.pbf", "md5": "https://download.geofabrik.de/north-america/us/michigan-latest.osm.pbf.md5", "note": "raw OpenStreetMap for Michigan; Organic Maps on the phone is the reader" }
+  ],
+  "manual": [
+    { "id": "lmstudio", "to": "installers", "why": "LM Studio publishes no stable installer link. Download it from lmstudio.ai/download and drop the .exe in installers/." },
+    { "id": "windows-iso", "to": "installers", "why": "Microsoft gates the ISO behind a form. Get it from microsoft.com/software-download/windows11 and drop it in installers/." },
+    { "id": "organic-maps", "to": "maps", "why": "Phone app. Install it and download Michigan inside the app while the network is up." }
+  ],
+  "npm": {
+    "tier": 1,
+    "to": "npm",
+    "port": 4873,
+    "note": "Verdaccio on the shelf, storage on the shelf. warm fills it from every repo lockfile so each project installs offline later."
+  },
+  "docker": {
+    "tier": 2,
+    "to": "docker",
+    "optional": true,
+    "images": ["postgres:16", "registry:2", "gitea/gitea:latest", "minio/minio:latest", "axllent/mailpit:latest", "pihole/pihole:latest"]
+  },
+  "seal": {
+    "tier": 1,
+    "to": "sealed",
+    "files": [".env", ".env.local", ".env.production", ".env.development", ".env.production.local"],
+    "note": "Every repo's env files, encrypted as one blob with a passphrase from GLAZE_OFFLINE_KEY. The key is never written anywhere."
+  }
+}

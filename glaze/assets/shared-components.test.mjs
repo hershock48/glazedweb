@@ -1,3 +1,4 @@
+import './order-quote/1.0.0/order-quote.test.mjs';
 import './menu-write/1.0.0/menu-write.test.mjs';
 import './owner-save/1.0.0/owner-save.test.mjs';
 import test from 'node:test';

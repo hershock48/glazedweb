@@ -9,6 +9,7 @@ service. Existing designs, menus and provider choices stay in their repositories
 
 | Component | Version | Verified working copies | Boundary |
 |---|---|---|---|
+| order-quote | 1.0.0 | Copper demo, Mike's Place | Whole quantities/cents, exact totals and explicit review of fresh server prices; no payment adapter. |
 | event-cas | 1.0.0 | Copper, Mike's Place | Atomic event changes and audit history; recoverable archive integration. |
 | owner-request | 1.0.0 | Copper, Mike's Place | Generic bounded POST/PUT/DELETE feedback with validated acknowledgements. |
 | event-fields | 1.0.0 | Copper, Mike's Place | Complete event/contact fields, Michigan date/time checks and listing validation. |
@@ -68,3 +69,5 @@ hashes for nine working repositories, including uncommitted files. The checked-i
 
 This is an initial comparison, not completion of the full pricing, payment,
 notification and kitchen consolidation program.
+
+See [checkout quote integration and remaining operating requirements](order-quote-release.md). The private studio dashboard now records shared-tool maintenance notes and deliberate source upgrades; its docs/component-maintenance.md explains the reviewed local workflow.

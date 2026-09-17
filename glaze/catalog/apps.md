@@ -4,7 +4,9 @@ The heavyweight bones. Each of these is a product, not a page, and each has
 already cost multiple sessions. Check here FIRST when a client needs ordering,
 admin, payments, or a dashboard.
 
-## The kitchen system  ⚠ four copies, already past the graduation bar
+## The kitchen system — multiple client-owned copies
+
+September 17 status: component adoption is recorded in [the version registry](shared-components.md). Mike's and Copper's parked demo now use order-quote 1.0.0; these entire applications are not consolidated or certified for live operations. Older copy comparisons below are historical observations.
 
 Online ordering + kitchen display + receipt printer. API shape:
 `ordering/order`, `ordering/state`, `kitchen/login`, `kitchen/menu`,
@@ -12,8 +14,8 @@ Online ordering + kitchen display + receipt printer. API shape:
 
 | Copy | State |
 |---|---|
-| `copperac/` | Byte-identical order route to stagecoach (md5 e242594…). |
-| `stagecoach/` | Byte-identical to copperac. |
+| `copperac/` | Quote review and owner controls have diverged from the older Stagecoach copy; public ordering remains Toast. |
+| `stagecoach/` | Older ordering copy; quote-review adoption outstanding. |
 | `cookinwithbeans/` | Same shape, separate copy. |
 | `pjs/` | DIVERGED — its fixes exist nowhere else, and vice versa. |
 | `mikesplace/` | Fifth copy, 2026-09-11, ported from copperac (TS, workroom included). Two divergences worth stealing back: the orderable board is GENERATED from `lib/menu.ts` with the workroom overrides applied (`lib/ordering/seed.ts`), so the workroom is the only price editor and the kitchen keeps only the 86 board; and `/api/kitchen/login` answers GET with `{authed}` so the board never 401s in the console on load. |

@@ -336,6 +336,66 @@
       ],
       "sourceRepository": "https://github.com/hershock48/glazedweb",
       "sourceCommit": "789b7323acc03e54642e35e29c11a0e484469e87"
+    },
+    {
+      "id": "notification-outbox",
+      "capability": "Durable order confirmation intent, bounded immutable retries, provider evidence and owner review history",
+      "limits": "Requires authenticated callers and leased PostgreSQL READ COMMITTED transactions. Finite five-attempt/20-minute sending policy. No guarantee of inbox delivery, real-world follow-up or exactly-once email.",
+      "version": "1.0.0",
+      "file": "glaze/assets/notification-outbox/1.0.0/notification-outbox.ts",
+      "sha256LF": "23c9db614cf1aad3d8eaaa4d3dd2ca23f6112e4e68d0e969101b8fae44561dcb",
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/ordering/notification-outbox.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/ordering/notification-outbox.ts"
+        }
+      ],
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "00ed96eaa9e8b65ac43dbfcf4893931db86666a4"
+    },
+    {
+      "id": "notification-provider",
+      "capability": "Bounded Resend send/retrieve adapters with immutable idempotency and correlated message identity",
+      "limits": "Requires sibling notification-outbox contract and verified sender/API credentials. Provider acceptance differs from delivery; observed latest events are not a complete event stream.",
+      "version": "1.0.0",
+      "file": "glaze/assets/notification-provider/1.0.0/notification-provider.ts",
+      "sha256LF": "5e45a75d86f6b2abba431477d9a1e9b10c3ed991778c6003cb386554d047be96",
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/ordering/notification-provider.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/ordering/notification-provider.ts"
+        }
+      ],
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "00ed96eaa9e8b65ac43dbfcf4893931db86666a4"
+    },
+    {
+      "id": "notification-request",
+      "capability": "Clear owner email status labels and correlated saved-review recovery requests",
+      "limits": "Caller retains the immutable review request. No automatic retry or browser recovery across reload/sign-out. Requires matching private owner APIs.",
+      "version": "1.0.0",
+      "file": "glaze/assets/notification-request/1.0.0/notification-request.ts",
+      "sha256LF": "ccec0a2914e39e5d887a2355f975c701d6ab4b2f5f51a426c67658b8898bb474",
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/ordering/notification-request.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/ordering/notification-request.ts"
+        }
+      ],
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "00ed96eaa9e8b65ac43dbfcf4893931db86666a4"
     }
   ]
 }

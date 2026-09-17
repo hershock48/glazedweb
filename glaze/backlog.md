@@ -293,8 +293,8 @@ Kevin's ask: work continuously toward all five programs without waiting on him, 
 - [ ] B5 (claude) L07 journey tests per repo: order or enquiry, payment where applicable, notification, fulfillment, cancellation, refund; owner side too. One test file per journey, provider faked, named in the README.
 - [ ] B6 (claude) L08: build, lint, audit.mjs and width-check on every changed route; record the numbers in the repo README, never "pass" without the number.
 - [ ] B7 (kevin) G01 gate: Square sandbox credentials for DeVine, a monitored test inbox, owner and domain confirmation. Until then every journey is proven against fakes only and the README says so.
-- [ ] B8 (claude) Mike's Place still carries the global login lockout fixed in copperac and DeVine (inventory 2026-09-17): port the per-address, per-role limiter. Live pitch; letter and demo byte-identical.
-- [ ] B9 (claude) PJ's and Cookin' with Beans (live client sites) keep the owner PIN itself in a cookie, compare it in plain text, and have no login throttle (inventory 2026-09-17). Port the shared signed session and a per-address limiter; Kevin sets the session secret before merging.
+- [x] B8 (claude) Mike's Place still carries the global login lockout fixed in copperac and DeVine (inventory 2026-09-17): port the per-address, per-role limiter. Live pitch; letter and demo byte-identical.
+- [x] B9 (claude) PJ's and Cookin' with Beans (live client sites) keep the owner PIN itself in a cookie, compare it in plain text, and have no login throttle (inventory 2026-09-17). Port the shared signed session and a per-address limiter; Kevin sets the session secret before merging.
 - [ ] B10 (kevin) The review workflow runs only on pull requests whose base branch carries it, so PRs against Codex's feature branches got manual reviews on 2026-09-17. Merging admin #1, glazedweb #1, devine #1 and copperac #1 into main closes the gap; until then Claude reviews those by hand.
 
 ### Phase C. Program 1, the ledger drives the next action (glazedweb-admin, not deployed, Claude may merge when clean)
@@ -346,3 +346,16 @@ Kevin's ask: work continuously toward all five programs without waiting on him, 
 4. G01 Square sandbox and test inbox (blocks Program 2 being proven for real).
 5. F5 numbers (blocks Program 5 saying anything).
 6. D6 ruling on the two ledger.md rules.
+
+### Kevin queue, kept current (2026-09-17 late)
+
+In the order they block. Each is one click or one secret; nothing else is waiting on Kevin.
+
+1. Merge glazedweb-admin #1, then glazedweb #1 (both cleared by review).
+2. Merge the takeover PRs into the Codex branches once their review comments are answered: copperac #6, devine #6, truenorth #6, glazedweb #8, glazedweb-admin #9 and #10, mikes #6. Then devine #1, copperac #1 into main.
+3. Set KITCHEN_SESSION_SECRET (32 or more random characters) on the Vercel projects for pjs and cookinwithbeans, then merge pjs #1 and cookinwithbeans #1. Owners will be asked for their PIN once.
+4. Set CLAUDE_CODE_OAUTH_TOKEN on pjs and cookinwithbeans (same token, same file-based command as before), then merge pjs #2 and cookinwithbeans #2 so those repos get automatic reviews.
+5. Vercel: confirm "Automatically expose System Environment Variables" is on for copperac, devine and mikes before any of their sign-in changes reach production.
+6. Flip True North to buildFeePaid: true in lib/customOrders.js on main; the dashboard already records the payment.
+7. Codex automatic reviews toggle in ChatGPT, whenever its window resets.
+8. Hosting for the dashboard (G02) and Square sandbox plus a test inbox for DeVine (G01), when ready; Claude hands over the exact env list on request.

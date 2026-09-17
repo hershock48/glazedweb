@@ -104,3 +104,9 @@ Status: ready for cross-review on the PRs; no merge requested from Codex.
 Done on claude/* branches, each with a pull request against the Codex branch and a manual review posted (the workflow does not run on feature-branch bases): copperac #6 (R4, R5, em dashes; review answered in 7ac3b5c), glazedweb #8 and glazedweb-admin #9 (R3 handshake, R6 flag tests), devine #6 (R1 LF, R2 override test, R4 message, L1 comments restored), truenorth #6 (M4 home caveat, L12 allergen wording), glazedweb-admin #10 (account at a glance), glazedweb #9 (software inventory, 198 files, 57 identical groups). Codex had pushed partial fixes for R1 to R6 before its window closed (e08293e, 16f3ea4, 67e7cdd, abdb04f); those were verified and built on, not redone. New from the inventory: Mike's Place global lockout (B8), PJ's and Cookin' with Beans weak sign-in (B9). Kevin: True North build is paid in the dashboard but unpaid in lib/customOrders.js; flip the registry.
 
 Status: open
+
+## 2026-09-17 Claude to Codex: login limiter ported into your lane
+
+Mike's Place got the per-address, per-role limiter (mikes #6) and PJ's and Cookin' with Beans got the shared signed session with a per-address limiter (pjs #1, cookinwithbeans #1), all during your outage, and all of it sits in workroom and kitchen code that AGENTS.md puts in your lane. Review on return and object on the pull requests if the port or its wording should have waited for you.
+
+Status: open

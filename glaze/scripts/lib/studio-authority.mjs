@@ -68,12 +68,25 @@ export async function saveSessionBook(file,before,after,date){
  // directory. Existing pilot markers keep their original adjacent-app default.
  const adapter=authority.adapter||path.resolve(path.dirname(authority.file),'..','lib','session-writer.mjs');
  if(!fs.existsSync(adapter))throw Error('Session adapter missing. Install the matching glazedweb-admin version before enabling session writes.');
- const {writeSessionBook,SESSION_ADAPTER}=await import(pathToFileURL(adapter).href);
- if(SESSION_ADAPTER?.id!=='glazedweb-studio-session'||SESSION_ADAPTER.version!==1||typeof writeSessionBook!=='function'){
-  throw Error('Session adapter is incompatible. This reader requires glazedweb-studio-session version 1. Update glazedweb-admin first; no account was changed.');
- }
- await writeSessionBook(authority.file,before.authority.revision,before,after,date);
+ const writer=await import(pathToFileURL(adapter).href);
+ const problem=sessionWriterProblem(writer,adapter);
+ if(problem)throw Error(problem);
+ await writer.writeSessionBook(authority.file,before.authority.revision,before,after,date);
  return true;
+}
+// The adapter is resolved by path into a sibling checkout, so nothing else ties
+// the two repos together. glazedweb-admin exports SESSION_WRITER_VERSION; this
+// file pins the number it was written against. Version first, then identity,
+// then the function, so the message names the most likely fix.
+export const SESSION_ADAPTER_ID='glazedweb-studio-session';
+export const EXPECTED_SESSION_WRITER_VERSION=1;
+export function sessionWriterProblem(writer,adapter){
+ const expected=EXPECTED_SESSION_WRITER_VERSION,found=writer?.SESSION_WRITER_VERSION,where=`the session writer at ${adapter}`;
+ if(!Number.isInteger(found))return `Session writer version missing: glazedweb expects session-writer version ${expected} and ${where} exports no SESSION_WRITER_VERSION, so update glazedweb-admin; no account was changed.`;
+ if(found!==expected)return `Session writer version mismatch: glazedweb expects session-writer version ${expected} and ${where} exports version ${found}, so update ${found<expected?'glazedweb-admin':'glazedweb'}; no account was changed.`;
+ if(writer?.SESSION_ADAPTER?.id!==SESSION_ADAPTER_ID)return `Session writer identity mismatch: glazedweb expects adapter ${SESSION_ADAPTER_ID} version ${expected} and ${where} identifies itself as ${writer?.SESSION_ADAPTER?.id??'no adapter'} version ${found}, so update glazedweb-admin; no account was changed.`;
+ if(typeof writer.writeSessionBook!=='function')return `Session writer incomplete: ${where} exports version ${found} but no writeSessionBook function, so update glazedweb-admin; no account was changed.`;
+ return null;
 }
 export function readAuthoritative(file){
  const authority=studioAuthority(file);

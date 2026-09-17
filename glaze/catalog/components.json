@@ -116,6 +116,86 @@
       ],
       "sourceRepository": "https://github.com/hershock48/glazedweb",
       "sourceCommit": "cc1066d442b245103348689b7772e7c15cc14e6d"
+    },
+    {
+      "id": "event-cas",
+      "version": "1.0.0",
+      "file": "glaze/assets/event-cas/1.0.0/event-cas.ts",
+      "capability": "Atomic event edits and recoverable archive history",
+      "limits": "Requires authenticated callers, initialized workroom_events and workroom_content_history tables, and JSON snapshots. Audit actor is owner, not a named person. PGlite tests do not certify hosted concurrency.",
+      "sha256LF": "f1af08977904d84e47f6f9001a0cc350a69d5fd62ed0dc0910ea534708ed202d",
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/workroom/event-cas.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/workroom/event-cas.ts"
+        }
+      ],
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "5c041d8848d73a97b5ac182e56d3c44cc8d445d9"
+    },
+    {
+      "id": "owner-request",
+      "version": "1.0.0",
+      "file": "glaze/assets/owner-request/1.0.0/owner-request.ts",
+      "capability": "Draft-preserving POST, PUT and DELETE feedback",
+      "limits": "Caller must retain drafts, lock pending fields and validate operation-specific acknowledgements. One bounded request, no automatic retry. Browser drafts do not survive reload.",
+      "sha256LF": "105e2a757809ae17ade1465b62e42386dfe628010b0d6b72ab68faaf294f1dbf",
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/workroom/owner-request.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/workroom/owner-request.ts"
+        }
+      ],
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "5c041d8848d73a97b5ac182e56d3c44cc8d445d9"
+    },
+    {
+      "id": "event-fields",
+      "version": "1.0.0",
+      "file": "glaze/assets/event-fields/1.0.0/events-def.ts",
+      "capability": "Complete event/contact fields and response validation",
+      "limits": "America/Detroit calendar and time rules; optional end time must follow start on the same date. Requires matching editor/API and atomic storage.",
+      "sha256LF": "d70a1d5b6fd9191068f4c9327d11711358a801518c895c1274041bc35d2a8445",
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/workroom/events-def.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/workroom/events-def.ts"
+        }
+      ],
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "5c041d8848d73a97b5ac182e56d3c44cc8d445d9"
+    },
+    {
+      "id": "event-photo",
+      "version": "1.0.0",
+      "file": "glaze/assets/event-photo/1.0.0/event-photo.ts",
+      "capability": "Decoded, normalized and content-addressed event photos",
+      "limits": "Node server helper requires Sharp 0.35.4. Single JPEG/PNG/WebP, bounded input and pixels, output JPEG up to 1200px. Caller authenticates and stores immutable images; retention cleanup is separate.",
+      "sha256LF": "052fba5939f34451ecb18d8c1938567dddb308425f046a30965bca179f0230ed",
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/workroom/event-photo.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/workroom/event-photo.ts"
+        }
+      ],
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "5c041d8848d73a97b5ac182e56d3c44cc8d445d9"
     }
   ]
 }

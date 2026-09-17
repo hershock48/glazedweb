@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import {loadBook,registryFacts,assertLegacyWritable,flagsFor} from './ledger.mjs';
-import {studioProjection} from './studio-authority.mjs';
+import {studioProjection,saveSessionBook} from './studio-authority.mjs';
 test('archive reads current dashboard and never silently falls back when authority is missing',()=>{
  const dir=fs.mkdtempSync(path.join(os.tmpdir(),'studio-authority-')),legacy=path.join(dir,'legacy.json'),studio=path.join(dir,'studio.json');
  try{
@@ -39,4 +39,23 @@ test('studio facts override stale registry payments, requirements and proposed p
 test('parked and lost accounts stay closed even when they have paid',()=>{
  const result=studioProjection({revision:1,book:{rows:{one:{operations:{sales:'parked',buildPayment:'paid'}},two:{operations:{sales:'lost',delivery:'live'}}}}});
  assert.equal(result.rows.one.stage,'dormant');assert.equal(result.rows.two.stage,'passed');
+});
+
+test('session writer checks its contract before calling a relocated adapter',async()=>{
+ const dir=fs.mkdtempSync(path.join(os.tmpdir(),'studio-adapter-')),archive=path.join(dir,'archive.json'),store=path.join(dir,'store.json');
+ const before={authority:{source:'studio-dashboard',revision:1},rows:{}};
+ try{
+  fs.writeFileSync(store,'unchanged');
+  for(const [name,contract]of [['missing',''],['wrong',"export const SESSION_ADAPTER={id:'glazedweb-studio-session',version:2};"],['foreign',"export const SESSION_ADAPTER={id:'different-writer',version:1};"]]){
+   const adapter=path.join(dir,name+'.mjs');
+   fs.writeFileSync(adapter,contract+"export async function writeSessionBook(){throw Error('writer was called');}");
+   fs.writeFileSync(archive+'.authority.json',JSON.stringify({version:1,mode:'studio-local',file:'store.json',adapter:name+'.mjs'}));
+   await assert.rejects(saveSessionBook(archive,before,before,'2026-09-17'),/incompatible/);
+   assert.equal(fs.readFileSync(store,'utf8'),'unchanged');
+  }
+  fs.writeFileSync(path.join(dir,'valid.mjs'),"import fs from 'node:fs';export const SESSION_ADAPTER={id:'glazedweb-studio-session',version:1};export async function writeSessionBook(file,revision){fs.writeFileSync(file,'called at '+revision);}");
+  fs.writeFileSync(archive+'.authority.json',JSON.stringify({version:1,mode:'studio-local',file:'store.json',adapter:'valid.mjs'}));
+  assert.equal(await saveSessionBook(archive,before,before,'2026-09-17'),true);
+  assert.equal(fs.readFileSync(store,'utf8'),'called at 1');
+ }finally{fs.rmSync(dir,{recursive:true,force:true});}
 });

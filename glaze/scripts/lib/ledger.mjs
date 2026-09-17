@@ -6,8 +6,10 @@
  */
 import fs from "node:fs";
 import path from "node:path";
-import { fileURLToPath, pathToFileURL } from "node:url";
+import { fileURLToPath } from "node:url";
 import {readAuthoritative,studioProjection,studioAuthority,projectedOperations} from './studio-authority.mjs';
+import {loadMainRegistry,fixtureRegistry,registryReview,registryWarnings} from './registry-reader.mjs';
+export {registryReviewLines} from './registry-reader.mjs';
 export {assertLegacyWritable,saveSessionBook} from './studio-authority.mjs';
 
 export const LADDER = [
@@ -121,22 +123,15 @@ export function lastOf(row, type) {
 // ---------------------------------------------------------------- registry
 
 /**
- * lib/customOrders.js, imported live, plus the TODO comments per row parsed
+ * lib/customOrders.js on GitHub main, parsed as literal data, plus TODO comments
  * out of the source, because a comment is not in the runtime object and the
  * TODOs are exactly the facts the closing brief has to ask for.
  */
-export async function loadRegistry() {
-  const file = path.join(REPO, "lib", "customOrders.js");
-  if (!fs.existsSync(file)) return null;
-  // customOrders.js is ESM in a package with no "type" field. Node reparses
-  // it and warns once; that warning is about the site's package.json, not
-  // these scripts, so it is swallowed and every other warning still prints.
-  process.removeAllListeners("warning");
-  process.on("warning", (w) => {
-    if (w.code !== "MODULE_TYPELESS_PACKAGE_JSON") console.error(w);
-  });
-  const mod = await import(pathToFileURL(file).href);
-  return { orders: mod.CUSTOM_ORDERS, todos: parseTodos(fs.readFileSync(file, "utf8")) };
+export async function loadRegistry(flags = {}) {
+  if (flags['registry-file'] && !flags.fixture) throw Error('--registry-file is only for isolated --fixture runs.');
+  if (flags.fixture) return fixtureRegistry(flags['registry-file']);
+  const {source,...registry} = await loadMainRegistry();
+  return {...registry,todos:source ? parseTodos(source) : {}};
 }
 
 export function parseTodos(src) {
@@ -175,16 +170,17 @@ function cleanTodo(s) {
 }
 
 export function registryFacts(registry, slug, row) {
+  const review=registryReview(registry,slug,row||{},projectedOperations(row||{}));
   if(row?._studio){
     const ops=projectedOperations(row);
-    const order=registry?.orders?.[slug],blockers=row.blockers||[],theirs=blockers.filter(b=>b.owner==='client'),ours=blockers.filter(b=>b.owner!=='client'&&!b.done);
-    return {client:row.name,contactName:row.contact||'',email:'',build:row.commercial?.build??null,monthly:row.commercial?.monthly??null,monthlyStatus:row.commercial?.monthlyStatus||'unknown',buildFeePaid:ops.buildPayment==='paid',accepted:['agreed','signed'].includes(ops.agreement),needsDone:theirs.filter(b=>b.done).length,needsTotal:theirs.length,needsOpen:theirs.filter(b=>!b.done).map(b=>({id:b.id,ask:b.text,why:b.source})),todos:ours.map(b=>b.text),todoCount:ours.length,live:['live','support'].includes(ops.delivery),hasProject:!!order?.project,hasRegistry:!!order,source:'studio-dashboard'};
+    const order=registry?.orders?.[review.registryId],blockers=row.blockers||[],theirs=blockers.filter(b=>b.owner==='client'),ours=blockers.filter(b=>b.owner!=='client'&&!b.done);
+    return {client:row.name,contactName:row.contact||'',email:'',build:row.commercial?.build??null,monthly:row.commercial?.monthly??null,monthlyStatus:row.commercial?.monthlyStatus||'unknown',buildFeePaid:ops.buildPayment==='paid',accepted:['agreed','signed'].includes(ops.agreement),needsDone:theirs.filter(b=>b.done).length,needsTotal:theirs.length,needsOpen:theirs.filter(b=>!b.done).map(b=>({id:b.id,ask:b.text,why:b.source})),todos:ours.map(b=>b.text),todoCount:ours.length,live:['live','support'].includes(ops.delivery),hasProject:!!order?.project,hasRegistry:!!order,source:'studio-dashboard',registryReview:review};
   }
-  if (!registry) return null;
-  const order = registry.orders[slug];
+  if (!registry?.orders) return null;
+  const order = registry.orders[review.registryId];
   if (!order) return null;
   const needs = order.project?.needs || [];
-  const todos = registry.todos[slug] || [];
+  const todos = registry.todos?.[review.registryId] || [];
   return {
     client: order.client,
     contactName: order.contactName || "",
@@ -200,6 +196,7 @@ export function registryFacts(registry, slug, row) {
     todoCount: todos.length,
     live: !!order.live,
     hasProject: !!order.project,
+    registryReview:review,
   };
 }
 
@@ -213,8 +210,8 @@ export const norm = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
 
 // ---------------------------------------------------------------- flags per row
 
-export function flagsFor(row, today) {
-  const out = [];
+export function flagsFor(row, today, facts) {
+  const out = registryWarnings(facts?.registryReview);
   const contactTypes=new Set(['scout','send','reply','meet','confirm','pay','pay-part','touch','launch','retain']);
   const last=[...(row.events||[])].filter(e=>contactTypes.has(e.type)).sort((a,b)=>a.date.localeCompare(b.date)).at(-1);
   const age = last ? daysBetween(last.date, today) : null;

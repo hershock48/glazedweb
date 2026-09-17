@@ -57,6 +57,9 @@
  * Compare changes with glazedweb-admin/scripts/reconcile-facts.mjs; do not
  * silently let either source overwrite the other. Dashboard rows feed the
  * digest and closing brief; a stored proposed quote is not an agreement.
+ * Digest/show/close also compare current GitHub main and flag differences or
+ * unavailable checks. Closing drafts wait for reconciliation.
+ * --fixture --registry-file <json> supplies orders only for isolated tests.
  *
  * Dates are ISO, day math is UTC, and "days" in the digest means whole days
  * since the row's most recent event. A row seeded on the day it was written
@@ -71,7 +74,7 @@ import path from "node:path";
 import {
   LADDER, EVENTS, TERMINAL, CHANNELS, parseArgs, localDate, isDate, daysBetween,
   resolveDataPath, insideGit, loadBook, lastEvent, loadRegistry, registryFacts, assertLegacyWritable, saveSessionBook,
-  clientFileSlugs, norm, flagsFor, pad, trunc,
+  clientFileSlugs, norm, flagsFor, registryReviewLines, pad, trunc,
 } from "./lib/ledger.mjs";
 
 const { flags, positional } = parseArgs(process.argv.slice(2));
@@ -120,7 +123,7 @@ function getRow(book, slug) {
 // ---------------------------------------------------------------- commands
 
 async function digest(book) {
-  const registry = await loadRegistry();
+  const registry = await loadRegistry(flags);
   const rows = Object.entries(book.rows).map(([slug, row]) => {
     const last = lastEvent(row);
     const reg = registryFacts(registry, slug, row);
@@ -131,7 +134,7 @@ async function digest(book) {
       lastType: last?.type ?? null,
       lastDate: last?.date ?? null,
       days: last ? daysBetween(last.date, today) : null,
-      flags: flagsFor(row, today),
+      flags: flagsFor(row, today, reg),
     };
   });
   rows.sort((a, b) => {
@@ -149,11 +152,18 @@ async function digest(book) {
   for (const s of clientFileSlugs()) if (!known.has(norm(s))) missing.push(`${s} (client file)`);
 
   if (flags.json) {
-    console.log(JSON.stringify({ today, file: DATA, authority:book.authority||null, rows, missing }, null, 2));
+    console.log(JSON.stringify({ today, file: DATA, authority:book.authority||null, registryCheck:registry.check, rows, missing }, null, 2));
     return;
   }
 
   console.log(`Ledger  ${today}  ${book.authority?`studio dashboard revision ${book.authority.revision} (read through archive pointer)`:DATA}`);
+  console.log(`Registry: ${registry.check.source} (${registry.check.status})${registry.check.blobSha ? ' blob '+registry.check.blobSha : ''}`);
+  if(registry.check.message)console.log(registry.check.message);
+  const reviews=rows.filter(r=>registryReviewLines(r.registry?.registryReview).length);
+  if(reviews.length){
+    console.log('\nREGISTRY REVIEW');
+    for(const r of reviews){console.log('  '+r.slug);for(const line of registryReviewLines(r.registry.registryReview))console.log('    '+line);}
+  }
   const attention = rows.filter((r) => r.flags.length && !TERMINAL.has(r.stage));
   console.log("");
   console.log(attention.length ? "NEEDS A TOUCH" : "NEEDS A TOUCH: nothing today");
@@ -190,7 +200,7 @@ async function digest(book) {
   console.log(`${rows.length} rows. Stages: ${LADDER.join(" > ")}.`);
 }
 
-function show(book) {
+async function show(book) {
   const slug = positional[0] || fail("show needs a slug");
   const row = getRow(book, slug);
   console.log(`${slug}: ${row.name}${row.town ? `, ${row.town}` : ""}`);
@@ -198,7 +208,11 @@ function show(book) {
   for (const k of ["channel", "repo", "host", "contact", "score"]) if (row[k] !== undefined && row[k] !== "") console.log(`  ${pad(k, 8)} ${row[k]}`);
   if (row.price?.build || row.price?.monthly) console.log(`  price    $${row.price.build ?? "?"} + $${row.price.monthly ?? "?"}/mo (ledger fallback)`);
   if (row.next?.action) console.log(`  next     ${row.next.action}${row.next.due ? ` [${row.next.due}]` : ""}`);
-  const f = flagsFor(row, today);
+  const registry=await loadRegistry(flags),facts=registryFacts(registry,slug,row);
+  console.log(`  registry ${registry.check.source} (${registry.check.status})`);
+  if(registry.check.message)console.log('  '+registry.check.message);
+  for(const line of registryReviewLines(facts?.registryReview))console.log('  '+line);
+  const f = flagsFor(row, today, facts);
   if (f.length) console.log(`  flags    ${f.join(", ")}`);
   console.log("  events");
   for (const e of row.events) console.log(`    ${e.date}  ${pad(e.type, 9)} ${e.note || ""}`);

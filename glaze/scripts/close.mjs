@@ -50,7 +50,7 @@ import fs from "node:fs";
 import path from "node:path";
 import {
   CLOSING, TERMINAL, parseArgs, localDate, daysBetween, resolveDataPath, loadBook,
-  lastEvent, lastOf, loadRegistry, registryFacts, flagsFor,
+  lastEvent, lastOf, loadRegistry, registryFacts, flagsFor, registryReviewLines,
 } from "./lib/ledger.mjs";
 
 const { flags } = parseArgs(process.argv.slice(2));
@@ -68,7 +68,7 @@ function fail(msg) {
 
 let book;try{book=loadBook(DATA);}catch(error){fail(error.message);}
 if (!book) fail(`no ledger at ${DATA}; see glaze/ledger.md`);
-const registry = await loadRegistry();
+let registry;try{registry=await loadRegistry(flags);}catch(error){fail(error.message);}
 
 // ---------------------------------------------------------------- which rows
 
@@ -91,7 +91,7 @@ function brief(slug, row) {
   const reply = lastOf(row, "reply");
   const touch = lastOf(row, "touch");
   const untouchedSinceReply = !!reply && (!touch || touch.date < reply.date);
-  const f = flagsFor(row, today);
+  const f = flagsFor(row, today, reg);
   const reasons = [...f];
   if (untouchedSinceReply) reasons.push("no touch since their reply");
 
@@ -107,7 +107,9 @@ function brief(slug, row) {
       : null;
 
   const firstName = firstNameOf(reg?.contactName || "") || firstNameOf(row.contact || "");
-  const draft = templateDraft({ slug, row, reg, theirs, firstName, reply, days });
+  const readyForDraft=!['differs','ambiguous','unavailable'].includes(reg?.registryReview?.status)&&registry.check.status!=='unavailable';
+  const draft = readyForDraft ? templateDraft({ slug, row, reg, theirs, firstName, reply, days }) :
+    {source:'withheld',subject:'',body:'',summary:'Resolve the registry check before preparing this follow-up.'};
 
   return {
     slug,
@@ -117,6 +119,8 @@ function brief(slug, row) {
     lastType: last?.type ?? null,
     reasons,
     money,
+    registryReview:reg?.registryReview||null,
+    readyForDraft,
     contact: { name: reg?.contactName || "", email: reg?.email || "", ledger: row.contact || "" },
     ours,
     theirs,
@@ -124,7 +128,7 @@ function brief(slug, row) {
     hasProjectPage: !!reg?.hasProject,
     next: row.next?.action ? row.next : null,
     draft,
-    afterSending: row._studio ? ['Record the completed follow-up in this account’s dated dashboard history. Nothing is sent automatically.'] : [
+    afterSending: !readyForDraft ? [] : row._studio ? ['Record the completed follow-up in this account’s dated dashboard history. Nothing is sent automatically.'] : [
       `node glaze/scripts/ledger.mjs log ${slug} touch "${draft.summary}"`,
       ...(ours.length ? [`node glaze/scripts/ledger.mjs log ${slug} decision "<which TODO got answered>"`] : []),
     ],
@@ -187,7 +191,7 @@ function templateDraft({ slug, row, reg, theirs, firstName, reply, days }) {
 
 // ---------------------------------------------------------------- claude
 
-const VOICE = `You write short follow-up emails for Kevin Hershock, who runs Glazed Web, a one-person website studio in Marshall, Michigan. Each email goes to a small business owner who has already received a proposal and, in most cases, replied that they are interested.
+const VOICE = `You write short follow-up emails for Kevin Hershock, who runs Glazed Web, a one-person website studio in Marshall, Michigan. Each email goes to a small business owner who has already received a proposal and, in most cases, replied that they are interested. Do not draft a message when readyForDraft is false; report the registry-review issue for reconciliation first.
 
 Write the way Kevin talks across a bar: one idea per sentence, subject then verb, the fact and nothing around it. American spelling. No em dashes; use a period or a comma. No greeting longer than "Hi <name>," and no sign-off beyond his name and number.
 
@@ -216,6 +220,7 @@ function render(b) {
   out.push("");
   out.push(`Why today: ${b.reasons.length ? b.reasons.join("; ") : "nothing flagged today"}`);
   out.push(`Money: ${money}`);
+  for(const line of registryReviewLines(b.registryReview))out.push(line);
   if (b.contact.name || b.contact.email || b.contact.ledger) {
     out.push(`Contact: ${[b.contact.name, b.contact.email, b.contact.ledger].filter(Boolean).join(" / ")}`);
   }
@@ -233,6 +238,7 @@ function render(b) {
     else out.push("  - nothing");
   }
   out.push("");
+  if(!b.readyForDraft){out.push('Follow-up withheld: check the registry source and reconcile the account before drafting.');out.push('');return out.join('\n');}
   out.push(`Follow-up (${b.draft.source}):`);
   out.push("");
   out.push(`    Subject: ${b.draft.subject}`);
@@ -245,13 +251,13 @@ function render(b) {
   return out.join("\n");
 }
 
-const heading = `# Closing brief, ${today}\n\n${rows.length} ${rows.length === 1 ? "business" : "businesses"}${flags.all ? " (all closing stages)" : " needing a touch"}. Ledger: ${DATA}\n`;
+const heading = `# Closing brief, ${today}\n\n${rows.length} ${rows.length === 1 ? "business" : "businesses"}${flags.all ? " (all closing stages)" : " needing a touch"}. Ledger: ${DATA}\nRegistry: ${registry.check.source} (${registry.check.status})${registry.check.blobSha ? ' blob '+registry.check.blobSha : ''}\n${registry.check.message||''}\n`;
 const text = rows.length
   ? `${heading}\n${rows.map(render).join("\n---\n\n")}`
   : `${heading}\nNothing to close today. Run with --all for the whole call sheet.\n`;
 
 if (flags.json) {
-  console.log(JSON.stringify({ today, file: DATA, authority:book.authority||null, sessionVoice:VOICE, rows }, null, 2));
+  console.log(JSON.stringify({ today, file: DATA, authority:book.authority||null, registryCheck:registry.check, sessionVoice:VOICE, rows }, null, 2));
 } else {
   console.log(text);
 }

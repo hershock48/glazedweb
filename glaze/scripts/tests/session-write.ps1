@@ -1,11 +1,11 @@
 # Session CLI regression, no API credentials or customer/provider calls.
-# Usage from glazedweb: pwsh -File glaze/scripts/tests/session-write.ps1
-# Requires the sibling glazedweb-admin review branch (lib/session-writer.mjs).
+# Usage from glazedweb: powershell -File glaze/scripts/tests/session-write.ps1
+# Also runs on PowerShell 7. Requires sibling glazedweb-admin adapter version 1.
 $ErrorActionPreference='Stop'
 $repoRoot=[IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../../..'))
 $adminRoot=[IO.Path]::GetFullPath((Join-Path $repoRoot '../glazedweb-admin'))
 $fixtureRoot=Join-Path ([IO.Path]::GetTempPath()) ('glaze-session-'+[guid]::NewGuid())
-$fixtureFile=Join-Path $adminRoot ('data/review-fixture-'+[guid]::NewGuid()+'.json')
+$fixtureFile=Join-Path $fixtureRoot 'studio.json'
 $archive=Join-Path $fixtureRoot 'ledger.json'
 $pool=Join-Path $fixtureRoot 'pool.json'
 $resultFile=Join-Path $fixtureRoot 'research.json'
@@ -13,17 +13,28 @@ $realFile=Join-Path $adminRoot 'data/studio.json'
 $originalHash=if(Test-Path -LiteralPath $realFile){(Get-FileHash -LiteralPath $realFile -Algorithm SHA256).Hash}else{''}
 function WriteJson($file,$value){[IO.File]::WriteAllText($file,($value|ConvertTo-Json -Depth 40),[Text.UTF8Encoding]::new($false))}
 function Assert($condition,$message){if(!$condition){throw $message}}
-function ReadFixture{Get-Content -LiteralPath $fixtureFile -Raw|ConvertFrom-Json -AsHashtable}
+function ReadFixture{Get-Content -LiteralPath $fixtureFile -Raw|ConvertFrom-Json}
+function CaptureCli([string]$script,[string[]]$parameters){
+ # Windows PowerShell treats native stderr as ErrorRecord output under Stop.
+ # Capture it explicitly so expected refusals can be asserted by exit code.
+ $priorPreference=$ErrorActionPreference
+ try{
+  $ErrorActionPreference='Continue'
+  $output=& node (Join-Path $repoRoot ('glaze/scripts/'+$script+'.mjs')) @parameters 2>&1
+  $code=$LASTEXITCODE
+ }finally{$ErrorActionPreference=$priorPreference}
+ return @{Code=$code;Text=($output|ForEach-Object {$_.ToString()}) -join "`n"}
+}
 function RunCli([string]$script,[string[]]$parameters){
- $output=& node (Join-Path $repoRoot ('glaze/scripts/'+$script+'.mjs')) @parameters --fixture --file $archive 2>&1
- if($LASTEXITCODE -ne 0){throw ($output -join "`n")}
- return ($output -join "`n")
+ $result=CaptureCli $script ($parameters+@('--fixture','--file',$archive))
+ if($result.Code -ne 0){throw $result.Text}
+ return $result.Text
 }
 try{
  New-Item -ItemType Directory -Path $fixtureRoot|Out-Null
  $untouched=@{name='Untouched';stage='paid';events=@(@{date='2026-09-01';type='pay';note='Full build payment'});commercial=@{build=500;monthly=50;monthlyStatus='not-started'};next=@{action='Meet';due='2026-09-17';time='10:00';owner='kevin'}}
  WriteJson $archive @{version=1;rows=@{archive=@{name='Old record'}}}
- WriteJson ($archive+'.authority.json') @{version=1;mode='studio-local';file=$fixtureFile}
+ WriteJson ($archive+'.authority.json') @{version=1;mode='studio-local';file=$fixtureFile;adapter=(Join-Path $adminRoot 'lib/session-writer.mjs')}
  WriteJson $fixtureFile @{revision=1;book=@{version=1;rows=@{untouched=$untouched}}}
  $archiveHash=(Get-FileHash -LiteralPath $archive).Hash
  RunCli 'ledger' @('add','fixture','--name','Fixture Bakery','--build','4500','--monthly','195','--channel','visit')|Out-Null
@@ -40,7 +51,7 @@ try{
  Assert ($saved.book.rows.fixture.commercial.build -eq 4500) 'Nested quote was lost'
  Assert ($saved.book.rows.fixture.next.action -eq 'Check billing start') 'Next action did not save'
  Assert ($saved.book.rows.fixture.contact -eq 'Fixture Owner') 'Set did not save'
- $brief=RunCli 'research' @('--slug','fixture','--draft','--json')|ConvertFrom-Json -AsHashtable
+ $brief=RunCli 'research' @('--slug','fixture','--draft','--json')|ConvertFrom-Json
  Assert ($brief.runtime -eq 'signed-in-session') 'Research tried to use a provider'
  WriteJson $resultFile @{B=2;D=1;B_evidence=@('https://example.invalid/review');D_evidence=@('https://example.invalid/news');hook='Fixture hook';owner='Fixture Owner';disqualified=$null}
  RunCli 'research' @('--write','fixture','--from',$resultFile)|Out-Null
@@ -50,8 +61,8 @@ try{
  WriteJson $pool @{version=1;anchors=@{};candidates=@{'node-1'=@{id='node-1';name='New Fixture Bakery';town='Marshall';kind='bakery';status='new';distanceHome=2;lat=42.27;lon=-84.96;site=@{state='none'}}}}
  RunCli 'select' @('--commit','--pool',$pool,'--n','1','--min','0')|Out-Null
  $saved=ReadFixture
- Assert ($saved.book.rows.Count -eq 3) 'Selector did not add exactly one account'
- $digest=RunCli 'ledger' @('digest','--json')|ConvertFrom-Json -AsHashtable
+ Assert (@($saved.book.rows.PSObject.Properties).Count -eq 3) 'Selector did not add exactly one account'
+ $digest=RunCli 'ledger' @('digest','--json')|ConvertFrom-Json
  $selected=$digest.rows|Where-Object poolId -eq 'node-1'
  Assert ($selected.businessKind -eq 'bakery') 'Selector business kind did not survive projection'
  Assert ($selected.channel -eq 'visit') 'Selector lost sales channel'
@@ -59,24 +70,24 @@ try{
  Assert (($saved.book.rows.untouched|ConvertTo-Json -Depth 20 -Compress) -eq ($untouched|ConvertTo-Json -Depth 20 -Compress)) 'Unrelated account changed'
  Assert ((Get-FileHash -LiteralPath $archive).Hash -eq $archiveHash) 'Archived ledger was modified'
  $before=(Get-FileHash -LiteralPath $fixtureFile).Hash
- $errorOutput=& node (Join-Path $repoRoot 'glaze/scripts/ledger.mjs') set fixture build=-2 --fixture --file $archive 2>&1
- Assert ($LASTEXITCODE -eq 1) 'Invalid price was accepted'
- Assert (($errorOutput -join "`n") -match '^ledger:' -and ($errorOutput -join "`n") -notmatch 'at file:') 'Validation printed a stack trace'
+ $refused=CaptureCli 'ledger' @('set','fixture','build=-2','--fixture','--file',$archive)
+ Assert ($refused.Code -eq 1) 'Invalid price was accepted'
+ Assert ($refused.Text -match '^ledger:' -and $refused.Text -notmatch 'at file:') 'Validation printed a stack trace'
  Assert ((Get-FileHash -LiteralPath $fixtureFile).Hash -eq $before) 'Invalid write changed data'
  $defaultMarker=Join-Path $repoRoot '../contracts-private/ledger.json.authority.json'
  if(Test-Path -LiteralPath $defaultMarker){
-  $overrideError=& node (Join-Path $repoRoot 'glaze/scripts/ledger.mjs') set fixture name=Wrong --file $archive 2>&1
-  Assert ($LASTEXITCODE -eq 1 -and ($overrideError -join "`n") -match 'authority is active') 'Explicit file silently bypassed the authority'
+  $override=CaptureCli 'ledger' @('set','fixture','name=Wrong','--file',$archive)
+  Assert ($override.Code -eq 1 -and $override.Text -match 'authority is active') 'Explicit file silently bypassed the authority'
   Assert ((Get-FileHash -LiteralPath $fixtureFile).Hash -eq $before) 'Path override changed data'
  }
  RunCli 'ledger' @('log','fixture','park','Parked for a later date')|Out-Null
  RunCli 'ledger' @('log','fixture','pay','Older receipt recorded later','--date','2026-09-01')|Out-Null
  Assert ((ReadFixture).book.rows.fixture.operations.sales -eq 'parked') 'Old receipt reopened a parked account'
- $copy=Get-Content -LiteralPath $pool -Raw|ConvertFrom-Json -AsHashtable
- $copy.candidates['node-1'].status='new';WriteJson $pool $copy
- $duplicateError=& node (Join-Path $repoRoot 'glaze/scripts/select.mjs') --commit --pool $pool --min 0 --fixture --file $archive 2>&1
- Assert ($LASTEXITCODE -eq 1 -and ($duplicateError -join "`n") -match 'no eligible candidates') 'Selection duplicated an existing pool account'
- Assert ((ReadFixture).book.rows.Count -eq 3) 'Selector created a duplicate'
+ $copy=Get-Content -LiteralPath $pool -Raw|ConvertFrom-Json
+ $copy.candidates.'node-1'.status='new';WriteJson $pool $copy
+ $duplicate=CaptureCli 'select' @('--commit','--pool',$pool,'--min','0','--fixture','--file',$archive)
+ Assert ($duplicate.Code -eq 1 -and $duplicate.Text -match 'no eligible candidates') 'Selection duplicated an existing pool account'
+ Assert (@((ReadFixture).book.rows.PSObject.Properties).Count -eq 3) 'Selector created a duplicate'
  Write-Output 'Session CLI regression passed: add, send/reply/meet/payment logs, next, set, no-key research, research write, selector commit, source retention, archive and unrelated-account preservation.'
 }finally{
  if(Test-Path -LiteralPath $fixtureFile){Remove-Item -LiteralPath $fixtureFile}

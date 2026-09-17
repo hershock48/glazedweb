@@ -11,7 +11,8 @@ export function studioAuthority(file){
  if(!fs.existsSync(marker))return null;
  const config=JSON.parse(fs.readFileSync(marker,'utf8'));
  if(config.version!==1||config.mode!=='studio-local'||typeof config.file!=='string'||!config.file)throw Error('Invalid ledger authority marker; refusing to fall back to old records.');
- return {file:path.resolve(path.dirname(marker),config.file)};
+ if(config.adapter!==undefined&&(typeof config.adapter!=='string'||!config.adapter))throw Error('Invalid session adapter path in the authority marker.');
+ return {file:path.resolve(path.dirname(marker),config.file),...(config.adapter?{adapter:path.resolve(path.dirname(marker),config.adapter)}:{})};
 }
 export function assertLegacyWritable(file){
  if(studioAuthority(file))throw Error('This ledger is archived. Use the session writer or studio dashboard to update its authority target.');
@@ -63,9 +64,14 @@ export async function saveSessionBook(file,before,after,date){
  const authority=studioAuthority(file);
  if(!authority)return false;
  if(before?.authority?.source!=='studio-dashboard')throw Error('Reload the authoritative ledger before writing.');
- const adapter=path.resolve(path.dirname(authority.file),'..','lib','session-writer.mjs');
- if(!fs.existsSync(adapter))throw Error('Update glazedweb-admin to the review branch containing lib/session-writer.mjs.');
- const {writeSessionBook}=await import(pathToFileURL(adapter).href);
+ // An explicit adapter path allows disposable storage outside the app's data
+ // directory. Existing pilot markers keep their original adjacent-app default.
+ const adapter=authority.adapter||path.resolve(path.dirname(authority.file),'..','lib','session-writer.mjs');
+ if(!fs.existsSync(adapter))throw Error('Session adapter missing. Install the matching glazedweb-admin version before enabling session writes.');
+ const {writeSessionBook,SESSION_ADAPTER}=await import(pathToFileURL(adapter).href);
+ if(SESSION_ADAPTER?.id!=='glazedweb-studio-session'||SESSION_ADAPTER.version!==1||typeof writeSessionBook!=='function'){
+  throw Error('Session adapter is incompatible. This reader requires glazedweb-studio-session version 1. Update glazedweb-admin first; no account was changed.');
+ }
  await writeSessionBook(authority.file,before.authority.revision,before,after,date);
  return true;
 }

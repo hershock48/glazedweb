@@ -26,6 +26,7 @@ Status: active. Updated September 17, 2026. Completion requires evidence, not a 
 - [ ] L06 (codex) Copper: trace contact/reserve intake, workroom persistence and owner access. Preserve Toast ordering and prevent parked in-house order paths on the client host.
 - [ ] L07 (codex) All three: map customer and owner journeys with route-level tests for order/enquiry, payment where applicable, notification, fulfillment, cancellation and refund.
 - [ ] L08 (codex) Build/lint and targeted accessibility/mobile checks on changed journeys; document real deployment verification still required.
+- [ ] L09 (codex) Reproduce and resolve the September 17 re-review R1-R6: preserve LF without rewriting pinned commits; provide audited owner resolution for unresolved payments; version the session-adapter contract; diagnose/document trusted-proxy configuration; make committed-tree tests and disposable fixtures reproducible; flag registry drift in readers. Review R7 lows afterward. Source: contracts-private/reviews/2026-09-17-codex-rereview.md. Implemented for PR re-review; clean published-tree verification is recorded in the PR handoff. Remains open until cross-review.
 - [ ] G01 (codex) External gate: provider sandbox credentials, monitored test inbox access and owner/domain confirmation. Verify installed deployments, then prepare concrete cutover plans for approval.
 
 ## 2. Make the ledger authoritative and usable
@@ -58,10 +59,10 @@ Status: active. Updated September 17, 2026. Completion requires evidence, not a 
 
 ## 5. Measure the business
 
-- [ ] M01 (codex) Replace ambiguous cumulative totals with dated time, revenue and cost entries; distinguish collected revenue, transaction income, recurring fees and expenses without double counting.
+- [ ] M01 (codex) Replace ambiguous cumulative totals with dated time, revenue and cost entries; distinguish collected revenue, transaction income, recurring fees and expenses without double counting. Build/monthly revenue separation and preserved Uncategorized legacy entries are implemented and locally verified; actual evidence-backed records and cross-review remain open.
 - [ ] M02 (codex) Per-account summaries for period, data completeness, build/support time and contribution before unrecorded expenses. Never treat unknown as zero.
 - [ ] M03 (codex) Sales cohorts separated by warm/cold/visit with explicit dates, stages and denominators; avoid calling current status counts conversion rates.
-- [ ] M04 (codex) Import/export and correction workflow with source references; test duplicate prevention, period boundaries and totals.
+- [ ] M04 (codex) Import/export and correction workflow with source references; test duplicate prevention, period boundaries and totals. Previewed receipt imports, cross-account identity checks and atomic linked corrections are implemented and locally verified. Cross-review and hosted import/restore verification remain open.
 - [x] M05 (codex) Document the weekly review: next actions, blocked launches, unpaid builds, monthly starts, time/cost exceptions and candidates for reusable products. Published in glazedweb-admin/docs/weekly-review.md.
 
 ## 6. Streamline prospect-to-partnership work
@@ -268,3 +269,7 @@ Earlier launch review: Glazed-Web-launch-readiness.md. Its old expected-payment 
 - H1-H4 and M8: implemented for re-review. Normalized imported facts, evidence-backed four-account reconciliation, nested-price import, one revision-checked session writer, no-key research/closing briefs, full-pipeline and authority docs restored. Scope and test commands are in catalog/review-fixes-2026-09-17.md.
 - H5-H7: implemented for re-review. Staff retry of definitive failure, typed pre-payment failure boundary, jsonb-safe gateway comparison, per-trusted-address durable throttles. Unknown charges remain blocked; no live provider or deployment action.
 - Final private reconciliation advanced revision23 to24 with a retained backup. True North and Stagecoach are unchanged. The economics work is paused until this requested review set is handed back. Cross-agent review and live rollout gates remain open.
+
+### 2026-09-17 R1-R6 follow-up (codex)
+
+Verdicts and fixes are recorded in handoff.md and catalog/review-fixes-2026-09-17.md. The Documents backlog is a retirement pointer with its old contents archived. Cross-review is on the existing GitHub PRs. No main merge, hosted deployment, real provider action or account data change occurred.

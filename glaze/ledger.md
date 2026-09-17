@@ -17,7 +17,11 @@ all account data stay private; neither belongs in this public repository.
 With that marker, digest/show, closing briefs, scouting comparisons and research
 briefs read the current dashboard. Ledger add/log/next/set, research --write and
 selector --commit write to that same store through the session adapter. They use
-the dashboard's exclusive file lock and revision check. A stale command fails
+the dashboard's exclusive file lock and revision check. Install the admin change
+first: the reader requires adapter ID `glazedweb-studio-session`, version 1.
+Missing or incompatible adapters refuse the write before touching account data.
+An optional `adapter` path in the private authority marker resolves relative to
+the marker; it lets test storage live outside the application data directory. A stale command fails
 with a short message; it cannot replace newer dashboard work. Missing or invalid
 authority storage fails closed. The archived ledger remains unchanged.
 
@@ -29,7 +33,16 @@ glazedweb-admin/scripts/reconcile-facts.mjs --registry <pinned-registry.mjs>.
 Review each difference and use its --plan preview followed by --apply --expect
 <sha256> to reconcile. A private backup and a dated account decision preserve the
 source and prior value. Newer receipts and billing facts are not erased by an old
-registry flag. Digest and closing briefs use these reconciled dashboard records.
+registry flag. Digest, show and closing briefs also check current GitHub main on
+every run. `REGISTRY DIFFERS` prints both saved and registry values;
+`REGISTRY NOT CHECKED` reports network, rate-limit or parsing failures explicitly.
+Ambiguous aliases are flagged too. No read changes either record. Closing drafts
+are withheld while that account differs or the check is unavailable.
+
+The check has a five-second timeout, uses the public GitHub API without a token,
+and records the source blob SHA and check time. Run `npm ci` in glazedweb first:
+Next supplies the parser. Downloaded registry code is parsed as literal data,
+never executed. An unavailable check never silently falls back to a local copy.
 
 The full pipeline decision from September 13 still stands: automate finding and
 qualifying prospects, research, proposal and demo preparation, follow-up drafting,
@@ -190,7 +203,7 @@ payment in (stages sent, replied, meeting, confirmed, paid-part), one brief:
 
 - **Why today.** The digest's flags, plus "no touch since their reply",
   which is the state every interested prospect was in on 2026-09-13.
-- **Money.** Build, monthly, paid or not, accepted or not, from the registry.
+- **Money.** Reconciled account prices and separate payment/billing facts, with a current registry comparison and visible differences.
 - **Kevin still has to get.** The `TODO` comments on the registry row, parsed
   out of `lib/customOrders.js` with their full text. These are the facts the
   agreement cannot be signed without.
@@ -241,9 +254,19 @@ Not the client file. Durable facts, decisions, permissions and retired lines
 stay in `glaze/clients/<client>.md`. The ledger holds dated events and one
 next action.
 
-Scope and owner-set prices stay in registry main; the reconciliation above records their reviewed effect on account facts. A conflicting snapshot needs review before a proposal uses it.
+Not the registry. Scope and numbers stay in `lib/customOrders.js` and the
+ledger reads them. If a price shows up in a ledger note it is a quote of the
+registry, not a second home for it. The dashboard carries the reviewed copy
+used by account workflows; the comparison and reconciliation above prevent
+that copy from silently replacing Kevin's price of record.
 
-The private studio dashboard and session commands are two views of the same account store.
+Not a CRM. Twenty rows and a text digest. The day it needs a screen is the
+day a second person reads it.
+
+That is the original scope rule, retained pending Kevin's doctrine ruling.
+Kevin subsequently requested the private studio dashboard; it and session
+commands now share one account store. This implementation does not silently
+replace that rule with a broader CRM or unattended outreach policy.
 
 ---
 

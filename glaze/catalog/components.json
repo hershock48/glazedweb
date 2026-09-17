@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "verification": "Working copies inspected September 16, 2026; deployment versions unknown.",
+  "verification": "Working copies inspected September 17, 2026; deployment versions unknown.",
   "testCommand": "node --test --test-isolation=none glaze/assets/shared-components.test.mjs",
   "components": [
     {
@@ -196,6 +196,26 @@
       ],
       "sourceRepository": "https://github.com/hershock48/glazedweb",
       "sourceCommit": "5c041d8848d73a97b5ac182e56d3c44cc8d445d9"
+    },
+    {
+      "id": "order-quote",
+      "version": "1.0.0",
+      "file": "glaze/assets/order-quote/1.0.0/order-quote.ts",
+      "capability": "Whole quantities/cents, exact totals, collision-safe cart identity and fresh-price review",
+      "limits": "Requires validated menu, current availability and reviewed option resolver. No provider payments, durable order retries, transactional fanout or hosted deployment verification.",
+      "sha256LF": "3826e09cb8eeb0361788b7c22d6865b93c3c661f0b84d7c7704515de2cc155e2",
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/ordering/order-quote.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/ordering/order-quote.ts"
+        }
+      ],
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "e341e5f653c43bf0a5e7877e915cdd83a8eb75ef"
     }
   ]
 }

@@ -44,3 +44,5 @@ extracted the way `glaze/assets/glazed-credit/` was. The kitchen system is
 already four repos past this bar; its row in apps.md says so.
 
 [Printer job/review release](printer-release.md) documents shared printer-jobs and printer-review 1.0.0, client integration, protocol tests and coordinated device rollout gates.
+
+[Order confirmation release](notification-release.md) documents notification-outbox, notification-provider and notification-request 1.0.0, bounded retries, owner recovery and live-provider/scheduler gates.

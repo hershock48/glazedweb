@@ -98,3 +98,9 @@ The actual production Next owner recovery form saved one audit receipt in an iso
 Please re-check R1-R6 and H3 on the PRs. Admin must merge before the reader because of its version-1 adapter handshake. The restored CRM scope wording remains Kevin's doctrine decision; this repair does not erase his requested dashboard. Unrelated M2/R7 findings and actual-host/provider checks are not claimed closed. Review records now belong on GitHub; this entry is the handoff and evidence pointer.
 
 Status: ready for cross-review on the PRs; no merge requested from Codex.
+
+## 2026-09-17 Claude, takeover progress (evening)
+
+Done on claude/* branches, each with a pull request against the Codex branch and a manual review posted (the workflow does not run on feature-branch bases): copperac #6 (R4, R5, em dashes; review answered in 7ac3b5c), glazedweb #8 and glazedweb-admin #9 (R3 handshake, R6 flag tests), devine #6 (R1 LF, R2 override test, R4 message, L1 comments restored), truenorth #6 (M4 home caveat, L12 allergen wording), glazedweb-admin #10 (account at a glance), glazedweb #9 (software inventory, 198 files, 57 identical groups). Codex had pushed partial fixes for R1 to R6 before its window closed (e08293e, 16f3ea4, 67e7cdd, abdb04f); those were verified and built on, not redone. New from the inventory: Mike's Place global lockout (B8), PJ's and Cookin' with Beans weak sign-in (B9). Kevin: True North build is paid in the dashboard but unpaid in lib/customOrders.js; flip the registry.
+
+Status: open

@@ -1,0 +1,15 @@
+# Account economics and receipt imports
+
+The private `glazedweb-admin` dashboard owns dated account cash and work records. Its economics guide is `docs/economics.md`; source is `lib/economics.mjs`, `lib/receipt-import.mjs`, `components/AccountEconomics.js`, `components/ReceiptImport.js`, and `scripts/import-receipts.mjs`.
+
+This release separates build revenue and monthly revenue, preserving older client revenue as Uncategorized. All types use dated entries and exact integer cents or hundredths of an hour. Recorded costs, transaction income and refunds remain separate; missing records are unknown.
+
+Receipt identity is the stable source account, original payment reference and original line reference. It is unique across the whole ledger, including excluded originals. Corrections append one linked replacement and exclude its parent atomically, retaining the identity. Original facts remain visible and survive exports. A replay of an old receipt file cannot undo a correction.
+
+The browser accepts the documented JSON format, previews every disposition, skips exact financial repeats and refuses a whole batch with conflicting or invalid rows. Apply checks the exact input digest and current ledger revision under the storage lock. The local CLI uses the same plan/apply logic with a before snapshot and input backup. Full-ledger imports also reject receipt collisions across the resulting combined accounts.
+
+This is an operator-reviewed import, not an automated bank feed or a payment action. The same cash movement under different source references still needs human review. Unreferenced manual entries cannot be matched automatically. USD only; no invented receipts from account prices or status flags. The studio reports retain current-status sales groups by first-contact date, not historical conversion claims.
+
+Validation on September 17: 53 dashboard tests pass, including seven new receipt/correction/storage cases. The actual CLI preview, guarded apply, backup and replay passed on disposable data. Browser checks passed stale-preview draft retention, fresh import, repeated import, linked correction and totals, manual duplicate refusal, work hours, date-filtered reports, JSON file selection/preview, and no page overflow at 320px and 768px. The actual export matched the saved fixture including references and correction history. Isolated production build passed. The real ledger stayed at revision 24 with no economics entries; no financial history was invented.
+
+Dashboard implementation: [glazedweb-admin PR #3](https://github.com/hershock48/glazedweb-admin/pull/3), commit `1e57cce090232654d7cdc8e5a93fd20c70af81c3`. All 53 tests also pass from a fresh archive of that published tree using the installed dependency set. The `codex/economics-receipts` branches are stacked on the dashboard and catalog review branches, leaving the earlier fix commits unchanged. Cross-review, actual receipt/time/cost records and hosted PostgreSQL import/restore verification remain open. Nothing in this release certifies the five-part program complete or deploys a site.

@@ -25,6 +25,7 @@ Two obligations, one per direction:
 | [pipelines.md](pipelines.md) | Asset work: brand extraction, glyph tracing, self-drawing artwork, link-card rendering. |
 | [web-bones.md](web-bones.md) | Components and flows that took a session or more to get right. |
 | [apps.md](apps.md) | Whole systems — things with routes, state and a second user. The kitchen system lives here. |
+| [economics-release.md](economics-release.md) | Private account economics, distinct build/monthly revenue, receipt import preview, atomic corrections and duplicate boundaries. |
 
 ## The bar for an entry
 

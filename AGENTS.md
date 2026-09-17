@@ -38,4 +38,4 @@ Put the objection and the evidence in handoff.md. A failing test or a measured n
 
 ## Facts
 
-Facts live in one place; point at them, never copy them. Prices and payment status come from `lib/customOrders.js` on main, which Kevin edits. The ledger authority question (dashboard snapshot versus registry) is open in handoff.md; until it is settled, the registry is the price of record and the dashboard is the record of events.
+Facts live in one place; point at them, never copy them. Prices and payment status come from `lib/customOrders.js` on main, which Kevin edits. Kevin sets prices in that registry. The dashboard holds a reconciled copy that the digest and closing brief read, so after any price change run `../glazedweb-admin/scripts/reconcile-facts.mjs` and apply the plan; a stale copy is the failure that produced H3 on 2026-09-17.

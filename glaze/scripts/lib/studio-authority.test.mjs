@@ -46,14 +46,28 @@ test('session writer checks its contract before calling a relocated adapter',asy
  const before={authority:{source:'studio-dashboard',revision:1},rows:{}};
  try{
   fs.writeFileSync(store,'unchanged');
-  for(const [name,contract]of [['missing',''],['wrong',"export const SESSION_ADAPTER={id:'glazedweb-studio-session',version:2};"],['foreign',"export const SESSION_ADAPTER={id:'different-writer',version:1};"]]){
+  const id="export const SESSION_ADAPTER={id:'glazedweb-studio-session',version:1};";
+  // Every refusal names the version this reader expects, what the writer
+  // exports, and the repo to update. 'legacy' is the admin shape before
+  // SESSION_WRITER_VERSION existed; it must refuse, not pass on its adapter id.
+  for(const [name,contract,message]of [
+   ['missing','',/expects session-writer version 1 and .*exports no SESSION_WRITER_VERSION, so update glazedweb-admin/],
+   ['legacy',id,/expects session-writer version 1 and .*exports no SESSION_WRITER_VERSION, so update glazedweb-admin/],
+   ['older',id+'export const SESSION_WRITER_VERSION=0;',/expects session-writer version 1 and .*exports version 0, so update glazedweb-admin/],
+   ['newer',id+'export const SESSION_WRITER_VERSION=2;',/expects session-writer version 1 and .*exports version 2, so update glazedweb;/],
+   ['foreign',"export const SESSION_ADAPTER={id:'different-writer',version:1};export const SESSION_WRITER_VERSION=1;",/identifies itself as different-writer version 1, so update glazedweb-admin/],
+  ]){
    const adapter=path.join(dir,name+'.mjs');
    fs.writeFileSync(adapter,contract+"export async function writeSessionBook(){throw Error('writer was called');}");
    fs.writeFileSync(archive+'.authority.json',JSON.stringify({version:1,mode:'studio-local',file:'store.json',adapter:name+'.mjs'}));
-   await assert.rejects(saveSessionBook(archive,before,before,'2026-09-17'),/incompatible/);
+   await assert.rejects(saveSessionBook(archive,before,before,'2026-09-17'),message);
    assert.equal(fs.readFileSync(store,'utf8'),'unchanged');
   }
-  fs.writeFileSync(path.join(dir,'valid.mjs'),"import fs from 'node:fs';export const SESSION_ADAPTER={id:'glazedweb-studio-session',version:1};export async function writeSessionBook(file,revision){fs.writeFileSync(file,'called at '+revision);}");
+  fs.writeFileSync(path.join(dir,'nowriter.mjs'),id+'export const SESSION_WRITER_VERSION=1;');
+  fs.writeFileSync(archive+'.authority.json',JSON.stringify({version:1,mode:'studio-local',file:'store.json',adapter:'nowriter.mjs'}));
+  await assert.rejects(saveSessionBook(archive,before,before,'2026-09-17'),/no writeSessionBook function, so update glazedweb-admin/);
+  assert.equal(fs.readFileSync(store,'utf8'),'unchanged');
+  fs.writeFileSync(path.join(dir,'valid.mjs'),"import fs from 'node:fs';"+id+"export const SESSION_WRITER_VERSION=1;export async function writeSessionBook(file,revision){fs.writeFileSync(file,'called at '+revision);}");
   fs.writeFileSync(archive+'.authority.json',JSON.stringify({version:1,mode:'studio-local',file:'store.json',adapter:'valid.mjs'}));
   assert.equal(await saveSessionBook(archive,before,before,'2026-09-17'),true);
   assert.equal(fs.readFileSync(store,'utf8'),'called at 1');

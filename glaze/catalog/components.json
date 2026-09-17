@@ -216,6 +216,46 @@
       ],
       "sourceRepository": "https://github.com/hershock48/glazedweb",
       "sourceCommit": "e341e5f653c43bf0a5e7877e915cdd83a8eb75ef"
+    },
+    {
+      "id": "order-acceptance",
+      "version": "1.0.0",
+      "file": "glaze/assets/order-acceptance/1.0.0/order-acceptance.ts",
+      "capability": "Durable submission finality and atomic order/print/email intent",
+      "limits": "Node server helper with PostgreSQL or development-memory adapters. Caller supplies validated orders/receipts; queued notification and physical print completion require separate reconciliation.",
+      "sha256LF": "d682ddd94719ae90d9c1ad3c91d96407ec2b70a5b19f36f4ee6d3bb2433dd2b6",
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/ordering/order-acceptance.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/ordering/order-acceptance.ts"
+        }
+      ],
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "4eacdbcae009b1bbb5fdb69ec50d082fd3f3bb85"
+    },
+    {
+      "id": "order-recovery",
+      "version": "1.0.0",
+      "file": "glaze/assets/order-recovery/1.0.0/order-recovery.ts",
+      "capability": "Correlated receipt validation and bounded same-submission recovery",
+      "limits": "Requires the sibling order-quote 1.0.0 helper and matching attempt/order APIs. Browser wrapper persists only the reference; unsaved contact/cart data does not survive reload.",
+      "sha256LF": "f95f8239222ff339da010eb1edce3b7384a3217e63f63f53e78c7f955de4932e",
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/ordering/order-recovery.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/ordering/order-recovery.ts"
+        }
+      ],
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "4eacdbcae009b1bbb5fdb69ec50d082fd3f3bb85"
     }
   ]
 }

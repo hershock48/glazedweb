@@ -6,7 +6,7 @@ admin, payments, or a dashboard.
 
 ## The kitchen system — multiple client-owned copies
 
-September 17 status: component adoption is recorded in [the version registry](shared-components.md). Mike's and Copper's parked demo now use order-quote 1.0.0; these entire applications are not consolidated or certified for live operations. Older copy comparisons below are historical observations.
+September 17 status: component adoption is recorded in [the version registry](shared-components.md). Mike's and Copper's parked demo use order-quote, order-acceptance and order-recovery 1.0.0; retries recover one recorded order and queued work; these entire applications are not consolidated or certified for live operations. Older copy comparisons below are historical observations.
 
 Online ordering + kitchen display + receipt printer. API shape:
 `ordering/order`, `ordering/state`, `kitchen/login`, `kitchen/menu`,

@@ -14,7 +14,7 @@ for(const component of registry.components){
    const actual=await hash(path.join(root,copy.repo,copy.file));if(actual!==component.sha256LF)throw Error('local changes or drift');
    const manifest=JSON.parse(await fs.readFile(path.join(root,copy.repo,'.glazed/components.json'),'utf8'));
    const installed=manifest.components?.find(item=>item.id===component.id);
-   if(!installed||installed.version!==component.version||installed.file!==copy.file||installed.sha256LF!==actual||installed.sourcePath!==component.file||!/^[a-f0-9]{40}$/.test(installed.sourceCommit))throw Error('component reference missing or inconsistent');
+   if(!installed||installed.version!==component.version||installed.file!==copy.file||installed.sha256LF!==actual||installed.sourcePath!==component.file||installed.sourceRepository!==component.sourceRepository||installed.sourceCommit!==component.sourceCommit||!/^[a-f0-9]{40}$/.test(installed.sourceCommit))throw Error('component reference missing or inconsistent');
    console.log(`${copy.repo}: ${component.id}@${component.version} source and reference match; deployment ${installed.deployment}`);
   }
   catch(error){console.error(`${copy.repo}: ${component.id}: ${error.message}`);failures++;}

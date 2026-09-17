@@ -24,7 +24,9 @@
         }
       ],
       "limits": "Node crypto primitive only; each client supplies authentication, app-specific secret, secure cookies and persistent login throttling.",
-      "sha256LF": "05f92124e258bafc6a837be37516fff20d78c897738f1035d6cd0ea1971eb657"
+      "sha256LF": "05f92124e258bafc6a837be37516fff20d78c897738f1035d6cd0ea1971eb657",
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "a106b003168e4ca9de1ba5f69cf9e321d03f1482"
     },
     {
       "id": "option-pricing",
@@ -47,7 +49,9 @@
         }
       ],
       "limits": "Trusted validated menu prices in integer cents; does not calculate base price, quantity, tax, delivery fees or provider payments.",
-      "sha256LF": "495a0f4374cc547842bde81c28bcb259514928e051c77575d713d996c8b7b619"
+      "sha256LF": "495a0f4374cc547842bde81c28bcb259514928e051c77575d713d996c8b7b619",
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "a106b003168e4ca9de1ba5f69cf9e321d03f1482"
     },
     {
       "sha256LF": "a1d159ec006729ea1556830baa19bb644a42d761916445918ff6fc1214c9fe37",
@@ -65,7 +69,9 @@
       "limits": "Client save response handling only; caller disables fields while pending. Authorization, persistence, cross-window concurrency and audit remain server responsibilities.",
       "capability": "Draft-preserving owner menu save results and response validation",
       "version": "1.0.0",
-      "id": "owner-save"
+      "id": "owner-save",
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "052f26b1054e4d650fcaeeecd525ed51dcc5edd6"
     },
     {
       "id": "content-cas",
@@ -83,7 +89,9 @@
           "repo": "mikesplace",
           "file": "lib/workroom/content-cas.ts"
         }
-      ]
+      ],
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "cc1066d442b245103348689b7772e7c15cc14e6d"
     },
     {
       "id": "menu-write",
@@ -101,7 +109,9 @@
           "repo": "mikesplace",
           "file": "lib/workroom/menu-write.ts"
         }
-      ]
+      ],
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "cc1066d442b245103348689b7772e7c15cc14e6d"
     }
   ]
 }

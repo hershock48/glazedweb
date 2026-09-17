@@ -1,6 +1,6 @@
 # Versioned client-owned components
 
-`components.json` is the machine-readable registry. The versioned source under
+`components.json` is the machine-readable registry. Each entry pins the repository and commit that published its source; the copy verifier requires the same source reference in client manifests. The versioned source under
 `glaze/assets/<id>/<version>/` is the reference copy; clients keep their own files
 and do not depend on another client's deployment or an always-online package
 service. Existing designs, menus and provider choices stay in their repositories.

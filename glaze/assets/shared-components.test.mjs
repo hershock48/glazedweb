@@ -1,3 +1,4 @@
+import './menu-write/1.0.0/menu-write.test.mjs';
 import './owner-save/1.0.0/owner-save.test.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';

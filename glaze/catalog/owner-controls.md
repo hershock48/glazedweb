@@ -9,8 +9,8 @@ Source inspection: September 16, 2026. This is an implementation comparison, not
 | Prices and availability | Website menu overrides and hide switch; separate Toast ordering | Website menu overrides and hide switch; separate ordering menu | Inventory, plants and quote/order controls have florist-specific pricing | Flavor availability comes from validated shop feeds |
 | Photos | Event flyer uploads in workroom image storage | Event flyer uploads in workroom image storage | No shared image editor verified in this pass | Feed/content mapping; no shared upload control verified |
 | Incoming work | Event/contact inquiry workflow; Toast orders stay external | Event/contact controls; own ordering/kitchen implementation is separate | Dated florist orders, quotes and payment recovery | Public ordering remains disabled |
-| Access | Signed owner session and persistent login limiter in review branch | Older credential-derived session and limiter still require hardening | Signed owner/staff roles; owner-only refund confirmation | Provider-owned feed access needs handover verification |
-| Save behavior changed here | Menu draft retained, fields locked while saving, truthful uncertain feedback | Same client-owned owner-save 1.0.0 helper and interaction | Existing forms still need broader error/pending-state audit | Last-good feed behavior already implemented; no new owner form added |
+| Access | Signed owner session and persistent login limiter in review branch | Older credential-derived session and limiter still require hardening; storage now refuses production memory writes | Signed owner/staff roles; owner-only refund confirmation | Provider-owned feed access needs handover verification |
+| Save behavior changed here | Menu draft retained, fields locked while saving, truthful uncertain feedback; atomic conflict checks and recent save history | Same client-owned save helper, atomic conflict checks, and recent save history | Existing forms still need broader error/pending-state audit | Last-good feed behavior already implemented; no new owner form added |
 
 ## Common interaction rules
 
@@ -22,8 +22,8 @@ The label must state the effect: “Off the site” currently hides a website me
 
 ## Remaining work, in order
 
-1. Add atomic conflict detection and audit records to owner edits so two open devices cannot silently replace each other's work. Menu PUT currently replaces the override set.
-2. Harden Mike's owner session/storage behavior using the proven Copper patterns before treating it as launch-ready.
+1. Extend the menu conflict/audit contract to other owner edits after reviewing each storage contract. Copper and Mike's menu PUT now compare the complete saved override snapshot atomically and record accepted changes in the same statement. Local route, SQL, and two-window browser checks are documented in [menu-save-release.md](menu-save-release.md). Hosted multi-connection persistence still needs verification.
+2. Harden Mike's owner session and login limiter using the proven Copper patterns. Storage initialization, database selection, and production memory refusal now follow Copper; verify hosted database/TLS configuration before deployment.
 3. Establish which clients should control hours, photos and order availability, then bind each field to its actual public/ordering source. Preserve Toast and florist-specific boundaries.
 4. Apply the save contract to event/photo and florist controls after checking each response and authorization contract.
 5. Test actual owner/staff permissions, durable persistence, public-site updates, uploads and fulfillment on each intended deployment, followed by an owner handover.

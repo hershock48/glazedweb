@@ -66,6 +66,42 @@
       "capability": "Draft-preserving owner menu save results and response validation",
       "version": "1.0.0",
       "id": "owner-save"
+    },
+    {
+      "id": "content-cas",
+      "capability": "Atomic content comparison and before/after save history",
+      "limits": "JSON content compare-and-set for PostgreSQL or local memory. Caller supplies authenticated access and initializes the schema. Content hashes are not monotonic versions; audit actor is a role, not a named person. Local SQL tests do not certify a hosted database.",
+      "version": "1.0.0",
+      "file": "glaze/assets/content-cas/1.0.0/content-cas.ts",
+      "sha256LF": "9a9090350fcda86545ae97df7333c755ad9192b245844b4d6263ea8bb9b43cbb",
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/workroom/content-cas.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/workroom/content-cas.ts"
+        }
+      ]
+    },
+    {
+      "id": "menu-write",
+      "capability": "Complete menu submission validation with revision checks",
+      "limits": "Validates the entire known website menu and delegates price rules to the client. Does not synchronize a provider ordering menu. Must be paired with atomic storage comparison and a compatible editor.",
+      "version": "1.0.0",
+      "file": "glaze/assets/menu-write/1.0.0/menu-write.ts",
+      "sha256LF": "f537fb10b2b759d32aa84e08b47a4586d8b8d512ebeb6bc49371778ee1977aea",
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/workroom/menu-write.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/workroom/menu-write.ts"
+        }
+      ]
     }
   ]
 }

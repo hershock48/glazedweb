@@ -9,11 +9,13 @@ service. Existing designs, menus and provider choices stay in their repositories
 
 | Component | Version | Verified working copies | Boundary |
 |---|---|---|---|
+| content-cas | 1.0.0 | Copper, Mike's Place | Atomic PostgreSQL content comparison and audit insertion, with local-memory equivalent. |
+| menu-write | 1.0.0 | Copper, Mike's Place | Revision and full-menu validation; client-specific price rules remain local. |
 | owner-save | 1.0.0 | Copper, Mike's Place | Explicit save outcomes, bounded request, complete response validation; callers retain drafts and freeze submitted fields. |
 | workroom-session | 1.0.0 | DeVine, Copper | Signed owner/staff tokens with an 18-hour expiry; wrappers own app isolation, credentials, cookie flags and login throttling. |
 | option-pricing | 1.0.0 | Copper, Mike's Place | Group-qualified option picks, required/single/multiple selection rules, integer-cent option totals and disambiguated ticket labels. |
 
-These copies matched before extraction. Versioning makes that relationship
+The initial session and pricing copies matched before extraction. Later menu-save releases include new shared behavior adopted in both clients. Versioning makes that relationship
 explicit; it does not certify their whole applications or live installations.
 Copper's ordering implementation remains a parked demo; customers use Toast.
 
@@ -27,6 +29,8 @@ For option pricing, `menu.d.ts` documents the required structural interface;
 the client supplies its own compatible menu module. Menu prices must already be
 validated integer cents. Base prices, quantities, taxes, delivery and provider
 fees are separate contracts and are not covered by this release.
+
+For menu writes, see [the integration and verification notes](menu-save-release.md). Run the separate PostgreSQL statement tests with `npm ci --prefix glaze/assets/content-cas/1.0.0` and `npm test --prefix glaze/assets/content-cas/1.0.0`. This private test package uses PGlite and is not an application dependency.
 
 ## Upgrade procedure
 

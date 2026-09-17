@@ -9,6 +9,10 @@ service. Existing designs, menus and provider choices stay in their repositories
 
 | Component | Version | Verified working copies | Boundary |
 |---|---|---|---|
+| event-cas | 1.0.0 | Copper, Mike's Place | Atomic event changes and audit history; recoverable archive integration. |
+| owner-request | 1.0.0 | Copper, Mike's Place | Generic bounded POST/PUT/DELETE feedback with validated acknowledgements. |
+| event-fields | 1.0.0 | Copper, Mike's Place | Complete event/contact fields, Michigan date/time checks and listing validation. |
+| event-photo | 1.0.0 | Copper, Mike's Place | Real raster decoding and immutable normalized JPEGs; Sharp 0.35.4 required. |
 | content-cas | 1.0.0 | Copper, Mike's Place | Atomic PostgreSQL content comparison and audit insertion, with local-memory equivalent. |
 | menu-write | 1.0.0 | Copper, Mike's Place | Revision and full-menu validation; client-specific price rules remain local. |
 | owner-save | 1.0.0 | Copper, Mike's Place | Explicit save outcomes, bounded request, complete response validation; callers retain drafts and freeze submitted fields. |
@@ -31,6 +35,8 @@ validated integer cents. Base prices, quantities, taxes, delivery and provider
 fees are separate contracts and are not covered by this release.
 
 For menu writes, see [the integration and verification notes](menu-save-release.md). Run the separate PostgreSQL statement tests with `npm ci --prefix glaze/assets/content-cas/1.0.0` and `npm test --prefix glaze/assets/content-cas/1.0.0`. This private test package uses PGlite and is not an application dependency.
+
+See [event/contact/photo release notes](event-controls-release.md) for the four new components, test commands, retention limits and rollout checks.
 
 ## Upgrade procedure
 

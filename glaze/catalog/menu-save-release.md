@@ -16,9 +16,9 @@ Publish the menu route, content loader, store, and editor together. Editors open
 
 Schema initialization adds `workroom_content_history` with key, actor, timestamp, and full before/after JSON. The existing content record shape is unchanged. The application database role must be allowed to create and write the history table. No audit failure may leave a menu mutation committed. History timestamps come from the application clock. `owner` identifies a role, not a named person; no separate user identity or restore-history control is provided.
 
-Mike's workroom storage now refuses memory writes in production, propagates initialization failures, and chooses an explicit or unambiguous database URL. It no longer disables certificate verification in pool options. Verify its intended hosted database and TLS configuration before deployment. Its older owner sign-in and login limiter remain separate work.
+Mike's workroom storage now refuses memory writes in production, propagates initialization failures, and chooses an explicit or unambiguous database URL. It no longer disables certificate verification in pool options. Verify its intended hosted database and TLS configuration before deployment. Its signed owner sign-in and persistent login limiter are now adopted and locally verified; see [owner sign-in verification](owner-sign-in.md).
 
-Menu edits affect the website menu. They do not update Toast or another ordering menu. Copper continues to direct public ordering to Toast.
+Copper's website menu edits do not update Toast; public ordering remains with Toast. Mike's already derives its ordering board from the workroom-backed website menu, with a ten-second process cache. The earlier blanket statement that both clients had a separate ordering-menu source was incorrect.
 
 ## Verification
 

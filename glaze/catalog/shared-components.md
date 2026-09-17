@@ -12,7 +12,7 @@ service. Existing designs, menus and provider choices stay in their repositories
 | content-cas | 1.0.0 | Copper, Mike's Place | Atomic PostgreSQL content comparison and audit insertion, with local-memory equivalent. |
 | menu-write | 1.0.0 | Copper, Mike's Place | Revision and full-menu validation; client-specific price rules remain local. |
 | owner-save | 1.0.0 | Copper, Mike's Place | Explicit save outcomes, bounded request, complete response validation; callers retain drafts and freeze submitted fields. |
-| workroom-session | 1.0.0 | DeVine, Copper | Signed owner/staff tokens with an 18-hour expiry; wrappers own app isolation, credentials, cookie flags and login throttling. |
+| workroom-session | 1.0.0 | DeVine, Copper, Mike's Place | Signed owner/staff tokens with an 18-hour expiry; wrappers own app isolation, credentials, cookie flags and login throttling. |
 | option-pricing | 1.0.0 | Copper, Mike's Place | Group-qualified option picks, required/single/multiple selection rules, integer-cent option totals and disambiguated ticket labels. |
 
 The initial session and pricing copies matched before extraction. Later menu-save releases include new shared behavior adopted in both clients. Versioning makes that relationship
@@ -54,7 +54,7 @@ hashes for nine working repositories, including uncommitted files. The checked-i
 | Area | Evidence inspected | Next reuse boundary |
 |---|---|---|
 | Restaurant options | Copper and Mike's Place have identical tested group-aware pricing. | Extend with shared money/quantity validation after comparing other restaurant copies. |
-| Owner sessions | DeVine and Copper share the signed-token primitive; their wrappers differ. PJ's still uses a PIN-valued cookie in the inspected copy. | Adopt signed sessions through each client's wrapper and test its roles/cookies/storage. |
+| Owner sessions | DeVine, Copper and Mike's Place share the signed-token primitive; their wrappers differ. PJ's still uses a PIN-valued cookie in the inspected copy. | Adopt signed sessions through each client's wrapper and test its roles/cookies/storage. |
 | Payments | DeVine has durable Square attempts and recovery in its review branch. Copper uses Toast publicly. | Keep Square adapters distinct from Stripe and external Toast ordering. |
 | Small-shop carts | Louie's has separate money/cart/availability/mail modules. | Compare quantity and rounding contracts before adoption; do not infer equivalence from names. |
 | Fulfillment | Restaurant kitchen queues and the florist's dated board have different lifecycles. | Extract only common state and retry contracts after cancellation/concurrency checks. |

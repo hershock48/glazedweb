@@ -21,6 +21,10 @@
         {
           "repo": "copperac",
           "file": "lib/workroom/session.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/workroom/session.ts"
         }
       ],
       "limits": "Node crypto primitive only; each client supplies authentication, app-specific secret, secure cookies and persistent login throttling.",

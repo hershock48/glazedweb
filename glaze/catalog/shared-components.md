@@ -9,6 +9,8 @@ service. Existing designs, menus and provider choices stay in their repositories
 
 | Component | Version | Verified working copies | Boundary |
 |---|---|---|---|
+| kitchen-operations | 1.0.0 | Copper demo, Mike's Place | Atomic revision-checked kitchen changes, permitted transitions and durable before/after receipts; no refunds or delivery guarantee. |
+| kitchen-request | 1.0.0 | Copper demo, Mike's Place | Bounded action save/check with matching receipts; caller retains the request. |
 | order-acceptance | 1.0.0 | Copper demo, Mike's Place | Atomic submission finality and order/print/email intent; no provider delivery guarantee. |
 | order-recovery | 1.0.0 | Copper demo, Mike's Place | Correlated receipts and one bounded check/retry/stop request. |
 | order-quote | 1.0.0 | Copper demo, Mike's Place | Whole quantities/cents, exact totals and explicit review of fresh server prices; no payment adapter. |
@@ -75,3 +77,5 @@ notification and kitchen consolidation program.
 See [checkout quote integration and remaining operating requirements](order-quote-release.md). The private studio dashboard now records shared-tool maintenance notes and deliberate source upgrades; its docs/component-maintenance.md explains the reviewed local workflow.
 
 [Durable submission recovery](order-acceptance-release.md) describes acceptance/recovery components, their separate test package and remaining notification/fulfillment requirements.
+
+[Kitchen action recovery and cancellation](kitchen-operations-release.md) documents the two components, client tests, required integration and remaining printer/notification work.

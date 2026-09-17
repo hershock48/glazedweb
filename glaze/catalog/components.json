@@ -256,6 +256,46 @@
       ],
       "sourceRepository": "https://github.com/hershock48/glazedweb",
       "sourceCommit": "4eacdbcae009b1bbb5fdb69ec50d082fd3f3bb85"
+    },
+    {
+      "id": "kitchen-operations",
+      "capability": "Revision-checked kitchen actions, permitted order transitions and atomic before/after receipts",
+      "limits": "Node server helper requires authenticated roles and PostgreSQL ordering tables. Cancellation stops fulfillment, preserves payment fields and suppresses queued print jobs; it does not refund, send notifications or certify printing. History contains private order data.",
+      "version": "1.0.0",
+      "file": "glaze/assets/kitchen-operations/1.0.0/kitchen-operations.ts",
+      "sha256LF": "9c465831ea1b6a54cc6cb9b22c35e563fdbb52aa0b0178a449eb7e0bd7664dfa",
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/ordering/kitchen-operations.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/ordering/kitchen-operations.ts"
+        }
+      ],
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "318b17a09252ddf06b64b5c0b00370d05e96cca0"
+    },
+    {
+      "id": "kitchen-request",
+      "capability": "Bounded kitchen save/check requests with correlated durable action results",
+      "limits": "Caller retains an immutable request, locks pending edits and refreshes saved records. No automatic retry or recovery-reference persistence across reload/tab closure. Requires matching kitchen operation APIs.",
+      "version": "1.0.0",
+      "file": "glaze/assets/kitchen-request/1.0.0/kitchen-request.ts",
+      "sha256LF": "f03596e650af0a7cef1169b6bb97cfb90d5c3a1596862f7330ccce83dffedb4b",
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/ordering/kitchen-request.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/ordering/kitchen-request.ts"
+        }
+      ],
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "318b17a09252ddf06b64b5c0b00370d05e96cca0"
     }
   ]
 }

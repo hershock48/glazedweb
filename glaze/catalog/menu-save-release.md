@@ -1,4 +1,4 @@
-# Menu save protection — 1.0.0
+# Menu save protection: 1.0.0
 
 Copper and Mike's Place now reject a save based on an older menu and retain the owner's draft. Every accepted edit records its before/after content in the same PostgreSQL statement. The owner sees the ten most recent save times. These are review-branch changes; live installations have not been verified.
 

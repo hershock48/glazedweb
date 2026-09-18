@@ -35,7 +35,7 @@ transcribed snapshot in `src/data/bar.ts` as the fallback on any failure,
 including an empty board). The deployment's own env: `SCOOPLIST_LOCATIONS=
 homer:Cascarelli's`, `SCOOPLIST_CATEGORIES` with ALL TEN boards
 (taps, spumante, bianco, rosso, mules, martinis, whiskey, fun, mocktails,
-na — verified via /api/status, which reports `vertical.boards`; an earlier
+na; verified via /api/status, which reports `vertical.boards`; an earlier
 draft of this file said just "taps:On Tap", but the boot seed only runs
 when the categories cover the whole bar program), `SCOOPLIST_ALLERGENS=-`,
 and `SCOOPLIST_SIZES=-` ("-" = deliberately no default prices, supported
@@ -45,7 +45,7 @@ owner's own word for the list; without it a pinned install says item/board. LIVE
 the deployment is `cascarellis-taps` on Vercel, public at
 `cascarellistaps.glazedweb.com`, Neon postgres attached (the app resolves
 the integration's PREFIXED var, `DATABASE_CASCARELLIS_DATABASE_URL`, via
-scooplist's connectionVar() — the dashboard never produced a plain
+scooplist's connectionVar(); the dashboard never produced a plain
 DATABASE_URL despite an evening of trying). The full bar program (89 items,
 ten boards) SELF-SEEDS at first boot from scooplist's `seed-bar.ts`,
 generated from this repo's `bar.ts`; the site's feed URL is a CODE DEFAULT
@@ -54,7 +54,7 @@ either. `tools/populate-scooplist.mjs` remains the way to push future
 `bar.ts` corrections into the live library (matches by name+category,
 updates in place; needs the PIN). Wine sections, cocktails and zero-proof
 all render from the feed with per-section fallback to `bar.ts`. Photos
-(Vercel Blob) not configured — optional. The owner's surfaces: `/case` on
+(Vercel Blob) not configured, optional. The owner's surfaces: `/case` on
 their phone, `/board/homer` for a TV.
 
 ## Permissions

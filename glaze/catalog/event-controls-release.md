@@ -1,4 +1,4 @@
-# Event, contact and photo controls — 1.0.0
+# Event, contact and photo controls: 1.0.0
 
 Copper and Mike's Place now share client-owned event fields, atomic event writes, owner request feedback and photo processing. Each site retains its own design and public ordering choices. Copper customers continue to order through Toast.
 

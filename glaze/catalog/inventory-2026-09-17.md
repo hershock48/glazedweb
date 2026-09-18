@@ -9,16 +9,22 @@ This is analysis only. No client code changed. It feeds R02 (the comparison matr
 | Repo | Ref | Commit | Why this ref |
 |---|---|---|---|
 | copperac | origin/fix/launch-readiness | 16f3ea4 | Newest ordering code; main is 8 review-workflow commits ahead and 17 behind. |
-| devine | origin/fix/launch-readiness | e08293e | Newest payments code; main is 8 review-workflow commits ahead and 8 behind. |
+| devine | origin/fix/launch-readiness | e08293e | Newest payments code; main (3c1344d) is 9 ahead and 8 behind. Eight of the nine are the review workflow; the ninth, 3c1344d, adds public/img/seasons/fall.webp and edits src/lib/seasons.ts. Both were read and are out of scope: seasons.ts is presentation only (accent color, hero copy, which six pieces the homepage features, holiday bands, a preview cookie) and its own header states it never changes prices, hours, products or any other business fact. |
 | truenorth | origin/fix/launch-readiness | 19f0b61 | 3 real commits ahead of main; main's 8 extra commits are all `.github` review workflow. |
 | mikesplace | origin/chore/shared-component-references | 66e069a | Only branch carrying `.glazed/components.json`; 13 ahead of main; main's 8 extra commits are all `.github`. |
 | louies | origin/main | f08637a | Only branch. |
 | sprinklesandsparklesbb | origin/main | bfcdc51 | `store-wip` (689d21d) is older and does not build. |
 | pjs | origin/main | 3aecdd6 | Only branch. |
-| anchor | origin/main | 89a8512 | Only branch. |
+| anchor | origin/archive/payments-2026-09 | 7133091 | Read at main 89a8512, which was then the only branch. Main has since removed the money code, so every anchor row below names the archive branch instead. All 18 inventoried anchor files are byte-identical at 89a8512 and at the archive tip 7133091. |
 | cookinwithbeans | origin/main | e84df12 | Only branch. |
 
-The task said "otherwise main". For truenorth and mikesplace the named branches are the newest ordering code and main differs from them only in `.github/`, so those were used. Distinct source files inventoried per repo (a file that serves two concerns appears in two tables but is counted once; test files are counted separately, 18 in all): copperac 49, mikesplace 35, devine 38, louies 13, truenorth 6, sprinklesandsparklesbb 7, pjs 16, anchor 19, cookinwithbeans 15. Total 198.
+The task said "otherwise main". For truenorth and mikesplace the named branches are the newest ordering code and main differs from them only in `.github/`, so those were used.
+
+How the files are counted. One row per file per concern, so a file serving two concerns appears in two tables and is counted once. The `(none)` rows, which record that a repo has nothing in a concern, are not files and are not counted. The Refs table above is not counted. Tests are counted separately. Measured that way the seven tables hold 209 distinct paths: 191 source and 18 tests. Source per repo: copperac 50, mikesplace 34, devine 37, louies 12, truenorth 5, sprinklesandsparklesbb 6, pjs 15, anchor 18, cookinwithbeans 14. Tests per repo: copperac 8, devine 7, mikesplace 2, truenorth 1.
+
+Anchor's money code left main after this inventory was read. On 2026-09-17 anchor commit 49a0798, "The site stops taking money", removed lib/pay.ts, lib/stripe.ts, lib/paylink.ts, lib/workroom/book.ts and every app/api/pay, app/api/stripe, app/api/workroom/payments, app/api/workroom/book/autopay and app/api/cron/reminders route: 45 files, 4,159 deletions. Those nine inventoried files now exist only on `origin/archive/payments-2026-09`, tip 7133091, and two more are shorter on main than in the rows below (lib/site.ts 200 against 453 here, lib/workroom/store.ts 251 against 339 here). The remaining six inventoried anchor files are unchanged on main. Every anchor row names `archive/payments-2026-09` because that ref carries all 18 at the content described.
+
+Branch positions re-measured 2026-09-17 against these mains: copperac b06459a (8 ahead of 16f3ea4, 17 behind, the 8 touch `.github/` only), devine 3c1344d (9 ahead, 8 behind), truenorth 37eee60 (8 ahead of 19f0b61, 3 behind, `.github/` only), mikesplace 74e3a99 (8 ahead of 66e069a, 13 behind, `.github/` only), anchor a2277a0.
 
 Pin column: "pinned <id>" means the file is a copy listed in that repo's `.glazed/components.json`; "not pinned" means the repo has a manifest but the file is not in it; "no manifest" means the repo has no `.glazed/components.json`. Manifests exist in copperac (19 pins), mikesplace (19 pins) and devine (1 pin, workroom-session).
 
@@ -54,9 +60,9 @@ Pin column: "pinned <id>" means the file is a copy listed in that repo's `.glaze
 | pjs | main | lib/ordering/catalog.js | 146 | | no manifest | Per-location catalog. |
 | cookinwithbeans | main | src/lib/ordering/config.ts | 29 | | no manifest | feeCents 99, no feeStudioCents, taxRate 0.06 float, basePickupMinutes 10, PIN fallback "0707". |
 | cookinwithbeans | main | src/app/api/ordering/order/route.ts | 205 | integer cents, float tax | no manifest | Option pricing inline; qty 1 to 12; 30-line cap; same float tax as pjs. |
-| anchor | main | lib/workroom/book.ts | 195 | integer cents | no manifest | Policy amountCents and cadence; Payment premiumCents, feeCents, totalCents. |
-| anchor | main | lib/pay.ts | 512 | Stripe | no manifest | convenienceFeeCents 99 as a second Stripe line item; `feePercentFor` for subscriptions; `recordSession` and `recordInvoice` infer the fee from total > amountCents. |
-| anchor | main | lib/site.ts | 453 | | no manifest | payments.convenienceFeeCents 99, payLinkDays 120, reminderDaysBefore [7, 0]. |
+| anchor | archive/payments-2026-09 | lib/workroom/book.ts | 195 | integer cents | no manifest | Policy amountCents and cadence; Payment premiumCents, feeCents, totalCents. |
+| anchor | archive/payments-2026-09 | lib/pay.ts | 512 | Stripe | no manifest | convenienceFeeCents 99 as a second Stripe line item; `feePercentFor` for subscriptions; `recordSession` and `recordInvoice` infer the fee from total > amountCents. |
+| anchor | archive/payments-2026-09 | lib/site.ts | 453 | | no manifest | payments.convenienceFeeCents 99, payLinkDays 120, reminderDaysBefore [7, 0]. |
 
 Fee constants seen: 99 cents in copperac, mikesplace, pjs, cookinwithbeans, anchor and DeVine (as the Square app fee); DeVine also adds 3 percent. Tax: 600 basis points in BigInt (copperac, mikesplace), 0.06 float (pjs, cookinwithbeans), none (DeVine, Louie's, True North, Sprinkles, Anchor).
 
@@ -99,15 +105,15 @@ Fee constants seen: 99 cents in copperac, mikesplace, pjs, cookinwithbeans, anch
 | pjs | main | components/ordering/OrderClient.jsx | 666 | | no manifest | No recovery reference. |
 | cookinwithbeans | main | src/app/api/ordering/order/route.ts | 205 | none | no manifest | No attempt id; qty 1 to 12; 30-line cap routes to catering. |
 | cookinwithbeans | main | src/lib/ordering/time.ts | 41 | | no manifest | Truck window. Differs in 78 lines from copperac's 59-line time.ts. |
-| anchor | main | app/api/pay/find/route.ts | 57 | | no manifest | Policy number plus zip lookup, honeypot, memory limiter 8 per 10 min. |
-| anchor | main | lib/paylink.ts | 70 | | no manifest | HMAC-SHA256 base64url pay link with expiry in the payload, timing-safe compare. |
-| anchor | main | app/api/pay/checkout/route.ts | 60 | Stripe | no manifest | Token must read; interest keys capped at 8. |
+| anchor | archive/payments-2026-09 | app/api/pay/find/route.ts | 57 | | no manifest | Policy number plus zip lookup, honeypot, memory limiter 8 per 10 min. |
+| anchor | archive/payments-2026-09 | lib/paylink.ts | 70 | | no manifest | HMAC-SHA256 base64url pay link with expiry in the payload, timing-safe compare. |
+| anchor | archive/payments-2026-09 | app/api/pay/checkout/route.ts | 60 | Stripe | no manifest | Token must read; interest keys capped at 8. |
 
 ## 3. Provider payments
 
 | Repo | Branch | File | Lines | Provider | Pin | Distinctive |
 |---|---|---|---|---|---|---|
-| copperac | fix/launch-readiness | lib/ordering/config.ts | 51 | Toast (external), demo checkout | not pinned | Public /order links to order.toasttab.com/online/copper-pub. Demo notice "No card is charged". |
+| copperac | fix/launch-readiness | lib/site.ts | 200 | Toast (external) | not pinned | `orderUrl` at line 58 is the store every "Order Online" surface reads, order.toasttab.com/online/copper-pub; line 159 carries a per-event ticket URL on the same host, and `components/workroom/EventsScreen.tsx:216` is the field an owner pastes one into. `lib/ordering/config.ts` carries no Toast link: its only payment content is `demoNoticeShort` at line 45, "Demo checkout. No card is charged." |
 | copperac | fix/launch-readiness | app/api/ordering/order/route.ts | 76 | none | not pinned | `paid: false` always; `payAtPickup` boolean. |
 | mikesplace | chore/shared-component-references | app/api/ordering/order/route.ts | 76 | none | not pinned | Same. |
 | devine | fix/launch-readiness | src/lib/square/client.ts | 87 | Square REST via fetch | not pinned | Sandbox or production base by SQUARE_ENV; 20 s timeout; optional Square-Version header. |
@@ -137,12 +143,12 @@ Fee constants seen: 99 cents in copperac, mikesplace, pjs, cookinwithbeans, anch
 | sprinklesandsparklesbb | main | app/api/checkout/route.js | 116 | Stripe SDK | no manifest | `stripe.checkout.sessions.create`; allow_promotion_codes; cart in metadata. |
 | sprinklesandsparklesbb | main | app/api/stripe/webhook/route.js | 152 | Stripe SDK | no manifest | `constructEvent`; checkout.session.completed sends buyer and owner mail; mail failure still returns 200. |
 | sprinklesandsparklesbb | main | app/api/download/[slug]/route.js | 54 | Stripe SDK | no manifest | Retrieves the session to gate a digital download. |
-| anchor | main | lib/stripe.ts | 171 | Stripe via fetch | no manifest | Stripe-Account header (Connect); own signature verifier with 300 s tolerance; STRIPE_API_BASE override. |
-| anchor | main | lib/pay.ts | 512 | Stripe via fetch | no manifest | Payment or subscription mode; application_fee_amount or application_fee_percent; billing_cycle_anchor and trial_end; `recordSession`, `recordInvoice`, `endAutopay`, reminders. |
-| anchor | main | app/api/stripe/webhook/route.ts | 72 | Stripe | no manifest | checkout.session.completed, invoice.paid, customer.subscription.deleted. |
-| anchor | main | app/api/pay/checkout/route.ts | 60 | Stripe | no manifest | |
-| anchor | main | app/api/workroom/payments/route.ts | 115 | Stripe | no manifest | |
-| anchor | main | app/api/workroom/book/autopay/route.ts | 30 | Stripe | no manifest | |
+| anchor | archive/payments-2026-09 | lib/stripe.ts | 171 | Stripe via fetch | no manifest | Stripe-Account header (Connect); own signature verifier with 300 s tolerance; STRIPE_API_BASE override. |
+| anchor | archive/payments-2026-09 | lib/pay.ts | 512 | Stripe via fetch | no manifest | Payment or subscription mode; application_fee_amount or application_fee_percent; billing_cycle_anchor and trial_end; `recordSession`, `recordInvoice`, `endAutopay`, reminders. |
+| anchor | archive/payments-2026-09 | app/api/stripe/webhook/route.ts | 72 | Stripe | no manifest | checkout.session.completed, invoice.paid, customer.subscription.deleted. |
+| anchor | archive/payments-2026-09 | app/api/pay/checkout/route.ts | 60 | Stripe | no manifest | |
+| anchor | archive/payments-2026-09 | app/api/workroom/payments/route.ts | 115 | Stripe | no manifest | |
+| anchor | archive/payments-2026-09 | app/api/workroom/book/autopay/route.ts | 30 | Stripe | no manifest | |
 | truenorth | fix/launch-readiness | (none) | | none | | Pay at pickup. |
 | pjs | main | (none) | | none | | Demo checkout. |
 | cookinwithbeans | main | (none) | | none | | Demo checkout. |
@@ -167,6 +173,7 @@ Provider count: Square in one repo (DeVine), Stripe in three (Louie's via fetch,
 | copperac | fix/launch-readiness | app/api/kitchen/menu/route.ts | 41 | | not pinned | Copperac only; mikesplace has no kitchen menu route. |
 | copperac | fix/launch-readiness | app/api/kitchen/print-review/route.ts | 25 | | not pinned | Identical. |
 | copperac | fix/launch-readiness | components/ordering/KitchenClient.tsx | 590 | | not pinned | Differs in 55 lines from mikesplace. |
+| copperac | fix/launch-readiness | components/ordering/MenuEditor.tsx | 325 | | not pinned | Kitchen-side price editor. Revision-checked save through /api/kitchen/menu with conflict and uncertain outcomes kept apart, compare-latest, save history, JSON draft download. A second price editor beside `components/workroom/MenuEditor.tsx` (207 lines). Cookinwithbeans' 378-line cousin differs in 243 lines. |
 | copperac | fix/launch-readiness | components/ordering/PrinterReview.tsx | 36 | | not pinned | Identical. |
 | copperac | fix/launch-readiness | tools/workroom-tests/kitchen-operations.test.cjs | 158 | test | | Differs in 2 lines. |
 | copperac | fix/launch-readiness | tools/workroom-tests/printer-jobs.test.cjs | 123 | test | | Identical. |
@@ -205,7 +212,7 @@ Provider count: Square in one repo (DeVine), Stripe in three (Louie's via fetch,
 | louies | main | src/lib/board.ts | 90 | | no manifest | Today / soon / notice board from availability; no kitchen. |
 | truenorth | fix/launch-readiness | (none) | | | | Order is an email. |
 | sprinklesandsparklesbb | main | (none) | | | | Digital download plus owner-shipped physical goods. |
-| anchor | main | (none) | | | | No fulfillment; policy book. |
+| anchor | archive/payments-2026-09 | (none) | | | | No fulfillment; policy book. |
 
 Order status sets seen: five (copperac, mikesplace), four with refunded and no cancelled (pjs, cookinwithbeans), six with canceled and no refunded status (DeVine, refund is a flag on a canceled order).
 
@@ -239,10 +246,10 @@ No SMS code exists in any of the nine repos (no twilio or similar import). Print
 | sprinklesandsparklesbb | main | app/api/subscribe/route.js | 51 | Resend via fetch | no manifest | List signup relayed to ORDER_TO. |
 | pjs | main | lib/ordering/email.js | 76 | Resend via fetch | no manifest | ORDER_FROM defaults to orders@glazedweb.com; awaited since 3aecdd6. |
 | cookinwithbeans | main | src/lib/ordering/email.ts | 84 | Resend via fetch | no manifest | INQUIRY_FROM; `sendOrderConfirmation` and `sendRefundNotice`. |
-| anchor | main | lib/pay.ts | 512 | Resend via fetch | no manifest | `sendReminder` and `notifyAgency`; reminded map per due date. |
-| anchor | main | app/api/cron/reminders/route.ts | 64 | | no manifest | CRON_SECRET bearer, timing-safe; reminderDaysBefore [7, 0]. |
-| anchor | main | app/api/intake/route.ts | 186 | Resend via fetch | no manifest | INTAKE_TO. |
-| anchor | main | app/api/quote/route.ts | 150 | Resend via fetch | no manifest | |
+| anchor | archive/payments-2026-09 | lib/pay.ts | 512 | Resend via fetch | no manifest | `sendReminder` and `notifyAgency`; reminded map per due date. |
+| anchor | archive/payments-2026-09 | app/api/cron/reminders/route.ts | 64 | | no manifest | CRON_SECRET bearer, timing-safe; reminderDaysBefore [7, 0]. |
+| anchor | archive/payments-2026-09 | app/api/intake/route.ts | 186 | Resend via fetch | no manifest | INTAKE_TO. |
+| anchor | archive/payments-2026-09 | app/api/quote/route.ts | 150 | Resend via fetch | no manifest | |
 
 Mail transports: Resend via raw fetch in six repos (copperac, mikesplace, sprinkles, pjs, cookinwithbeans, anchor), Resend SDK in one (truenorth), nodemailer SMTP in two (DeVine, Louie's). Only copperac and mikesplace queue with retries and provider idempotency keys.
 
@@ -274,10 +281,10 @@ Mail transports: Resend via raw fetch in six repos (copperac, mikesplace, sprink
 | devine | fix/launch-readiness | src/lib/workroom/login-limit.ts | 50 | Postgres | not pinned | Per-client trusted-IP key like copperac but LIMIT 10 (copperac 5), its own pool (max 2) and devine_login_attempts. Differs in 40 lines from copperac. |
 | devine | fix/launch-readiness | src/app/api/workroom/login/route.ts | 39 | | not pinned | PIN compared with `===`, not timing-safe. |
 | devine | fix/launch-readiness | tests/workroom-session.test.cjs | 41 | test | | |
-| anchor | main | lib/workroom/auth.ts | 112 | hash cookie | no manifest | Cookie value is sha256("anchor-workroom-v1:" + passcode); no session secret, no expiry inside the token (cookie maxAge 18 h); timing-safe compare; sameSite lax. Differs in 94 lines from copperac. |
-| anchor | main | lib/ratelimit.ts | 51 | memory | no manifest | 5 failures per 10 min keyed by first x-forwarded-for hop; resets on redeploy. |
-| anchor | main | app/api/workroom/login/route.ts | 51 | | no manifest | |
-| anchor | main | components/workroom/Gate.tsx | 78 | | no manifest | Differs in 26 lines from copperac. |
+| anchor | archive/payments-2026-09 | lib/workroom/auth.ts | 112 | hash cookie | no manifest | Cookie value is sha256("anchor-workroom-v1:" + passcode); no session secret, no expiry inside the token (cookie maxAge 18 h); timing-safe compare; sameSite lax. Differs in 94 lines from copperac. |
+| anchor | archive/payments-2026-09 | lib/ratelimit.ts | 51 | memory | no manifest | 5 failures per 10 min keyed by first x-forwarded-for hop; resets on redeploy. |
+| anchor | archive/payments-2026-09 | app/api/workroom/login/route.ts | 51 | | no manifest | |
+| anchor | archive/payments-2026-09 | components/workroom/Gate.tsx | 78 | | no manifest | Differs in 26 lines from copperac. |
 | pjs | main | lib/ordering/auth.js | 36 | PIN cookie | no manifest | Cookie value is the PIN itself; `===` compare; KITCHEN_PIN default "0105"; sameSite lax; no rate limit; no owner role. |
 | pjs | main | app/api/kitchen/login/route.js | 13 | | no manifest | |
 | cookinwithbeans | main | src/lib/ordering/auth.ts | 28 | PIN cookie | no manifest | Same scheme as pjs, default "0707". Differs in 22 lines (TS types). |
@@ -307,7 +314,7 @@ Auth schemes seen: signed session token with PIN-bound signature (copperac, mike
 | devine | fix/launch-readiness | src/lib/square/payment-attempts.ts | 99 | Postgres (own pool max 3) | not pinned | devine_payment_attempts and devine_payment_reviews. |
 | devine | fix/launch-readiness | src/lib/workroom/login-limit.ts | 50 | Postgres (third pool max 2) | not pinned | devine_login_attempts. Three separate pools in one app. |
 | devine | fix/launch-readiness | src/app/api/photos/route.ts | 182 | Postgres | not pinned | JPEG accepted as a base64 data URL into photo_submissions. |
-| anchor | main | lib/workroom/store.ts | 339 | Postgres (dynamic pg import) or memory | no manifest | `rejectUnauthorized: false` unless localhost or sslmode=disable; JSON tables plus workroom_leads; memory bag on globalThis. Differs in 315 lines from copperac's workroom store. |
+| anchor | archive/payments-2026-09 | lib/workroom/store.ts | 339 | Postgres (dynamic pg import) or memory | no manifest | `rejectUnauthorized: false` unless localhost or sslmode=disable; JSON tables plus workroom_leads; memory bag on globalThis. Differs in 315 lines from copperac's workroom store. |
 | pjs | main | lib/ordering/store.js | 307 | Postgres or memory | no manifest | `rejectUnauthorized: false` off localhost; the original five ordering_* tables; memory allowed in production. |
 | cookinwithbeans | main | src/lib/ordering/store.ts | 379 | Postgres or memory | no manifest | Same as pjs in TypeScript; pool __beansPgPool. Differs in 335 lines from copperac. |
 | louies | main | (none) | | cookie only | | No database; the cart cookie and the emailed order are the record. |

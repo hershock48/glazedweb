@@ -1,0 +1,401 @@
+{
+  "schemaVersion": 1,
+  "verification": "Working copies inspected September 17, 2026; deployment versions unknown.",
+  "testCommand": "node --test --test-isolation=none glaze/assets/shared-components.test.mjs",
+  "components": [
+    {
+      "id": "workroom-session",
+      "version": "1.0.0",
+      "file": "glaze/assets/workroom-session/1.0.0/session.ts",
+      "capability": "Signed expiring owner/staff session tokens",
+      "source": {
+        "repo": "devine",
+        "commit": "182a42ca69eac855799264b65eccb33ce4f271e7",
+        "file": "src/lib/workroom/session.ts"
+      },
+      "copies": [
+        {
+          "repo": "devine",
+          "file": "src/lib/workroom/session.ts"
+        },
+        {
+          "repo": "copperac",
+          "file": "lib/workroom/session.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/workroom/session.ts"
+        }
+      ],
+      "limits": "Node crypto primitive only; each client supplies authentication, app-specific secret, secure cookies and persistent login throttling.",
+      "sha256LF": "05f92124e258bafc6a837be37516fff20d78c897738f1035d6cd0ea1971eb657",
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "a106b003168e4ca9de1ba5f69cf9e321d03f1482"
+    },
+    {
+      "id": "option-pricing",
+      "version": "1.0.0",
+      "file": "glaze/assets/option-pricing/1.0.0/pricing.ts",
+      "capability": "Group-qualified option validation and integer-cent option totals",
+      "source": {
+        "repo": "copperac",
+        "commit": "3b182463cc78b684d54609faf597dfebd13adccd",
+        "file": "lib/ordering/pricing.ts"
+      },
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/ordering/pricing.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/ordering/pricing.ts"
+        }
+      ],
+      "limits": "Trusted validated menu prices in integer cents; does not calculate base price, quantity, tax, delivery fees or provider payments.",
+      "sha256LF": "495a0f4374cc547842bde81c28bcb259514928e051c77575d713d996c8b7b619",
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "a106b003168e4ca9de1ba5f69cf9e321d03f1482"
+    },
+    {
+      "sha256LF": "a1d159ec006729ea1556830baa19bb644a42d761916445918ff6fc1214c9fe37",
+      "file": "glaze/assets/owner-save/1.0.0/owner-save.ts",
+      "copies": [
+        {
+          "file": "lib/workroom/owner-save.ts",
+          "repo": "copperac"
+        },
+        {
+          "file": "lib/workroom/owner-save.ts",
+          "repo": "mikesplace"
+        }
+      ],
+      "limits": "Client save response handling only; caller disables fields while pending. Authorization, persistence, cross-window concurrency and audit remain server responsibilities.",
+      "capability": "Draft-preserving owner menu save results and response validation",
+      "version": "1.0.0",
+      "id": "owner-save",
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "052f26b1054e4d650fcaeeecd525ed51dcc5edd6"
+    },
+    {
+      "id": "content-cas",
+      "capability": "Atomic content comparison and before/after save history",
+      "limits": "JSON content compare-and-set for PostgreSQL or local memory. Caller supplies authenticated access and initializes the schema. Content hashes are not monotonic versions; audit actor is a role, not a named person. Local SQL tests do not certify a hosted database.",
+      "version": "1.0.0",
+      "file": "glaze/assets/content-cas/1.0.0/content-cas.ts",
+      "sha256LF": "9a9090350fcda86545ae97df7333c755ad9192b245844b4d6263ea8bb9b43cbb",
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/workroom/content-cas.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/workroom/content-cas.ts"
+        }
+      ],
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "cc1066d442b245103348689b7772e7c15cc14e6d"
+    },
+    {
+      "id": "menu-write",
+      "capability": "Complete menu submission validation with revision checks",
+      "limits": "Validates the entire known website menu and delegates price rules to the client. Does not synchronize a provider ordering menu. Must be paired with atomic storage comparison and a compatible editor.",
+      "version": "1.0.0",
+      "file": "glaze/assets/menu-write/1.0.0/menu-write.ts",
+      "sha256LF": "f537fb10b2b759d32aa84e08b47a4586d8b8d512ebeb6bc49371778ee1977aea",
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/workroom/menu-write.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/workroom/menu-write.ts"
+        }
+      ],
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "cc1066d442b245103348689b7772e7c15cc14e6d"
+    },
+    {
+      "id": "event-cas",
+      "version": "1.0.0",
+      "file": "glaze/assets/event-cas/1.0.0/event-cas.ts",
+      "capability": "Atomic event edits and recoverable archive history",
+      "limits": "Requires authenticated callers, initialized workroom_events and workroom_content_history tables, and JSON snapshots. Audit actor is owner, not a named person. PGlite tests do not certify hosted concurrency.",
+      "sha256LF": "f1af08977904d84e47f6f9001a0cc350a69d5fd62ed0dc0910ea534708ed202d",
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/workroom/event-cas.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/workroom/event-cas.ts"
+        }
+      ],
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "5c041d8848d73a97b5ac182e56d3c44cc8d445d9"
+    },
+    {
+      "id": "owner-request",
+      "version": "1.0.0",
+      "file": "glaze/assets/owner-request/1.0.0/owner-request.ts",
+      "capability": "Draft-preserving POST, PUT and DELETE feedback",
+      "limits": "Caller must retain drafts, lock pending fields and validate operation-specific acknowledgements. One bounded request, no automatic retry. Browser drafts do not survive reload.",
+      "sha256LF": "105e2a757809ae17ade1465b62e42386dfe628010b0d6b72ab68faaf294f1dbf",
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/workroom/owner-request.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/workroom/owner-request.ts"
+        }
+      ],
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "5c041d8848d73a97b5ac182e56d3c44cc8d445d9"
+    },
+    {
+      "id": "event-fields",
+      "version": "1.0.0",
+      "file": "glaze/assets/event-fields/1.0.0/events-def.ts",
+      "capability": "Complete event/contact fields and response validation",
+      "limits": "America/Detroit calendar and time rules; optional end time must follow start on the same date. Requires matching editor/API and atomic storage.",
+      "sha256LF": "d70a1d5b6fd9191068f4c9327d11711358a801518c895c1274041bc35d2a8445",
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/workroom/events-def.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/workroom/events-def.ts"
+        }
+      ],
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "5c041d8848d73a97b5ac182e56d3c44cc8d445d9"
+    },
+    {
+      "id": "event-photo",
+      "version": "1.0.0",
+      "file": "glaze/assets/event-photo/1.0.0/event-photo.ts",
+      "capability": "Decoded, normalized and content-addressed event photos",
+      "limits": "Node server helper requires Sharp 0.35.4. Single JPEG/PNG/WebP, bounded input and pixels, output JPEG up to 1200px. Caller authenticates and stores immutable images; retention cleanup is separate.",
+      "sha256LF": "052fba5939f34451ecb18d8c1938567dddb308425f046a30965bca179f0230ed",
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/workroom/event-photo.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/workroom/event-photo.ts"
+        }
+      ],
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "5c041d8848d73a97b5ac182e56d3c44cc8d445d9"
+    },
+    {
+      "id": "order-quote",
+      "version": "1.0.0",
+      "file": "glaze/assets/order-quote/1.0.0/order-quote.ts",
+      "capability": "Whole quantities/cents, exact totals, collision-safe cart identity and fresh-price review",
+      "limits": "Requires validated menu, current availability and reviewed option resolver. No provider payments, durable order retries, transactional fanout or hosted deployment verification.",
+      "sha256LF": "3826e09cb8eeb0361788b7c22d6865b93c3c661f0b84d7c7704515de2cc155e2",
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/ordering/order-quote.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/ordering/order-quote.ts"
+        }
+      ],
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "e341e5f653c43bf0a5e7877e915cdd83a8eb75ef"
+    },
+    {
+      "id": "order-acceptance",
+      "version": "1.0.0",
+      "file": "glaze/assets/order-acceptance/1.0.0/order-acceptance.ts",
+      "capability": "Durable submission finality and atomic order/print/email intent",
+      "limits": "Node server helper with PostgreSQL or development-memory adapters. Caller supplies validated orders/receipts; queued notification and physical print completion require separate reconciliation.",
+      "sha256LF": "d682ddd94719ae90d9c1ad3c91d96407ec2b70a5b19f36f4ee6d3bb2433dd2b6",
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/ordering/order-acceptance.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/ordering/order-acceptance.ts"
+        }
+      ],
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "4eacdbcae009b1bbb5fdb69ec50d082fd3f3bb85"
+    },
+    {
+      "id": "order-recovery",
+      "version": "1.0.0",
+      "file": "glaze/assets/order-recovery/1.0.0/order-recovery.ts",
+      "capability": "Correlated receipt validation and bounded same-submission recovery",
+      "limits": "Requires the sibling order-quote 1.0.0 helper and matching attempt/order APIs. Browser wrapper persists only the reference; unsaved contact/cart data does not survive reload.",
+      "sha256LF": "f95f8239222ff339da010eb1edce3b7384a3217e63f63f53e78c7f955de4932e",
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/ordering/order-recovery.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/ordering/order-recovery.ts"
+        }
+      ],
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "4eacdbcae009b1bbb5fdb69ec50d082fd3f3bb85"
+    },
+    {
+      "id": "kitchen-operations",
+      "capability": "Revision-checked kitchen actions, permitted order transitions and atomic before/after receipts",
+      "limits": "Node server helper requires authenticated roles and PostgreSQL ordering tables. Cancellation stops fulfillment, preserves payment fields and suppresses queued print jobs; it does not refund, send notifications or certify printing. History contains private order data.",
+      "version": "1.0.0",
+      "file": "glaze/assets/kitchen-operations/1.0.0/kitchen-operations.ts",
+      "sha256LF": "9c465831ea1b6a54cc6cb9b22c35e563fdbb52aa0b0178a449eb7e0bd7664dfa",
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/ordering/kitchen-operations.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/ordering/kitchen-operations.ts"
+        }
+      ],
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "318b17a09252ddf06b64b5c0b00370d05e96cca0"
+    },
+    {
+      "id": "kitchen-request",
+      "capability": "Bounded kitchen save/check requests with correlated durable action results",
+      "limits": "Caller retains an immutable request, locks pending edits and refreshes saved records. No automatic retry or recovery-reference persistence across reload/tab closure. Requires matching kitchen operation APIs.",
+      "version": "1.0.0",
+      "file": "glaze/assets/kitchen-request/1.0.0/kitchen-request.ts",
+      "sha256LF": "f03596e650af0a7cef1169b6bb97cfb90d5c3a1596862f7330ccce83dffedb4b",
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/ordering/kitchen-request.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/ordering/kitchen-request.ts"
+        }
+      ],
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "318b17a09252ddf06b64b5c0b00370d05e96cca0"
+    },
+    {
+      "id": "printer-jobs",
+      "capability": "Durable printer job binding, atomic kitchen acceptance and owner reconciliation with saved receipts",
+      "limits": "Node/PostgreSQL helper needs READ COMMITTED leased transactions, authenticated identities and coordinated job-token/Basic-auth device rollout. Does not prove physical paper, exactly-once printing, refunds or notification delivery.",
+      "version": "1.0.0",
+      "file": "glaze/assets/printer-jobs/1.0.0/printer-jobs.ts",
+      "sha256LF": "72467f0dd5bbcdd85408493879c37b7bcac83588a3ff78c720e68cbbfd6a7aaf",
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/ordering/printer-jobs.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/ordering/printer-jobs.ts"
+        }
+      ],
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "789b7323acc03e54642e35e29c11a0e484469e87"
+    },
+    {
+      "id": "printer-review",
+      "capability": "Bounded owner printer review/check requests with complete command correlation",
+      "limits": "Caller retains the immutable command and refreshes saved state. No automatic retry or browser recovery across reload/sign-out. Requires matching private review APIs.",
+      "version": "1.0.0",
+      "file": "glaze/assets/printer-review/1.0.0/printer-review.ts",
+      "sha256LF": "1f9e8385353dab8f14acaee6179d4032560c71f7e92628c99f47cb0949901b24",
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/ordering/printer-review.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/ordering/printer-review.ts"
+        }
+      ],
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "789b7323acc03e54642e35e29c11a0e484469e87"
+    },
+    {
+      "id": "notification-outbox",
+      "capability": "Durable order confirmation intent, bounded immutable retries, provider evidence and owner review history",
+      "limits": "Requires authenticated callers and leased PostgreSQL READ COMMITTED transactions. Finite five-attempt/20-minute sending policy. No guarantee of inbox delivery, real-world follow-up or exactly-once email.",
+      "version": "1.0.0",
+      "file": "glaze/assets/notification-outbox/1.0.0/notification-outbox.ts",
+      "sha256LF": "23c9db614cf1aad3d8eaaa4d3dd2ca23f6112e4e68d0e969101b8fae44561dcb",
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/ordering/notification-outbox.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/ordering/notification-outbox.ts"
+        }
+      ],
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "00ed96eaa9e8b65ac43dbfcf4893931db86666a4"
+    },
+    {
+      "id": "notification-provider",
+      "capability": "Bounded Resend send/retrieve adapters with immutable idempotency and correlated message identity",
+      "limits": "Requires sibling notification-outbox contract and verified sender/API credentials. Provider acceptance differs from delivery; observed latest events are not a complete event stream.",
+      "version": "1.0.0",
+      "file": "glaze/assets/notification-provider/1.0.0/notification-provider.ts",
+      "sha256LF": "5e45a75d86f6b2abba431477d9a1e9b10c3ed991778c6003cb386554d047be96",
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/ordering/notification-provider.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/ordering/notification-provider.ts"
+        }
+      ],
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "00ed96eaa9e8b65ac43dbfcf4893931db86666a4"
+    },
+    {
+      "id": "notification-request",
+      "capability": "Clear owner email status labels and correlated saved-review recovery requests",
+      "limits": "Caller retains the immutable review request. No automatic retry or browser recovery across reload/sign-out. Requires matching private owner APIs.",
+      "version": "1.0.0",
+      "file": "glaze/assets/notification-request/1.0.0/notification-request.ts",
+      "sha256LF": "ccec0a2914e39e5d887a2355f975c701d6ab4b2f5f51a426c67658b8898bb474",
+      "copies": [
+        {
+          "repo": "copperac",
+          "file": "lib/ordering/notification-request.ts"
+        },
+        {
+          "repo": "mikesplace",
+          "file": "lib/ordering/notification-request.ts"
+        }
+      ],
+      "sourceRepository": "https://github.com/hershock48/glazedweb",
+      "sourceCommit": "00ed96eaa9e8b65ac43dbfcf4893931db86666a4"
+    }
+  ]
+}

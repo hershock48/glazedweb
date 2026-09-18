@@ -2,7 +2,67 @@
 
 **One row per business, from scouted to retained, and the digest that reads
 it every morning.** The tool is `glaze/scripts/ledger.mjs`. The data is
-`../contracts-private/ledger.json`, outside this repo on purpose.
+the private studio dashboard when the local authority marker below is present.
+The original `../contracts-private/ledger.json` remains an archive outside this
+public repo.
+
+## Studio authority (September 2026)
+
+The local migration retains original account snapshots in the dashboard and
+uses `ledger.json.authority.json` beside the archived ledger to point to the
+current `glazedweb-admin/data/studio.json` storage envelope. The marker contains
+version 1, mode `studio-local`, and a file path relative to the marker. It and
+all account data stay private; neither belongs in this public repository.
+
+With that marker, digest/show, closing briefs, scouting comparisons and research
+briefs read the current dashboard. Ledger add/log/next/set, research --write and
+selector --commit write to that same store through the session adapter. They use
+the dashboard's exclusive file lock and revision check. Install the admin change
+first: the reader requires adapter ID `glazedweb-studio-session`, version 1.
+Missing or incompatible adapters refuse the write before touching account data.
+An optional `adapter` path in the private authority marker resolves relative to
+the marker; it lets test storage live outside the application data directory. A stale command fails
+with a short message; it cannot replace newer dashboard work. Missing or invalid
+authority storage fails closed. The archived ledger remains unchanged.
+
+Kevin's prices in lib/customOrders.js on main remain the price of record. The
+dashboard records events, payments, independent monthly billing and next actions.
+An imported registry snapshot is evidence of its import date, not permission to
+override a newer owner edit. Compare a pinned main registry with
+glazedweb-admin/scripts/reconcile-facts.mjs --registry <pinned-registry.mjs>.
+Review each difference and use its --plan preview followed by --apply --expect
+<sha256> to reconcile. A private backup and a dated account decision preserve the
+source and prior value. Newer receipts and billing facts are not erased by an old
+registry flag. Digest, show and closing briefs also check current GitHub main on
+every run. `REGISTRY DIFFERS` prints both saved and registry values;
+`REGISTRY NOT CHECKED` reports network, rate-limit or parsing failures explicitly.
+Ambiguous aliases are flagged too. No read changes either record. Closing drafts
+are withheld while that account differs or the check is unavailable.
+
+The check has a five-second timeout, uses the public GitHub API without a token,
+and records the source blob SHA and check time. Run `npm ci` in glazedweb first:
+Next supplies the parser. Downloaded registry code is parsed as literal data,
+never executed. An unavailable check never silently falls back to a local copy.
+
+The full pipeline decision from September 13 still stands: automate finding and
+qualifying prospects, research, proposal and demo preparation, follow-up drafting,
+and the recorded handoff into a client account. September 14's runtime rule also
+stands: use the signed-in Claude Code or Codex subscription, with no model API keys
+or separate API charges. Research defaults to session briefs; --brief <slug> and
+--write <slug> --from <private-result.json> cover the single-account path. --draft
+--json produces batch briefs without a model call. Selection writes prospects
+directly; sessions log confirmed sends, replies, meetings and payments directly.
+Research sources survive dashboard edits as source records, and a proposed price
+does not become an accepted agreement or payment. Proposal/demo generation and
+reviewed sending stay on the full-pipeline backlog; this repair restores the
+working data connection instead of declaring that pipeline manual.
+
+Kevin still approves client-facing material and outreach before it is sent.
+Recording a send reports something that happened; it does not send a message.
+These commands create no charges and contact no model API. Standalone test ledgers
+require --fixture with --file while the production marker is active. Do not remove
+the marker to fork production records. A future hosted authority needs its own
+authenticated adapter; the current marker explicitly supports the local pilot.
 
 ---
 
@@ -30,14 +90,11 @@ get wrong.
 
 ## Where the data lives, and why not here
 
-The glazedweb repo is public. A row that says "paid half" or "sent, silent"
-about a named business is not. The data file sits next to the paper
-agreements in `contracts-private/`, a local folder that is not a git repo.
-The script refuses to write a ledger inside any git working tree unless
-`--allow-git` is passed, because the first time that goes wrong it goes
-wrong in public.
-
-Override the path with `--file` or `GLAZE_LEDGER`.
+The glazedweb repo is public. Account records stay in the ignored private
+glazedweb-admin/data/studio.json envelope. The pointer and original archive stay
+in contracts-private. Never commit any of those files or reconciliation backups.
+An unmigrated standalone fixture still refuses writes inside a Git tree unless
+--allow-git is explicit; it cannot override an active authority marker.
 
 ---
 
@@ -106,16 +163,14 @@ the number is printed so the flag can be argued with:
 |---|---|
 | `DUE TODAY` / `OVERDUE Nd` | The row's `next.due` has arrived. |
 | `silent Nd` | Stage `sent`, seven or more days since the send, no reply. |
-| `quiet Nd` | Stage replied, meeting or confirmed, five or more days since the last event. A `touch` resets it. |
+| `quiet Nd` | Stage replied, meeting or confirmed, five or more days since the last contact event. A `touch` resets it; an admin edit or note does not. |
 | `quiet Nd` | Stage paid-part, fourteen or more days. |
 | `unpitched Nd` | Scouted with a score of 7 or more, three weeks old, never audited. |
 
-Then every row grouped by stage, oldest first within a stage, with the last
-event and its age, and the **registry** column: build fee, `paid` once it is,
-needs done N of M from the project block, and the count of `TODO` comments
-on the row. Those come from `lib/customOrders.js` at run time and are not
-copied into the ledger; a prospect with no registry row yet shows the
-ledger's own price as a fallback marked `(no row)`. Facts live in one place.
+Then every row is grouped by stage, oldest first, with the last event and age,
+the reconciled build and monthly prices, paid status, missing client items and
+studio tasks. Build payment and live delivery are normalized for older imported
+rows. Monthly billing stays separate. A proposed quote is still a proposed quote.
 
 Last, **NOT IN THE LEDGER**: every registry slug and every `glaze/clients`
 file with no row and no alias. That list is the backlog of businesses whose
@@ -148,7 +203,7 @@ payment in (stages sent, replied, meeting, confirmed, paid-part), one brief:
 
 - **Why today.** The digest's flags, plus "no touch since their reply",
   which is the state every interested prospect was in on 2026-09-13.
-- **Money.** Build, monthly, paid or not, accepted or not, from the registry.
+- **Money.** Reconciled account prices and separate payment/billing facts, with a current registry comparison and visible differences.
 - **Kevin still has to get.** The `TODO` comments on the registry row, parsed
   out of `lib/customOrders.js` with their full text. These are the facts the
   agreement cannot be signed without.
@@ -166,18 +221,14 @@ node glaze/scripts/close.mjs                 # the rows that need a touch today
 node glaze/scripts/close.mjs --all           # the whole call sheet
 node glaze/scripts/close.mjs --slug anchor   # one business
 node glaze/scripts/close.mjs --out           # also write contracts-private/closing/<date>.md
-node glaze/scripts/close.mjs --claude        # draft with Claude Opus 5 instead of the template
 node glaze/scripts/close.mjs --email         # also email the brief to Kevin (RESEND_API_KEY)
 node glaze/scripts/close.mjs --json          # for an agent
 ```
 
-The template is house voice by construction and never invents an ask. With
-`--claude` the same brief goes to the model with the "Write like a person"
-rules from `glaze/standards.md` as the system prompt and the template as the
-floor; a draft that comes back with an em dash or without a subject line is
-discarded for the template. Credentials resolve the SDK's normal way
-(`ANTHROPIC_API_KEY` or an `ant auth login` profile); with none it says so
-and stops. The SDK is a devDependency of this repo.
+The template never invents an ask. --json includes the sourced brief and house
+voice instructions for the signed-in session to draft from. The old --claude
+model API option is disabled. Model API credentials and separate API charges are
+not part of this pipeline. --out saves a private brief without sending anything.
 
 **Nothing in it sends to a client.** `--email` mails the brief to Kevin's
 own inbox from `ledger@glazedweb.com`. The follow-up is copied, sent by a
@@ -205,10 +256,17 @@ next action.
 
 Not the registry. Scope and numbers stay in `lib/customOrders.js` and the
 ledger reads them. If a price shows up in a ledger note it is a quote of the
-registry, not a second home for it.
+registry, not a second home for it. The dashboard carries the reviewed copy
+used by account workflows; the comparison and reconciliation above prevent
+that copy from silently replacing Kevin's price of record.
 
 Not a CRM. Twenty rows and a text digest. The day it needs a screen is the
 day a second person reads it.
+
+That is the original scope rule, retained pending Kevin's doctrine ruling.
+Kevin subsequently requested the private studio dashboard; it and session
+commands now share one account store. This implementation does not silently
+replace that rule with a broader CRM or unattended outreach policy.
 
 ---
 

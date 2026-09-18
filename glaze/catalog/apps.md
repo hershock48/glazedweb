@@ -4,7 +4,9 @@ The heavyweight bones. Each of these is a product, not a page, and each has
 already cost multiple sessions. Check here FIRST when a client needs ordering,
 admin, payments, or a dashboard.
 
-## The kitchen system  ⚠ four copies, already past the graduation bar
+## The kitchen system — multiple client-owned copies
+
+September 17 status: component adoption is recorded in [the version registry](shared-components.md). Mike's and Copper's parked demo use order-quote, order-acceptance and order-recovery 1.0.0; retries recover one recorded order and queued work; these entire applications are not consolidated or certified for live operations. Older copy comparisons below are historical observations.
 
 Online ordering + kitchen display + receipt printer. API shape:
 `ordering/order`, `ordering/state`, `kitchen/login`, `kitchen/menu`,
@@ -12,8 +14,8 @@ Online ordering + kitchen display + receipt printer. API shape:
 
 | Copy | State |
 |---|---|
-| `copperac/` | Byte-identical order route to stagecoach (md5 e242594…). |
-| `stagecoach/` | Byte-identical to copperac. |
+| `copperac/` | Quote review and owner controls have diverged from the older Stagecoach copy; public ordering remains Toast. |
+| `stagecoach/` | Older ordering copy; quote-review adoption outstanding. |
 | `cookinwithbeans/` | Same shape, separate copy. |
 | `pjs/` | DIVERGED — its fixes exist nowhere else, and vice versa. |
 | `mikesplace/` | Fifth copy, 2026-09-11, ported from copperac (TS, workroom included). Two divergences worth stealing back: the orderable board is GENERATED from `lib/menu.ts` with the workroom overrides applied (`lib/ordering/seed.ts`), so the workroom is the only price editor and the kitchen keeps only the 86 board; and `/api/kitchen/login` answers GET with `{authed}` so the board never 401s in the console on load. |
@@ -66,3 +68,4 @@ and a second nested `<main>`, which is three landmark violations per screen.
 | Company site + order flow | `glazedweb/` | The studio's own site: agreement page, order intake, and `contracts/build-agreement.js` generating the client agreement .docx. |
 | Beer League site | `beerleague/` | Kevin's own fantasy league (Fleaflicker league 37401) rebuilt as an experience layer: live scoreboard, roster-personalized ESPN news, Sleeper waiver buzz, and a 2007-onward committed archive (standings, every box score) distilled by `tools/derive.mjs` into franchises/champions/H2H/record book. The bones to steal for ANY league-history site: `tools/sync.mjs` (polite Fleaflicker archiver; the API 403-blocks fast pulls, header explains), the derive engine (champion = undefeated in playoffs at best seed, ranks are seeds not finishes), and the no-key news/trending fetchers in `lib/news.ts`. |
 | Pitch-host pattern | `Schulers/next.config.mjs` | Not an app but the deployment bone every pitch uses: host-scoped rewrites putting the proposal at `/` and the demo at `/demo` on the pitch host only, with noindex headers and the 404-on-client-domain guard for `/pitch`. Copy this file, not the idea. |
+| Studio operations dashboard | `glazedweb-admin/` (private repo) | Ledger-driven next actions, owners, dates, blockers and activity history across client, prospect, product and internal work. Reuses the ledger vocabulary and house JSONB pattern with production-required Postgres, optimistic revision checks, signed expiring sessions and a persistent login limiter. Local JSON import is a separate snapshot; no automatic payment, email or deployment integrations. Private data stays out of Git. Hosting verification remains pending. |

@@ -77,6 +77,18 @@ export async function POST(req) {
     if (!r.ok) {
       return Response.json({ ok: false, reason: "send_failed" }, { status: 502 });
     }
+    // A 2xx is not an acceptance. Resend answers an accepted message with a
+    // body carrying an id, and that id is the only evidence it took the order.
+    // A 2xx with any other body, which is what a changed API surface or a
+    // proxy in front of the call looks like, queued nothing, and answering
+    // ok:true on one is the exact failure the note above describes: the
+    // customer is told we have their order and we do not, with nothing
+    // anywhere to notice it. Fall to send_failed so the client offers the
+    // prefilled mailto instead.
+    const accepted = await r.json().catch(() => null);
+    if (!accepted || typeof accepted.id !== "string" || !accepted.id) {
+      return Response.json({ ok: false, reason: "send_failed" }, { status: 502 });
+    }
     return Response.json({ ok: true });
   } catch {
     return Response.json({ ok: false, reason: "send_failed" }, { status: 502 });

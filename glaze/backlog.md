@@ -286,21 +286,21 @@ Kevin's ask: work continuously toward all five programs without waiting on him, 
 - [ ] A5 (kevin) Merge, in order: glazedweb-admin #1, glazedweb #1, then the takeover PRs into the Codex branches, then devine #1 and copperac #1 once clean.
 
 ### Phase B. Program 2, demo to operating business (client repos, Claude authors, GitHub reviews, Kevin merges)
-- [ ] B1 (claude) DeVine L03/L04 remainder: surface unresolved payment attempts to the owner on the board, notification retry with a saved provider id (Resend idempotency key, 24 h window), no double charge. Check: PGlite tests for outage during notify and during storage.
-- [ ] B2 (claude) DeVine M2 webhook: memory backend returns 200 and logs instead of 500 looping; mismatch recorded as a review item, not a retry storm.
+- [x] B1 (claude) DeVine L03/L04 remainder: surface unresolved payment attempts to the owner on the board, notification retry with a saved provider id (Resend idempotency key, 24 h window), no double charge. Check: PGlite tests for outage during notify and during storage.
+- [x] B2 (claude) DeVine M2 webhook: memory backend returns 200 and logs instead of 500 looping; mismatch recorded as a review item, not a retry storm.
 - [x] B3 (claude) True North M4: home page shows the stale-board caveat the README already promises; L05 freshness shown truthfully everywhere the board renders.
-- [ ] B4 (claude) Copper L06: trace contact and reserve intake end to end, owner access, Toast preserved. Check: route tests for intake, 404 on parked paths from the client host.
-- [ ] B5 (claude) L07 journey tests per repo: order or enquiry, payment where applicable, notification, fulfillment, cancellation, refund; owner side too. One test file per journey, provider faked, named in the README.
+- [x] B4 (claude) Copper L06: trace contact and reserve intake end to end, owner access, Toast preserved. Check: route tests for intake, 404 on parked paths from the client host.
+- [x] B5 (claude, truenorth only) L07 journey tests per repo: order or enquiry, payment where applicable, notification, fulfillment, cancellation, refund; owner side too. One test file per journey, provider faked, named in the README.
 - [ ] B6 (claude) L08: build, lint, audit.mjs and width-check on every changed route; record the numbers in the repo README, never "pass" without the number.
 - [ ] B7 (kevin) G01 gate: Square sandbox credentials for DeVine, a monitored test inbox, owner and domain confirmation. Until then every journey is proven against fakes only and the README says so.
 - [x] B8 (claude) Mike's Place still carries the global login lockout fixed in copperac and DeVine (inventory 2026-09-17): port the per-address, per-role limiter. Live pitch; letter and demo byte-identical.
 - [x] B9 (claude) PJ's and Cookin' with Beans (live client sites) keep the owner PIN itself in a cookie, compare it in plain text, and have no login throttle (inventory 2026-09-17). Port the shared signed session and a per-address limiter; Kevin sets the session secret before merging.
 - [ ] B10 (kevin) The review workflow runs only on pull requests whose base branch carries it, so PRs against Codex's feature branches got manual reviews on 2026-09-17. Merging admin #1, glazedweb #1, devine #1 and copperac #1 into main closes the gap; until then Claude reviews those by hand.
 - [ ] B11 (claude) Anchor owner sign-in: hash cookie with no secret and no server-side expiry, limiter keyed on the client-controlled first x-forwarded-for hop (matrix 2026-09-17). Another Claude session removed the money code from Anchor main on 2026-09-17 (49a0798); re-read main before touching, then give it the shared signed session and per-address limiter like pjs #1.
-- [ ] B12 (claude) Mike's Place carries copperac leftovers an owner could see: a Toast "lamp-pub" ticket placeholder and an inquiry comment about "the club's inbox" (workroom comparison 2026-09-17). Remove without touching the letter or demo.
+- [x] B12 (claude) Mike's Place carries copperac leftovers an owner could see: a Toast "lamp-pub" ticket placeholder and an inquiry comment about "the club's inbox" (workroom comparison 2026-09-17). Remove without touching the letter or demo.
 - [ ] B13 (kevin) Copperac enquiries are not stored anywhere (intake trace 2026-09-17, copperac PR 7). The club mailbox is the only record: if Resend fails or the mail is deleted, the enquiry is gone, and the workroom has no inbox. Decide whether an enquiry gets a row and an owner inbox screen before launch, or stays mail-only on purpose.
 - [ ] B14 (claude) Copperac /api/inquiry has no rate limit and no raw body ceiling; request.json() buffers the whole payload before any length check (intake trace 2026-09-17). This exposes the shared glazedweb.com sending identity, not client data. Add a per-address limit and a byte ceiling, matching whatever the other client forms do, and check every repo with a public form for the same gap.
-- [ ] B15 (claude) Review Codex economics: glazedweb-admin PR 3 and glazedweb PR 4 (codex/economics-receipts), shipped before its outage and asking for review in handoff.md. Build and monthly revenue split, receipt imports with dedup, atomic corrections. Phase F touches this, so review before building on it.
+- [x] B15 (claude) Review Codex economics: glazedweb-admin PR 3 and glazedweb PR 4 (codex/economics-receipts), shipped before its outage and asking for review in handoff.md. Build and monthly revenue split, receipt imports with dedup, atomic corrections. Phase F touches this, so review before building on it.
 - [ ] B16 (codex) The shared option-pricing source at glaze/assets/option-pricing/1.0.0/pricing.ts explains its rule with copperac Toast examples ("Nachos sells 5 oz. Queso in both"), and both client copies are pinned to it, so Mike's Place carries Copper wording it cannot fix locally (mikes PR 7). Reword the shared source in terms of the rule rather than one venue menu, then re-pin both copies.
 - [x] E1 (claude) O01 compare the workrooms: glaze/catalog/workrooms-2026-09-17.md (PR 12), 10 repos by 11 areas, 15 items for O02.
 - [x] D2 (claude) R02 comparison matrix: glaze/catalog/comparison-2026-09-17.md (PR 10); corrections from the fact-check in progress.
@@ -367,3 +367,62 @@ In the order they block. Each is one click or one secret; nothing else is waitin
 6. Flip True North to buildFeePaid: true in lib/customOrders.js on main; the dashboard already records the payment.
 7. Codex automatic reviews toggle in ChatGPT, whenever its window resets.
 8. Hosting for the dashboard (G02) and Square sandbox plus a test inbox for DeVine (G01), when ready; Claude hands over the exact env list on request.
+
+## Merge order, 2026-09-17 late (replaces the earlier Kevin queue)
+
+Thirty pull requests are open across twelve repos. Most are stacked, so the order matters more than the count. Everything below was reviewed and answered; nothing is waiting on Claude. Merge top to bottom within each block.
+
+### Block 1, safe and independent: the false-receipt fixes
+Eight public forms told the visitor their message went through when the mail provider had accepted nothing. Each fix succeeds only on the provider's acceptance id and otherwise takes the failure path the route already had. No copy changed.
+
+1. glazedweb #14 (three routes, one of them the agreement signing route)
+2. truenorth #8
+3. cascarellis #1
+4. stagecoach #1
+5. donna #1
+6. sprinklesandsparklesbb #1
+
+Mike's Place has the same fix inside its own stack, in block 5.
+
+### Block 2, the studio dashboard (not deployed, so the lowest risk)
+Merge in this order; the first one carries the session adapter version that the second half of the pair checks for.
+
+1. glazedweb-admin #9 (session writer version)
+2. glazedweb-admin #10 (account at a glance)
+3. glazedweb-admin #3 (Codex economics; two mediums answered in handoff, Codex may want to reply first)
+4. glazedweb-admin #1 (the whole dashboard, into main)
+
+### Block 3, the glaze kit and its documents
+Base branch is docs/studio-dashboard-catalog in every case except the last.
+
+1. glazedweb #8 (session writer handshake, registry drift flag)
+2. glazedweb #9 (software inventory)
+3. glazedweb #10 (comparison matrix; sits on #9)
+4. glazedweb #12 (workroom comparison; sits on #9)
+5. glazedweb #13 (em dash sweep). Caution: #4 and #13 both touch glaze/catalog/README.md, so whichever goes second needs that line kept em dash free.
+6. glazedweb #4 (Codex economics catalog)
+7. glazedweb #1 (docs/studio-dashboard-catalog into main)
+
+### Block 4, client repos, deepest first
+Each stack merges bottom-up into its own base, then the base into main. Main deploys production for all of these, so these are the ones to read before clicking.
+
+- copperac: #7, then #6, then #1
+- devine: #7, then #6, then #1
+- truenorth: #7, then #6, then #1
+- mikes: #8, then #7, then #6, then #1
+
+### Block 5, needs a secret set first
+1. Set KITCHEN_SESSION_SECRET (32 or more random characters) on the Vercel projects for pjs and cookinwithbeans, then merge pjs #1 and cookinwithbeans #1. Each owner is asked for their PIN once after deploy. Without the secret, production refuses every sign-in by design.
+2. Set CLAUDE_CODE_OAUTH_TOKEN on pjs and cookinwithbeans (same token, same file-based command as the other six), then merge pjs #2 and cookinwithbeans #2 so those repos get automatic review.
+
+### Block 6, not Claude's
+- glazedweb #11 (anchor payments off) belongs to another session.
+- glazedweb #2 (connected business redesign) is Codex's, unreviewed by Claude.
+
+### Still only Kevin can do these
+1. Vercel: confirm "Automatically expose System Environment Variables" is on for copperac, devine, mikes, pjs and cookinwithbeans. Each now refuses sign-in without it.
+2. Flip True North to buildFeePaid true in lib/customOrders.js on main; the dashboard already records the payment.
+3. Decide B13: whether a copperac enquiry gets stored and an owner inbox, or stays mail-only on purpose.
+4. Decide D6: whether "Not the registry" and "Not a CRM" stay in ledger.md now the dashboard exists.
+5. Turn on Codex automatic reviews in ChatGPT when its window resets.
+6. G02 dashboard hosting and G01 Square sandbox plus a test inbox, when ready.

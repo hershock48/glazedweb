@@ -87,7 +87,8 @@ const host = new URL(BASE).host;
 // Two browsers: the phone pass floats its scrollbar like a real phone, the
 // desk pass lays one out like Chrome on Windows, so a 100vw element that
 // overflows by the scrollbar's width is caught (see desktopLaunchOpts).
-const browsers = { phone: await chromium.launch(launchOpts()), desk: await chromium.launch(desktopLaunchOpts()) };
+const browsers = { phone: await chromium.launch(launchOpts()) };
+try { browsers.desk = await chromium.launch(desktopLaunchOpts()); } catch (e) { await browsers.phone.close(); throw e; }
 
 let violations = 0;
 const overflow = [];

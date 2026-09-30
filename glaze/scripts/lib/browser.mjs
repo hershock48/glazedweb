@@ -62,10 +62,11 @@ export function launchOpts() {
  * visitor sees.
  */
 export function desktopLaunchOpts() {
+  const base = launchOpts();
   return {
-    ...launchOpts(),
+    ...base,
     ignoreDefaultArgs: ["--hide-scrollbars"],
-    args: ["--disable-features=OverlayScrollbar"],
+    args: [...(base.args ?? []), "--disable-features=OverlayScrollbar"],
   };
 }
 

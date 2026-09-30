@@ -95,6 +95,7 @@ const errors = [];
 const bad = [];
 const unreachable = [];
 
+try {
 for (const route of ROUTES) {
   for (const [w, h, tag] of WIDTHS) {
     const page = await browsers[tag].newPage({ viewport: { width: w, height: h }, deviceScaleFactor: 1 });
@@ -161,6 +162,11 @@ for (const route of ROUTES) {
     await page.close();
   }
 }
+} finally {
+  // Both browsers close even when a page step throws, or two Chromium
+  // processes outlive the run.
+  await Promise.all(Object.values(browsers).map((b) => b.close()));
+}
 
 const list = (a, n = 5) => (a.length ? [...new Set(a)].slice(0, n).join(" | ") : "none");
 console.log(`\n=== ${BASE} — ${ROUTES.length} route(s) at ${WIDTHS.map((x) => x[0]).join(" and ")}px ===`);
@@ -170,5 +176,4 @@ console.log(`console errors:       ${list(errors)}`);
 console.log(`4xx/5xx:              ${list(bad)}`);
 if (unreachable.length) console.log(`UNREACHABLE:          ${list(unreachable)}`);
 
-await Promise.all(Object.values(browsers).map((b) => b.close()));
 process.exit(violations || overflow.length || errors.length || bad.length || unreachable.length ? 1 : 0);

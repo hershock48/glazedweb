@@ -46,6 +46,19 @@ its own box can clip its last item with no page-level overflow anywhere.
 > the page-level overflow check because the clipping happened inside the nav's
 > own box.
 
+**Never size a full-width section with `100vw`.** `100vw` includes the
+vertical scrollbar, so on Windows and Linux desktops, where the scrollbar
+takes up room, the section is one scrollbar wider than the window and the
+whole page scrolls sideways. Make full-width sections direct children of a
+full-width container and use `width: 100%`.
+
+> devine's homepage hero and photo band were `100vw` and scrolled sideways by
+> 15px on every desktop for weeks while every audit reported no overflow:
+> Playwright hides scrollbars, so no pass ever had one. Kevin found it by
+> eye (2026-09-30). `audit.mjs` now runs its desktop pass with a real
+> scrollbar (`desktopLaunchOpts` in `scripts/lib/browser.mjs`); phone and
+> tablet passes keep floating scrollbars, as the real devices do.
+
 ---
 
 ## Icons and favicons, beyond the cuts

@@ -48,6 +48,28 @@ export function launchOpts() {
   return executablePath ? { executablePath } : {};
 }
 
+/**
+ * A browser for DESKTOP widths, with a scrollbar that takes up room the way
+ * Chrome's does on Windows and Linux.
+ *
+ * Playwright launches Chromium with --hide-scrollbars, so no pass ever had a
+ * scrollbar in the layout, and an element sized 100vw (which includes the
+ * scrollbar) could never overflow. DeVine's homepage shipped exactly that bug
+ * and scrolled sideways by 15px on every desktop while every audit reported
+ * "horizontal overflow: none" (Kevin found it, 2026-09-30). Phone and tablet
+ * passes keep launchOpts(): real phones and tablets float their scrollbars
+ * over the page, so a classic scrollbar there would report overflow that no
+ * visitor sees.
+ */
+export function desktopLaunchOpts() {
+  const base = launchOpts();
+  return {
+    ...base,
+    ignoreDefaultArgs: ["--hide-scrollbars"],
+    args: [...(base.args ?? []), "--disable-features=OverlayScrollbar"],
+  };
+}
+
 export function arg(name, fallback) {
   const i = process.argv.indexOf(`--${name}`);
   return i > -1 && process.argv[i + 1] ? process.argv[i + 1] : fallback;

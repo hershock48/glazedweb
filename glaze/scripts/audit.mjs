@@ -15,6 +15,9 @@
  *    than looking for wide elements. Elements wider than the viewport inside an
  *    overflow-hidden parent are completely normal — a marquee track, a scaled
  *    hero image — and flagging them produces a page of false positives.
+ *  - The desktop pass runs with a real, space-taking scrollbar. Playwright hides
+ *    scrollbars by default, which made a 100vw overflow invisible: DeVine's
+ *    homepage scrolled sideways on every desktop while this reported clean.
  *  - It listens for pageerror as well as console errors, because an uncaught
  *    exception during hydration does not always reach the console listener.
  *
@@ -40,7 +43,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { loadChromium, launchOpts, arg } from "./lib/browser.mjs";
+import { loadChromium, launchOpts, desktopLaunchOpts, arg } from "./lib/browser.mjs";
 
 const chromium = await loadChromium();
 
@@ -81,7 +84,11 @@ if (!axePath) {
 const axe = fs.readFileSync(axePath, "utf8");
 
 const host = new URL(BASE).host;
-const browser = await chromium.launch(launchOpts());
+// Two browsers: the phone pass floats its scrollbar like a real phone, the
+// desk pass lays one out like Chrome on Windows, so a 100vw element that
+// overflows by the scrollbar's width is caught (see desktopLaunchOpts).
+const browsers = { phone: await chromium.launch(launchOpts()) };
+try { browsers.desk = await chromium.launch(desktopLaunchOpts()); } catch (e) { await browsers.phone.close(); throw e; }
 
 let violations = 0;
 const overflow = [];
@@ -89,9 +96,10 @@ const errors = [];
 const bad = [];
 const unreachable = [];
 
+try {
 for (const route of ROUTES) {
   for (const [w, h, tag] of WIDTHS) {
-    const page = await browser.newPage({ viewport: { width: w, height: h }, deviceScaleFactor: 1 });
+    const page = await browsers[tag].newPage({ viewport: { width: w, height: h }, deviceScaleFactor: 1 });
     if (COOKIE) await page.context().addCookies([COOKIE]);
     page.on("console", (m) => m.type() === "error" && errors.push(`${route} ${tag}: ${m.text().slice(0, 120)}`));
     page.on("pageerror", (e) => errors.push(`${route} ${tag}: uncaught ${e.message.slice(0, 120)}`));
@@ -155,6 +163,11 @@ for (const route of ROUTES) {
     await page.close();
   }
 }
+} finally {
+  // Both browsers close even when a page step throws, or two Chromium
+  // processes outlive the run.
+  await Promise.all(Object.values(browsers).map((b) => b.close()));
+}
 
 const list = (a, n = 5) => (a.length ? [...new Set(a)].slice(0, n).join(" | ") : "none");
 console.log(`\n=== ${BASE} — ${ROUTES.length} route(s) at ${WIDTHS.map((x) => x[0]).join(" and ")}px ===`);
@@ -164,5 +177,4 @@ console.log(`console errors:       ${list(errors)}`);
 console.log(`4xx/5xx:              ${list(bad)}`);
 if (unreachable.length) console.log(`UNREACHABLE:          ${list(unreachable)}`);
 
-await browser.close();
 process.exit(violations || overflow.length || errors.length || bad.length || unreachable.length ? 1 : 0);

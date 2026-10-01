@@ -22,6 +22,7 @@ Work outside your lane only through a handoff entry the owner has answered.
 - New branches are `codex/<topic>` or `claude/<topic>`. Never commit to main.
 - Codex ends every commit message with `Co-Authored-By: Codex <noreply@openai.com>`. Claude ends with its own Claude trailer. Kevin's hand commits carry neither. That is how the three are told apart.
 - Nothing merges to main without the other agent's review recorded on the pull request. Reviews are logged with `node glaze/scripts/score.mjs add`, which is the studio's record of which model gets what right.
+- Kevin can hand a merge to an agent. When he says "merge it" in a session, about a named pull request, the agent merges that pull request and no other, with a merge commit (never squash or rebase, the component manifests pin SHAs), and the merge commit says it was merged at Kevin's instruction and the date. His say-so replaces the other agent's review for that one merge; it does not change who owns main, and it does not carry to the next pull request. First used 2026-10-01 on ruintheparty PR 1, so a fresh Vercel project had something to build.
 - Git author identity is the GitHub noreply address. `kevin@glazedweb.com` blocks Vercel deploys of private repos.
 
 ## Working tree etiquette

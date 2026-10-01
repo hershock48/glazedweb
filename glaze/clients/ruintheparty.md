@@ -78,6 +78,19 @@ two readings. Kevin's call per build (standards.md); confirm.
 
 **Organization schema, not LocalBusiness.** It is a movement.
 
+**The letter is a reply, not a pitch.** Kevin, 2026-10-01: "sell him less,
+he came to us." The first draft opened on "Does #RuinTheParty mean anything
+yet? Not yet." and carried the cold-prospect machinery (audit framing, the
+struck market anchor, the vendor questions). All of it came out the same day;
+the h1 is now "You wrote the brief. We built the site. Open it." The rule is
+in `glaze/proposal.md` under "When the client came to us".
+
+**Vercel.** Project `ruintheparty` on the GlazedWeb team, framework set to
+Next.js by hand on 2026-10-01 after the first deploy served Vercel's own
+NOT_FOUND on every route with the framework unset (the glaze.md failure-log
+case). Domain ruintheparty.glazedweb.com attached; vercel.app hosts sit
+behind SSO, the custom domain does not.
+
 ## Permissions
 
 The logo file and the brief: sent by the client with the request to build
@@ -110,6 +123,3 @@ Nothing yet.
   organization's own site; re-check each in a browser before launch.
 - The second opinion (`second.mjs` judge and prose) was not run on the
   letter; the sandbox has no Codex sign-in.
-- Vercel project and the ruintheparty.glazedweb.com host: not created from
-  this session. Both the registry's `pitchUrl` and the letter's demo links
-  assume it.

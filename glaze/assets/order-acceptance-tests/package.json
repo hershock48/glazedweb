@@ -1,0 +1,12 @@
+{
+  "name": "glazed-order-acceptance-tests",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test --test-isolation=none acceptance.test.mjs"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.5.8",
+    "typescript": "5.9.3"
+  }
+}

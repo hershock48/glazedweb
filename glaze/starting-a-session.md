@@ -108,3 +108,61 @@ does. If one is going to be pasted repeatedly, it should be:
 
 The reason to prefer attaching repos is not tidiness. It is that a token which is
 never pasted cannot leak.
+
+---
+
+## Carrying a session forward, and the two-agent setup
+
+Added 2026-09-29, after Kevin asked what happens when a chat fills up and how to
+move what was built into a new one.
+
+**Nothing that matters lives in a chat.** A conversation is where the work is
+asked for, not where it is kept. When a chat fills, its context is summarized and
+it keeps going; when it ends, or when you start a fresh one, everything below is
+still there because it is a file.
+
+| What carries | Where it lives | Who reads it |
+|---|---|---|
+| Who Kevin is, what he has ruled, the traps of this machine | Claude's memory directory for this project | loaded into every Claude session in this folder |
+| The standards, the bar, the process | `glaze.md` and the files its table names | both agents, every session |
+| Lanes, branch prefixes, commit trailers, dirty-tree etiquette, the dispute rule | `AGENTS.md` in each repo, with `CLAUDE.md` pointing at it | both agents, every session |
+| The inbox between the two agents | `glaze/handoff.md` | both agents, at session start |
+| The work list, the owners, the merge order | `glaze/backlog.md` | both agents, and Kevin |
+| Who found what, and whether it held | `contracts-private/reviews/` and its scorecard | whoever asks |
+| Review on every pull request | the workflow in each repo, plus Codex's GitHub integration | runs with no chat open at all |
+
+**What does not carry:** the text of the conversation, any background agent still
+running when it ends, and anything on screen such as a local preview. Work that
+was never pushed is the only thing genuinely at risk, which is why the rule is to
+push at the end of every verified change set.
+
+### Opening the next chat
+
+Same opener as above, plus one line. The full version:
+
+```text
+Repos attached: glazedweb (the studio docs) and <client-repo> (the work).
+
+Read glaze.md in the glazedweb repo first, then AGENTS.md, then
+glaze/handoff.md and glaze/backlog.md, then glaze/clients/<client>.md. Run the
+ninety-second derive in glaze.md before trusting anything the docs claim about
+current state.
+
+Today: <what you want done>
+```
+
+`AGENTS.md` and the two shared files are the only addition. They are what make a
+new chat pick up the other agent's work instead of starting its own.
+
+### The other agent
+
+Claude and Codex are not connected to each other. They share four things and
+nothing else: the rules in `AGENTS.md`, the inbox in `glaze/handoff.md`, the list
+in `glaze/backlog.md`, and the pull requests on GitHub, where each reviews the
+other before Kevin merges. A Claude session can also ask GPT a question directly
+through `glaze/scripts/second.mjs`, which runs the Codex CLI on Kevin's ChatGPT
+subscription. That is a phone call, not a link: one question, one answer, no
+shared memory.
+
+If one of them is out of usage, the other takes over from those files and writes
+a note saying so. The rule is in the agent outage memory and in `AGENTS.md`.

@@ -1,0 +1,1 @@
+{"name":"glazed-content-cas-tests","private":true,"type":"module","scripts":{"test":"node --test --test-isolation=none content-cas.test.mjs"},"devDependencies":{"@electric-sql/pglite":"0.5.8"}}

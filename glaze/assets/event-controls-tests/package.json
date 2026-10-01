@@ -1,0 +1,12 @@
+{
+  "name": "glazed-event-controls-tests",
+  "private": true,
+  "scripts": {
+    "test": "node --test --test-isolation=none event-controls.test.cjs"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.5.8",
+    "sharp": "0.35.4",
+    "typescript": "5.9.3"
+  }
+}

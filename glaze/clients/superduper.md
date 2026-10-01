@@ -1,6 +1,13 @@
 # Super Duper
 
-**Repo** `superduperr` · **Live** superduperdrinks.com
+**Repo** `superduperr` (an older build sits in `superduper`) · **Their site** superduperdrinks.com
+
+**Neither build is live.** Checked 2026-09-17 through the Vercel API: both
+projects are paused, carry no custom domain, and serve only `.vercel.app`
+URLs. superduperdrinks.com is not served by either, so it is the client's own
+site and both repos are pitch builds. `superduperr` labels its contact screen
+a demo. `superduper` does not, and answers "Message sent!" with no API route
+behind it, which would be a false receipt if that project were ever unpaused.
 
 ## What they are
 

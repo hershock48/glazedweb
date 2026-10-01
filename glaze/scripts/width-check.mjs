@@ -24,7 +24,7 @@
  * Generalised from pjs/tools/width-check.mjs: routes and widths come from
  * arguments, axe resolves like the house auditor, and the reveal-forcing step
  * covers the class names used across the account (.reveal → in / is-visible /
- * is-in).
+ * is-in) and the data-shown attribute the newer Reveal components set.
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -81,7 +81,15 @@ for (const width of WIDTHS) {
     await page.waitForTimeout(250);
     await page.evaluate(() => {
       window.scrollTo(0, 0);
-      document.querySelectorAll(".reveal, [data-reveal]").forEach((el) => el.classList.add("in", "is-visible", "is-in"));
+      // The class names used across the account, plus the attribute the
+      // truenorth and ruintheparty Reveal components set (data-shown).
+      // Without the attribute, ruintheparty's refrain stamps sat at their
+      // pre-reveal scale(1.18) and this reported 14px of overflow at 320
+      // that no visitor sees once the line has revealed.
+      document.querySelectorAll(".reveal, [data-reveal]").forEach((el) => {
+        el.classList.add("in", "is-visible", "is-in");
+        el.setAttribute("data-shown", "");
+      });
     });
 
     // Then wait for the page to actually stop moving. getAnimations() covers

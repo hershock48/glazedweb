@@ -177,7 +177,7 @@ somebody is mid-decision about spending real money on expertise. MI Gas gets
 this one.
 
 Retired, and recorded so nobody reintroduces them: *Designed and built by*,
-*Made in Marshall by*, a bare *Built by* — and, as of Kevin's ruling on
+*Made in Marshall by*, a bare *Built by*, and, as of Kevin's ruling on
 31 Aug 2026, **"Concept build by"**. This file used to prescribe it for spec
 builds that had not been bought, so sessions kept shipping it to prospect
 footers no matter how many times Kevin objected; he had to say it three

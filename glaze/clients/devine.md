@@ -74,7 +74,7 @@ the concept site at `/demo`. A meeting with the owner is set for late August
   orders bucket on the REQUESTED date, not the order's age; a phone order is
   born "confirmed" because the shop is already talking to the customer; a web
   order reaches the board only if its email actually sent; and the tracker
-  never prints a dollar figure it was not given — unknown costs and missing
+  never prints a dollar figure it was not given. Unknown costs and missing
   recipes say so. Storage is the pjs two-backend pattern (Neon Postgres via
   Vercel, in-memory fallback with a visible warning). The gate is a PIN
   (shop phone's last four until WORKROOM_PIN is set), a gate not a vault:

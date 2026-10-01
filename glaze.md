@@ -593,13 +593,13 @@ session does by default, which is why they need naming.
   divide the band's pixels by the number of states. Under roughly 8px per step
   a thumb skips most of them.** A leader drawing or a fade has no steps to skip
   and degrades into "less far along"; a counter degrades into a stutter. Make
-  the counter time-based — but a fired-once timer is the OTHER half of the
+  the counter time-based. But a fired-once timer is the OTHER half of the
   same bug: measured on a phone profile it ran its whole duration with the
   element off screen, zero mid-count values visible. Scrubbing at least
   guarantees the element is in frame while it animates; keep that guarantee
   by gating the clock on visibility, so elapsed time only accumulates while
   the element is on screen. And print the value as text from the loop, not
-  as `counter()` over an animated custom property — WebKit does not reliably
+  as `counter()` over an animated custom property. WebKit does not reliably
   repaint that, and the number sat frozen on every iPhone while every
   desktop check passed. `Schulers/components/YearCount.jsx` is the surviving
   version and its header carries all three failures.

@@ -121,7 +121,7 @@ on the table: a **co-management division that Jake runs**, presented to them
 with a framework and business model, managing grows around the country,
 charging **a flat fee** because it is "more digestible for the owner grower
 who's paying it." Working phrase in Kevin's notes: **"Plantsmen grow management
-model"** — likely the model's name, not confirmed as the company's; two web
+model"**, likely the model's name, not confirmed as the company's; two web
 searches found no matching company, so identifying them is a question for Jake.
 
 **Two consequences for the work:**
@@ -137,7 +137,7 @@ searches found no matching company, so identifying them is a question for Jake.
   pitch.
 
 Also in Kevin's notes: besides the booked-consult flow, Jake wants to capture
-"random calls" — visitors who will not finish an intake ("some might know and
+"random calls", visitors who will not finish an intake ("some might know and
 others don't know what's up"), worded so both kinds convert. **Both capture
 paths shipped 2026-08-28:** the co-management application at
 `/co-management#apply` (nine questions in `COMANAGE_APPLY`, capture-not-wall on

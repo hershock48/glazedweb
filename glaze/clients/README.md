@@ -63,6 +63,7 @@ Free-form prose is fine, but keep these headings so a session can skim:
 | DeVine's Flowers & Botanicals | `devine` |
 | True North Ice Cream | `truenorth` |
 | The Stagecoach Inn | `stagecoach` |
+| Ruin the Party | `ruintheparty` |
 
 `bangrants` is Kevin's and does not matter.
 

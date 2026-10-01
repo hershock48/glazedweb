@@ -106,6 +106,36 @@ Which action depends on the market, Kevin's ruling of 25 Aug 2026:
 
 ---
 
+## When the client came to us
+
+The six sections above are built for a cold prospect, who has to be
+unsettled before he will read a price. **An inbound client is already
+there, and the same machinery reads as a hard sell.** Kevin's ruling,
+2026-10-01, on the Ruin the Party letter ("we have to sell him less in a
+way bc he came to us"): when the client sent the brief, write a reply to
+the brief, not a pitch.
+
+What changes, and the Ruin the Party letter is the example:
+
+- **No question hook.** The h1 is the fact: *You wrote the brief. We built
+  the site. Open it.* The share card says the same.
+- **No audit section.** There is no site of theirs to find fault with.
+  "What we checked first" instead: the facts about the world the site is
+  going into (the domain, the hashtag, who already does this work, the
+  numbers), each linked, each stated as useful rather than as a problem.
+- **No wedge.** Ownership is stated once, plainly, because he needs the
+  fact. The "three questions to ask any vendor" paragraph goes.
+- **No market anchor.** The price is the price, with what is in it. A
+  struck-through competitor figure beside it is the thing that reads as
+  selling.
+- **One decision he can overrule**, offered as such, where a cold letter
+  would state the thesis in the pink box.
+- **The close is "if you want to go ahead"**, not "what happens next", and
+  it still ends on one action, Launch.
+
+The sourcing rules, the link cards, the host split and the before-you-send
+list all still apply.
+
 ## What goes in and what stays out
 
 **In:** their real logo, their real photography, their real copy where it is

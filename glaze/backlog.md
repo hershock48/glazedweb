@@ -88,6 +88,7 @@ Opened 2026-09-17 when the backlog moved into the repo. The pipeline decision (K
 - [ ] C06 (claude) Scorecard in use: every review logged with score.mjs so the studio has its own record of which model earns which work.
 - [ ] C07 (kevin) Branch protection on main in every repo: require a pull request and one review before merge. Both agents review each other; Kevin merges.
 - [ ] C08 (kevin) Tell the Codex thread to read AGENTS.md and handoff.md in the repo it is working in, and to retire its Documents copy of this backlog.
+- [ ] C09 (claude) Ruin the Party: proposal and demo built 2026-10-01 (repo `ruintheparty`, branch `claude/pitch`; studio side on `claude/happy-ramanujan-ir7g12`). Open before send: Kevin rules the price ($4,500 + $150 recommended), opens ruintheparty.com and the TikTok tag, creates the Vercel project and the ruintheparty.glazedweb.com host, runs second.mjs judge and prose on the letter. Client file: glaze/clients/ruintheparty.md.
 
 ## Completion evidence
 

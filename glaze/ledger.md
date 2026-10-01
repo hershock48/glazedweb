@@ -50,7 +50,7 @@ never executed. An unavailable check never silently falls back to a local copy.
 The full pipeline decision from September 13 still stands: automate finding and
 qualifying prospects, research, proposal and demo preparation, follow-up drafting,
 and the recorded handoff into a client account. September 14's runtime rule also
-stands: use the signed-in Claude Code or Codex subscription, with no model API keys
+stands: use the signed-in Claude Code subscription, with no model API keys
 or separate API charges. Research defaults to session briefs; --brief <slug> and
 --write <slug> --from <private-result.json> cover the single-account path. --draft
 --json produces batch briefs without a model call. Selection writes prospects

@@ -1,12 +1,14 @@
 # The backlog
 
-The one backlog for the Glazed Web repos, moved into this repo on 2026-09-17 from the Codex thread that wrote it (its Documents\Codex copy is retired). Every item carries an owner in parentheses: (codex), (claude) or (kevin). Only the owner changes an item's status; the other agent reviews it before it merges. The lanes are in AGENTS.md. Items with a G prefix are external gates that only Kevin can open.
+The one backlog for the Glazed Web repos, moved into this repo on 2026-09-17 from the Codex thread that wrote it. Every item carries an owner in parentheses: (claude) or (kevin). Claude changes the status of its own items with the evidence the item names; (kevin) items wait on him. Items with a G prefix are external gates that only Kevin can open. The convention is in AGENTS.md.
+
+On 2026-10-01 Kevin retired the second agent. Every open (codex) item became (claude) that day; checked items keep the tag they were finished under, so the work log still says who did what.
 
 Convention: `- [ ] ID (owner) text`. Add new items under the right section with the next ID. Do not renumber. The work log at the bottom is append-only.
 
 
-Owner: Codex for implementation and verification; Kevin supplies business decisions and access when required.
-Status: active. Updated September 17, 2026. Completion requires evidence, not a checked planning box.
+Owner: Claude for implementation and verification; Kevin supplies business decisions and access when required.
+Status: active. Updated October 1, 2026. Completion requires evidence, not a checked planning box.
 
 ## Working rules
 
@@ -20,49 +22,49 @@ Status: active. Updated September 17, 2026. Completion requires evidence, not a 
 
 - [x] L01 (codex) True North: enforce the ordering-off switch on the page and JSON/plain-form POST before any side effect. Verify disabled, enabled and stale-form submissions.
 - [x] L02 (codex) DeVine: replace credential-valued cookies with signed expiring owner/staff sessions; test forgery, raw PIN, expiry, rotation and role separation.
-- [ ] L03 (codex) DeVine: durable payment attempts with stable idempotency keys, concurrency control and uncertain-result reconciliation for online and workroom payments.
-- [ ] L04 (codex) DeVine: persist fulfillment intent before payment; recover notification/storage outages without charging twice; surface unresolved payments to the owner.
-- [ ] L05 (codex) True North: validate flavor feeds, retain a durable per-shop last-good board, preserve valid empty boards, and show freshness accurately.
-- [ ] L06 (codex) Copper: trace contact/reserve intake, workroom persistence and owner access. Preserve Toast ordering and prevent parked in-house order paths on the client host.
-- [ ] L07 (codex) All three: map customer and owner journeys with route-level tests for order/enquiry, payment where applicable, notification, fulfillment, cancellation and refund.
-- [ ] L08 (codex) Build/lint and targeted accessibility/mobile checks on changed journeys; document real deployment verification still required.
-- [ ] L09 (codex) Reproduce and resolve the September 17 re-review R1-R6: preserve LF without rewriting pinned commits; provide audited owner resolution for unresolved payments; version the session-adapter contract; diagnose/document trusted-proxy configuration; make committed-tree tests and disposable fixtures reproducible; flag registry drift in readers. Review R7 lows afterward. Source: contracts-private/reviews/2026-09-17-codex-rereview.md. Implemented for PR re-review; clean published-tree verification is recorded in the PR handoff. Remains open until cross-review.
-- [ ] G01 (codex) External gate: provider sandbox credentials, monitored test inbox access and owner/domain confirmation. Verify installed deployments, then prepare concrete cutover plans for approval.
+- [ ] L03 (claude) DeVine: durable payment attempts with stable idempotency keys, concurrency control and uncertain-result reconciliation for online and workroom payments.
+- [ ] L04 (claude) DeVine: persist fulfillment intent before payment; recover notification/storage outages without charging twice; surface unresolved payments to the owner.
+- [ ] L05 (claude) True North: validate flavor feeds, retain a durable per-shop last-good board, preserve valid empty boards, and show freshness accurately.
+- [ ] L06 (claude) Copper: trace contact/reserve intake, workroom persistence and owner access. Preserve Toast ordering and prevent parked in-house order paths on the client host.
+- [ ] L07 (claude) All three: map customer and owner journeys with route-level tests for order/enquiry, payment where applicable, notification, fulfillment, cancellation and refund.
+- [ ] L08 (claude) Build/lint and targeted accessibility/mobile checks on changed journeys; document real deployment verification still required.
+- [ ] L09 (claude) Reproduce and resolve the September 17 re-review R1-R6: preserve LF without rewriting pinned commits; provide audited owner resolution for unresolved payments; version the session-adapter contract; diagnose/document trusted-proxy configuration; make committed-tree tests and disposable fixtures reproducible; flag registry drift in readers. Review R7 lows afterward. Source: contracts-private/reviews/2026-09-17-codex-rereview.md. Implemented for PR re-review; clean published-tree verification is recorded in the PR handoff. Remains open until cross-review.
+- [ ] G01 (claude) External gate: provider sandbox credentials, monitored test inbox access and owner/domain confirmation. Verify installed deployments, then prepare concrete cutover plans for approval.
 
 ## 2. Make the ledger authoritative and usable
 
 - [x] D01 (codex) Reconcile dashboard records with legacy ledger changes; preserve latest Kevin-confirmed True North payment and Stagecoach meeting facts. Produce a reviewed migration diff and backup. Local reconciliation and additive source restoration verified; hosted migration is G02.
 - [x] D02 (codex) Fix form-state loss for validation and stale-record errors as well as transport failures; keep draft recovery scoped to the account. Reviewed merge published; draft retention/download verified. Reload persistence is not provided.
-- [ ] D03 (codex) One account page shows agreement source/version, payment amounts/status, monthly status, missing items with owners/deadlines, next action and dated evidence.
-- [ ] D04 (codex) Add verified launch-evidence references and link open client fixes to the account. Do not mark local tests as live passes.
+- [ ] D03 (claude) One account page shows agreement source/version, payment amounts/status, monthly status, missing items with owners/deadlines, next action and dated evidence.
+- [ ] D04 (claude) Add verified launch-evidence references and link open client fixes to the account. Do not mark local tests as live passes.
 - [x] D05 (codex) Add an explicit source-of-truth migration/restore procedure; prevent conflicting legacy writers after cutover. Local authority adapter and write refusal verified; hosted adapter remains G02.
-- [ ] G02 (codex) External gate: private hosting, dedicated database, chosen owner login and domain. Verify persistence, authentication, backup/restore and migration on the actual host.
+- [ ] G02 (claude) External gate: private hosting, dedicated database, chosen owner login and domain. Verify persistence, authentication, backup/restore and migration on the actual host.
 
 ## 3. Consolidate proven repeated software
 
-- [ ] R01 (codex) Inventory implementations across Copper, DeVine, True North, Louie's, and other relevant stores: pricing, cart/order validation, provider payments, fulfillment/kitchen, notifications and owner auth/storage.
-- [ ] R02 (codex) Produce a comparison matrix: strongest implementation, provider differences, known defects, tests and reuse boundaries. Do not force Square/Stripe/Toast into one undifferentiated flow.
-- [ ] R03 (codex) Extract provider-independent money/quantity/pricing/order-state contracts and tests into versioned source packages/templates after the launch fixes establish behavior. Money/quantity/quote review released as order-quote 1.0.0 in Copper's demo and Mike's; order-state/fulfillment contracts remain open.
-- [ ] R04 (codex) Extract provider-specific retry/reconciliation adapters, then notification and kitchen/fulfillment contracts where genuinely shared.
-- [ ] R05 (codex) Adopt proven components in at least two relevant client copies; verify no design change and no loss of client-specific behavior.
+- [ ] R01 (claude) Inventory implementations across Copper, DeVine, True North, Louie's, and other relevant stores: pricing, cart/order validation, provider payments, fulfillment/kitchen, notifications and owner auth/storage.
+- [ ] R02 (claude) Produce a comparison matrix: strongest implementation, provider differences, known defects, tests and reuse boundaries. Do not force Square/Stripe/Toast into one undifferentiated flow.
+- [ ] R03 (claude) Extract provider-independent money/quantity/pricing/order-state contracts and tests into versioned source packages/templates after the launch fixes establish behavior. Money/quantity/quote review released as order-quote 1.0.0 in Copper's demo and Mike's; order-state/fulfillment contracts remain open.
+- [ ] R04 (claude) Extract provider-specific retry/reconciliation adapters, then notification and kitchen/fulfillment contracts where genuinely shared.
+- [ ] R05 (claude) Adopt proven components in at least two relevant client copies; verify no design change and no loss of client-specific behavior.
 - [x] R06 (codex) Add a tool registry: stable component ID, version, source commit, capability, test evidence, changes and upgrade instructions. Nineteen published components and thirty-nine checked client references; actual deployment versions remain unknown.
 - [x] R07 (codex) Add per-account installed-component references in the ledger: version/source, local changes, verification date and pending upgrades. Local references, editable maintenance evidence, retained before/after history and guarded source-update command verified. Deployment starts unknown; actual deployment checks and the hosted adapter remain G01/G02.
 - [x] R08 (codex) Local acceptance work: durable retry keys and request fingerprints; atomic order acceptance plus print/notification intent; lookup/recovery after uncertain responses. Concurrent duplicates, post-commit response loss, local database restart, changed-payload rejection and stop/accept races verified. Copper's public Toast route preserved. Hosted PostgreSQL remains G01; provider notification reconciliation and physical printer completion remain R04/L07.
-- [ ] R09 (codex) In progress: signed kitchen staff sessions, persistent attempt limits, owner/staff separation and browser sign-in/out are implemented and locally verified. Atomic revision-checked state/actions, allowed transitions, durable receipts/history, lost-response recovery and truthful owner cancellation/customer feedback are now implemented and locally verified. Copper's parked menu now also has atomic revision/history saves, exact price drafts, pending locks and latest-copy comparison, verified locally. Ordering storage initialization, configured/default TLS behavior and production-memory write refusal are implemented; intended-host verification remains G01. Owner notification-recovery controls, bounded dispatch/provider lookup and printer job/review recovery are now locally verified and published. Verify actual hosted providers, fulfillment and owner handover before declaring either demo operational.
+- [ ] R09 (claude) In progress: signed kitchen staff sessions, persistent attempt limits, owner/staff separation and browser sign-in/out are implemented and locally verified. Atomic revision-checked state/actions, allowed transitions, durable receipts/history, lost-response recovery and truthful owner cancellation/customer feedback are now implemented and locally verified. Copper's parked menu now also has atomic revision/history saves, exact price drafts, pending locks and latest-copy comparison, verified locally. Ordering storage initialization, configured/default TLS behavior and production-memory write refusal are implemented; intended-host verification remains G01. Owner notification-recovery controls, bounded dispatch/provider lookup and printer job/review recovery are now locally verified and published. Verify actual hosted providers, fulfillment and owner handover before declaring either demo operational.
 
 ## 4. Standardize owner controls
 
-- [ ] O01 (codex) Compare existing workrooms: hours, prices, availability, photos, incoming orders and role permissions.
-- [ ] O02 (codex) Define common labels/navigation, validation, save/error handling, permissions and audit records while retaining client branding.
-- [ ] O03 (codex) Extract reusable controls and adopt in two suitable workrooms. Only expose functions the client actually needs and is entitled to use.
-- [ ] O04 (codex) Verify owner/staff access, invalid input, persistence, public-site updates, uploads and order fulfillment. Record handover guidance.
+- [ ] O01 (claude) Compare existing workrooms: hours, prices, availability, photos, incoming orders and role permissions.
+- [ ] O02 (claude) Define common labels/navigation, validation, save/error handling, permissions and audit records while retaining client branding.
+- [ ] O03 (claude) Extract reusable controls and adopt in two suitable workrooms. Only expose functions the client actually needs and is entitled to use.
+- [ ] O04 (claude) Verify owner/staff access, invalid input, persistence, public-site updates, uploads and order fulfillment. Record handover guidance.
 
 ## 5. Measure the business
 
-- [ ] M01 (codex) Replace ambiguous cumulative totals with dated time, revenue and cost entries; distinguish collected revenue, transaction income, recurring fees and expenses without double counting. Build/monthly revenue separation and preserved Uncategorized legacy entries are implemented and locally verified; actual evidence-backed records and cross-review remain open.
-- [ ] M02 (codex) Per-account summaries for period, data completeness, build/support time and contribution before unrecorded expenses. Never treat unknown as zero.
-- [ ] M03 (codex) Sales cohorts separated by warm/cold/visit with explicit dates, stages and denominators; avoid calling current status counts conversion rates.
-- [ ] M04 (codex) Import/export and correction workflow with source references; test duplicate prevention, period boundaries and totals. Previewed receipt imports, cross-account identity checks and atomic linked corrections are implemented and locally verified. Cross-review and hosted import/restore verification remain open.
+- [ ] M01 (claude) Replace ambiguous cumulative totals with dated time, revenue and cost entries; distinguish collected revenue, transaction income, recurring fees and expenses without double counting. Build/monthly revenue separation and preserved Uncategorized legacy entries are implemented and locally verified; actual evidence-backed records and cross-review remain open.
+- [ ] M02 (claude) Per-account summaries for period, data completeness, build/support time and contribution before unrecorded expenses. Never treat unknown as zero.
+- [ ] M03 (claude) Sales cohorts separated by warm/cold/visit with explicit dates, stages and denominators; avoid calling current status counts conversion rates.
+- [ ] M04 (claude) Import/export and correction workflow with source references; test duplicate prevention, period boundaries and totals. Previewed receipt imports, cross-account identity checks and atomic linked corrections are implemented and locally verified. Cross-review and hosted import/restore verification remain open.
 - [x] M05 (codex) Document the weekly review: next actions, blocked launches, unpaid builds, monthly starts, time/cost exceptions and candidates for reusable products. Published in glazedweb-admin/docs/weekly-review.md.
 
 ## 6. Streamline prospect-to-partnership work
@@ -81,6 +83,7 @@ Selective Buzz-inspired workflow work belongs inside the private ledger and exis
 Opened 2026-09-17 when the backlog moved into the repo. The pipeline decision (Kevin, 2026-09-13) is research, proposal, demo, send, track, learn, all automated, every model step inside a Claude Code session (no API keys, Kevin 2026-09-14).
 
 - [x] C01 (claude) Second opinion tool: glaze/scripts/second.mjs (GPT through the Codex CLI on the ChatGPT subscription). Standing rule: every pitch draft runs judge and prose before Kevin sees it.
+  - 2026-10-01: the tool is retired with the second agent. The standing rule stays, run by the Claude session itself against the judge rules in glaze/proposal.md and the prose tells in glaze/standards.md.
 - [ ] C02 (claude) Session write path into the ledger once the authority question in handoff.md is settled (blocked by codex H1 to H4). Until then, log sends and replies by hand in handoff.md.
 - [ ] C03 (claude) Research the statewide five in-session with research.mjs --brief: Schlenkers, Mason Depot, Mikes Famous Ham Place, Hinkley, Richies. File each with --write once C02 is open.
 - [ ] C04 (claude) Gmail stage as drafts only (per the 2026-09-16 open-source scan verdict): the pipeline writes the draft, Kevin presses send, the ledger records the send from evidence.
@@ -301,7 +304,7 @@ Kevin's ask: work continuously toward all five programs without waiting on him, 
 - [ ] B13 (kevin) Copperac enquiries are not stored anywhere (intake trace 2026-09-17, copperac PR 7). The club mailbox is the only record: if Resend fails or the mail is deleted, the enquiry is gone, and the workroom has no inbox. Decide whether an enquiry gets a row and an owner inbox screen before launch, or stays mail-only on purpose.
 - [ ] B14 (claude) Copperac /api/inquiry has no rate limit and no raw body ceiling; request.json() buffers the whole payload before any length check (intake trace 2026-09-17). This exposes the shared glazedweb.com sending identity, not client data. Add a per-address limit and a byte ceiling, matching whatever the other client forms do, and check every repo with a public form for the same gap.
 - [x] B15 (claude) Review Codex economics: glazedweb-admin PR 3 and glazedweb PR 4 (codex/economics-receipts), shipped before its outage and asking for review in handoff.md. Build and monthly revenue split, receipt imports with dedup, atomic corrections. Phase F touches this, so review before building on it.
-- [ ] B16 (codex) The shared option-pricing source at glaze/assets/option-pricing/1.0.0/pricing.ts explains its rule with copperac Toast examples ("Nachos sells 5 oz. Queso in both"), and both client copies are pinned to it, so Mike's Place carries Copper wording it cannot fix locally (mikes PR 7). Reword the shared source in terms of the rule rather than one venue menu, then re-pin both copies.
+- [ ] B16 (claude) The shared option-pricing source at glaze/assets/option-pricing/1.0.0/pricing.ts explains its rule with copperac Toast examples ("Nachos sells 5 oz. Queso in both"), and both client copies are pinned to it, so Mike's Place carries Copper wording it cannot fix locally (mikes PR 7). Reword the shared source in terms of the rule rather than one venue menu, then re-pin both copies.
 - [x] E1 (claude) O01 compare the workrooms: glaze/catalog/workrooms-2026-09-17.md (PR 12), 10 repos by 11 areas, 15 items for O02.
 - [x] D2 (claude) R02 comparison matrix: glaze/catalog/comparison-2026-09-17.md (PR 10); corrections from the fact-check in progress.
 
@@ -369,6 +372,8 @@ In the order they block. Each is one click or one secret; nothing else is waitin
 8. Hosting for the dashboard (G02) and Square sandbox plus a test inbox for DeVine (G01), when ready; Claude hands over the exact env list on request.
 
 ## Merge order, 2026-09-17 late (replaces the earlier Kevin queue)
+
+**2026-10-01:** blocks 2 and 3 are done. glazedweb-admin 9, 10, 3 and 1 and glazedweb 14, 8, 9, 10, 12, 13, 4 and 1 are merged to main, and the merged branches are gone. glazedweb 2 (the Codex logo motion) stays open as a draft for Kevin. Blocks 1 (the other five repos), 4 and 5 are still as written below.
 
 Thirty pull requests are open across twelve repos. Most are stacked, so the order matters more than the count. Everything below was reviewed and answered; nothing is waiting on Claude. Merge top to bottom within each block.
 

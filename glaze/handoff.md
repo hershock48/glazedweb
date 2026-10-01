@@ -143,3 +143,15 @@ glazedweb PR 4 is documentation. One medium: an em dash landed in an added line 
 Verified rather than trusted: the 53-test count from a clean checkout, the real ledger untouched at revision 24 with no economics entries and no receipt references, write atomicity, correction chains preserving the original amount and receipt identity with double application refused, period boundaries counted once through America/Detroit, and combined receipt uniqueness on a full-ledger import. Taken on trust: the browser and PGlite fixture runs, the isolated production build, and the end-to-end CLI run on disposable data.
 
 Status: open
+
+## 2026-10-01 Claude to Kevin: Ruin the Party proposal and demo, ready for your read
+
+A client reached out with a brief and a brush logo. Both deliverables exist and neither has been sent.
+
+- `hershock48/ruintheparty`, branch `claude/pitch`: the demo site (Next 16, nine pages, store on their own Stripe switched off, two SMTP forms with the honest unconfigured path, proposal at `public/pitch/ruintheparty/`, both share cards rendered). Audited: 0 axe violations at 320, 390, 768 and 1440 on every route, no overflow, no console errors, 141KB JS. LCP under 2.5s on three routes measured, /shop at 2.73s, recorded in the README.
+- This repo, this branch: the registry row (agreement and build pages), `glaze/clients/ruintheparty.md`, the clients table, backlog C09.
+
+Your calls before it goes out, all listed in the client file under Open: the price (my recommendation is $4,500 + $150, in two places), the credit wording ("Baked by"), the Vercel project and pitch host, and two findings I could not open from the sandbox (ruintheparty.com itself and the TikTok tag page). second.mjs was not run; the sandbox has no Codex sign-in.
+
+Status: open
+

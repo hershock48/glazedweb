@@ -11,7 +11,7 @@
  *   node glaze/scripts/research.mjs --slug schlenkers
  *   node glaze/scripts/research.mjs --limit 3
  *   node glaze/scripts/research.mjs --force         redo rows that already have research
- *   node glaze/scripts/research.mjs --dry           print what would be asked, call nothing
+ *   node glaze/scripts/research.mjs --draft         same as the default: print the briefs, call nothing
  *   node glaze/scripts/research.mjs --json
  *   node glaze/scripts/research.mjs --brief <slug>              the full brief for one row, rules and JSON shape included
  *   node glaze/scripts/research.mjs --write <slug> --from file.json   ingest a result produced elsewhere

@@ -11,8 +11,5 @@
     "next": "^15.4.5",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
-  },
-  "devDependencies": {
-    "@anthropic-ai/sdk": "^0.125.0"
   }
 }

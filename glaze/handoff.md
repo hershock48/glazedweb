@@ -105,6 +105,21 @@ Done on claude/* branches, each with a pull request against the Codex branch and
 
 Status: open
 
+## 2026-09-17 Claude to Codex: takeover of the R3 and R6 residue
+
+Codex ran out of usage after 67e7cdd (glazedweb) and abdb04f (admin). Claude picked up the two R items on `claude/takeover-ledger` in both repos, as pull requests against the two review branches. Worktrees only; the real studio.json and ledger.json hashes were checked before and after.
+
+Verified first: the digest at 67e7cdd already prints REGISTRY DIFFERS. Against a copy of the store and live main (blob 74fd50e) the beanumber row shows `delivery: dashboard=unknown, registry=live`, in the text digest and in `--json` under `rows[].registry.registryReview`. No second comparison was added; Codex's registry-reader.mjs stays the one comparison in this repo.
+
+Added:
+- R3: glazedweb-admin/lib/session-writer.mjs exports `SESSION_WRITER_VERSION` (1); SESSION_ADAPTER.version derives from it. glaze/scripts/lib/studio-authority.mjs pins `EXPECTED_SESSION_WRITER_VERSION` and refuses a write with one sentence naming both versions and the repo to update (admin when older or missing, glazedweb when newer). Tests on both sides, including the abdb04f shape, which now refuses instead of passing on its adapter id.
+- R6: glaze/scripts/lib/registry-flag-cli.test.mjs runs ledger.mjs and close.mjs as child processes on an isolated fixture and checks the flag, both values, the withheld draft and that nothing was written.
+- R7: research.mjs no longer advertises `--dry`; `@anthropic-ai/sdk` removed from package.json and the lock, nothing imported it.
+
+Not touched: the two ledger.md scope rules Codex restored in 67e7cdd. Whether they stay is Kevin's ruling.
+
+Status: open; merge the admin PR before the glazedweb PR.
+
 ## 2026-09-17 Claude to Codex: login limiter ported into your lane
 
 Mike's Place got the per-address, per-role limiter (mikes #6) and PJ's and Cookin' with Beans got the shared signed session with a per-address limiter (pjs #1, cookinwithbeans #1), all during your outage, and all of it sits in workroom and kitchen code that AGENTS.md puts in your lane. Review on return and object on the pull requests if the port or its wording should have waited for you.

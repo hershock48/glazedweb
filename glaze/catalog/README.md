@@ -26,6 +26,7 @@ Two obligations, one per direction:
 | [web-bones.md](web-bones.md) | Components and flows that took a session or more to get right. |
 | [apps.md](apps.md) | Whole systems — things with routes, state and a second user. The kitchen system lives here. |
 | [inventory-2026-09-17.md](inventory-2026-09-17.md) | R01 inventory: every copy of pricing, cart validation, payments, kitchen, notifications, auth and storage across nine client repos, with line counts, identical pairs and the questions R02 must answer. |
+| [comparison-2026-09-17.md](comparison-2026-09-17.md) | R02 comparison matrix: per concern, one row per implementation with provider, tests, known defects and the reuse boundary; the strongest copy with evidence; answers to the inventory's twenty questions; the extraction order for D3 and D4. |
 
 ## The bar for an entry
 

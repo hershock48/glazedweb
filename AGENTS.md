@@ -13,7 +13,7 @@ Two agents work in the Glazed Web repos: Claude (Claude Code sessions) and Codex
 
 - **Codex owns** the ledger authority and studio dashboard, shared components and their client copies, workrooms and owner controls, kitchen, printer and payment code, account economics.
 - **Claude owns** pitches, proposals, letters, client-facing copy, prospecting and the send pipeline, the studio site's copy and brand.
-- **Kevin owns** prices, agreements, anything a client sees before it is sent, and every merge to main.
+- **Kevin owns** prices, agreements, and anything a client sees before it is sent. He does not want to be the gate on merges (ruling, 2026-10-01, below).
 
 Work outside your lane only through a handoff entry the owner has answered.
 
@@ -21,9 +21,9 @@ Work outside your lane only through a handoff entry the owner has answered.
 
 - New branches are `codex/<topic>` or `claude/<topic>`. Never commit to main.
 - Codex ends every commit message with `Co-Authored-By: Codex <noreply@openai.com>`. Claude ends with its own Claude trailer. Kevin's hand commits carry neither. That is how the three are told apart.
-- Nothing merges to main without the other agent's review recorded on the pull request. Reviews are logged with `node glaze/scripts/score.mjs add`, which is the studio's record of which model gets what right.
-- Kevin can hand a merge to an agent. When he says "merge it" in a session, about a named pull request, the agent merges that pull request and no other, with a merge commit (never squash or rebase, the component manifests pin SHAs), and the merge commit says it was merged at Kevin's instruction and the date. His say-so replaces the other agent's review for that one merge; it does not change who owns main, and it does not carry to the next pull request. First used 2026-10-01 on ruintheparty PR 1, so a fresh Vercel project had something to build.
-- Git author identity is the GitHub noreply address. `kevin@glazedweb.com` blocks Vercel deploys of private repos.
+- An agent merges its own pull request to main once the house checks have passed and the pull request body records what was measured (the auditor at both widths, the width check, the performance numbers, and anything over a line said plainly). Kevin's ruling, 2026-10-01: "I don't understand why we have started doing this new thing where we don't merge our work and I have to manually tell you to merge." The gate was an agent's invention and it cost him a dozen reloads. Merge commits, never squash or rebase, because the component manifests pin SHAs.
+- The other agent still reviews, on the merged pull request, and anything it finds becomes a new branch. Reviews are logged with `node glaze/scripts/score.mjs add`, which is the studio's record of which model gets what right.
+- Kevin can say "hold" on any pull request, and that one waits for him. Anything a client will see before it is sent (a letter, a price, an agreement) is shown to him in the session before it goes out, merged or not.
 
 ## Working tree etiquette
 

@@ -84,7 +84,16 @@ export async function POST(req) {
         attachments: [{ filename: "glazedweb-call.ics", content: Buffer.from(ics).toString("base64") }],
       }),
     });
-    if (!r.ok) done.set("delivery", "mailto");
+    // A 2xx is not an acceptance. Resend answers an accepted message with a
+    // body carrying an id, and that id is the only evidence it took the
+    // request. A 2xx with any other body, which is what a changed API surface
+    // or a proxy in front of the call looks like, queued nothing, and the
+    // requested page would drop the mailto and imply the invite is on its way
+    // when Kevin never got it. Same honesty contract as /api/order.
+    const accepted = r.ok ? await r.json().catch(() => null) : null;
+    if (!accepted || typeof accepted.id !== "string" || !accepted.id) {
+      done.set("delivery", "mailto");
+    }
   } catch {
     done.set("delivery", "mailto");
   }

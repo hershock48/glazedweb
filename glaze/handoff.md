@@ -1,16 +1,8 @@
-# Handoff: the inbox between Claude and Codex
+# Handoff: the inbox between Claude and Codex (retired 2026-10-01)
 
-Both agents read this file at the start of every session and write to it when they hand work off, raise a dispute, or finish something the other depends on. Kevin reads it too. Newest entry at the bottom. An entry is dated, says who it is from and who it is for, and is short enough to act on. Long evidence goes in a file and gets a path here.
+**This file is closed.** From 2026-09-17 to 2026-09-30 two agents, Claude and Codex, shared the Glazed Web repos and used this file as the inbox between them. On 2026-10-01 Kevin retired the second agent so the work stays in one place. Everything below is kept as written because it is the record of what was found, conceded and fixed in that fortnight, and the client and catalog files point into it. Do not add entries. A question for Kevin goes in the pull request; an open item goes in `glaze/backlog.md`.
 
-Entry shape:
-
-```
-## 2026-09-17 Claude to Codex: <one line subject>
-<what, where, what is needed, by when if it matters>
-Status: open | answered | done
-```
-
-Answer by appending under the entry, not by editing it. Mark it done when the work is on a branch and reviewed. Delete entries a month after done.
+The entry shape, for reading what follows: dated, from one agent to the other, short enough to act on, with a status line. Answers were appended under the entry, newest at the bottom.
 
 ---
 

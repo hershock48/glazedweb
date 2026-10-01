@@ -1,6 +1,6 @@
-# Claude reviews every pull request. The other half of the two-agent rule in
-# AGENTS.md: Codex reviews through its GitHub integration, Claude reviews here,
-# Kevin merges. Runs on the Claude Max subscription through a long-lived OAuth
+# Claude reviews every pull request, per AGENTS.md: the review runs here,
+# Kevin merges. (Until 2026-10-01 a second agent, Codex, also reviewed through
+# its own GitHub integration; that half is retired.) Runs on the Claude Max subscription through a long-lived OAuth
 # token (claude setup-token), never an API key. Findings land on the pull
 # request as inline comments plus one summary comment.
 #

@@ -4,7 +4,7 @@ import { LogoDefs, Mark } from "@/components/Logo";
 import { CONTACT_EMAIL } from "@/lib/contact";
 import { getCustomOrder, money, contentProgress } from "@/lib/customOrders";
 import { monthlyStatus } from "@/lib/monthly";
-import { buildStatus } from "@/lib/buildfee";
+import { buildStatus, installments, partFee } from "@/lib/buildfee";
 
 /**
  * A signed client's project page: /build/{slug}. Spec: glaze/launch-page.md.
@@ -57,6 +57,8 @@ export default async function ProjectPage({ params }) {
   const [monthly, build] = await Promise.all([monthlyStatus(order), buildStatus(order)]);
   const monthlyRunning = monthly.state === "active";
   const buildPaid = build.state === "paid" || order.buildFeePaid === true;
+  const n = installments(order);
+  const schedule = order.schedule || "half to start and half at launch";
   const progress = contentProgress(order);
   const contentDone = progress.total > 0 && progress.done === progress.total;
 
@@ -131,20 +133,24 @@ export default async function ProjectPage({ params }) {
               </div>
             </li>
             <li>
-              <span className={`st-ic ${buildPaid ? "done" : build.state === "half" ? "half" : "open"}`} aria-hidden="true" />
+              <span className={`st-ic ${buildPaid ? "done" : build.state === "part" ? "half" : "open"}`} aria-hidden="true" />
               <div>
                 <b>
                   {order.buildFee === 0 ? "No build fee" : `Build fee, ${money(order.buildFee)}`}
-                  {order.buildFee === 0 ? "" : buildPaid ? ": paid" : build.state === "half" ? ": half paid" : ""}
+                  {order.buildFee === 0 ? "" : buildPaid ? ": paid" : build.state === "part" ? (n === 2 ? ": half paid" : `: ${build.count} of ${n} paid`) : ""}
                 </b>
                 <span>
                   {order.buildFee === 0
                     ? "None on this order. The site is yours: code, content, and accounts."
                     : buildPaid
                     ? "Paid in full. The site is yours: code, content, and accounts."
-                    : build.state === "half"
-                      ? `Half paid, ${money(build.paid)}. The balance, ${money(build.remaining)}, is due at launch, from the agreement page.`
-                      : "Due on acceptance. Half to start and half at launch, or all of it in one go, by card on the agreement page; or we invoice it. Nothing is owed until you choose."}
+                    : build.state === "part"
+                      ? n === 2
+                        ? `Half paid, ${money(build.paid)}. The balance, ${money(build.remaining)}, is due at launch, from the agreement page.`
+                        : `${money(build.paid)} paid (${build.count} of ${n}). ${money(build.remaining)} to come, ${schedule} The next one is on the agreement page.`
+                      : n === 2
+                        ? "Due on acceptance. Half to start and half at launch, or all of it in one go, by card on the agreement page; or we invoice it. Nothing is owed until you choose."
+                        : `In ${n} payments of ${money(partFee(order))}: ${schedule} By card on the agreement page, one at a time or in one go; or we invoice it.`}
                 </span>
               </div>
             </li>
@@ -157,9 +163,11 @@ export default async function ProjectPage({ params }) {
                 <span>
                   {monthlyRunning
                     ? "Running. Charged to your card on the same day each month; stop it any time with thirty days’ notice, and the site stays yours."
-                    : buildPaid && order.live === true
-                      ? "Not started yet. The site is live and nothing is owed on the build, so it can start today, from the button on the agreement page."
-                      : "Not due yet. It begins once the build fee is paid in full and the site is live on your domain; we send you the link then."}
+                    : (buildPaid || order.monthlyFromLaunch === true) && order.live === true
+                      ? "Not started yet. The site is live, so it can start today, from the button on the agreement page."
+                      : order.monthlyFromLaunch === true
+                        ? "Not due yet. It begins the day the site is live on your domain; we send you the link then."
+                        : "Not due yet. It begins once the build fee is paid in full and the site is live on your domain; we send you the link then."}
                 </span>
               </div>
             </li>

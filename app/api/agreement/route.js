@@ -41,8 +41,8 @@ function recordText(order, a) {
     ``,
     order.buildFee === 0
       ? `  Build fee: none. The site was built and launched at no charge; nothing is owed on it.`
-      : `  Build fee ${money(order.buildFee)}${order.buildFeePaid ? ", paid in full before acceptance; nothing further owed on it" : ""}.`,
-    `  Monthly service fee ${money(order.monthly)}, month to month, started by the client on glazedweb.com.`,
+      : `  Build fee ${money(order.buildFee)}${order.buildFeePaid ? ", paid in full before acceptance; nothing further owed on it" : order.installments > 2 ? `, in ${order.installments} payments of ${money(Math.round(order.buildFee / order.installments))}: ${order.schedule || ""}` : ""}.`,
+    `  Monthly service fee ${money(order.monthly)}, month to month, ${order.monthlyFromLaunch ? "from the day the site is live on the client's domain, " : ""}started by the client on glazedweb.com.`,
     `  Edit allowance ${order.editAllowance}. Additional work ${money(order.hourlyRate)}/hour, quoted and approved in advance.`,
     `  The site is ${order.live ? "live" : "to be published"} at ${order.domain}.`,
     ``,

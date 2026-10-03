@@ -80,13 +80,14 @@ export async function POST(req) {
   switch (event.type) {
     case "checkout.session.completed": {
       const kind = obj.metadata?.kind;
-      if (kind === "half") {
-        // Deposit or balance? The page decides by counting paid halves; the
-        // email says what it can prove from this one event and points at
-        // the page for the rest, rather than guessing which half this was.
-        await tell(`${order.client} paid half of the build fee${tag}`, [
-          `${order.client} just paid ${money((obj.amount_total || 0) / 100)}, half of the ${money(order.buildFee)} build fee, on glazedweb.com.`,
-          `If this is the first half it is the deposit and the balance is due at launch; if it is the second, the build is paid in full. /agreement/${order.slug} shows which.`,
+      if (kind === "half" || kind === "part") {
+        // Which part? The page decides by summing what Stripe says was paid;
+        // the email says what it can prove from this one event and points at
+        // the page for the rest, rather than guessing which part this was.
+        const parts = order.installments > 2 ? order.installments : 2;
+        await tell(`${order.client} paid part of the build fee${tag}`, [
+          `${order.client} just paid ${money((obj.amount_total || 0) / 100)} toward the ${money(order.buildFee)} build fee (paid in ${parts}) on glazedweb.com.`,
+          `/agreement/${order.slug} shows how many of the ${parts} are in and what is left.`,
           ``,
           `Paid by:      ${obj.customer_details?.email || obj.customer_email || "unknown"}`,
           `Amount:       ${money((obj.amount_total || 0) / 100)}`,

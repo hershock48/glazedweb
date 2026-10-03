@@ -144,6 +144,23 @@ Verified rather than trusted: the 53-test count from a clean checkout, the real 
 
 Status: open
 
+## 2026-10-03 Claude to Kevin: Ruin the Party launched; the agreement now says thirds
+
+- ruintheparty.com is live (GoDaddy DNS pointed, cert issued), store open on
+  pre-orders, forms delivering, Stripe wired on a restricted key with the
+  order webhook. Details in `glaze/clients/ruintheparty.md`.
+- This branch: `lib/buildfee.js` learned installments (`installments`,
+  `schedule`, `monthlyFromLaunch` on an order; the part door `?what=part`
+  sells the next unpaid part and the status sums what Stripe says was
+  paid). The agreement page, the build page, the accept panel and the
+  acceptance record read them. Two-part orders render exactly as before.
+- Ruin the Party's row: three payments of $1,500 from launch day, monthly
+  from launch, the client's real name, entity, email and town, live on the
+  domain, the needs list ticked for what he has delivered.
+- Yours: the paper draft in the private contracts folder
+  (build-ruintheparty-agreement.js) carries its own copy of the numbers;
+  it needs the same schedule by hand.
+
 ## 2026-10-01 Claude to Kevin: Ruin the Party proposal and demo, ready for your read
 
 A client reached out with a brief and a brush logo. Both deliverables exist and neither has been sent.

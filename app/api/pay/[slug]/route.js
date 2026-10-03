@@ -4,9 +4,10 @@ import { buildStatus, createBuildCheckout } from "@/lib/buildfee";
 import { stripeKey } from "@/lib/stripe";
 
 /**
- * "Pay the build in full", "Pay half now", "Pay the balance", or "Start the
- * monthly plan". A plain link on /agreement/{slug} lands here with
- * ?what=build, ?what=half, ?what=both or ?what=monthly (the default); we open
+ * "Pay the build in full", "Pay half now", "Pay the next third", "Pay the
+ * balance", or "Start the monthly plan". A plain link on /agreement/{slug}
+ * lands here with ?what=build, ?what=part (?what=half is the same door),
+ * ?what=both or ?what=monthly (the default); we open
  * a Stripe Checkout session for that and send them to it. No JavaScript
  * needed on the page, and nothing about the amount comes from the browser:
  * the number is read from lib/customOrders.js.
@@ -16,8 +17,8 @@ import { stripeKey } from "@/lib/stripe";
  *
  * The build fee is refused twice over, because a stale tab can hold a link
  * the page no longer shows: paid in full means every build door redirects
- * to ?pay=paid; a deposit already paid means the full-fee doors redirect to
- * ?pay=half-paid and only the balance (another ?what=half) is sold.
+ * to ?pay=paid; a part already paid means the full-fee doors redirect to
+ * ?pay=part-paid and only the next part (another ?what=part) is sold.
  */
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -36,13 +37,13 @@ export async function GET(req, { params }) {
   const back = order.agreementUrl || `${origin}/agreement/${order.slug}`;
 
   const what = new URL(req.url).searchParams.get("what");
-  const kind = what === "build" || what === "both" || what === "half" ? what : "monthly";
+  const kind = what === "build" || what === "both" ? what : what === "half" || what === "part" ? "part" : "monthly";
   if (!stripeKey()) return Response.redirect(`${back}?pay=off&what=${kind}`, 303);
   try {
     if (kind !== "monthly") {
       const status = await buildStatus(order);
       if (status.state === "paid") return Response.redirect(`${back}?pay=paid`, 303);
-      if (status.state === "half" && kind !== "half") return Response.redirect(`${back}?pay=half-paid`, 303);
+      if (status.state === "part" && kind !== "part") return Response.redirect(`${back}?pay=part-paid`, 303);
     }
     const url = kind === "monthly" ? await createMonthlyCheckout(order, origin) : await createBuildCheckout(order, origin, kind);
     return Response.redirect(url, 303);

@@ -33,6 +33,11 @@ export default function CustomOrderAccept({
   halfHref,
   halfAmount,
   balance = false,
+  // How the fee is split: 2 is the half-and-half default; Ruin the Party is
+  // 3. `schedule` is the sentence saying when each part is due.
+  parts = 2,
+  partWord = "half",
+  schedule = "half to start and half at launch",
 }) {
   const [state, setState] = useState({ step: "form" });
   const [name, setName] = useState(contactName || "");
@@ -55,19 +60,24 @@ export default function CustomOrderAccept({
           </p>
         ) : halfHref && buildHref ? (
           <p>
-            One thing left, the build fee, and it is your choice how: <a href={halfHref}>pay half now, {halfAmount}</a>,
-            with the balance at launch, or <a href={buildHref}>pay it in full</a>. Same card form as any online
-            checkout. Or do nothing here and we invoice it on the same terms.
+            One thing left, the build fee, and it is your choice how:{" "}
+            <a href={halfHref}>
+              {parts === 2 ? "pay half now" : `pay the first ${partWord}`}, {halfAmount}
+            </a>
+            , {parts === 2 ? "with the balance at launch" : `with the rest ${schedule.replace(/\.$/, "")}`}, or{" "}
+            <a href={buildHref}>pay it in full</a>. Same card form as any online checkout. Or do nothing here and we
+            invoice it on the same terms.
           </p>
         ) : halfHref && balance ? (
           <p>
-            The deposit is paid. The balance, {halfAmount}, is due at launch: <a href={halfHref}>pay it by card</a>{" "}
-            whenever you are ready, or we invoice it then.
+            {parts === 2 ? "The deposit is paid. The balance" : `Part of the build fee is paid. The next ${partWord}`}, {halfAmount},{" "}
+            {parts === 2 ? "is due at launch" : "is due on the schedule in Exhibit A"}: <a href={halfHref}>pay it by card</a> whenever
+            you are ready, or we invoice it then.
           </p>
         ) : buildHref ? (
           <p>
             One thing left: <a href={buildHref}>pay the build in full</a> by card, or do nothing here and we invoice
-            it, half to start and half at launch.
+            it, {schedule}
           </p>
         ) : payHref ? (
           <p>

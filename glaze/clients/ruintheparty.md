@@ -1,8 +1,9 @@
 # Ruin the Party
 
 **Repo** `ruintheparty` · **Pitch** ruintheparty.glazedweb.com (proposal at the
-root, the build at `/demo`) · **Their domain** ruintheparty.com (held;
-contents unverified from the sandbox)
+root, the build at `/demo`) · **Live** ruintheparty.com since 2026-10-03
+(GoDaddy DNS pointed at Vercel; the GoDaddy Website Builder that held the
+domain was detached first)
 
 ## What they are
 
@@ -16,19 +17,24 @@ men don't stay silent." "'No' is a complete sentence. It doesn't matter when
 no is said." The message is not that men are bad; it is that good men have a
 responsibility to act.
 
-Who the person behind it is, their title, the legal entity and the town are
-**not on file**. The brief is unsigned. See Open.
+**Jonathan Cruz**, Bend, Oregon, jon@cruzconsultants.com. The entity is
+**HIIT Logic LLC** (his gym, HIIT Logic, Redmond), trading as Ruin the Party;
+the Stripe account for the store is a separate account under that LLC's
+login, named Ruin the Party, bank shared with the gym. He does not want his
+email on the site; the forms deliver to it server-side.
 
 ## Terms
 
-**$4,500 build plus $150 a month, Claude's recommendation, awaiting Kevin's
-ruling** (2026-10-01). A Custom Order: nine pages plus a merchandise store on
-the client's own Stripe. Reasoning: the Griffin Claw and Dark Horse shape is
-$4,500 + $195 for restaurant builds with workrooms; this has a store but no
-workroom and no feed, so the lower monthly. The proposal anchors against a
-published 2026 range of $8,000 to $25,000 for a full-service agency nonprofit
-site (vincecomfort.com, linked in the letter). The two numbers live in
-`lib/customOrders.js` and in the proposal HTML; change both in one commit.
+**$4,500 build plus $150 a month, accepted by the client 2026-10-03**, the
+build fee in **three payments of $1,500**: the day the site goes live,
+thirty days later, thirty days after that; nothing before launch. The
+**monthly starts at launch** (Kevin's call), not when the build is paid off.
+He asked what the $150 buys; the answer that landed was two hours a month of
+a person who knows the site, the order emails, and the resources numbers
+checked monthly. A Custom Order: nine pages plus a merchandise store on the
+client's own Stripe. The numbers and the schedule live in `lib/customOrders.js`
+(`installments: 3`, `schedule`, `monthlyFromLaunch`) and in the proposal
+HTML; change both in one commit.
 
 Agreement: `glazedweb.com/agreement/ruintheparty`. Build page:
 `glazedweb.com/build/ruintheparty`. Edit allowance 2 hours a month.
@@ -63,18 +69,26 @@ after each setup is the client's own device.
 **No photography, and the design does not wait for any.** The boards' photos
 are generated concept art and are not on the site.
 
-**The store is built and switched off** until `STRIPE_SECRET_KEY` is set.
-Prices are PLACEHOLDER and the shop page says they are samples. Stripe
-Checkout hosted, raw fetch, no SDK. Fulfillment (own stock vs print on
-demand) is an agreement term, undecided.
+**The store is open since 2026-10-03**, selling the first run as pre-orders
+(ships in 4 to 6 weeks; "you are in at the start", no campaign trappings, his
+wording). Prices are his (he kept the first cut's numbers). A portion of
+every sale goes to local youth resources; the percentage is not named yet.
+Stripe Checkout hosted, raw fetch, no SDK, on a restricted key (Checkout
+Sessions, Prices, Products: write). Fulfillment for now: a Stripe webhook
+emails him each order and he places it with his printer by hand. He uses
+BrandLab (Redmond, OR; All Access, hosted stores on checkoutstores.com,
+likely Bespoke Labs' white label) for his gym's merch; a seamless hand-off
+is a later quote, and beanumber's Printful line is the pattern.
 
-**Mail is SMTP (nodemailer)**, not Resend, per the don't-rent rule. Until
-they have a mailbox the sending account can be a glazedweb.com one;
-reply-to is the visitor either way.
+**Mail is SMTP (nodemailer)**, not Resend, per the don't-rent rule. Sends
+from kevin@glazedweb.com with a Google app password, display name "Ruin the
+Party Website"; reply-to is the visitor. There is no mailbox at the domain
+and no address shown on the site; CONTACT_TO is his personal address.
 
-**The studio credit reads "Baked by"**, not the default "Double Dipped by":
-a donut pun under a page about consent is the wrong reading of a joke with
-two readings. Kevin's call per build (standards.md); confirm.
+**The studio credit reads "Double Dipped by"**, the default; Kevin overruled
+the first cut's "Baked by" on 2026-10-02. The plate is black with teal
+drips (a `--gw-drip` override; the shared plate's `--gw-above` keeps its
+meaning).
 
 **Organization schema, not LocalBusiness.** It is a movement.
 
@@ -111,11 +125,13 @@ Nothing yet.
 
 ## Open
 
-- The person, their title, the registered entity and the town. Blocks the
-  agreement. The proposal is addressed to the brand for this reason.
-- The price. Kevin's ruling.
-- What ruintheparty.com serves today. The sandbox could not open it; the
-  letter says only that the name resolves. Kevin opens it before sending.
+- The agreement is not yet accepted on the page (2026-10-03); the terms on
+  it now match what he agreed by text. First $1,500 due on launch day.
+- The percentage of sales to local youth resources, and whether to name them.
+- Who is behind it, as he wants it said on the site, or left unsaid.
+- The Green Dot page at alteristic.org moved; both links point at the root.
+- The CDC 2023 YRBS high school figure (1 in 9) on What it means was read
+  from the search index; confirm in a browser.
 - The TikTok tag view count (about 253,000) and the nature of the videos came
   from the tag page as a search index surfaced it on 2026-10-01, not from
   the page itself. Kevin opens it before sending.

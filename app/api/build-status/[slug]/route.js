@@ -25,7 +25,10 @@ export async function GET(req, { params }) {
   return Response.json(
     // build: "off" | "due" | "half" | "paid". A consumer treats off and due
     // the same (an unlit light), so no key is never mistaken for unpaid.
-    { build: build.state, monthly: monthly.state === "active" },
+    // lib/buildfee.js now says "part" for a fee paid in installments; this
+    // route keeps saying "half" because devine's launch page, in another
+    // repo, reads that word and means "some of it is paid".
+    { build: build.state === "part" ? "half" : build.state, monthly: monthly.state === "active" },
     { headers: { "cache-control": "no-store" } },
   );
 }

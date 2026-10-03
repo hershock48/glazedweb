@@ -172,3 +172,20 @@ Your calls before it goes out, all listed in the client file under Open: the pri
 
 Status: open
 
+## 2026-10-03 Claude to Kevin: HIIT Logic scout and proposal draft
+
+You asked for an analysis and proposal for hiitlogic.com. It is at
+`glaze/research/hiitlogic-2026-10-03.md`: the business facts with sources,
+the scorecard scored honestly (6 of 14 as a cold name, pitched anyway because
+Jon is a client), ten findings, the wedge (seven gyms, three owners, one site
+that does not know which gym you mean), the route list, a price
+recommendation, and a first draft of the letter written as a reply to a
+client.
+
+The sandbox could not open hiitlogic.com or any mirror of it, so every finding
+is marked as a search-listing read and the document says so at the top. Section
+7 is the list of commands to run on the Mac before any of it is written where
+Jon can see it. Nothing was built and nothing was sent. The ledger row waits on
+the Mac, the registry row waits on your price.
+
+Status: open

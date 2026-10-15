@@ -4,6 +4,7 @@ import { LogoDefs, Mark } from "@/components/Logo";
 import { CONTACT_EMAIL } from "@/lib/contact";
 import { getCustomOrder, money, contentProgress } from "@/lib/customOrders";
 import { monthlyStatus } from "@/lib/monthly";
+import CopyNote from "@/components/CopyNote";
 import { buildStatus, installments, partFee } from "@/lib/buildfee";
 
 /**
@@ -67,6 +68,9 @@ export default async function ProjectPage({ params }) {
   const needs = Array.isArray(p.needs) ? p.needs : [];
   const steps = Array.isArray(p.steps) ? p.steps : [];
   const freebies = Array.isArray(p.freebies) ? p.freebies : [];
+  // Notes written for the client to send on, each with a Copy button
+  // (Copper, 15 Oct 2026: the email to whoever holds the domain).
+  const notes = Array.isArray(p.notes) ? p.notes.filter((n) => n && n.title && n.text) : [];
   const links = Array.isArray(p.links) ? p.links : [];
   const monthlyIs = Array.isArray(p.monthlyIs) ? p.monthlyIs : [];
   // Optional: things the client can do on the demo right now, hands on
@@ -240,6 +244,14 @@ export default async function ProjectPage({ params }) {
               </li>
             ))}
           </ol>
+
+          {notes.map((n, i) => (
+            <div key={n.title}>
+              <h2>{n.title}</h2>
+              {n.lead ? <p>{n.lead}</p> : null}
+              <CopyNote id={`note-${i}`} text={n.text} label={n.label || "Copy"} />
+            </div>
+          ))}
 
           {freebies.length ? (
             <>

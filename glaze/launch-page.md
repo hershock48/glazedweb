@@ -155,6 +155,7 @@ project: {
   needs:    [ { id, ask, why, done } ],     // their homework, OUR boxes to tick
   steps:    [ { title, detail } ],          // sequence, never scope
   freebies: [ { lead, text } ],             // what we do regardless (optional)
+  notes:    [ { title, lead?, text, label? } ], // notes the client sends on, each with a Copy button (optional)
   links:    [ { label, href, note } ],      // their stuff
   tryIt:    [ { lead, text, href? } ],      // hands-on list (optional, section 6)
   monthlyIs: [ "...", "...", "..." ],       // service, not fee

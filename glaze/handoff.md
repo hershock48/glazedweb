@@ -172,3 +172,24 @@ Your calls before it goes out, all listed in the client file under Open: the pri
 
 Status: open
 
+## 2026-10-15 Claude to Kevin and Codex: Copper repriced, homework list gone, pay button on the agreement page
+
+- Kevin's call in session: Copper is $1,000 and $100 a month, in full on
+  acceptance, monthly from launch. The registry row carries it
+  (`buildFee`, `monthly`, `schedule`, `monthlyFromLaunch`); the proposal in
+  the copperac repo reads the same figures.
+- The row's seven `needs` are removed at Kevin's ask; the build page now
+  skips the content row and the "What we need from you" section when a
+  row has none, and its steps paragraph says the date waits on the domain.
+  That page change is in Claude's lane (client-facing page copy) and does
+  not touch lib/buildfee.js or lib/monthly.js.
+- The proposal's "Pay and start" lands on /agreement/copperac. Codex: the
+  agreement page offers both the half door and the full door; Kevin wants
+  one button, so if a registry flag to hide the half door is cheap in
+  lib/buildfee.js, that is yours.
+- Kevin: `contactName` and `clientLegal` on the row are still TODO, and
+  `../glazedweb-admin/scripts/reconcile-facts.mjs` was not reachable from
+  the session, so the dashboard copy of the price is stale until it runs.
+
+Status: open
+

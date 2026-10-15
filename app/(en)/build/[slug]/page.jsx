@@ -171,6 +171,10 @@ export default async function ProjectPage({ params }) {
                 </span>
               </div>
             </li>
+            {/* No row for a client with nothing to hand in (Copper, 15 Oct
+                2026): "0 of 0" reads as a bug, and an empty list below it
+                as paperwork with nothing on it. */}
+            {needs.length ? (
             <li>
               <Circle done={contentDone} />
               <div>
@@ -186,6 +190,7 @@ export default async function ProjectPage({ params }) {
                 </span>
               </div>
             </li>
+            ) : null}
             <li>
               <Circle done={p.liveOnDomain === true} />
               <div>
@@ -199,28 +204,33 @@ export default async function ProjectPage({ params }) {
             </li>
           </ul>
 
-          <h2>What we need from you</h2>
-          <p>
-            None of them long, and in the order they block other work. Each says why it is needed, because a list
-            without reasons reads like paperwork. We tick them as they arrive.
-          </p>
-          <ul className="agr-status">
-            {needs.map((n) => (
-              <li key={n.id ?? n.ask}>
-                <Circle done={n.done === true} />
-                <div>
-                  <b>{n.ask}</b>
-                  <span>{n.why}</span>
-                </div>
-              </li>
-            ))}
-          </ul>
+          {needs.length ? (
+            <>
+              <h2>What we need from you</h2>
+              <p>
+                None of them long, and in the order they block other work. Each says why it is needed, because a list
+                without reasons reads like paperwork. We tick them as they arrive.
+              </p>
+              <ul className="agr-status">
+                {needs.map((n) => (
+                  <li key={n.id ?? n.ask}>
+                    <Circle done={n.done === true} />
+                    <div>
+                      <b>{n.ask}</b>
+                      <span>{n.why}</span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </>
+          ) : null}
 
           <h2>What happens, in order</h2>
           <p>
-            The sequence, not the scope. The scope is <Link href={agreementHref}>Exhibit A</Link>. No dates here until
-            your content is in, because the content is the only real variable and a schedule written before it lands
-            is a broken promise waiting for week two.
+            The sequence, not the scope. The scope is <Link href={agreementHref}>Exhibit A</Link>.
+            {needs.length
+              ? " No dates here until your content is in, because the content is the only real variable and a schedule written before it lands is a broken promise waiting for week two."
+              : " Nothing here waits on content; the date is set the day the domain is in hand."}
           </p>
           <ol className="agr-scope">
             {steps.map((s) => (

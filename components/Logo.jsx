@@ -147,15 +147,15 @@ function HeroBandArt() {
   return (
     <>
       <path d={`${HERO_WAVE_TOP} V0.5 H0 Z`} fill="url(#heroBandGrad)" />
-      <path d={DRIP_EDGE_D} fill="url(#heroBandGrad)" />
+      <path className="glaze-edge" d={DRIP_EDGE_D} fill="url(#heroBandGrad)" />
       {/* light catching the poured surface, then sheen down the two deep
           lobes and a short one on the middle lobe, the same pale stroke the
           mark's drips carry */}
       <g stroke="#F1F8DC" fill="none" strokeLinecap="round">
         <path d={HERO_WAVE_TOP} strokeWidth="2.5" opacity="0.45" />
-        <path d="M 542 22 C 540 30, 541 38, 545 43" strokeWidth="3.5" opacity="0.8" />
-        <path d="M 1123 22 C 1121 32, 1122 41, 1127 47" strokeWidth="3.5" opacity="0.8" />
-        <path d="M 835 21 C 834 26, 835 31, 838 34" strokeWidth="3" opacity="0.75" />
+        <path className="glaze-edge" d="M 542 22 C 540 30, 541 38, 545 43" strokeWidth="3.5" opacity="0.8" />
+        <path className="glaze-edge" d="M 1123 22 C 1121 32, 1122 41, 1127 47" strokeWidth="3.5" opacity="0.8" />
+        <path className="glaze-edge" d="M 835 21 C 834 26, 835 31, 838 34" strokeWidth="3" opacity="0.75" />
       </g>
     </>
   );
@@ -187,7 +187,7 @@ export function HeroDrip() {
 
 export function AnimatedMark({ width = 230, height = 290 }) {
   return (
-    <svg width={width} height={height} viewBox="0 0 200 250" overflow="visible">
+    <svg className="animated-mark" aria-hidden="true" width={width} height={height} viewBox="0 0 200 250" overflow="visible">
       <g className="goo">
         <g fill="url(#dgGrad)">
           <ellipse cx="100" cy="110" rx="38" ry="15" />

@@ -261,6 +261,7 @@ Weakest reputation of the five; confirm the operator before writing.
 | Choo Choo Grill | Grand Rapids | 6 | Listed for sale 2023 at owner's retirement; dated site. Unknown whether it sold. |
 | Angelo's Italian Eatery | Portage | 5 | Sold Jan 2026 to Bryan and Missie Adams, but they run SkyTab ordering. A POS consolidation pitch, not a first system. |
 | Mr. Foisie's Pasties | Cadillac | 7 | Sells out daily, "call ahead," unclaimed, no site. 2 hours 15. |
+| Bates' Burgers | Livonia | 9 | Two slider stores since 1959, Restaurantji 4.4 on 506, Metro Times 50 must-try. Squarespace site renders blank (a 2020 slider plugin hides every section); ordering is SkyTab with a 3.1 percent customer surcharge and a $10 minimum. Third-generation GM. 1 hour 20. Audit built 2026-10-26 in the `bates` repo; the pitch is a better product, not a cheaper SkyTab. |
 
 ### Checked and set aside
 

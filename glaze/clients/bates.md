@@ -1,6 +1,6 @@
 # Bates' Burgers
 
-**Repo** `bates` · **Prospect**, not signed · Scouted 2026-10-26 · Ledger `bates`
+**Repo** `bates` · **Host** bates.glazedweb.com (audit at `/`, noindex) · **Prospect**, not signed · Scouted 2026-10-26 · Ledger `bates`
 
 ## What they are
 

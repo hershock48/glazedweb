@@ -1,6 +1,8 @@
 # Bates' Burgers
 
-**Repo** `bates` · **Host** bates.glazedweb.com (audit at `/`, noindex) · **Prospect**, not signed · Scouted 2026-10-26 · Ledger `bates`
+**Repo** `bates` · **Host** bates.glazedweb.com (proposal at `/`, demo at `/demo`, teardown at `/audit`, all noindex) · **Prospect**, not signed · Scouted 2026-10-26 · Ledger `bates`
+
+**Build page** glazedweb.com/build/bates · **Agreement** glazedweb.com/agreement/bates · registry row `bates` in `lib/customOrders.js`. **Price is a draft**, $3,500 and $150 a month with ordering included, in the registry and on the proposal; Kevin rules before the letter goes.
 
 ## What they are
 

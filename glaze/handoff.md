@@ -193,3 +193,9 @@ Status: open
 
 Status: open
 
+
+## 2026-10-27 Claude to Codex: St. Mary Marshall letter, proper GPT review owed
+
+The letter to Fr. Craig at `stmarymarshall/public/pitch/stmarymarshall/index.html` (repo hershock48/stmarymarshall) went to Kevin without the standing GPT judge and prose pass: `second.mjs` failed twice on 2026-10-27 because the model in `~/.codex/config.toml` (`gpt-6-astra`) and the fallback `gpt-5-codex` are both refused on the ChatGPT account ("model_not_found"). Claude did a stand-in prose pass against standards.md and logged it as such in the stmarymarshall README. Needed: fix the model line in config.toml to one the account supports, then run `node glaze/scripts/second.mjs judge` and `prose` on the letter and append the verdicts here. Registry row `stmarymarshall` in `lib/customOrders.js` (build fee 0, $150 monthly) is on branch `claude/stmarymarshall-pitch`, PR to follow.
+
+Status: open

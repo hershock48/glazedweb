@@ -4,6 +4,7 @@
 
 | Tool | Path | What it does |
 |---|---|---|
+| UX check: tap targets, display overrides, centering, header wrap | `stmarymarshall/tools/ux-check.mjs` | What axe does not measure: every link and button at least 24px, every inline-flex button still laid out as flex (an unlayered globals.css rule beat the utility and left Call buttons with text at the top, 2026-10-27), text centered within 2px, the header on one line at 390/1024/1280/1440, nothing clipped. Exit 1 on any problem. Pair with `tools/headers.mjs` for header strips and the open mobile menu. |
 | Auditor | `glaze/scripts/audit.mjs` | axe + contrast + overflow walk per route, phone and desktop widths. `tools/audit.mjs` is a forwarder; client repos carry pinned copies (`stagecoach/audit.mjs`, `truenorth/tools/audit.mjs`, `campbarber/scripts/audit.mjs`). |
 | Width check | `glaze/scripts/width-check.mjs` | The widths the auditor does not visit (320/360…), including container-level overflow the page-level check misses. |
 | Motion check | `glaze/scripts/motion-check.mjs` | Samples animations frame by frame and asserts their shape, not their existence. |

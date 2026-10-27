@@ -37,6 +37,8 @@ reach the kitchen on the studio's printer path, the Copper AC split.
 a GM who inherited the site will want a refresh. The letter goes to Tara
 Smith by name, with Barbara Bates named as owner.
 
+**Footer credit reads "Double Dipped by Glazed Web".** Kevin, 2026-10-27, asked per standards.md; the fourth build in a row with that wording.
+
 **The blank render leads the audit** until Kevin says otherwise. It was seen
 in two browsers on two machines on 2026-10-26; one more check on a phone over
 cellular is owed before it leads the letter.

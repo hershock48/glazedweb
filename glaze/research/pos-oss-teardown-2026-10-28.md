@@ -84,8 +84,9 @@ employees and the pizza matrix and fails payments, offline sync and
 everything cloud. TastyIgniter is strong in exactly one row and that row is
 the one the studio has already built four times.
 
-Sources per row are in the three research notes behind this file; the
-decisive ones are Odoo
+The three research passes were run in Claude Code sessions and are not
+committed; every row above traces to the files linked here. The decisive
+ones are Odoo
 [`pos_order.py`](https://github.com/odoo/odoo/blob/19.0/addons/point_of_sale/models/pos_order.py),
 [`pos_session.py`](https://github.com/odoo/odoo/blob/19.0/addons/point_of_sale/models/pos_session.py),
 [`pos_stripe/models/pos_payment_method.py`](https://github.com/odoo/odoo/blob/19.0/addons/pos_stripe/models/pos_payment_method.py),
@@ -150,8 +151,9 @@ travels with it. Never read anything under `odoo/enterprise`.
    detail that printing over the LAN keeps working when the cloud is gone.
    The commercial detail matters as much as the code: Odoo charges $173 for
    the box or $30 a month, and production use requires a subscription and
-   the Enterprise IoT app. Even the open-source register monetizes the
-   hardware bridge. Read `printer_driver_base.py` (a compact ESC/POS and
+   the Enterprise IoT app ([Odoo IoT FAQ](https://www.odoo.com/app/iot-faq);
+   [IoT Box docs](https://www.odoo.com/documentation/19.0/applications/general/iot/iot_box.html)).
+   Even the open-source register monetizes the hardware bridge. Read `printer_driver_base.py` (a compact ESC/POS and
    Star reference) and `hardware_proxy_service.js`. Saves the hub design;
    the Phase 2 decision on whether to ship one is unchanged.
 
@@ -283,7 +285,7 @@ for the fetcher, so its docs were read from the documentation repo on
 GitHub at the same version. TastyIgniter's storefront quality is unverified
 because the demo requires sign-up; its 2.x GPL version is unverified. For
 Floreant, drawer kick, CSV export, split by seat and the behaviour when the
-database host dies mid-shift are unverified. Nothing here is a license
-opinion; the posture above is the conservative reading of the three
-licenses and should be confirmed before any file is copied rather than
-read.
+database host dies mid-shift are unverified. The license posture above is
+a cautious reading of the three license texts by a non-lawyer. It is
+enough to govern reading and re-implementing; confirm it with counsel
+before any file is copied rather than read.

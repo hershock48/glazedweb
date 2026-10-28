@@ -1,6 +1,6 @@
 "use client";
 
-import { LogoDefs, Mark, AnimatedMark, DripDivider, HeroDrip, OpenSign, BeANumberMark, ChismEggs } from "@/components/Logo";
+import { LogoDefs, Mark, AnimatedMark, DripDivider, HeroDrip, OpenSign, BeANumberMark } from "@/components/Logo";
 import { CONTACT_EMAIL } from "@/lib/contact";
 import { PRICING, usd, num } from "@/lib/pricing";
 import { useHomeEffects } from "@/components/homeEffects";
@@ -214,57 +214,42 @@ export default function Home() {
           </h2>
           <p className="sec-sub">Recent work, and room in the case for yours.</p>
           <div className="work-grid">
+            {/* DeVine's Flowers & Botanicals. Took Chism's place in the case
+                on 2026-10-28. The mark is their real logo, copied from
+                public/img/brand/logo-sm.webp in the devine repo, and the
+                ground is their --paper (#faf7f1) so it sits the way it does on
+                their own site. If they change the logo, re-copy that file. */}
             <a
-              id="chism-card"
+              id="devine-card"
               className="wcard reveal"
-              href="https://www.chismchickenranch.com"
+              href="https://devinesflowersandbotanicals.com"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <div className="bok-bubble" aria-hidden="true">
-                bok bok bok
-              </div>
-              <div
-                className="thumb"
-                style={{
-                  background: "linear-gradient(135deg,#B5532A,#8A3C1C)",
-                  color: "#FFF7EA",
-                  flexDirection: "column",
-                  gap: 4,
-                }}
-              >
-                <svg
-                  viewBox="0 0 220 54"
-                  width="200"
-                  height="49"
-                  aria-hidden="true"
-                  style={{ overflow: "visible", marginBottom: -10 }}
-                >
-                  <defs>
-                    <path id="chismArcPath" d="M 14 48 Q 110 6 206 48" fill="none" />
-                  </defs>
-                  <text fill="#FFF7EA" fontSize="13.5" fontWeight="800" letterSpacing="2">
-                    <textPath href="#chismArcPath" startOffset="50%" textAnchor="middle">
-                      CHISM CHICKEN RANCH
-                    </textPath>
-                  </text>
-                </svg>
-                <ChismEggs className="chism-eggs" />
+              <div className="thumb" style={{ background: "#faf7f1" }}>
+                <img
+                  className="devine-logo"
+                  src="/work/devine-logo.webp"
+                  alt=""
+                  width="240"
+                  height="149"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
               <div className="meta">
-                <b>Chism Chicken Ranch</b>
-                <span>Pasture-raised poultry · Marshall, MI</span>
+                <b>DeVine&apos;s Flowers &amp; Botanicals</b>
+                <span>Florist · Marshall, MI</span>
               </div>
             </a>
-            {/* Copper Athletic Club. Points at /demo, not the root of that
-                host: the root is the proposal document, which is written for
-                them and not for the public. Says "in progress" because it is a
-                live demo of an unsigned job, and the rest of this case is real
-                shipped work. Palette and the proof line are theirs. */}
+            {/* Copper Athletic Club. Points at their own domain since the
+                site went live on copperac.com; it used to point at the demo on
+                copperac.glazedweb.com and say "in progress". Palette and the
+                proof line are theirs. */}
             <a
               id="cac-card"
               className="wcard reveal"
-              href="https://copperac.glazedweb.com/demo"
+              href="https://copperac.com"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -302,7 +287,7 @@ export default function Home() {
               </div>
               <div className="meta">
                 <b>Copper Athletic Club</b>
-                <span>Sports bar · Marshall, MI · in progress</span>
+                <span>Sports bar · Marshall, MI</span>
               </div>
             </a>
             <a

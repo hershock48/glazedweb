@@ -1,4 +1,5 @@
 import { getCustomOrder } from "@/lib/customOrders";
+import { record, EVENTS } from "@/lib/analytics";
 import { createMonthlyCheckout } from "@/lib/monthly";
 import { buildStatus, createBuildCheckout } from "@/lib/buildfee";
 import { stripeKey } from "@/lib/stripe";
@@ -46,6 +47,10 @@ export async function GET(req, { params }) {
       if (status.state === "part" && kind !== "part") return Response.redirect(`${back}?pay=part-paid`, 303);
     }
     const url = kind === "monthly" ? await createMonthlyCheckout(order, origin) : await createBuildCheckout(order, origin, kind);
+    // The click into Stripe, not the payment: paid is already known from
+    // the webhook and lib/buildfee. The gap between the two is the number
+    // that says whether the checkout page itself loses people.
+    record(EVENTS.CHECKOUT_OPENED, { slug: order.slug, kind });
     return Response.redirect(url, 303);
   } catch (err) {
     console.error(`[pay] ${kind} checkout for ${order.slug} failed:`, err);

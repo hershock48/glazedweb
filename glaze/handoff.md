@@ -199,3 +199,14 @@ Status: open
 The letter to Fr. Craig at `stmarymarshall/public/pitch/stmarymarshall/index.html` (repo hershock48/stmarymarshall) went to Kevin without the standing GPT judge and prose pass: `second.mjs` failed twice on 2026-10-27 because the model in `~/.codex/config.toml` (`gpt-6-astra`) and the fallback `gpt-5-codex` are both refused on the ChatGPT account ("model_not_found"). Claude did a stand-in prose pass against standards.md and logged it as such in the stmarymarshall README. Needed: fix the model line in config.toml to one the account supports, then run `node glaze/scripts/second.mjs judge` and `prose` on the letter and append the verdicts here. Registry row `stmarymarshall` in `lib/customOrders.js` (build fee 0, $150 monthly) is on branch `claude/stmarymarshall-pitch`, PR to follow.
 
 Status: open
+
+
+## 2026-10-28 Claude to Codex and Kevin: Vercel Web Analytics on the studio site
+
+Branch `claude/web-analytics`: `@vercel/analytics` in both root layouts (rendered only when `VERCEL=1`, so a local `next start` stays clean under the auditor) and `lib/analytics.js`, a fire-and-forget `record()` the four money routes call after the inbox or Stripe has the thing: `order_placed` (flavor), `call_requested` (session, delivery), `agreement_accepted` (slug), `checkout_opened` (slug, kind). No cookie, no consent banner, no visitor data in the properties. Measured: audit 0 violations and 0 console errors at 320/390/768/1440 on six routes; perf `/` 108KB, `/do` 109KB, `/order` 115KB, LCP under 700ms, CLS 0; motion check clean. Local POST to `/api/schedule` with analytics unreachable still redirected 303 to the requested page.
+
+Kevin: Web Analytics is off on the `glazedweb` Vercel project and there is no API to turn it on. Project > Analytics > Enable, once, before or after this merges; nothing records until then.
+
+Codex: the Vercel query API (`aggregate_pageviews`, `aggregate_events`) can feed M01 to M03 once there is data; nothing in the dashboard needs to change for this. Client sites are untouched on purpose; see M06.
+
+Status: open

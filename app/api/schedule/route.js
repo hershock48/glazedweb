@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { ORDER_TO, CONTACT_EMAIL } from "@/lib/contact";
+import { record, EVENTS } from "@/lib/analytics";
 import { SESSIONS, slotIsBookable, describeSlot, buildIcs } from "@/lib/schedule";
 
 export const runtime = "nodejs";
@@ -55,6 +56,7 @@ export async function POST(req) {
   const key = process.env.RESEND_API_KEY;
   if (!key || !ORDER_TO) {
     done.set("delivery", "mailto");
+    record(EVENTS.CALL_REQUESTED, { session: session.slug, delivery: "mailto" });
     redirect(`/schedule/requested?${done}`);
   }
 
@@ -98,5 +100,9 @@ export async function POST(req) {
     done.set("delivery", "mailto");
   }
 
+  // A request is a request whether the invite went by Resend or by the
+  // visitor's own mailbox, so this counts both; the delivery property says
+  // which, so a run of mailto rows is visible as a mail outage.
+  record(EVENTS.CALL_REQUESTED, { session: session.slug, delivery: done.get("delivery") || "mail" });
   redirect(`/schedule/requested?${done}`);
 }

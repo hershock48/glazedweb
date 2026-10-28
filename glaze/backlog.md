@@ -64,6 +64,7 @@ Status: active. Updated September 17, 2026. Completion requires evidence, not a 
 - [ ] M03 (codex) Sales cohorts separated by warm/cold/visit with explicit dates, stages and denominators; avoid calling current status counts conversion rates.
 - [ ] M04 (codex) Import/export and correction workflow with source references; test duplicate prevention, period boundaries and totals. Previewed receipt imports, cross-account identity checks and atomic linked corrections are implemented and locally verified. Cross-review and hosted import/restore verification remain open.
 - [x] M05 (codex) Document the weekly review: next actions, blocked launches, unpaid builds, monthly starts, time/cost exceptions and candidates for reusable products. Published in glazedweb-admin/docs/weekly-review.md.
+- [ ] M06 (claude) Studio site traffic and funnel: Vercel Web Analytics on glazedweb.com (page views, referrers, UTM, country, device, path) plus four server-side events, order_placed, call_requested, agreement_accepted, checkout_opened, recorded only once the thing they count has happened. Branch claude/web-analytics. Kevin flips Web Analytics on in the Vercel project (no API for that). Not on client sites: their agreements promise no analytics script, and the pitch there is a first-party event log the client owns, which is a separate item once a client wants it.
 
 ## 6. Streamline prospect-to-partnership work
 

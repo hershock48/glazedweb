@@ -1,4 +1,5 @@
 import { getCustomOrder, money, AGREEMENT_VERSION, AGREEMENT_URL, AGREEMENT_PDF, PROVIDER } from "@/lib/customOrders";
+import { record, EVENTS } from "@/lib/analytics";
 import { ORDER_TO } from "@/lib/contact";
 import { stripeMode } from "@/lib/stripe";
 
@@ -161,5 +162,7 @@ export async function POST(req) {
     console.error(`[agreement] acceptance ${a.id} client copy not sent:`, err);
   }
 
+  // Counted only once Kevin's copy, the countersignature record, is filed.
+  record(EVENTS.AGREEMENT_ACCEPTED, { slug: order.slug });
   return Response.json({ state: "sent" });
 }

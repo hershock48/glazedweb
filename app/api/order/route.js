@@ -1,4 +1,5 @@
 import { ORDER_TO } from "@/lib/contact";
+import { record, EVENTS } from "@/lib/analytics";
 
 export const runtime = "nodejs";
 
@@ -89,6 +90,9 @@ export async function POST(req) {
     if (!accepted || typeof accepted.id !== "string" || !accepted.id) {
       return Response.json({ ok: false, reason: "send_failed" }, { status: 502 });
     }
+    // Counted only once the inbox has it, so the dashboard's number is
+    // orders Kevin actually received, not forms that were submitted.
+    record(EVENTS.ORDER_PLACED, { flavor: /dozen/i.test(String(body.flavor)) ? "dozen" : "original" });
     return Response.json({ ok: true });
   } catch {
     return Response.json({ ok: false, reason: "send_failed" }, { status: 502 });

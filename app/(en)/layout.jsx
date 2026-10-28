@@ -1,4 +1,5 @@
 import "../globals.css";
+import { Analytics } from "@vercel/analytics/next";
 import { CONTACT_EMAIL } from "@/lib/contact";
 import { PRICING, usd } from "@/lib/pricing";
 
@@ -91,6 +92,15 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
         />
         {children}
+        {/* Vercel Web Analytics: page views, referrers, UTM tags, the path
+            through the site. Served from this origin, no cookie, nothing
+            identifying, so no consent banner. Loads after the page and a
+            blocked script changes nothing the visitor sees. The money
+            moments are recorded server-side in lib/analytics.js. Rendered
+            only on Vercel: the script lives at /_vercel/insights/ and only
+            Vercel's edge serves it, so a local `next start` would 404 on
+            every route and fail the auditor's console check for nothing. */}
+        {process.env.VERCEL === "1" ? <Analytics /> : null}
       </body>
     </html>
   );

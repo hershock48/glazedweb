@@ -323,36 +323,10 @@
   .wcard .meta b { font-size: 15px; display: block; }
   .wcard .meta span { font-size: 12.5px; color: #A6907F; }
 
-  /* Chism card — hen waddle + bok bubble that escapes the card while scrolling */
-  #chism-card { position: relative; overflow: visible; }
-  #chism-card .thumb { border-radius: 18px 18px 0 0; }
-  #chism-card .meta { border-radius: 0 0 18px 18px; }
-  .bok-bubble {
-    position: absolute; top: -26px; right: 14px; z-index: 5;
-    background: #FFFDF8; color: #8A3C1C;
-    font-size: 14px; font-weight: 800; letter-spacing: .02em; white-space: nowrap;
-    padding: 8px 14px; border-radius: 999px;
-    border: 2.5px solid #2B1E16;
-    box-shadow: 0 8px 20px -8px rgba(0,0,0,.45);
-    transform: scale(0.2) rotate(-8deg); transform-origin: 30% 130%;
-    opacity: 0; pointer-events: none;
-    transition: transform .28s cubic-bezier(.34,1.56,.64,1), opacity .22s ease;
-  }
-  .bok-bubble::after {
-    content: ""; position: absolute; left: 24px; bottom: -8px;
-    width: 13px; height: 13px; background: #FFFDF8;
-    border-left: 2.5px solid #2B1E16; border-bottom: 2.5px solid #2B1E16;
-    transform: rotate(-55deg) skewX(-12deg);
-    border-bottom-left-radius: 4px;
-  }
-  #chism-card.boking .bok-bubble,
-  #chism-card:hover .bok-bubble { opacity: 1; transform: scale(1) rotate(-3deg); }
-  /* fresh eggs, delivered by scroll — JS scrubs each egg's fall */
-  #chism-card .thumb { position: relative; overflow: hidden; justify-content: flex-start; padding-top: 16px; }
-  #chism-card .thumb > svg:first-of-type { position: relative; z-index: 2; }
-  .chism-eggs { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; }
-  .chism-eggs .egg { transform-box: fill-box; transform-origin: 50% 100%; will-change: transform; transform: translateY(-200px); }
-  .chism-eggs .shadow { transform-box: fill-box; transform-origin: 50% 50%; opacity: 0.12; }
+  /* DeVine's card: their real oval logo on their own paper. The logo blooms a
+     touch on hover, the way their cards lift on their own site. */
+  .devine-logo { width: min(240px, 82%); height: auto; transition: transform .35s ease; }
+  #devine-card:hover .devine-logo { transform: scale(1.04) rotate(-1deg); }
 
   /* Copper Athletic Club card — copper lockup over an amber odds-board glow.
      Copper #b86d2a on their ink-soft ground measures 4.40, which fails AA for
@@ -400,7 +374,8 @@
   @media (prefers-reduced-motion: reduce) {
     .ban-logo { animation: none; }
     .ban-counter.tick { animation: none; }
-    .bok-bubble { transition: opacity .2s ease; transform: scale(1) rotate(-3deg); }
+    .devine-logo { transition: none; }
+    #devine-card:hover .devine-logo { transform: none; }
     .step.glazed .num::after { animation: none; }
     /* droplets rest at the drip tips: a bead of glaze, not a hole in the band */
     .hero-droplet { animation: none; }

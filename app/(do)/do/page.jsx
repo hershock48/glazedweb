@@ -1,6 +1,6 @@
 "use client";
 
-import { LogoDefs, Mark, AnimatedMark, DripDivider, HeroDrip, OpenSign, BeANumberMark, ChismEggs } from "@/components/Logo";
+import { LogoDefs, Mark, AnimatedMark, DripDivider, HeroDrip, OpenSign, BeANumberMark } from "@/components/Logo";
 import {
   CONTACT_EMAIL,
   DO_REP_NAME,
@@ -254,55 +254,35 @@ export default function HomeDO() {
           </h2>
           <p className="sec-sub">Trabajos recientes, y espacio en la vitrina para el tuyo.</p>
           <div className="work-grid">
+            {/* Kept in sync with the English card by hand; see the notes
+                there before changing this card. */}
             <a
-              id="chism-card"
+              id="devine-card"
               className="wcard reveal"
-              href="https://www.chismchickenranch.com"
+              href="https://devinesflowersandbotanicals.com"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <div className="bok-bubble" aria-hidden="true">
-                clo clo clo
-              </div>
-              <div
-                className="thumb"
-                style={{
-                  background: "linear-gradient(135deg,#B5532A,#8A3C1C)",
-                  color: "#FFF7EA",
-                  flexDirection: "column",
-                  gap: 4,
-                }}
-              >
-                <svg
-                  viewBox="0 0 220 54"
-                  width="200"
-                  height="49"
-                  aria-hidden="true"
-                  style={{ overflow: "visible", marginBottom: -10 }}
-                >
-                  <defs>
-                    {/* Own id per page: the English page defines chismArcPath,
-                        and although the two pages never render together, a
-                        distinct id keeps the fragment reference unambiguous. */}
-                    <path id="chismArcPathDo" d="M 14 48 Q 110 6 206 48" fill="none" />
-                  </defs>
-                  <text fill="#FFF7EA" fontSize="13.5" fontWeight="800" letterSpacing="2">
-                    <textPath href="#chismArcPathDo" startOffset="50%" textAnchor="middle">
-                      CHISM CHICKEN RANCH
-                    </textPath>
-                  </text>
-                </svg>
-                <ChismEggs className="chism-eggs" />
+              <div className="thumb" style={{ background: "#faf7f1" }}>
+                <img
+                  className="devine-logo"
+                  src="/work/devine-logo.webp"
+                  alt=""
+                  width="240"
+                  height="149"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
               <div className="meta">
-                <b>Chism Chicken Ranch</b>
-                <span>Avícola de pastoreo · Michigan, EE. UU.</span>
+                <b>DeVine&apos;s Flowers &amp; Botanicals</b>
+                <span>Florería · Michigan, EE. UU.</span>
               </div>
             </a>
             <a
               id="cac-card"
               className="wcard reveal"
-              href="https://copperac.glazedweb.com/demo"
+              href="https://copperac.com"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -327,7 +307,7 @@ export default function HomeDO() {
               </div>
               <div className="meta">
                 <b>Copper Athletic Club</b>
-                <span>Bar deportivo · Michigan, EE. UU. · en construcción</span>
+                <span>Bar deportivo · Michigan, EE. UU.</span>
               </div>
             </a>
             <a

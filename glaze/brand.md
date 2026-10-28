@@ -22,8 +22,9 @@ described in prose gets approximated. A colour written as `#E84D8A` gets used.
 | `AnimatedMark({width, height})` | The full drip: sagging glaze, a falling droplet, a shimmer | Hero only, one per page |
 | `DripDivider({fill, bg})` | The drip edge that separates every band | Section boundaries |
 
-It also carries **client** artwork: `BeANumberMark`, `ChismChicken`, `ChismEgg`,
-`ChismEggs`. That is a smell worth naming rather than tidying blind: those are
+It also carries **client** artwork: `BeANumberMark`, `ChismChicken`, `ChismEgg`
+(`ChismEggs` went with the Chism card on 2026-10-28; DeVine's card uses their
+logo file from `public/work/` instead). That is a smell worth naming rather than tidying blind: those are
 other businesses' marks sitting in the studio's logo file, and they are there
 because the work cards on the homepage animate them. Leave them, but do not add
 to the pile without deciding where client artwork should live.

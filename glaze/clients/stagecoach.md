@@ -2,7 +2,7 @@
 
 **Repo** `hershock48/stagecoach` · **Host** stagecoach.glazedweb.com (proposal at `/`, demo at `/demo`, both noindex) · **Prospect**, not signed, nothing sent · Built 2026-08-18 · Re-pitched cold 2026-10-28 · Ledger `stagecoach`
 
-**Build page** glazedweb.com/build/stagecoach · **Agreement** glazedweb.com/agreement/stagecoach · registry row `stagecoach` in `lib/customOrders.js`. **Price: $3,000 build, $150 a month, ordering a $500 add-on with the 99¢ guest fee.** That is the Mike's Place tier applied by Claude on 2026-10-28 because the build is the same shape; Kevin has not ruled it. The August letter's $1,900 + $99 and its 50/50 split of the order fee are retired.
+**Build page** glazedweb.com/build/stagecoach · **Agreement** glazedweb.com/agreement/stagecoach · registry row `stagecoach` in `lib/customOrders.js`. **Price: $3,000 build, $150 a month, ordering a $500 add-on with the 99¢ guest fee.** That is the Mike's Place tier applied by Claude on 2026-10-28 because the build is the same shape; Kevin ruled it the same day ("Yes, keep it"). The August letter's $1,900 + $99 and its 50/50 split of the order fee are retired.
 
 ## What they are
 

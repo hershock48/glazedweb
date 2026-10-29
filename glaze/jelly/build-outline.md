@@ -11,6 +11,16 @@ This outline does not replace the Jelly plan. The plan says what and why;
 this file says in what order, built on what, borrowed from where, and done
 when.
 
+**Product-first.** Kevin, 2026-10-29. Jelly is built as a product against
+a made-up demo restaurant, a pizza tavern with a bar and two terminals,
+stage by stage. Real restaurants plug in as tenants when they want a piece.
+The named restaurants below are the ones expected to stand at each gate,
+never the ones the product is shaped for. Take every restaurant name out
+and every step stays the same. Kevin, same day: "build the product first
+and test and test and test it before I ship it to an actual customer."
+Nothing reaches a real restaurant until the demo gate for that stage has
+passed.
+
 **How to use it.** Every step has a checkbox, an owner lane, the component
 it builds on, the source it reads first, and a "done when" that a stranger
 could verify. Work the stages in order. Never start a step whose stage gate
@@ -128,9 +138,11 @@ Stage 3  The floor                            gate: Friday + Saturday with the c
 Stage 4  The second restaurant on the register gate: onboarded with no code written for it
 ```
 
-Stage 1 is Phase 0 of the Jelly plan. Stage 2 is Phase 1. Stage 3 is
-Phase 2 and remains a decision taken at Stage 2's gate, with Ryan asking
-rather than us offering (plan section 12). Stage 4 is Phase 3. A second
+Every stage is built against the demo restaurant first and its gate has
+two parts: the demo runs it end to end, then a real restaurant runs it for
+a month. Stage 1 is Phase 0 of the Jelly plan. Stage 2 is Phase 1. Stage 3
+is Phase 2 and remains a decision taken at Stage 2's gate, with a real
+restaurant asking rather than us offering (plan section 12). Stage 4 is Phase 3. A second
 restaurant on ordering alone can go up as soon as Stage 1 passes (plan
 section 13, item 6), and that is where the Scooplist test is first run.
 
@@ -183,16 +195,25 @@ the empty repo, and the books. Two to three weeks alongside client work.
 - [ ] **0.8 Pricing made one thing.** Copper was pitched at $0 monthly for
   ordering; the Jelly plan proposes $99 plus $29 a terminal; the per-terminal
   line reads as add-on stacking against the promise page. Kevin rules before
-  Bates is pitched. Done when: the registry carries the ruling.
+  the next restaurant is pitched. Done when: the registry carries the ruling.
+- [ ] **0.9 The demo restaurant.** Tenant one is made up: a pizza tavern
+  with a bar, twenty drafts, a banquet room, two terminals and a kitchen
+  printer, seeded with a full menu including a pizza matrix, a draft grid
+  and cocktails to go. Every stage is built and demonstrated against it
+  first. It is also the pitch demo from here on, so a pitch costs a config
+  and copy, not a repo. Done when: the demo tenant exists on the demo host
+  with its seed data and a one-page script that walks a visitor through
+  ordering, the kitchen and the workroom.
 
 ---
 
 ## Stage 1. Jelly repo, first tenant, online ordering
 
-Phase 0 of the plan. Cascarelli's is tenant one (paid 2026-10-28, ordering
-wanted from January 2027). Mike's Place is named as tenant two now so Jelly
-takes a general shape. Aloha keeps ringing the room. Ordering runs beside
-it and prints at the pass.
+Phase 0 of the plan. Built against the demo restaurant (0.9) first. The
+first real tenant expected is Cascarelli's (paid 2026-10-28, ordering
+wanted from January 2027), with Mike's Place behind it. In a real
+restaurant the existing register keeps ringing the room; ordering runs
+beside it and prints at the pass.
 
 - [ ] **1.1 Tenant record and platform routing.** Build 0.2. One Vercel
   project for the platform, one host per tenant (`order.<domain>` or a
@@ -272,20 +293,23 @@ it and prints at the pass.
   phone. Five pages in `glaze/jelly/runbooks/`. Done when: someone other
   than Kevin has walked each case on the demo.
 
-**Gate.** Ryan has entered real prices, a real online order has printed at
-the pass and been picked up, and Cascarelli's has run ordering for a month
-beside Aloha, through Super Bowl Sunday (February 2027), with the capacity
-slots and the pause control used in anger. Then Mike's Place goes up as
-tenant two with no code written for it, and that is the first Scooplist
-test.
+**Gate, two parts.** First the demo: every step above demonstrated end to
+end on the demo tenant, including a ticket on a real printer. Then a real
+restaurant: its owner has entered real prices, a real online order has
+printed at its pass and been picked up, and it has run ordering for a
+month beside its register with the capacity slots and the pause control
+used in anger. Cascarelli's through Super Bowl Sunday (February 2027) is
+the expected case. The second real restaurant goes up with no code written
+for it, and that is the first Scooplist test.
 
 ---
 
 ## Stage 2. The counter
 
-Phase 1 of the plan. Every to-go order, phone and walk-in, rung on ours.
-Aloha still owns the dining room. Three to four months, sequential, with
-Stage 1 running in production the whole time.
+Phase 1 of the plan. Built and demonstrated on the demo restaurant first,
+then run for real: every to-go order, phone and walk-in, rung on ours while
+the existing register still owns the dining room. Three to four months,
+sequential, with Stage 1 running in production the whole time.
 
 - [ ] **2.1 Touch order entry.** The draft grid with pint, pitcher and
   growler as one-tap variants; pizza by size and crust with the matrix from
@@ -339,17 +363,21 @@ Stage 1 running in production the whole time.
   and fixed an incident. Done when: the contractor runs a Saturday close on
   the demo alone.
 
-**Gate.** Every to-go order for a month, cash and card, rung on ours, with
-the accountant signing the tax report and the tip report against a month of
-Aloha. Then, and only then, section 8 decision 9: whether the studio funds
-the floor, and with it which of the two businesses this is.
+**Gate, two parts.** On the demo: a scripted day of to-go orders, cash and
+card, closes with a Z that balances to the cent and a tip report that
+matches the script. In a real restaurant: every to-go order for a month,
+cash and card, rung on ours, with the accountant signing the tax report and
+the tip report against a month of the old register. Then, and only then,
+section 8 decision 9: whether the studio funds the floor, and with it which
+of the two businesses this is.
 
 ---
 
 ## Stage 3. The floor
 
-Phase 2 of the plan. A decision, not an assumption. Taken at Stage 2's gate
-with Ryan asking. Three to four months.
+Phase 2 of the plan. A decision, not an assumption, taken at Stage 2's gate
+with a real restaurant asking. Built on the demo first. Three to four
+months.
 
 - [ ] **3.1 Tabs with pre-authorization.** One-tap tab open against a card
   hold, tab to table transfer, merge, hold and fire per ticket. No
@@ -372,9 +400,11 @@ with Ryan asking. Three to four months.
   revision check, not last-write-wins. Done when: two registers ring the
   same tab without a lost line.
 
-**Gate.** A Friday and a Saturday night with the internet deliberately
+**Gate, two parts.** On the demo: a scripted night with the hub's uplink
 pulled, every tab closed, every tip reconciled, the Z matching the drawer.
-Aloha is unplugged after this, not before.
+In a real restaurant: a Friday and a Saturday with the internet
+deliberately pulled and the same result. The old register is unplugged
+after this, not before.
 
 ---
 
@@ -387,8 +417,8 @@ Phase 3 of the plan.
 - [ ] **4.3 The ops console in glazedweb-admin:** tenants, orders, printer
   health, subscription state, support notes.
 - [ ] **4.4 The one-page policy and pricing page on the site.**
-- [ ] **4.5 Demo as a tenant,** so a pitch costs a config and copy, not a
-  repo.
+- [ ] **4.5 The demo tenant kept current** with every shipped stage, since
+  it is the pitch (0.9).
 
 **Gate.** The second restaurant onboarded onto the register with no code
 written for it.
@@ -495,7 +525,8 @@ the workroom. Card data never touches our app: semi-integrated readers only.
 3. Pricing made one thing (0.8): the ordering monthly, the terminal line,
    the fee split and the waiver floor. Into the registry.
 4. Stripe Terminal as the register's rail, which this outline assumes.
-5. Mike's Place as tenant two, now.
+5. Which real restaurant is first onto each stage. Cascarelli's for
+   ordering and Mike's Place behind it are the expected answers.
 6. Who reads the Michigan rules and when the accountant meeting is.
 7. The hardware purchases at each stage.
 8. The ordering exhibit for Cascarelli's (1.11).

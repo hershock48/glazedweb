@@ -80,9 +80,10 @@ confirmed it) or still processing after ten minutes, with the guest's
 name, the amount and the Stripe payment id.
 **Do:** if the guest is standing there, take the order at the counter the
 old way. Do not key it as a card order. If Stripe's dashboard shows the
-charge, refund it there and tell the guest it takes a few days to show.
-Never make food on an unknown attempt; the guest's page says we are
-confirming payment.
+charge, refund it there and tell the guest it takes a few days to show;
+Stripe's notice brings that refund back to Jelly on its own. Never make
+food on an unknown attempt; the guest's page says we are confirming
+payment.
 **Say:** "The card didn't finish on our side. Take it at the counter. If
 their bank shows a charge, it comes back to them."
 
@@ -90,15 +91,22 @@ their bank shows a charge, it comes back to them."
 
 **They see:** a guest who wants their money back, in person or by phone.
 **We see:** the refund line under the order on Today, with the amount,
-the time and the reason, and whether it went to the card or was a counter
-refund.
-**Do:** on Today, the order has Refund. Amount (whole by default, or
-part), a reason, and the owner's PIN typed again. A card order is
-refunded through Stripe to the same card on the restaurant's own account,
-and the studio's share of the order fee is refunded in proportion. A
-counter order is a drawer matter until Stage 2: hand back the cash and
-the refund is written on the order. Cancel sits beside Refund while an
-order is placed or accepted; it goes through the kitchen board's own
+the time, the reason and where it stands: to the card, pending at Stripe,
+not confirmed, failed. Today also carries Refunds given and Net under the
+day's totals, and Payments lists the refunds that need a person.
+**Do:** on Today, a paid order has Refund. Amount (whole by default, or
+part), a reason, and the owner's PIN typed again; five wrong PINs lock it
+for ten minutes. A card order is refunded through Stripe to the same card
+on the restaurant's own account, and the studio's share of the order fee
+is refunded in proportion. The refund is on the order before Stripe is
+asked, so two phones cannot refund more than the order and a lost answer
+cannot double it. If the line reads "not confirmed", tap Finish on the
+order: it asks Stripe for the same refund again. Never refund it on the
+Stripe dashboard as well. A cancelled card order keeps its Refund and is
+flagged until the money is back; cancelling never refunds by itself. A
+counter order was not collected through Jelly, so it has no Refund until
+the Stage 2 drawer: hand back the cash. Cancel sits beside Refund while
+an order is placed or accepted; it goes through the kitchen board's own
 operation, so the board and the guest's page agree.
 **Say:** "Refund's in. A card takes a few days to show on their
 statement."

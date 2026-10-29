@@ -382,14 +382,20 @@ beside it and prints at the pass.
   that did not finish (a ticket after a failed card cannot happen, since
   a card order is written only after the payment succeeds; what remains
   is an attempt that needs a look, now listed on Payments), a refund from
-  the owner's phone (built: Refund and Cancel on Today behind the PIN
-  with a reason, card refunds through Stripe on the restaurant's account
-  with the fee share refunded, counter refunds written on the order).
+  the owner's phone (built: Refund and Cancel on Today behind the
+  throttled PIN with a reason, card refunds written pending then sent to
+  Stripe on the restaurant's account with the fee share refunded, the
+  limit held inside the write, Stripe's refund list reconciled by the
+  webhook, Refunds and Net on Today, Reports and the close mail; counter
+  refunds only on the demo tenant until the drawer exists).
   Cases 1, 2 and 5 walked by Claude on the production build 2026-10-29;
   case 3 reasoned from the code (the board's lost-connection line, the
-  guest's recovery check); case 4 waits on Stripe keys. Money code:
-  the refund route owes a fresh-session review. Done when: someone other
-  than Kevin has walked each case on the demo.
+  guest's recovery check); case 4 waits on Stripe keys. Money code: the
+  refund route had its fresh-session review 2026-10-29
+  (jelly docs/reviews/refund-route-2026-10-29.md) and the High and Medium
+  findings are fixed; the card branch still owes its first run against a
+  Stripe test account. Done when: someone other than Kevin has walked
+  each case on the demo.
 
 **Gate, two parts.** First the demo: every step above demonstrated end to
 end on the demo tenant, including a ticket on a real printer. Then a real

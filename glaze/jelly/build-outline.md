@@ -247,9 +247,16 @@ beside it and prints at the pass.
   kitchen ticket reads left and right. Done when: Cascarelli's real menu,
   entered by Ryan, prices a half-and-half large with an extra topping on
   one side exactly as he would price it by hand, in a test the repo pins.
-- [ ] **1.3 Workroom.** Hours, 86, pause and busy dial, events, photos, the
+- [~] **1.3 Workroom.** Hours, 86, pause and busy dial, events, photos, the
   Scooplist taps handoff, and the party form landing as a lead. Two-factor
-  on the owner login. Builds on: Mike's workroom (newest copy),
+  on the owner login. Built 2026-10-29 in `jelly` (`/workroom`,
+  `/workroom/menu`, `/workroom/hours`, `/api/workroom/*`): the whole-menu
+  editor with the pizza matrix and a validated, revision-checked save; the
+  kitchen hours and ordering settings; the fee switch; Today with the
+  day's money lines and printer health. 86, pause and the dial are on the
+  kitchen board, which the owner opens from the chrome. Walked on a
+  production build. Not done: events, photos, the taps handoff, the party
+  form as a lead, two-factor. Builds on: Mike's workroom (newest copy),
   `owner-save`, `owner-request`, `event-cas`, `event-fields`, `event-photo`
   1.0.0. Done when: Ryan changes a price on his phone and the orderable
   board shows it inside ten seconds without a deploy.

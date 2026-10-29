@@ -95,7 +95,7 @@ stated once, never defended (Kevin, 2026-09-01).
 | Checkout, button while placing | Placing... |
 | Checkout, lost connection | We lost the connection. Checking whether your order went through. |
 | Confirmation, title | Got it. Ready around 6:15. |
-| Confirmation, text line | We'll text (number) when it's ready. |
+| Confirmation, ready line | We'll email (address) when it's ready. Or, with no email: Show the code at pickup. (A text needs an SMS provider; none exists yet.) |
 | Receipt, tax on fee | Tax on order fee |
 
 Nothing on any shop-facing or guest-facing screen totals the fee as a

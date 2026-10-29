@@ -307,11 +307,17 @@ beside it and prints at the pass.
   of the counter at no extra cost. Done when: a real ticket prints at the
   pass, paper confirms acceptance, and the no-paper and printer-offline
   cases behave as the runbook says.
-- [ ] **1.8 Notifications.** Builds on: `notification-outbox`,
+- [~] **1.8 Notifications.** Builds on: `notification-outbox`,
   `notification-provider`, `notification-request` 1.0.0 with the Resend
   adapter. Guest confirmation, ready text, owner daily close summary. Done
   when: the daily summary arrives at close with the day's orders, fees and
-  tax.
+  tax. Built 2026-10-29 in `jelly` (`src/lib/notify/outbox.ts`,
+  `/api/notify/drain`): the outbox with leases, idempotency keys,
+  backoff and review; the guest confirmation and ready note by email;
+  no_provider shown on Today until `RESEND_API_KEY` is set. Not done: the
+  owner's daily close summary (with 1.10), the owner's close-out of a
+  reviewed message, and any SMS, which needs a provider that does not
+  exist yet.
 - [ ] **1.9 Stripe Connect, the money spine.** The glazedweb Stripe account
   becomes the Connect platform; Cascarelli's existing Stripe account is the
   connected account; `application_fee_amount` carries the studio's half.

@@ -153,15 +153,17 @@ section 13, item 6), and that is where the Scooplist test is first run.
 No product code. The output is design notes a stranger could build from,
 the empty repo, and the books. Two to three weeks alongside client work.
 
-- [ ] **0.1 Design note per source.** One page each in `glaze/jelly/notes/`,
-  nine notes, named after the row in section 3. Each note: the exact
+- [x] **0.1 Design note per source.** One page each in `glaze/jelly/notes/`,
+  nine notes, named after the row in section 3. Written 2026-10-29; each
+  carries its unverified items under Open questions. Each note: the exact
   fields or behaviors observed with file and line, what we take, what we
   change, the clean-room line. Lane: Claude writes, Codex reads before
   building the step that cites it. Done when: all nine exist and each is
   cited by at least one step below.
-- [ ] **0.2 Tenant record design.** One table, one slug, keyed off by the
+- [~] **0.2 Tenant record design.** One table, one slug, keyed off by the
   registry on glazedweb.com, the platform, the ledger, the workroom login
-  and the books. Scooplist's org model is the shape. Done when: the schema
+  and the books. Scooplist's org model is the shape. Drafted 2026-10-29 in
+  `notes/tenant-record.md`; waiting on Kevin's read. Done when: the schema
   is written, the six places a client exists today are listed with how each
   will point at the record, and Kevin has read it.
 - [ ] **0.3 Data model note.** Our schema for session, order, line,

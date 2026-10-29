@@ -287,10 +287,19 @@ beside it and prints at the pass.
   the operator to absorb, half to the house. Done when: the receipt shows
   the fee on its own line with its tax, the operator switch works, and the
   Michigan tax on the fee matches the accountant's answer from 0.7.
-- [ ] **1.6 Tenant export.** Menu, orders, customers and reports in open
+- [~] **1.6 Tenant export.** Menu, orders, customers and reports in open
   formats from the workroom on demand. This is the "you can leave" line
-  and it is cheapest to build before there is much data. Done when: a
-  tenant's full export reimports into an empty tenant.
+  and it is cheapest to build before there is much data. Built
+  2026-10-29 in `jelly`: `/api/workroom/export` returns the tenant as one
+  JSON file (tenant row without secrets, locations, every menu revision,
+  every order with its receipt, the owner's settings; PIN hashes, printer
+  tokens and board state left out), and `tools/create-tenant.mjs --import`
+  loads it into an empty tenant through the master route (a second import
+  into a tenant with a menu is refused). Walked on a production build: the
+  demo tenant exported with four orders and reimported into a new tenant
+  whose reports read the same four. Done when: a tenant's full export
+  reimports into an empty tenant. Open: the export is a download, not a
+  scheduled copy; customers are inside the orders, not a separate list.
 - [~] **1.7 Kitchen board and printer, certified on paper.** Built
   2026-10-29 in `jelly` (`src/lib/kitchen/`, `/t/[slug]/kitchen`,
   `/api/kitchen/*`, `/api/printer/[printerId]`): operation ids with
@@ -341,9 +350,19 @@ beside it and prints at the pass.
   (landing, menu, cart, checkout, placed, with referrer) as a first-party
   event log the tenant owns, because the whole flow is on one domain and
   Toast's is not. Designed against the Toast and Aloha complaints in the
-  study. Lane: Claude designs, Codex
-  builds. Done when: Ryan opens it on his phone and finds the number he
-  asked for without help.
+  study. Built 2026-10-29 in `jelly` (`src/lib/reports/`, `/workroom/reports`,
+  `/api/workroom/reports`, `/reports/export`, `/reports/saved`): five
+  screens (sales, items, kitchen timing, guests, funnel) over one range
+  from six presets or two dates in the location's zone, per location or
+  all, saved views by name as a tenant setting, order-line and order CSV
+  of the rows behind the range, every screen computed from the order rows
+  as written (pure functions under test, 6 cases). Walked on a production
+  build with four orders through the kitchen. Lane: Claude. Done when:
+  Ryan opens it on his phone and finds the number he asked for without
+  help. Open: card-path orders (webhook or return page) do not write the
+  placed funnel step yet; returning means ordered before the range, so a
+  guest with two orders in one day reads as first time; the daily close
+  mail (1.8) is not written.
 - [ ] **1.11 Ordering exhibit signed.** Add-on price per 0.8, the fee, whose
   Stripe account, refunds, chargebacks, the second printer. Lane: Kevin.
   Done when: signed, before the first commit of 1.4 reaches production.

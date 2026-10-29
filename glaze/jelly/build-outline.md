@@ -234,8 +234,9 @@ beside it and prints at the pass.
   Scooplist orgs, `workroom-session 1.0.0`, Copper's login limiter packaged
   as a component. Done when: two tenants exist on the demo host with
   separate logins and separate menus and neither can see the other.
-- [ ] **1.2 Menu as the one price source, with the catalogue and the pizza
-  matrix.** Builds on: `menu-write 1.0.0`, `option-pricing 1.0.0`,
+- [~] **1.2 Menu as the one price source, with the catalogue and the pizza
+  matrix.** Spec and test table in `specs/compute-totals.md` (2026-10-29);
+  code waits on Codex. Builds on: `menu-write 1.0.0`, `option-pricing 1.0.0`,
   `content-cas 1.0.0`, Mike's workroom menu editor. Borrows: TastyIgniter's
   shared option catalogue (required, min, max, free quantity, overridable
   value prices) and order snapshotting; Floreant's sections and multipliers
@@ -250,13 +251,16 @@ beside it and prints at the pass.
   `owner-save`, `owner-request`, `event-cas`, `event-fields`, `event-photo`
   1.0.0. Done when: Ryan changes a price on his phone and the orderable
   board shows it inside ten seconds without a deploy.
-- [ ] **1.4 Ordering, guest side, written to the offline contract.** Pickup,
+- [~] **1.4 Ordering, guest side, written to the offline contract.** Flow,
+  screens, words and funnel in `specs/ordering-guest.md` (2026-10-29). Pickup,
   order-ahead, the 21-plus flag off by default (alcohol online waits for
   0.7). Builds on: `order-quote`, `order-acceptance`, `order-recovery`
   1.0.0 and Mike's ordering. Adopts now from 5.2: client uuid on every
   order, upsert by uuid, and the reload guard. Done when: a guest order
   placed with the network dropped mid-submit lands exactly once.
-- [ ] **1.5 Channel presets, capacity slots, and the fee as a line.**
+- [~] **1.5 Channel presets, capacity slots, and the fee as a line.** Fee
+  and tax stages specified in `specs/compute-totals.md`; slots in
+  `specs/ordering-guest.md`.
   Borrows: Odoo's preset binding taxes, pricing and timing per channel,
   slots computed from an interval and a per-interval count, never stored;
   TastyIgniter's conditions as persisted total lines. The 99 cents is one
@@ -288,7 +292,8 @@ beside it and prints at the pass.
   Done when: one real order's money is traced from the guest's card to the
   restaurant's payout and the studio's fee, and the five book lines can be
   read off Stripe for that order.
-- [ ] **1.10 Reports, version one.** Hourly sales, item mix, channel split
+- [~] **1.10 Reports, version one.** Designed in `specs/reports-v1.md`
+  (2026-10-29). Hourly sales, item mix, channel split
   (phone versus online once 1.7 runs), fee, tax and tip lines separated,
   repeat guests, saved reports, raw order-line CSV, and the ordering funnel
   (landing, menu, cart, checkout, placed, with referrer) as a first-party
@@ -300,7 +305,9 @@ beside it and prints at the pass.
 - [ ] **1.11 Ordering exhibit signed.** Add-on price per 0.8, the fee, whose
   Stripe account, refunds, chargebacks, the second printer. Lane: Kevin.
   Done when: signed, before the first commit of 1.4 reaches production.
-- [ ] **1.12 Runbook for the pass, version one.** Paper out, printer
+- [~] **1.12 Runbook for the pass, version one.** Written at
+  `runbooks/pass.md` (2026-10-29); done when walked on the demo by someone
+  other than Kevin. Paper out, printer
   offline while the cloud is up, cloud down while the restaurant is up, a
   card that fails after the ticket printed, a refund from the owner's
   phone. Five pages in `glaze/jelly/runbooks/`. Done when: someone other

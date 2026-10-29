@@ -146,7 +146,7 @@ percent on `prepared_food` and `fee`, fee 99 waived under 1000, policy
 | E. Case A with the operator absorbing the fee | 2188 | 0, hidden | food 131 | 0 | 2319 |
 | F. Case A with a 400 tip | 2188 | 99 | food 131, fee 6 | 400 | 2824 |
 | G. Wings, no sauce picked | QuoteError bad_pick naming Sauce | | | | |
-| H. Garlic Bread, two Mozzarella picks on a single group | QuoteError bad_pick | | | | |
+| H. Wings with Buffalo and BBQ both picked on the single-pick Sauce group | QuoteError bad_pick | | | | |
 | I. Deep Dish at Small | QuoteError bad_crust | | | | |
 | J. Case A against a revision that raised Large to 1800 | QuoteError stale_menu with current revision | | | | |
 | K. Case A priced in the browser and on the server | identical bytes | | | | |

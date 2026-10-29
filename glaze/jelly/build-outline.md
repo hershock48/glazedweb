@@ -29,11 +29,13 @@ Same contract as every glaze file: if this disagrees with the code, the
 code is right, fix the file. Status marks: `[ ]` not started, `[~]` in
 progress, `[x]` done and verified, `[!]` blocked, with the blocker named.
 
-**Lanes** (AGENTS.md): Codex owns workroom, kitchen, printer and payment
-code. Claude owns operator-facing words, the agreement copy, the review,
-and the design notes in the reading pass. Kevin owns prices, agreements,
-hardware purchases, and every decision in section 8. Money code and client
-copy wait for a proper review window, never a stand-in.
+**Lanes.** Kevin, 2026-10-29: "forget Codex." Claude builds Jelly end to
+end, code and words, and the handoff entries that asked Codex to sign the
+offline contract or review the schema are closed as not needed. Kevin
+owns prices, agreements, hardware purchases, and every decision in
+section 8. Money code still waits for a proper review window, never a
+stand-in; the reviewer is a fresh Claude session reading the contract and
+the spec, not the session that wrote the code.
 
 ---
 

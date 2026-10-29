@@ -179,11 +179,14 @@ the empty repo, and the books. Two to three weeks alongside client work.
   into a one-page spec that stage 1 code is reviewed against, at
   `glaze/jelly/offline-contract.md` since 2026-10-29. Done when: Codex has
   signed it in the handoff (entry open).
-- [ ] **0.5 The Jelly repo exists.** On the Scooplist org model, Next 16,
+- [~] **0.5 The Jelly repo exists.** On the Scooplist org model, Next 16,
   Postgres-or-memory store with production refusing memory writes (Copper's
   two stores), the connection module cut as its own component. Empty of
   features. Done when: a tenant can be created and signed into on the demo
-  host.
+  host. 2026-10-29: `hershock48/jelly` (private) exists and the walk passes
+  on a local production build; the demo host waits on a Vercel project with
+  `JELLY_MASTER` and a Neon database attached (Kevin). The connection module
+  is not yet cut as its own catalog component.
 - [ ] **0.6 The books.** Five lines (subscription, payments margin, order
   fees, hardware at cost, services) and one row per restaurant, before the
   first Cascarelli's $150 lands in November. Designed so the lines come off
@@ -207,7 +210,11 @@ the empty repo, and the books. Two to three weeks alongside client work.
   first. It is also the pitch demo from here on, so a pitch costs a config
   and copy, not a repo. Done when: the demo tenant exists on the demo host
   with its seed data and a one-page script that walks a visitor through
-  ordering, the kitchen and the workroom.
+  ordering, the kitchen and the workroom. 2026-10-29: Mill Street Tavern is
+  seeded by `tools/seed-demo.mjs` (six sections, 25 items, a three-size,
+  fourteen-topping pizza matrix, eight drafts with variants, cocktails to
+  go, hours, channel settings) and `docs/demo-script.md` walks Stage 0 and
+  names what each later stage adds; waits on the demo host like 0.5.
 
 ---
 

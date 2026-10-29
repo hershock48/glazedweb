@@ -207,7 +207,7 @@ the empty repo, and the books. Two to three weeks alongside client work.
   ordering; the Jelly plan proposes $99 plus $29 a terminal; the per-terminal
   line reads as add-on stacking against the promise page. Kevin rules before
   the next restaurant is pitched. Done when: the registry carries the ruling.
-- [ ] **0.9 The demo restaurant.** Tenant one is made up: a pizza tavern
+- [~] **0.9 The demo restaurant.** Tenant one is made up: a pizza tavern
   with a bar, twenty drafts, a banquet room, two terminals and a kitchen
   printer, seeded with a full menu including a pizza matrix, a draft grid
   and cocktails to go. Every stage is built and demonstrated against it
@@ -230,12 +230,18 @@ wanted from January 2027), with Mike's Place behind it. In a real
 restaurant the existing register keeps ringing the room; ordering runs
 beside it and prints at the pass.
 
-- [ ] **1.1 Tenant record and platform routing.** Build 0.2. One Vercel
+- [~] **1.1 Tenant record and platform routing.** Build 0.2. One Vercel
   project for the platform, one host per tenant (`order.<domain>` or a
   platform subdomain), the client site static and linking in. Builds on:
   Scooplist orgs, `workroom-session 1.0.0`, Copper's login limiter packaged
   as a component. Done when: two tenants exist on the demo host with
   separate logins and separate menus and neither can see the other.
+  2026-10-29: built in `jelly` (`src/proxy.ts` host routing, `/t/[slug]`,
+  per-tenant owner and kitchen sign-in, `tenant_id` on every row). Two and
+  three tenants walked side by side on a local production build
+  (millstreet, millimport, closetest), each owner seeing only its own
+  orders and menu. Open: the same walk on jelly.glazedweb.com, which waits
+  on `JELLY_MASTER` and the database.
 - [~] **1.2 Menu as the one price source, with the catalogue and the pizza
   matrix.** Spec and test table in `specs/compute-totals.md` (2026-10-29);
   code waits on Codex. Builds on: `menu-write 1.0.0`, `option-pricing 1.0.0`,

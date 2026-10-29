@@ -254,7 +254,12 @@ beside it and prints at the pass.
   1.0.0. Done when: Ryan changes a price on his phone and the orderable
   board shows it inside ten seconds without a deploy.
 - [~] **1.4 Ordering, guest side, written to the offline contract.** Flow,
-  screens, words and funnel in `specs/ordering-guest.md` (2026-10-29). Pickup,
+  screens, words and funnel in `specs/ordering-guest.md` (2026-10-29).
+  Built the same day in `jelly` (proxy routing, bundle, slots, idempotent
+  placement, the five screens, confirmation, funnel) and walked on a
+  production build: case A placed by API and by browser, replay by uuid
+  returned one order. Still owed: the cart in IndexedDB rather than
+  localStorage, and the dropped-network test as an automated check. Pickup,
   order-ahead, the 21-plus flag off by default (alcohol online waits for
   0.7). Builds on: `order-quote`, `order-acceptance`, `order-recovery`
   1.0.0 and Mike's ordering. Adopts now from 5.2: client uuid on every
@@ -262,7 +267,12 @@ beside it and prints at the pass.
   placed with the network dropped mid-submit lands exactly once.
 - [~] **1.5 Channel presets, capacity slots, and the fee as a line.** Fee
   and tax stages specified in `specs/compute-totals.md`; slots in
-  `specs/ordering-guest.md`.
+  `specs/ordering-guest.md`. Built 2026-10-29: slots computed from the
+  kitchen hours with capacity per interval (`src/lib/ordering/slots.ts`,
+  tested), the fee as its own taxable row with the operator switch as a
+  tenant setting. Still owed: the channel profile as a row per channel
+  rather than the document's `ordering` block, and the accountant's
+  answer on tax on the fee (0.7).
   Borrows: Odoo's preset binding taxes, pricing and timing per channel,
   slots computed from an interval and a per-interval count, never stored;
   TastyIgniter's conditions as persisted total lines. The 99 cents is one

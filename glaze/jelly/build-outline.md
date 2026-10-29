@@ -318,7 +318,16 @@ beside it and prints at the pass.
   owner's daily close summary (with 1.10), the owner's close-out of a
   reviewed message, and any SMS, which needs a provider that does not
   exist yet.
-- [ ] **1.9 Stripe Connect, the money spine.** The glazedweb Stripe account
+- [~] **1.9 Stripe Connect, the money spine.** Built 2026-10-29 in
+  `jelly` (`src/lib/stripe/`, `src/lib/payments/attempts.ts`,
+  `/api/order/intent`, `/api/stripe/webhook`, `/order/pay/return`,
+  `/workroom/payments`): Standard connected accounts onboarded from the
+  workroom, direct charges with the application fee, attempts keyed by
+  the order uuid with DeVine's finality, placement from the snapshot by
+  webhook or return page. Keyless paths walked on a production build. Not
+  verified: the card flow end to end, which waits on the platform keys
+  and a Connect webhook endpoint in Vercel (Kevin); the five-line books
+  read off Stripe. The glazedweb Stripe account
   becomes the Connect platform; Cascarelli's existing Stripe account is the
   connected account; `application_fee_amount` carries the studio's half.
   Builds on: DeVine's payment engine states (port, Stripe adapter new).

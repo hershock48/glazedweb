@@ -166,7 +166,8 @@ the empty repo, and the books. Two to three weeks alongside client work.
   `notes/tenant-record.md`; waiting on Kevin's read. Done when: the schema
   is written, the six places a client exists today are listed with how each
   will point at the record, and Kevin has read it.
-- [ ] **0.3 Data model note.** Our schema for session, order, line,
+- [~] **0.3 Data model note.** Written 2026-10-29 in `notes/data-model.md`;
+  waiting on Codex review via the handoff. Our schema for session, order, line,
   line modifier (with section and multiplier), payment, tender type, drawer
   pull, employee, shift, void reason, action history, menu, option
   catalogue, channel preset, tax category, totals line. Laid beside Odoo's
@@ -174,9 +175,10 @@ the empty repo, and the books. Two to three weeks alongside client work.
   payment attempts and Copper's order model. Done when: every field has a
   reason, and the integer-cents and uuid rules are stated on every money
   and every record column.
-- [ ] **0.4 Offline contract written.** Section 5.2 of this file expanded
-  into a one-page spec that stage 1 code is reviewed against. Done when:
-  Codex has signed it in the handoff.
+- [~] **0.4 Offline contract written.** Section 5.2 of this file expanded
+  into a one-page spec that stage 1 code is reviewed against, at
+  `glaze/jelly/offline-contract.md` since 2026-10-29. Done when: Codex has
+  signed it in the handoff (entry open).
 - [ ] **0.5 The Jelly repo exists.** On the Scooplist org model, Next 16,
   Postgres-or-memory store with production refusing memory writes (Copper's
   two stores), the connection module cut as its own component. Empty of

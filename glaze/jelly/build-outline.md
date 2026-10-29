@@ -284,7 +284,15 @@ beside it and prints at the pass.
   formats from the workroom on demand. This is the "you can leave" line
   and it is cheapest to build before there is much data. Done when: a
   tenant's full export reimports into an empty tenant.
-- [ ] **1.7 Kitchen board and printer, certified on paper.** Builds on:
+- [~] **1.7 Kitchen board and printer, certified on paper.** Built
+  2026-10-29 in `jelly` (`src/lib/kitchen/`, `/t/[slug]/kitchen`,
+  `/api/kitchen/*`, `/api/printer/[printerId]`): operation ids with
+  fingerprints, revision checks, placed to accepted to ready to done,
+  owner-only cancel with a reason, the 86 list, busy dial and pause
+  reaching the guest menu, the CloudPRNT poll, fetch and confirm cycle
+  with paper at the pass accepting the order. Walked on a production
+  build with curl as the printer. Not done: no physical printer has
+  polled it, and the owner printer review (reprint, skip) is not built. Builds on:
   `kitchen-operations`, `kitchen-request`, `printer-jobs`, `printer-review`
   1.0.0. One Star CloudPRNT printer bought and installed at the pass in
   Homer running the demo before any real order. Staff key phone orders on

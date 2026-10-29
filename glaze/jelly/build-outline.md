@@ -184,9 +184,11 @@ the empty repo, and the books. Two to three weeks alongside client work.
   two stores), the connection module cut as its own component. Empty of
   features. Done when: a tenant can be created and signed into on the demo
   host. 2026-10-29: `hershock48/jelly` (private) exists and the walk passes
-  on a local production build; the demo host waits on a Vercel project with
-  `JELLY_MASTER` and a Neon database attached (Kevin). The connection module
-  is not yet cut as its own catalog component.
+  on a local production build. The Vercel project `jelly` (GlazedWeb team)
+  deploys main to jelly.glazedweb.com since 2026-10-29 with
+  `JELLY_PLATFORM_HOSTS` set; it answers nothing until Kevin sets
+  `JELLY_MASTER` in the dashboard and attaches a Neon database, then seeds.
+  The connection module is not yet cut as its own catalog component.
 - [ ] **0.6 The books.** Five lines (subscription, payments margin, order
   fees, hardware at cost, services) and one row per restaurant, before the
   first Cascarelli's $150 lands in November. Designed so the lines come off

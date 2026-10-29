@@ -1,82 +1,112 @@
 # Runbook: the pass
 
-**What this is.** Build outline step 1.12, version one. What to do when
-something goes wrong where the tickets come out, written so someone other
-than Kevin can walk every case on the demo tenant. Each case says what the
-restaurant sees, what we see, what to do in the first two minutes, and
-what to say. Keep it to a page per case. Update it in the commit that
+**What this is.** Build outline step 1.12, version one, rewritten
+2026-10-29 to say what Jelly does today, not what it might. What to do
+when something goes wrong where the tickets come out, written so someone
+other than Kevin can walk every case on the demo tenant. Each case says
+what the restaurant sees, what we see, what to do in the first two
+minutes, and what to say. A page per case. Update it in the commit that
 changes the behavior.
 
 ## Before service
 
-- The kitchen screen is signed in and the printer shows a green poll in
-  the workroom's printer panel within the last minute.
-- The owner's phone has the workroom open and the pause control reachable.
-- Our side: the ops view shows the tenant's printer last-poll time and the
-  order count for the day.
+- The kitchen board (`/t/{slug}/kitchen`, staff PIN) is signed in. Its
+  printer strip shows each printer as polling; a printer that has not
+  polled in the last minute shows "last seen" with a time instead.
+- The owner's phone has the workroom open. Hours and ordering has the
+  pause control; Today has the orders, the printers and the tickets that
+  need a look.
+- Our side: the workroom's Today for the tenant, read the same way. No
+  separate ops console exists yet (Stage 4).
 
 ## Case 1. Paper out
 
-**They see:** a ticket on the kitchen screen with no paper, the printer's
+**They see:** a ticket on the kitchen board with no paper, the printer's
 light blinking.
-**We see:** the print job stays `leased`, never `confirmed`; after two
-minutes the workroom's printer panel shows "no paper confirmed".
-**Do:** the kitchen works from the screen. Load paper. The queued jobs
-print in order once the printer polls again; nothing is lost and nothing
-prints twice (`printer-jobs 1.0.0` leases).
-**Say:** "Paper's out. Screen has it. Load paper and the tickets catch up."
+**We see:** the print job stays leased, never confirmed. After the lease
+runs out the job goes back to queued and is offered again on the next
+poll. Today says "N tickets need a look: fetched and never confirmed,
+failed, or expired" once a job has been fetched without a confirm.
+**Do:** the kitchen works from the board. Load paper. The queued jobs
+print in order once the printer polls again; a job is leased to one poll
+at a time and confirmed once, so nothing prints twice.
+**Say:** "Paper's out. The board has it. Load paper and the tickets catch
+up."
 
 ## Case 2. Printer offline, cloud up
 
-**They see:** tickets on the screen, nothing on paper, the printer light
-off or steady with no activity.
-**We see:** last poll older than two minutes; jobs piling up `queued`.
+**They see:** tickets on the board, nothing on paper, the printer light
+off or steady with no activity. The board's printer strip shows "last
+seen" instead of polling.
+**We see:** the same strip on Today, and jobs piling up queued.
 **Do:** check power and the network cable at the printer. If it comes
-back, the queue drains. If not, the kitchen runs from the screen for the
-rest of service and the owner is told the printer is down. A spare printer
-from the shelf is a Stage 4 answer; in Stage 1 it is the screen.
-**Say:** "Printer's not reaching us. Screen has every ticket. We'll keep
-watching it."
+back, the queue drains in order. If not, the kitchen runs from the board
+for the rest of service and the owner is told the printer is down. A
+spare printer from the shelf is a Stage 4 answer; in Stage 1 it is the
+board. Orders are accepted by the board's Accept as well as by paper, so
+nothing waits on the printer.
+**Say:** "Printer's not reaching us. The board has every ticket. We'll
+keep watching it."
 
 ## Case 3. Cloud down, restaurant up
 
-**They see:** the kitchen screen shows "lost connection" in the chrome;
-new online orders stop arriving; the printer stops.
-**We see:** our own monitoring, and the owner's text.
+**They see:** the kitchen board shows "Lost connection. The board shows
+the last tickets it saw and retries every five seconds." New online
+orders stop arriving; the printer stops.
+**We see:** Vercel's status, and the owner's text.
 **Do:** nothing prints anywhere until the cloud is back; CloudPRNT polls
-the cloud by design and the hub does not exist until Stage 3. Orders placed
-by guests during the outage are refused with a plain message and the phone
-number, never silently queued, so no guest thinks an order exists that the
-kitchen has not seen. Phone orders keep coming the old way. When the cloud
-returns, the screen reconnects on its own and the printer resumes.
-**Say:** "Our side is down. Online ordering is paused and says so to
-guests. Phone's still phone. We'll tell you the moment it's back."
+the cloud by design and the hub does not exist until Stage 3. The
+ordering page is served by the same cloud, so guests do not reach a page
+that takes an order it cannot keep: the site is simply down for them. A
+guest who was mid-checkout when it went sees "We lost the connection.
+Checking whether your order went through," and the page checks by the
+order's own id before telling them to try again; a charge is never taken
+for an order that was not written. Phone orders keep coming the old way.
+When the cloud returns the board reconnects on its own and the printer
+resumes.
+**Say:** "Our side is down. Online ordering is off and guests cannot
+reach it. Phone's still phone. We'll tell you the moment it's back."
 
-## Case 4. A card failed after the ticket printed
+## Case 4. A card payment that did not finish
 
-**They see:** a ticket at the pass for an order whose payment did not
-finish, which can happen when the processor answers late.
-**We see:** `payment_attempt` in `unknown` or `failed` with an order in
-`placed`; the recovery screen lists it.
-**Do:** the order is held, not made, until the attempt resolves. The owner
-can mark it pay at counter from the workroom if the guest is standing
-there, or cancel it with a reason. Never make food on an `unknown`
-attempt; the guest is texted that we are confirming payment.
-**Say:** "Card didn't clear. Hold the ticket. If they're here, take it at
-the counter; the workroom has a button for that."
+**They see:** nothing, and that is the point. A ticket prints only once
+an order is written, and a card order is written only once the payment
+succeeds, so a ticket at the pass for a card that did not clear cannot
+happen. What can happen is a guest at the counter saying they paid and
+no order exists.
+**We see:** Payments in the workroom lists "Payments that need a look":
+attempts that are unknown (the processor may hold the money and nobody
+confirmed it) or still processing after ten minutes, with the guest's
+name, the amount and the Stripe payment id.
+**Do:** if the guest is standing there, take the order at the counter the
+old way. Do not key it as a card order. If Stripe's dashboard shows the
+charge, refund it there and tell the guest it takes a few days to show.
+Never make food on an unknown attempt; the guest's page says we are
+confirming payment.
+**Say:** "The card didn't finish on our side. Take it at the counter. If
+their bank shows a charge, it comes back to them."
 
 ## Case 5. A refund from the owner's phone
 
 **They see:** a guest who wants their money back, in person or by phone.
-**We see:** the refund row with a reason and who did it.
-**Do:** the workroom's order page has Refund behind the owner's PIN, with a
-reason list. Whole or partial. Card refunds go back through Stripe to the
-same card and take days on the guest's side; cash refunds in Stage 1 are
-a drawer matter and are written as a note until Stage 2's drawer exists.
-**Say:** "Refund's in. Card takes a few days to show on their statement."
+**We see:** the refund line under the order on Today, with the amount,
+the time and the reason, and whether it went to the card or was a counter
+refund.
+**Do:** on Today, the order has Refund. Amount (whole by default, or
+part), a reason, and the owner's PIN typed again. A card order is
+refunded through Stripe to the same card on the restaurant's own account,
+and the studio's share of the order fee is refunded in proportion. A
+counter order is a drawer matter until Stage 2: hand back the cash and
+the refund is written on the order. Cancel sits beside Refund while an
+order is placed or accepted; it goes through the kitchen board's own
+operation, so the board and the guest's page agree.
+**Say:** "Refund's in. A card takes a few days to show on their
+statement."
 
 ## What to log
 
-Every case is an `audit_event` with who, when and what, and a line in the
-tenant's support note in the ops console, so a quarterly visit can read
-what the pass went through.
+Every order action is a kitchen operation with an id, who did it and the
+state before and after, kept with the order. Refunds live on the order.
+There is no separate audit log or support note yet; a quarterly visit
+reads Today and Reports. An ops console with a per-tenant support note is
+Stage 4.

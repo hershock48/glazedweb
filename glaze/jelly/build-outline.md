@@ -361,17 +361,28 @@ beside it and prints at the pass.
   Ryan opens it on his phone and finds the number he asked for without
   help. Open: card-path orders (webhook or return page) do not write the
   placed funnel step yet; returning means ordered before the range, so a
-  guest with two orders in one day reads as first time; the daily close
-  mail (1.8) is not written.
+  guest with two orders in one day reads as first time. The daily close
+  mail landed 2026-10-29 (`src/lib/notify/close.ts`, queued by the cron
+  drain half an hour after the kitchen close, same compute as the
+  screen, 5 tests), walked on the production build with a moved close
+  hour.
 - [ ] **1.11 Ordering exhibit signed.** Add-on price per 0.8, the fee, whose
   Stripe account, refunds, chargebacks, the second printer. Lane: Kevin.
   Done when: signed, before the first commit of 1.4 reaches production.
 - [~] **1.12 Runbook for the pass, version one.** Written at
-  `runbooks/pass.md` (2026-10-29); done when walked on the demo by someone
-  other than Kevin. Paper out, printer
-  offline while the cloud is up, cloud down while the restaurant is up, a
-  card that fails after the ticket printed, a refund from the owner's
-  phone. Five pages in `glaze/jelly/runbooks/`. Done when: someone other
+  `runbooks/pass.md` (2026-10-29), rewritten the same day to say what
+  Jelly does rather than what it might: paper out, printer offline while
+  the cloud is up, cloud down while the restaurant is up, a card payment
+  that did not finish (a ticket after a failed card cannot happen, since
+  a card order is written only after the payment succeeds; what remains
+  is an attempt that needs a look, now listed on Payments), a refund from
+  the owner's phone (built: Refund and Cancel on Today behind the PIN
+  with a reason, card refunds through Stripe on the restaurant's account
+  with the fee share refunded, counter refunds written on the order).
+  Cases 1, 2 and 5 walked by Claude on the production build 2026-10-29;
+  case 3 reasoned from the code (the board's lost-connection line, the
+  guest's recovery check); case 4 waits on Stripe keys. Money code:
+  the refund route owes a fresh-session review. Done when: someone other
   than Kevin has walked each case on the demo.
 
 **Gate, two parts.** First the demo: every step above demonstrated end to

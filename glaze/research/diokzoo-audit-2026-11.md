@@ -76,8 +76,10 @@ platform the diocese owns, with the parishes as tenants.
   the Mass-finder apps. The diocese becomes the source of its own schedule
   data instead of a subscriber to someone else's.
 - Every page measured: zero accessibility violations, the same checks the
-  studio runs on every build (glaze/launch.md), which a diocese answers for
-  under the ADA in a way a parish secretary does not.
+  studio runs on every build (glaze/launch.md). Churches are exempt from the
+  ADA's public-accommodation website rules (Church Law and Tax, Church
+  Leaders, 2019), so this is a quality claim, not a legal one; say it that
+  way.
 - Ownership: the diocese holds the repository, the hosting and every domain.
   Leaving means taking it, not exporting it.
 - Office self-service for the four things that change (Mass times, holy

@@ -26,6 +26,21 @@ onboarding, almost certainly the diocesan partnership
 may be true for the 19xxx block and not for St. Mary, whose account predates
 the deal. The parish's own invoice settles it.
 
+**Re-measured the same evening, every site again in the browser pane.**
+Two of the four "down" sites load now: olqop.org (Bridgman) answers over
+TLS and is a hand-built page with no `<title>` at all; stjosephwhitepigeon.org
+loads, is not eCatholic, and its home-page headline misspells "Eucharist"
+as "Eurcharist". sscmparish.org still fails the TLS handshake and
+stedwardmendon.org still does not resolve; the Parish Finder links all
+four. So: 44 of 46 load, 41 eCatholic, one WordPress, two hand-built. The
+table below is over the 42 template sites and held on the re-measure
+except og:image, which is 40 of 42 (95%), not 39; only St. Mark Niles and
+St. Catherine of Siena carry one. New, verified, in the letter: St.
+Anthony Buchanan's home page has 85 links with no text, image or label
+(St. Ambrose Parchment 61, San Felipe 28), the template's slideshow and
+tab controls. The MassTime-panel count (30 of 42) was not re-measured;
+the second pass used a broader selector and is not comparable.
+
 ## What the 42 home pages have in common
 
 | Measure | Share of 42 | Notes |

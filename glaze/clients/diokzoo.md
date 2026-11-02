@@ -33,12 +33,17 @@ from eCatholic.
 
 ## Terms
 
-In the letter, unruled by Kevin: $99 a parish a month, no build fee for any
-parish that moves ($4,158 a month for the 42 with a site today). The
-no-build-fee position is Claude's draft from the audit note's own arithmetic
-(one script plus a day of reading per parish); Kevin confirms or changes it
-before anyone outside sees the letter. The one action is
-glazedweb.com/schedule.
+Ruled by Kevin, 2026-11-02, after the market research
+(`glaze/research/diokzoo-audit-2026-11.md` and the memory
+parish-website-market-prices): **$99 a parish a month, no build fee for any
+parish that moves under the diocesan agreement, a twelve-month first term on
+that agreement, then month to month, thirty days' notice, no exit fee.** A
+parish that comes alone pays the published build price. $4,158 a month for
+the 42 with a site today. Anchors: eCatholic's own entry plan is $99; the
+diocesan block most likely pays about $50 a site through the diocese
+(Detroit, Pittsburgh and Boston all bill parishes that way), so the letter
+never says "cheaper." The one action is glazedweb.com/schedule. The
+agreement page needs a first-term clause before the letter is sent.
 
 ## Decisions on file
 

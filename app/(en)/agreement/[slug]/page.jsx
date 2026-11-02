@@ -126,7 +126,7 @@ export default async function CustomOrderPage({ params, searchParams }) {
             client should not dump him on the studio's homepage. Clients
             without a proposal, Chism, keep the default.
           */}
-          <a className="brand" href={order.pitchUrl || "/"} aria-label={order.pitchUrl ? "Back to the proposal" : "glazedweb home"}>
+          <a className="brand" href={order.pitchUrl || "/"} aria-label={order.pitchUrl ? "glazedweb, back to the proposal" : "glazedweb home"}>
             <Mark />
             <span className="bw">
               glazed<span>web</span>

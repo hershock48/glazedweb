@@ -1,0 +1,68 @@
+# Diocese of Kalamazoo (the parish platform)
+
+**Repo** `hershock48/stmarymarshall` (the St. Mary repo, now a multi-parish platform) · **Prospect**, nothing sent · Pilot built 2026-11-02 ·
+**Letter** kalamazoo.glazedweb.com · **Demos** stmarymarshall.glazedweb.com/demo, stphilip.glazedweb.com, sanfelipe.glazedweb.com · **Feed** kalamazoo.glazedweb.com/diocese/mass-times.json · all noindex.
+
+## What they are
+
+The Diocese of Kalamazoo, nine counties of southwest Michigan, Bishop Edward
+M. Lohse (installed July 25, 2023). Pastoral Center at 215 N. Westnedge Ave,
+Kalamazoo 49007, (269) 349-8714. Sixty parishes and missions in the Parish
+Finder, 46 distinct websites, 41 of the 42 reachable ones eCatholic under a
+diocesan partnership (ecatholic.com/kzoo). The audit of every home page is
+`glaze/research/diokzoo-audit-2026-11.md` and its CSV.
+
+## How this came about
+
+St. Mary Marshall was rebuilt as a gift (`stmarymarshall.md`). On
+2026-11-02 the office said the diocese pays for the website and would ask
+someone there about it; Kevin said he could do all of them. Kevin's ruling
+the same day: do not wait for the contract facts, build the work and a
+proposal that pokes holes, and let that open the door.
+
+## What is built
+
+One deployment, parish per Host header. St. Mary (permission granted), St.
+Philip Battle Creek and San Felipe de Jesús Fennville (both read off their
+public eCatholic sites and feeds on 2026-11-01 without asking them; the
+letter says so). San Felipe is in Spanish throughout: every platform word
+lives in `lib/i18n.ts` in both languages and a parish picks one. A diocesan
+feed joins every parish's Mass, Confession and Adoration times as one JSON
+file, the thing the Parish Finder would read from the diocese instead of
+from eCatholic.
+
+## Terms
+
+In the letter, unruled by Kevin: $99 a parish a month, no build fee for any
+parish that moves ($4,158 a month for the 42 with a site today). The
+no-build-fee position is Claude's draft from the audit note's own arithmetic
+(one script plus a day of reading per parish); Kevin confirms or changes it
+before anyone outside sees the letter. The one action is
+glazedweb.com/schedule.
+
+## Decisions on file
+
+- **The pitch is to the Pastoral Center, not 41 pastors.** The deal is above
+  them.
+- **Ownership is the wedge**: the diocese holds the repository, hosting and
+  data; "no hostage-taking" clause as on every agreement.
+- **The feed has to exist from day one** or the Parish Finder goes dark one
+  parish at a time; the format it consumes is the first thing to ask for.
+- **Demo parishes set no `mailTo`**, so a form on a demo never reaches a real
+  office that has not asked for it.
+- **Giving never moves**: Vanco stays Vanco, OSV stays OSV.
+- **Never say "cheaper."**
+
+## Open
+
+- Who holds the eCatholic agreement and when it ends (Stacie at St. Mary was
+  asking).
+- The Parish Finder's feed format.
+- A Spanish-capable reviewer for San Felipe, Holy Angels and the two St.
+  Josephs.
+- Kevin's ruling on the price and on sending the letter.
+- Parish-level letters for St. Philip and San Felipe do not exist; their
+  pitch hosts serve the site at `/`.
+- Data conflicts flagged in the repo README (St. Philip's Thursday and
+  Friday Masses, a staff name, reconstructed emails; San Felipe's adoration
+  time).

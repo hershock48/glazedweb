@@ -31,6 +31,25 @@ feed joins every parish's Mass, Confession and Adoration times as one JSON
 file, the thing the Parish Finder would read from the diocese instead of
 from eCatholic.
 
+Since the evening of 2026-11-02: each parish has its own palette
+(`Parish.theme`, St. Philip wine and gold, San Felipe umber with Marian
+blue and amber; `tools/palette-check.mjs` must clear every role); `/diocese`
+on any host is the readable twin of the feed, every parish's address and
+schedule on one page, which is what the letter's "The diocese on one page"
+box opens (it used to open the raw JSON). It is read-only. The letter
+never promises a management panel; an office panel for self-service edits
+is the phase-two add-on the cost section says is quoted first.
+
+The letter opens in the first person with the story (a parishioner whose
+own parish site was the problem, now wanting to help the whole area, a
+person inside the diocese rather than a template vendor), a "What the
+monthly covers" table (hosting, security, backups, edits, checks, feed, a
+person), four bar charts written by `tools/letter-charts.mjs` (missing
+items on the 42 home pages, images per home page, Pew 2016 on how people
+search, CARA 2023 on parish-website use), two stat tiles (Stanford 46%,
+Google 53%) and a claim card from the 490-page inner crawl. The research
+and the crawl are in the research note.
+
 ## Terms
 
 Ruled by Kevin, 2026-11-02, after the market research

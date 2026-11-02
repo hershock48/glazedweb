@@ -61,8 +61,57 @@ parish that comes alone pays the published build price. $4,158 a month for
 the 42 with a site today. Anchors: eCatholic's own entry plan is $99; the
 diocesan block most likely pays about $50 a site through the diocese
 (Detroit, Pittsburgh and Boston all bill parishes that way), so the letter
-never says "cheaper." The one action is glazedweb.com/schedule. The
-agreement page needs a first-term clause before the letter is sent.
+never says "cheaper." The one action is glazedweb.com/schedule.
+
+The agreement page exists since the evening of 2026-11-02: registry row
+`diokzoo` in lib/customOrders.js, /agreement/diokzoo and /build/diokzoo.
+The client is the diocese; Exhibit A part 3, "the diocesan agreement and
+its first term," is the clause the general terms have no home for (section
+5 says month to month, no multi-year term): the diocese signs once, a
+parish joins by a note from the Pastoral Center, twelve months from the
+first parish going live during which only a material breach ends it, then
+month to month on thirty days' notice; $99 a parish from the month after it
+goes live on one statement to the diocese; leaving hands over the working
+project for every parish at once; the feed is the diocese's data. Two new
+optional row fields carry it into part 2: `monthlyWhen` (when the monthly
+starts, in the client's own words) and `termNote` (replaces the
+month-to-month sentence). The letter's "The diocesan agreement runs twelve
+months" sentence links to the page. No paper twin yet in contracts-private.
+
+**Open on the terms, for Kevin:** a parish added in month eleven rides the
+diocese's term and could be dropped at month thirteen; the ruling does not
+cover it and the clause follows the ruling. Who is billed (diocese or
+parish) is a TODO in the row and a question on the build page.
+
+## The eCatholic question (2026-11-02, evening)
+
+The St. Mary office called Kevin: the diocesan communications director
+says the parishes "have to stick with eCatholic." What that most likely
+is: the diocesan partnership at ecatholic.com/kzoo ("the Diocese of
+Kalamazoo has partnered with eCatholic"; Quick Flip migration, hosting and
+stock photos included, a diocesan specialist, DioKzoo@eCatholic.com), the
+same shape as Detroit's ($50 a site through the archdiocese), New Orleans'
+(the archdiocese underwrites every site; 137 sites) and Portland's
+(Diocesan Sharing pushes diocesan content to every parish site). A diocese
+that pays or co-pays for the block, and whose Parish Finder reads
+eCatholic's MassTime panels, tells its parishes to stay on it; it is
+administrative, not canonical.
+
+On penalties: eCatholic's published Terms of Service (last modified
+2024-01-01) section 8 lets an organization "terminate this Agreement by
+canceling your use of the Platform at any time," with no refund of anything
+prepaid (section 7: fees are paid in advance, annually or monthly) and no
+export of the site (section 9; section 20 repeats it in capitals). So
+breaking with eCatholic under its own terms costs a parish nothing but the
+rest of a prepaid year and its site. Any real penalty would be in the
+diocese's partnership paper, which is not public; `needs.ecatholic` on the
+build page asks for it. Detroit's and Pittsburgh's arrangements are priced per
+site through the diocese (parish-website-market-prices), which is the shape
+in which the diocese, not the parish, is the one with something to lose.
+
+Kevin's read on 2026-11-02 should decide whether the next move is the
+diocese call as planned or a quieter route through parishes the agreement
+does not bind.
 
 ## Decisions on file
 

@@ -115,6 +115,24 @@ does not bind.
 
 ## Decisions on file
 
+- **Say the age plainly (Kevin, 2026-11-03).** The people keeping parish
+  sites are in their fifties and sixties (CARA: lay ecclesial ministers
+  median 55, most over 50; parish life coordinators 57 to 60; staff under
+  ten); the page builder asks them to learn software and keep learning it,
+  and when they leave the next person starts over. We are younger and do
+  this for a living; that is the advantage and it goes in the letter as a
+  fact, respectful, never a joke. Section "Who keeps a parish website
+  today" in the letter, with the two CARA sources linked.
+- **Gatherings across the diocese (Kevin, 2026-11-03).** What he means by
+  a "social element" is meet-ups: coffee hour, a beer-and-Bible night, a
+  young adult gathering, findable across parish lines, the thing MassTimes
+  has nothing of. Not profiles or a feed. The build is data the parishes
+  already keep: a diocesan events page joined from every parish calendar
+  (town and date filters, add-to-calendar), groups across parishes from the
+  ministries data with a contact, and "Mass and Confession near me, today"
+  from the feed. Phase two; not in the letter yet; Kevin to rule whether it
+  goes in as a paragraph with no price.
+
 - **The pitch is to the Pastoral Center, not 41 pastors.** The deal is above
   them.
 - **Ownership is the wedge**: the diocese holds the repository, hosting and

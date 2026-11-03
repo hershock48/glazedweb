@@ -84,6 +84,21 @@ stmarymarshall repo:
   office panel separately; the finder is no longer "quoted separately".
   Agreement row scope and notIncluded match.
 
+**Reviewed 2026-11-03** (Kevin: "double check and debug"): a fresh-session
+review found one real data bug, finder rows whose note carries the rule
+("2nd & 4th Fridays", "First Thursday", "May-October", "Sept thru May",
+"Memorial Day thru Labor Day", "Communion Service Only", "No Mass Tuesdays
+during...") shown as weekly Masses; fixed by parsing ordinals into dated
+Masses, seasons into a per-day gate, one-offs into dated rows, and leaving
+non-Masses off. Also fixed: /diocese paths were never counted and a client
+could spoof x-path; the chancery cookie compare could throw on odd bytes;
+secure cookie on plain http; a missing tally table 500'd the page; a stale
+finder date rolled a year ahead; typed text vanished on a bad search.
+tools/diocese-tests.mjs holds 37 cases. Still true: the finder page carries
+Mass panels only; Confession/Adoration for non-platform parishes are not
+there yet; the notes parser covers the patterns in this finder, a new
+pattern in a future read should be checked against the tests.
+
 **Kevin steps**: DIOCESE_PASSCODE and DATABASE_URL in Vercel, apply
 db/tally.sql; a diocese-owned host for the layer (mass.diokzoo.org or a
 path on diokzoo.org) is a DNS decision for the call. **Open**: price of the

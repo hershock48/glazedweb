@@ -63,8 +63,9 @@ stmarymarshall repo:
   one**: the three platform parishes from their data, the other 57 read
   from the diocese's own Parish Finder (diokzoo.org/parishfinder, one page
   with every address and Mass panel) by tools/finder-import.mjs, geocoded
-  once through Nominatim. The finder page carries Mass panels only, so
-  Confession and Adoration for non-platform parishes are a later read.
+  once through Nominatim. All three of the finder's blocks are read (Mass,
+  Confession, Adoration: 56 parishes list confession times, 47 adoration,
+  several perpetual), since the evening of 2026-11-03.
 - **/diocese/events** (14 days, by kind and town, add-to-calendar) and
   **/diocese/groups** (ministries and formation groups with contacts), from
   platform parishes; **/diocese** every parish on one page.
@@ -94,9 +95,9 @@ non-Masses off. Also fixed: /diocese paths were never counted and a client
 could spoof x-path; the chancery cookie compare could throw on odd bytes;
 secure cookie on plain http; a missing tally table 500'd the page; a stale
 finder date rolled a year ahead; typed text vanished on a bad search.
-tools/diocese-tests.mjs holds 37 cases. Still true: the finder page carries
-Mass panels only; Confession/Adoration for non-platform parishes are not
-there yet; the notes parser covers the patterns in this finder, a new
+tools/diocese-tests.mjs holds 44 cases. Confession and Adoration for every
+parish followed the same evening (Kevin: "why? can't we add this?"); the
+notes parser covers the patterns in this finder, a new
 pattern in a future read should be checked against the tests.
 
 **Kevin steps**: DIOCESE_PASSCODE and DATABASE_URL in Vercel, apply

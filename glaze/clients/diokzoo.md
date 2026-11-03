@@ -115,6 +115,12 @@ does not bind.
 
 ## Decisions on file
 
+- **The letter says "we" (Kevin, 2026-11-03).** Never "I", never "Glazed
+  Web is one person": the studio is a team and he is bringing someone on.
+  The founder's story is told as "one of us sits in the pews at St. Mary."
+  Applied to the diocese letter (fd2b804); the St. Mary letter to Fr. Craig
+  still says "I" in twelve places, a personal letter, not changed without
+  asking.
 - **Say the age plainly (Kevin, 2026-11-03).** The people keeping parish
   sites are in their fifties and sixties (CARA: lay ecclesial ministers
   median 55, most over 50; parish life coordinators 57 to 60; staff under

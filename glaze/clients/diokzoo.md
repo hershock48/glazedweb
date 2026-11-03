@@ -50,6 +50,46 @@ search, CARA 2023 on parish-website use), two stat tiles (Stanford 46%,
 Google 53%) and a claim card from the 490-page inner crawl. The research
 and the crawl are in the research note.
 
+## The diocese layer and the chancery view (built 2026-11-03)
+
+Kevin, 2026-11-03: "yes build this in" (the finder, events, groups and
+notices folded into the diocesan agreement at no extra charge) and "also we
+need to build this" (the chancery view). Built the same day in the
+stmarymarshall repo:
+
+- **/diocese/near**: Mass near you. Zip, town or the phone's location;
+  10/25/50 miles; every parish nearest first with the next Mass, Confession
+  and Adoration from the clock. **All sixty parishes and missions from day
+  one**: the three platform parishes from their data, the other 57 read
+  from the diocese's own Parish Finder (diokzoo.org/parishfinder, one page
+  with every address and Mass panel) by tools/finder-import.mjs, geocoded
+  once through Nominatim. The finder page carries Mass panels only, so
+  Confession and Adoration for non-platform parishes are a later read.
+- **/diocese/events** (14 days, by kind and town, add-to-calendar) and
+  **/diocese/groups** (ministries and formation groups with contacts), from
+  platform parishes; **/diocese** every parish on one page.
+- **Nearby strip** on every parish Mass times page (three nearest, next
+  Mass); diocese links in every footer; **chancery notices**
+  (parishes/diocese/notices.ts) at the top of every parish home page unless
+  the parish opts out. One Advent notice is in the file as the pattern.
+- **/diocese/office**, the chancery view, behind DIOCESE_PASSCODE: each
+  site's freshness and unconfirmed facts from the data, the finder's
+  coverage, and with DATABASE_URL (Neon, db/tally.sql) counts of pages
+  served, finder searches (point rounded to ~7 miles plus result count,
+  empty searches called out as planning data), forms sent, Give taps (the
+  Give button leaves through /give/out). No cookies, ids or contents.
+- Letter: three new "demo" boxes (the finder for all sixty, this week +
+  groups + notices, the chancery view), a "diocese layer" row in what the
+  monthly covers, and the cost line now quotes the chancery view and the
+  office panel separately; the finder is no longer "quoted separately".
+  Agreement row scope and notIncluded match.
+
+**Kevin steps**: DIOCESE_PASSCODE and DATABASE_URL in Vercel, apply
+db/tally.sql; a diocese-owned host for the layer (mass.diokzoo.org or a
+path on diokzoo.org) is a DNS decision for the call. **Open**: price of the
+chancery view (recommended: with the office panel); event kinds and group
+kinds are the platform's six, so cross-parish filters mean the same thing.
+
 ## Terms
 
 Ruled by Kevin, 2026-11-02, after the market research

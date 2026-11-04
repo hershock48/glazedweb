@@ -335,11 +335,38 @@ Not built, waiting on Kevin's to-do in `docs/narthex-plan.md`: giving and
 paid forms (Stripe keys), the inbox with a database (DATABASE_URL), Google
 Business Profile sync (OAuth), hosted video (Cloudflare Stream).
 
+## The list, built (2026-11-04, evening)
+
+Kevin's ordered list, all done and live on main (last b1a4e83): the
+platform is multi-diocese (a diocese is `dioceses/<slug>/config.ts` plus a
+registry row; Kalamazoo moved under its folder); Lansing is the second
+diocese (73 parishes read from the diocese's Drupal directory by
+`tools/lansing-import.mjs`, six vicariates as deaneries, the bishop's
+podcast as an audio voice entry, finder.lansing.glazedweb.com and the letter
+at lansing.glazedweb.com; the audit of its 72 sites is in
+`glaze/research/lansing-audit-2026-11.md`); religious education
+enrollment at /enroll; sacramental prep as checklists from what each
+parish already publishes; the chancery view by deanery with the finder's
+age and each parish's week.
+
+**The letters were reframed the same evening on Kevin's direction:** the
+story is the platform (a parish site that is alive, parishes connected to
+each other, what the diocese sees and sends), with the rebuilt sites and
+the measurements as proof further down. Both letters now open that way.
+The name is still Narthex in the files; Kevin rejected it as too hard
+("sounds like anthrax") and has six softer candidates with free domains
+(Angelus recommended, Vespers the familiar one); the rename is one commit
+once he picks.
+
 ## Open
 
 - Who holds the eCatholic agreement and when it ends (Stacie at St. Mary was
   asking). Stacie confirmed 2026-11-04 that the diocese pays for St. Mary's
   site; the paper is still unseen.
+- The platform's name (Narthex rejected; candidates on file).
+- A Lansing agreement row (/agreement/lansing) when the diocese asks; the
+  letter points at Kalamazoo's terms until then. A Lansing og.jpg for the
+  letter's link card.
 - Kevin steps for phase one: DIOCESE_MAIL_TO (or MAIL_TO) in Vercel so the
   wrong-time reports reach a person; a Cloudflare Stream account for hosted
   video; the price of hosted video (about $49 a month is in the letter).

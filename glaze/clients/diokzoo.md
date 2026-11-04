@@ -222,10 +222,64 @@ does not bind.
 - **Giving never moves**: Vanco stays Vanco, OSV stays OSV.
 - **Never say "cheaper."**
 
+## Call with Stacie, St. Mary Marshall (2026-11-04, Kevin's notes)
+
+**Why the diocese chose eCatholic, ten years ago, in her words.** Parishes
+had ad hoc websites, people were paying big money with no support, and
+eCatholic gave security, promotion and support. The diocese pays for the
+site. That is the case we are answering: ownership, support written down,
+and the measured gaps in `glaze/research/diokzoo-audit-2026-11.md`.
+
+**People.** Stacie is introducing Kevin to **Vikki Sesna, communications
+director of the diocese**, who writes the diocesan email. Stacie expects
+her to be defensive about anyone taking over social events; Kevin offered
+to carry her newsletter inside the parish sites instead. Stacie is also
+giving Kevin her own eCatholic login so he can see the back end and the
+MassTime panel. Kevin looks; nothing is changed on her site.
+
+**Vikki's newsletter is the announcements-inbox problem in one person.**
+Subscribers only, fed by parish workers emailing her, items dropped on the
+way. Stacie's own idea was a side panel on every parish site showing what is
+happening across the diocese, which is the diocese layer as built
+(`/diocese`, the "Across the diocese" strip). Her other idea: the bishop's
+voice carried on the diocese site and every parish site.
+
+**Structure.** Two deaneries, eastern and western. Parish staff from the
+whole diocese meet once a year; the last meeting discussed activities not
+shared between parishes and a push on social events. The diocese has
+Flocknote.
+
+**What she likes about eCatholic.** The MassTime popup on holy days and
+special days. Build it: a schedule-aware notice on every page when the
+next day's Masses differ from the usual week, reading the same data as the
+finder.
+
+**The Lansing model.** Stacie holds the Diocese of Lansing up as the most
+tech-savvy in Michigan: Bishop Boyea (75, retiring) with a young team doing
+podcasting, weekly Lent reflections by subscription, a families series,
+Facebook live Mass, and clips. She wishes Bishop Lohse of Kalamazoo were
+shared the same way. Checked 2026-11-04: dioceseoflansing.org is a custom
+Drupal 8 build, not eCatholic; Queen of the Miraculous Medal in Jackson is
+queenschurch.com, a WordPress site with Diocesan.com links and its own
+YouTube channel. Lansing is the second
+diocese to pitch and the proof that a diocese will leave the template.
+
+**What this adds to the build.** A **bishop's voice module**: video and audio
+posts hosted with the livestream layer, clipped, published on the diocese
+page and syndicated to every parish site, with a subscribe path that is not
+Facebook. The **holy-day popup**. And the **announcements inbox** as the
+tool Vikki is missing, offered to her as help, not replacement.
+
+**Kevin's follow-ups.** Take the Vikki introduction. Look at the eCatholic
+back end once Stacie sends access, noting the MassTime panel's fields and
+whether any export exists. Ask which deanery St. Mary sits in and when the
+annual staff meeting is, because that room is the pitch.
+
 ## Open
 
 - Who holds the eCatholic agreement and when it ends (Stacie at St. Mary was
-  asking).
+  asking). Stacie confirmed 2026-11-04 that the diocese pays for St. Mary's
+  site; the paper is still unseen.
 - The Parish Finder's feed format.
 - A Spanish-capable reviewer for San Felipe, Holy Angels and the two St.
   Josephs.

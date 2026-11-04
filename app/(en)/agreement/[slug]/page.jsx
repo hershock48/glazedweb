@@ -126,7 +126,7 @@ export default async function CustomOrderPage({ params, searchParams }) {
             client should not dump him on the studio's homepage. Clients
             without a proposal, Chism, keep the default.
           */}
-          <a className="brand" href={order.pitchUrl || "/"} aria-label={order.pitchUrl ? "Back to the proposal" : "glazedweb home"}>
+          <a className="brand" href={order.pitchUrl || "/"} aria-label={order.pitchUrl ? "glazedweb, back to the proposal" : "glazedweb home"}>
             <Mark />
             <span className="bw">
               glazed<span>web</span>
@@ -313,14 +313,17 @@ export default async function CustomOrderPage({ params, searchParams }) {
                 <td>Monthly service fee</td>
                 <td>
                   {money(order.monthly)} a month,{" "}
-                  {order.live
+                  {/* monthlyWhen: a client's own sentence for when the monthly starts (the diocese: per parish, as each goes live). termNote below replaces the month-to-month sentence where an Exhibit A part sets a first term (the diocese's part 3). Every other row keeps the defaults. */}
+                  {order.monthlyWhen
+                    ? order.monthlyWhen
+                    : order.live
                     ? order.monthlyFromLaunch
                       ? "from the day the site went live, started above."
                       : "starting the day you start it above."
                     : order.monthlyFromLaunch
                       ? "starting the day the site is live on your domain; we send you the link then."
                       : "starting once the build fee is paid in full and the site is live on your domain; we send you the link then."}{" "}
-                  {order.monthlyCovers} Month to month; thirty days&rsquo; notice ends it, and the site stays yours.
+                  {order.monthlyCovers} {order.termNote || "Month to month; thirty days’ notice ends it, and the site stays yours."}
                 </td>
               </tr>
               <tr>

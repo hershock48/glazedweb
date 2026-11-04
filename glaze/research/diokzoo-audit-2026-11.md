@@ -26,6 +26,21 @@ onboarding, almost certainly the diocesan partnership
 may be true for the 19xxx block and not for St. Mary, whose account predates
 the deal. The parish's own invoice settles it.
 
+**Re-measured the same evening, every site again in the browser pane.**
+Two of the four "down" sites load now: olqop.org (Bridgman) answers over
+TLS and is a hand-built page with no `<title>` at all; stjosephwhitepigeon.org
+loads, is not eCatholic, and its home-page headline misspells "Eucharist"
+as "Eurcharist". sscmparish.org still fails the TLS handshake and
+stedwardmendon.org still does not resolve; the Parish Finder links all
+four. So: 44 of 46 load, 41 eCatholic, one WordPress, two hand-built. The
+table below is over the 42 template sites and held on the re-measure
+except og:image, which is 40 of 42 (95%), not 39; only St. Mark Niles and
+St. Catherine of Siena carry one. New, verified, in the letter: St.
+Anthony Buchanan's home page has 85 links with no text, image or label
+(St. Ambrose Parchment 61, San Felipe 28), the template's slideshow and
+tab controls. The MassTime-panel count (30 of 42) was not re-measured;
+the second pass used a broader selector and is not comparable.
+
 ## What the 42 home pages have in common
 
 | Measure | Share of 42 | Notes |
@@ -47,6 +62,49 @@ the deal. The parish's own invoice settles it.
 
 Median home page: 16 scripts, 8 stylesheets, 13 images, 46 requests. The
 template is the same on every one, so the faults are the same on every one.
+
+## The inner pages (read 2026-11-02, evening)
+
+Kevin asked why only the home pages were measured. So twelve inner pages
+were read on each of the 42 sites, the ones in each main menu, 490 pages in
+all, fetched inside the browser pane and parsed for title, description and
+headings.
+
+| Measured on 490 inner pages | Result |
+|---|---|
+| No meta description | 454 of 490 (93%) |
+| Every inner page has two or more h1 | 34 of 42 sites (the template prints the parish name and the page title both as h1; St. Charles Coldwater's history page has 17, St. Mary's Visitation's baptism page 5) |
+| Module pages titled only "Bulletin", "Calendar", "News", "Photo Albums" or "Events", no parish name | 27 of 42 sites |
+| Blank page title | 7 pages on 6 sites, incl. St. Basil South Haven's Mass times page ("  - St. Basil Parish") and St. Rose Hastings' contact page |
+| Titles that are a sentence or the wrong page | Sacred Heart Silver Creek contact "office hours mon & Fri 9am-1pm"; St. Anthony Buchanan contact "Please visit or reach out to us with any questions."; St. Mary Marshall three "Please click to learn more..." titles; St. John Bosco Mattawan /marriage-preparation "Funerals" and /contact-us "St. Margaret Mary Mission"; Holy Maternity /contact-us "Our Staff" |
+| 404 from the main menu | St. Ann Cassopolis (/worship-with-us), St. Mary Marshall |
+| Thin page | St. Joseph Battle Creek (WordPress) employment page, 13 words |
+
+In the letter as the claim card "The inner pages are worse than the front
+pages" with three verify links (St. Basil's Mass times, Sacred Heart's
+contact page, St. John Bosco's marriage page).
+
+## Research for the "Why it matters" section (verified at the source)
+
+- Pew Research Center, *Choosing a New Church or House of Worship*, 2016
+  (5,000 adults, 2015 fieldwork): 49% have ever looked for a new
+  congregation; of those, 85% attended a service, 69% talked to members, 68%
+  friends, 55% clergy, 37% looked online, 19% phoned. 47% of searches in the
+  last five years used the internet against 26% of older searches; 59% of
+  searchers under 30. What mattered: sermons 83%, feeling welcomed 79%,
+  style 74%, location 70%, children's RE 56%.
+- CARA, *Catholic Media Use Report* 2023 (1,019 self-identified Catholics,
+  April 21 to May 5 2023, non-probability sample): 44% have used their parish
+  website, 5% in 2005; 62% of monthly-or-more attenders visited it recently;
+  "very much" use during the pandemic 24% (18-34), 24% (35-54), 10% (55+).
+- Google, *The Need for Mobile Speed*, 2016: 53% of mobile visits abandoned
+  past three seconds.
+- Stanford Persuasive Technology Lab (Fogg), 2002, 2,684 people: "design
+  look" in 46.1% of credibility comments, the most frequent factor.
+- Not used: the "80% / 70% visit the website before attending" figures are
+  church-marketing blog numbers with no study behind them. Churches are
+  exempt from ADA Title III website rules, so accessibility is a quality
+  claim, never a legal one.
 
 ## What that means
 
@@ -76,8 +134,10 @@ platform the diocese owns, with the parishes as tenants.
   the Mass-finder apps. The diocese becomes the source of its own schedule
   data instead of a subscriber to someone else's.
 - Every page measured: zero accessibility violations, the same checks the
-  studio runs on every build (glaze/launch.md), which a diocese answers for
-  under the ADA in a way a parish secretary does not.
+  studio runs on every build (glaze/launch.md). Churches are exempt from the
+  ADA's public-accommodation website rules (Church Law and Tax, Church
+  Leaders, 2019), so this is a quality claim, not a legal one; say it that
+  way.
 - Ownership: the diocese holds the repository, the hosting and every domain.
   Leaving means taking it, not exporting it.
 - Office self-service for the four things that change (Mass times, holy

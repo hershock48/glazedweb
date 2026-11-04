@@ -100,6 +100,22 @@ parish followed the same evening (Kevin: "why? can't we add this?"); the
 notes parser covers the patterns in this finder, a new
 pattern in a future read should be checked against the tests.
 
+**Closing eCatholic's gaps (2026-11-03, Kevin: "we could close the gaps"):**
+the three they would raise and what now answers them. *A suite, not a
+site*: a "What stays, what changes" table in the letter and the agreement
+scope (giving, bulletin, Flocknote, livestream, ChMS all stay and are
+linked; livestream now linked as "Watch Mass online"; the Mass page's
+"find a Mass nearby" goes to our finder, not FindAMass). *They scraped
+us*: the letter says the finder reads the diocese's own public page at the
+diocese's request under the agreement, demo sites come down the day a
+parish asks, and part 3 of the agreement now has "Reading the diocese's
+own pages". *Security and compliance*: /diocese/security on the platform
+(what we store, what we do not, where it runs; linked from the letter's
+security row and part 3), plus real headers on every response (nosniff,
+referrer policy, permissions policy, frame-ancestors). Still open from
+that list: a live reference parish, a named second person with a
+continuity clause, the office panel in the deal.
+
 **Kevin steps**: DIOCESE_PASSCODE and DATABASE_URL in Vercel, apply
 db/tally.sql; a diocese-owned host for the layer (mass.diokzoo.org or a
 path on diokzoo.org) is a DNS decision for the call. **Open**: price of the

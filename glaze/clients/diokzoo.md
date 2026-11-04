@@ -312,6 +312,29 @@ STREAM_CUSTOMER_CODE); letter copy for all of it. Still owed in phase one:
 side-by-side finder screenshots in the letter, the agreement's open-data
 lines (done on this branch if the row below carries them).
 
+## Phase two started the same day (2026-11-04, afternoon)
+
+Built, audited and verified in production on stmarymarshall main (last
+4cc5d34): the write-once news engine (`lib/news.ts`: /news, /news.xml,
+/bulletin-insert that prints to a half sheet, /diocese/insider and
+/diocese/insider.xml as the diocese's weekly email compiled from notices,
+the bishop, offered parish announcements and the next two weeks; typed
+announcements on the home page while they run); the two finder screenshots
+side by side in the letter (`tools/finder-compare.mjs`); deaneries and
+collaboratives from the December 2025 diocesan directory on every finder
+card and as a filter on /diocese/events (`parishes/diocese/deaneries.ts`,
+a test fails if any finder row is unmatched); a Spanish-Mass switch on the
+finder; Mass intention requests that offer the parish's actual Masses for
+six weeks instead of a free-text date. The agreement row on this branch
+carries the news engine and the slots in scope. No parish has typed an
+announcement yet, so the home sections render nothing until one does; the
+diocese digest is populated today from The Insider's dates and the
+bishop's message.
+
+Not built, waiting on Kevin's to-do in `docs/narthex-plan.md`: giving and
+paid forms (Stripe keys), the inbox with a database (DATABASE_URL), Google
+Business Profile sync (OAuth), hosted video (Cloudflare Stream).
+
 ## Open
 
 - Who holds the eCatholic agreement and when it ends (Stacie at St. Mary was

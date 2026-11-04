@@ -275,11 +275,51 @@ back end once Stacie sends access, noting the MassTime panel's fields and
 whether any export exists. Ask which deanery St. Mary sits in and when the
 annual staff meeting is, because that room is the pitch.
 
+## The Insider (the diocese's weekly email), read 2026-11-04
+
+Kevin forwarded the 2026-11-03 issue. Facts: published Tuesdays by the
+Office of Communications (sent under Emily Walsh, ewalsh@diokzoo.org;
+Vikki Sesna is the director), deadline the Thursday before, subscriber-only.
+Sections: diocesan news, "REMINDER" items repeated week to week (the manual
+version of a run window), parish events from across the diocese (bazaars,
+galas, a parish mission), the bishop's Masses and gatherings, Liturgical
+Living feast days, Pray for Our Clergy, job openings, national news. The
+annual staff meeting Stacie mentioned is "Connecting with Our Parishes",
+2026-10-27 at St. Martin of Tours, Vicksburg, 100+ staff, sessions
+including communications. Young Adult Gethsemane Night with the bishop
+rotates parishes monthly (Office of Mission and Ministry, Jen Metzger).
+
+Its dated items are now rows in `parishes/diocese/events.ts` on the
+platform, so /diocese/events shows the diocese, not just the three platform
+parishes. This is the hand-kept version of the announcements inbox (phase
+two): Vikki's email is the inbox's first customer.
+
+## Narthex, phase one built (2026-11-04)
+
+The platform is named Narthex (Kevin ruled 2026-11-04; "Egnatia" is the one
+alternative on file, egnatia.church and egnatia.io free). Plan:
+`docs/narthex-plan.md` in the stmarymarshall repo. Built and live on the
+pilot hosts the same day: the finder on its own host
+(finder.kalamazoo.glazedweb.com, diocesan chrome, checked-on date, wrong-time
+report, embeddable by diokzoo.org only, weekly GitHub Action refresh that
+read all 60 parishes through Cloudflare on the first live run); the diocese
+calendar with the Insider's dates and a diocese .ics; the holy-day line on
+every parish page; the bishop's voice (seven recordings from the diocese's
+YouTube channel, /diocese/voice, RSS at /diocese/voice.xml, a card on every
+parish home page); Watch pages (St. Philip on YouTube, San Felipe on
+Facebook, schedule-aware, Cloudflare Stream seam behind
+STREAM_CUSTOMER_CODE); letter copy for all of it. Still owed in phase one:
+side-by-side finder screenshots in the letter, the agreement's open-data
+lines (done on this branch if the row below carries them).
+
 ## Open
 
 - Who holds the eCatholic agreement and when it ends (Stacie at St. Mary was
   asking). Stacie confirmed 2026-11-04 that the diocese pays for St. Mary's
   site; the paper is still unseen.
+- Kevin steps for phase one: DIOCESE_MAIL_TO (or MAIL_TO) in Vercel so the
+  wrong-time reports reach a person; a Cloudflare Stream account for hosted
+  video; the price of hosted video (about $49 a month is in the letter).
 - The Parish Finder's feed format.
 - A Spanish-capable reviewer for San Felipe, Holy Angels and the two St.
   Josephs.

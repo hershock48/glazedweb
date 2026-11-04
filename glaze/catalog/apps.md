@@ -71,3 +71,21 @@ and a second nested `<main>`, which is three landmark violations per screen.
 | Pitch-host pattern | `Schulers/next.config.mjs` | Not an app but the deployment bone every pitch uses: host-scoped rewrites putting the proposal at `/` and the demo at `/demo` on the pitch host only, with noindex headers and the 404-on-client-domain guard for `/pitch`. Copy this file, not the idea. |
 | Studio operations dashboard | `glazedweb-admin/` (private repo) | Ledger-driven next actions, owners, dates, blockers and activity history across client, prospect, product and internal work. Reuses the ledger vocabulary and house JSONB pattern with production-required Postgres, optimistic revision checks, signed expiring sessions and a persistent login limiter. Local JSON import is a separate snapshot; no automatic payment, email or deployment integrations. Private data stays out of Git. Hosting verification remains pending. |
 | Account at a glance | `glazedweb-admin/components/AccountGlance.js`, `lib/account-glance.mjs`, `lib/registry-source.mjs` | Read-only block at the top of every studio notebook: agreement, build fee, monthly, delivery, still-missing items and next action, each value naming its source (registry, dashboard, session) and staying unknown when nobody recorded it. Registry TODOs and imported dashboard blockers merge into one line when their text matches after whitespace and case; REGISTRY DIFFERS when the pinned or fetched registry disagrees with the dashboard. Nothing on it writes. The registry read is the reader port in harnesses.md. |
+
+## Narthex: the parish and diocese platform (hershock48/stmarymarshall)
+
+Built 2026-10-27 to 2026-11-04 as the St. Mary Marshall rebuild, then the
+Diocese of Kalamazoo pilot, named Narthex on 2026-11-04. One Next 16
+deployment, parish picked from the Host header, EN/ES per parish, per-parish
+palettes. The plan and the order of work: `docs/narthex-plan.md` in that repo.
+
+| Piece | Where | Reuse |
+|---|---|---|
+| Host-routed multi-tenant parish sites | `lib/paths.ts`, `lib/parish.ts`, `parishes/<slug>/data.ts` | The tenancy shape for any many-sites-one-codebase client. |
+| Schedule logic (next service from the clock, holy days, dated Masses, Mass-on-now window) | `lib/schedule.ts` | Any "what is on now / next" page. |
+| Diocese finder: all 60 parishes, 57 read from the diocese's own page, geocoded, weekly refresh with a short-parse guard | `lib/diocese.ts`, `tools/finder-import.mjs`, `.github/workflows/finder-refresh.yml` | The scrape-with-first-party-override pattern. |
+| Zip and town lookup offline, haversine | `lib/geo.ts`, `parishes/diocese/zips.json` | Any Michigan near-me page. |
+| ICS feeds hand-rolled (parish and diocese) | `lib/ics.ts` | Any calendar export. |
+| Counts with no visitor in them (Neon) and a passcode view | `lib/tally.ts`, `lib/office.ts`, `/diocese/office` | Any client dashboard that must not track people. |
+| Diocesan notices, bishop's voice with RSS, schedule-aware Watch with a hosted-video seam (Cloudflare Stream) | `components/DiocesanNotice.tsx`, `lib/voice.ts`, `lib/stream.ts`, `/watch` | Syndicated content across tenant sites; livestream pages. |
+| Wrong-time report form with three honest states | `/diocese/report`, `app/api/report` | The same form pattern as the parish forms. |

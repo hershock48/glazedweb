@@ -228,3 +228,37 @@ step 1 of "What happens next", the closing band).
   dates.
 - **Open on the row**: registered entity, Jake's last name, email, town, and the
   edit allowance.
+
+## Remote Grow Solutions: the platform (2026-11-04)
+
+Jake forwarded a planning thread (ChatGPT, November 2026) for a second
+business, **Remote Grow Solutions**: subscription cultivation management for
+commercial grows, high volume and lower price than the per-light
+co-management on the site (which is the Plantsman model). Kevin said build
+it. It lives in its own repo, `rgs/` (private), catalogued in
+`glaze/catalog/apps.md`; the migas site is untouched by it.
+
+**Facts from his thread, now in `rgs/lib/site.ts` and `lib/pricing.ts`:**
+four tiers at $2,000 / $4,000 / $6,000 / $8,000+ a month, set by flowering
+lights (100 / 400 / 750) OR flower rooms (2 / 5 / 8), the higher of the two
+wins and the prices are never added; a 10% light-count expansion allowance
+for existing customers reviewed at renewal; three check-ins a week per
+flower room; one 60-minute call a week; a weekly report (week behind, week
+ahead); a living calendar; call notes the client keeps for good; clone, mom
+and veg advisory included at no additional cost (his decision, replacing the
+earlier paid add-on idea); three-month minimum; an onboarding fee for
+complex facilities, number not set. The thread also noted the sensor API
+dependency (Aroya, Growlink, Pinnacle), which the build treats as typed
+input until a platform grants access.
+
+**Open with Jake:** the inquiry mailbox (`SITE.email` is a PLACEHOLDER), the
+host (rgs.glazedweb.com meanwhile), the onboarding fee number, which sensor
+platforms grant API access, and billing. His thread assumes Stripe
+subscriptions; the migas booking code already records why Stripe is a
+problem for cultivation education, and management is the same category.
+Nothing in the build takes money.
+
+**Kevin steps before a paying facility:** Neon database and a Blob store on
+the Vercel project, `RGS_ADMIN_PASSCODE`, create the first facility, run one
+full week on the deployment. The README carries the launch checklist with
+what is verified and what is not.

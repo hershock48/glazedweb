@@ -262,3 +262,37 @@ Nothing in the build takes money.
 the Vercel project, `RGS_ADMIN_PASSCODE`, create the first facility, run one
 full week on the deployment. The README carries the launch checklist with
 what is verified and what is not.
+
+## The site in his four sections (2026-11-04)
+
+Jake's email of 2026-11-04 set the home page's shape, and the migas repo
+follows it (commit 7150362): intro (the sun, his canopy, three ways in),
+Patreon and Instagram (both clickable, four tiles each), schedule a call,
+co-management. Nothing after. Remote Grow Solutions is a product within
+MI Gas; the co-management section shows a real screenshot of it and links
+to the demo.
+
+**Prices changed, his numbers from the email:** a half hour at $250, a full
+hour at $400. The 90-minute call is gone. **The per-light co-management
+range from August is retired everywhere** (home, /co-management, the
+one-pager); co-management is priced by the platform's four tiers
+($2,000 / $4,000 / $6,000 / $8,000+ a month by flower rooms or flowering
+lights, the higher wins). `COMANAGEMENT.tiers` in migas `lib/site.ts` and
+`lib/pricing.ts` in the RemoteGrowSolutions repo carry the same four; change
+both. The project minimum and per-light billing cadence, long open on the
+registry row, are moot.
+
+**Schedule and pay:** Stripe Checkout at booking behind `STRIPE_SECRET_KEY`,
+with the webhook marking the booking paid and emailing him. The processor is
+NOT settled (Stripe's restricted list names cultivation courses and
+information); until Jake and his bank decide, the key stays unset and the
+booking goes on the invoice path. **Reminders:** bookings kept in the Blob
+store, an hourly Vercel cron emails both sides the day before
+(`CRON_SECRET`). A text reminder needs a messaging provider he has not
+chosen; the .ics on the phone is the phone reminder until then.
+
+**Still his to supply:** the four Instagram posts and four Patreon posts
+(stand-ins on the page until then), the processor decision, the reviews
+text, the email address. **Open with Kevin:** whether the restructure, the
+payment step and the cron sit inside the $1,000 build or are an addition;
+the Exhibit A scope lines on the registry row now describe the new shape.

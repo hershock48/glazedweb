@@ -393,7 +393,35 @@ code is theirs. Kevin's to-do (in the plan): a product LLC and IP
 assignment before signing, agreement redraft with an attorney, insurance,
 Stripe platform account under the entity.
 
+## The letters after the sales-lens pass (2026-11-05)
+
+Kevin asked whether the proposal was laid out the way the research said;
+seven gaps were named and he said fix them. Done in the stmarymarshall
+repo (6fc7433) and verified in production:
+
+- Lansing's letter rebuilt in the story's order, as Kalamazoo's was.
+- `/terms` on kalamazoo.glazedweb.com: the Exhibit A text of this row,
+  written by `tools/terms-page.mjs` from `lib/customOrders.js`. Both
+  letters link there, so nothing depends on PR #33 being merged. Run the
+  script again whenever this row changes.
+- `/brief` on both letter hosts: the letter on one printed sheet.
+- In both letters: the price against published rates paid today (41 sites
+  at $50 to $99 is $24,600 to $48,700 a year in Kalamazoo; 26 sites is
+  $15,600 to $30,900 in Lansing; we do not know what either pays, and the
+  letter says so), a paragraph for the finance office and one for the
+  communications office, day ninety-one of the free layer, who the diocese
+  would be dealing with (the not-a-vendor box is gone), and a real picture
+  of the chancery view.
+- The letters say "the platform"; no name is printed anywhere a diocese
+  reads.
+
 ## Open
+- Whether the chancery view is inside the license. The Kalamazoo letter
+  says it is "priced with the office panel" and this row lists it as not
+  included, while the letters sell seeing every site as what the diocese
+  gets. Kevin's to rule.
+- Facts only Kevin has, for the vendor packet and the brief: a phone
+  number, a named second person, and (after the entity) W-9 and insurance.
 
 - Who holds the eCatholic agreement and when it ends (Stacie at St. Mary was
   asking). Stacie confirmed 2026-11-04 that the diocese pays for St. Mary's

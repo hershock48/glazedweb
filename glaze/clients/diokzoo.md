@@ -358,12 +358,36 @@ The name is still Narthex in the files; Kevin rejected it as too hard
 (Angelus recommended, Vespers the familiar one); the rename is one commit
 once he picks.
 
+## The business model, adopted (2026-11-05)
+
+Researched (`glaze/research/narthex-business-model-2026-11.md`) and
+ruled by Kevin: one diocesan license billed to the diocese with every
+parish included and no parish billed, Kalamazoo $3,990 a month ($47,880 a
+year, about one percent of the appeal's $4.01M pledged, under the
+chancellor's signature threshold), Lansing $4,990; no build fee; twelve
+months then month to month. Giving at 1% of each gift capped at $5,
+donor-covered by default, on the parish's own Stripe nonprofit account,
+no monthly fee, the appeal on the same rails. Add-ons a parish pays for:
+hosted video $89, office panel $29, texting at cost plus margin. A lone
+parish outside a license: the published build and $99 a month. The
+letters, the agreement row (`lib/customOrders.js`, part 3 "What is
+billed" and "Giving, stated plainly") and the plan carry it. Never say
+"$99 a parish" to a diocese. Google Ads rejected; diocese-controlled
+sponsorships with a parish revenue share are a later line.
+
 ## Open
 
 - Who holds the eCatholic agreement and when it ends (Stacie at St. Mary was
   asking). Stacie confirmed 2026-11-04 that the diocese pays for St. Mary's
   site; the paper is still unseen.
-- The platform's name (Narthex rejected; candidates on file).
+- The platform's name (parked by Kevin 2026-11-04; candidates on file).
+- The ownership clause. The letters and part 3 "Leaving" still say the
+  diocese gets the repository (the single-site promise). Recommended for a
+  platform: the diocese owns its data, content, domains and accounts
+  outright with export at any time, plus a perpetual source-included
+  license to run the code for its own parishes if we part ways; not the
+  product. Awaiting Kevin's yes.
+- Whether the diocese carries the license in full or recharges parishes.
 - A Lansing agreement row (/agreement/lansing) when the diocese asks; the
   letter points at Kalamazoo's terms until then. A Lansing og.jpg for the
   letter's link card.

@@ -415,6 +415,26 @@ repo (6fc7433) and verified in production:
 - The letters say "the platform"; no name is printed anywhere a diocese
   reads.
 
+## The letters lead with the offer and the diocese layer (2026-11-05)
+
+Kevin caught that the earlier pass had been measured against the wrong
+order: the sales-lens recommendation of 2026-11-04 (the offer as a
+three-rung ladder at the top, with two concrete asks) was never carried
+out, and the letters still opened on the parish site. Ruled and rebuilt
+the same day. Each letter now opens with the offer in three steps (the
+layer free for ninety days with the ask "point the Parish Finder page at
+it"; three parishes built free with the ask "name three"; then the
+license), and the body runs connected, the diocese, the parish site,
+measured, ownership, cost, next. The migration note moved out of the
+parish section into "What happens next" with a new order: the parishes
+with no website first, then the ones the diocese names, then the rest as
+agreements allow; this row's scope line says the same. The Kalamazoo
+letter cites Lansing (46 of 72 parish sites off eCatholic) as the diocese
+next door. The one-page briefs follow the same order.
+
+Still thin, and Kevin's facts to supply: live clients to name and a named
+second person in the "who the diocese would be dealing with" block.
+
 ## Open
 - (Ruled 2026-11-05: the chancery view is inside the license. Letters,
   this row and the terms page say so.)

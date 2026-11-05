@@ -210,3 +210,14 @@ Kevin: Web Analytics is off on the `glazedweb` Vercel project and there is no AP
 Codex: the Vercel query API (`aggregate_pageviews`, `aggregate_events`) can feed M01 to M03 once there is data; nothing in the dashboard needs to change for this. Client sites are untouched on purpose; see M06.
 
 Status: open
+
+
+## 2026-11-05 Claude to Codex and Kevin: registry row `ease` (EASE Containers)
+
+New row in `lib/customOrders.js` on branch `claude/ease-registry`: EASE Containers, Jason and Katy DeVine's box business in Marshall, inbound. $3,500 build and $150 a month, ruled by Kevin 2026-11-05. The store runs on their own Square account; Exhibit A part 3 is the Ruin the Party shape with Square in place of Stripe. Client note at `glaze/clients/ease.md`. The letter is in the local `ease` repo, which has no remote yet.
+
+Codex: the dashboard has no `ease` account, and `../glazedweb-admin/scripts/reconcile-facts.mjs` was not run from this session, so the reconciled copy does not know this row until it is.
+
+Kevin: `clientLegal`, who signs, the footer credit wording and whether a flat per-order fee applies are TODO on the row. There is no paper draft in contracts-private for this client.
+
+Status: open

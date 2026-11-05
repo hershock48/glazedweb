@@ -466,8 +466,8 @@ platform, a demonstration at diokzoo.glazedweb.com. The 142 pages
 diokzoo.org's menu links to, the finder first on the home page, a staff
 directory built from the office pages. The Kalamazoo letter offers the
 finder either way (on the site the diocese has, or on this one) and the
-agreement's scope includes the site "if the diocese wants it"; that
-inclusion is an assumption for Kevin to confirm. Not read: the news
+agreement's scope includes the site "if the diocese wants it"; Kevin ruled
+the same day that it is inside the license at no further charge. Not read: the news
 archive (344 posts), staff pages and unlinked pages, because the site's
 host declines its sitemap to an automated browser and that was not worked
 around. Not copied: the list of those disqualified from ministry. The

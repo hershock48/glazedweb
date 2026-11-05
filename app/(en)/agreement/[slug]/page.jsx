@@ -170,7 +170,7 @@ export default async function CustomOrderPage({ params, searchParams }) {
                   {!buildPaid && build.mode === "test" ? <span className="agr-mode">test mode</span> : null}
                 </b>
                 {noBuild ? (
-                  <span>None on this order. The site is yours: code, content, and accounts.</span>
+                  <span>{order.noBuildLine ?? "None on this order. The site is yours: code, content, and accounts."}</span>
                 ) : buildPaid ? (
                   <span>
                     Paid in full{build.how === "card" && build.when ? ` by card on ${niceDate(build.when)}` : ""}. The site is

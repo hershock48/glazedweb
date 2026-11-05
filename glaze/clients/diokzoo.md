@@ -375,21 +375,30 @@ billed" and "Giving, stated plainly") and the plan carry it. Never say
 "$99 a parish" to a diocese. Google Ads rejected; diocese-controlled
 sponsorships with a parish revenue share are a later line.
 
+## Who owns what, adopted (2026-11-05)
+
+Researched (`glaze/research/narthex-ownership-2026-11.md`) and ruled by
+Kevin the same day: the single-site "diocese holds the repository" line is
+gone from both letters and the agreement. In its place: the diocese owns
+its data, content, domains and accounts outright with export at any time
+(files, data, a static copy of each site), feeds never metered, ninety
+days of export after any ending; if glazedweb fails it (dissolves, ceases,
+insolvency, discontinues, terminates for convenience, uncured breach in
+sixty days) it receives a perpetual source-included license to run the
+platform for its own parishes, with a quarterly encrypted deposit and
+attestation; the diocese's own leaving is not a trigger. FSL publication
+deferred. The agreement row carries a new part 3 item "If glazedweb fails
+the diocese" and a `noBuildLine` so the status box no longer says the
+code is theirs. Kevin's to-do (in the plan): a product LLC and IP
+assignment before signing, agreement redraft with an attorney, insurance,
+Stripe platform account under the entity.
+
 ## Open
 
 - Who holds the eCatholic agreement and when it ends (Stacie at St. Mary was
   asking). Stacie confirmed 2026-11-04 that the diocese pays for St. Mary's
   site; the paper is still unseen.
 - The platform's name (parked by Kevin 2026-11-04; candidates on file).
-- The ownership clause. Researched 2026-11-05 in
-  `glaze/research/narthex-ownership-2026-11.md` (three layers: data outright,
-  exit license with objective triggers and a quarterly deposit, no FSL yet;
-  a product LLC with an IP assignment before signing). The letters and part 3 "Leaving" still say the
-  diocese gets the repository (the single-site promise). Recommended for a
-  platform: the diocese owns its data, content, domains and accounts
-  outright with export at any time, plus a perpetual source-included
-  license to run the code for its own parishes if we part ways; not the
-  product. Awaiting Kevin's yes.
 - Whether the diocese carries the license in full or recharges parishes.
 - A Lansing agreement row (/agreement/lansing) when the diocese asks; the
   letter points at Kalamazoo's terms until then. A Lansing og.jpg for the

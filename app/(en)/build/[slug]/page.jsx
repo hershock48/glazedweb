@@ -145,7 +145,7 @@ export default async function ProjectPage({ params }) {
                 </b>
                 <span>
                   {order.buildFee === 0
-                    ? "None on this order. The site is yours: code, content, and accounts."
+                    ? (order.noBuildLine ?? "None on this order. The site is yours: code, content, and accounts.")
                     : buildPaid
                     ? "Paid in full. The site is yours: code, content, and accounts."
                     : build.state === "part"

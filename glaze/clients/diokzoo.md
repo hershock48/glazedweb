@@ -475,6 +475,22 @@ communications director's name, from the diocese's own staff page, is
 Vicki Cessna (Executive Director, Secretariat of Communications and Public
 Affairs).
 
+## The letter explains the platform before it sells it (2026-11-05, late)
+
+Kevin read the Kalamazoo letter as the diocese would and found it still
+pitching one website to one buyer: a promised platform whose buttons
+pointed at a finder, a free offer before any price, and an ask that left
+the diocese's own site behind. Both letters were rebuilt that evening
+(stmarymarshall): the first screen says what the platform is, gives the
+price and shows a picture of the whole; a six-stop tour of the real thing
+follows; then what changes, cost, ownership, how it starts, the detail,
+the measurements. "Ninety days free" is gone; nothing is owed until the
+first piece is live, and this row's billing and first-term clauses now
+start at the first of the diocese's own site, the diocese layer or a
+parish site. Kalamazoo starts with the diocese's own site. The ask is a
+walkthrough in person with Kevin and Sean. The plan's "The story the
+letters tell" carries the full ruling.
+
 ## Who leads it (Kevin, 2026-11-05)
 
 Kevin Hershock and Sean Fitzgerald lead this together. Both are Catholics

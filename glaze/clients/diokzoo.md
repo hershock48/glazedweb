@@ -475,6 +475,16 @@ communications director's name, from the diocese's own staff page, is
 Vicki Cessna (Executive Director, Secretariat of Communications and Public
 Affairs).
 
+## Who leads it (Kevin, 2026-11-05)
+
+Kevin Hershock and Sean Fitzgerald lead this together. Both are Catholics
+in the Diocese of Kalamazoo: Sean born and raised in the faith, Kevin a
+convert. Kevin's number is 269-274-3203. Both names and the number are in
+both letters and both one-page briefs. The letters say only that both are
+Catholics in the diocese; the rest is for conversation, not for print,
+unless Kevin says otherwise. Not known, so not printed: Sean's parish, his
+title, and whether he is part of Glazed Web or of the product entity.
+
 ## Open
 - (Ruled 2026-11-05: the chancery view is inside the license. Letters,
   this row and the terms page say so.)

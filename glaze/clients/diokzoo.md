@@ -461,11 +461,19 @@ same day, all live:
   what the diocese holds; the social layer between parishes leads the
   "connected" section.
 
-Raised by Kevin and not started: rebuilding the diocese's own site,
-diokzoo.org, on the platform with the finder built in. Its sitemap lists
-1,228 addresses: about 330 standing pages, 344 news posts, 140 events, 52
-people, 17 photo albums. It is an eCatholic site, so the reader written
-for the parishes applies.
+Built the same day on Kevin's word: the diocese's own site on the
+platform, a demonstration at diokzoo.glazedweb.com. The 142 pages
+diokzoo.org's menu links to, the finder first on the home page, a staff
+directory built from the office pages. The Kalamazoo letter offers the
+finder either way (on the site the diocese has, or on this one) and the
+agreement's scope includes the site "if the diocese wants it"; that
+inclusion is an assumption for Kevin to confirm. Not read: the news
+archive (344 posts), staff pages and unlinked pages, because the site's
+host declines its sitemap to an automated browser and that was not worked
+around. Not copied: the list of those disqualified from ministry. The
+communications director's name, from the diocese's own staff page, is
+Vicki Cessna (Executive Director, Secretariat of Communications and Public
+Affairs).
 
 ## Open
 - (Ruled 2026-11-05: the chancery view is inside the license. Letters,

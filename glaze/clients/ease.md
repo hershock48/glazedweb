@@ -45,6 +45,21 @@ torn apart.
 **The letter proposes one name, EASE Containers**, as the one decision the
 owners can overrule. Not yet put to them.
 
+**The demo is light, on purpose, against the house style.** Kevin,
+2026-11-05, on the first dark build: "the site is also kind of dark." A
+white box, brown cardboard and daylight photographs do not sit on a dark
+ground. Carton-paper ground, charcoal type, their logo green for actions,
+kraft for labels, their logo navy for the footer. Headings in Oswald.
+
+**"78% reorder" is said as "Nearly 8 in 10 customers order again."** Kevin,
+2026-11-05: average consumers do not understand the stat. The tailgate page
+does not use it at all.
+
+**Order again is in scope.** Kevin, 2026-11-05: "maybe we could make it
+easier to reorder." A button in every order email, a code on the carton
+label, one reminder a year. Added to Exhibit A at the same price. Standing
+orders are named as not included.
+
 ## What their stack is today
 
 WordPress with WooCommerce, the Kadence theme, Yoast, the Square plugin, a

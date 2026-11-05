@@ -381,7 +381,10 @@ sponsorships with a parish revenue share are a later line.
   asking). Stacie confirmed 2026-11-04 that the diocese pays for St. Mary's
   site; the paper is still unseen.
 - The platform's name (parked by Kevin 2026-11-04; candidates on file).
-- The ownership clause. The letters and part 3 "Leaving" still say the
+- The ownership clause. Researched 2026-11-05 in
+  `glaze/research/narthex-ownership-2026-11.md` (three layers: data outright,
+  exit license with objective triggers and a quarterly deposit, no FSL yet;
+  a product LLC with an IP assignment before signing). The letters and part 3 "Leaving" still say the
   diocese gets the repository (the single-site promise). Recommended for a
   platform: the diocese owns its data, content, domains and accounts
   outright with export at any time, plus a perpetual source-included

@@ -98,6 +98,13 @@ Which action depends on the market, Kevin's ruling of 25 Aug 2026:
   double as proof: the prospect books through the kind of thing we build
   instead of renting. Link it at the bottom of the proposal; do not also
   keep an email CTA competing with it.
+- **Diocese letters (Kevin, 5 Nov 2026):** no scheduler button. The actions
+  are the two asks, each a prefilled email to Kevin: take the layer (the
+  finder, the bishop's voice, the digest), and name the parishes to build.
+  The scheduler is one line of text in the last box. A diocese moves
+  through an introduction and a communications office that can say yes to
+  something small; "book a call" asks for the meeting before the letter has
+  given anything. See `glaze/clients/diokzoo.md`.
 - **Rep-led markets (Uganda, DR):** the one action stays WhatsApp to the
   local rep. A Zoom link with Michigan is a worse next step than Andrew or
   Angel answering in the prospect's own timezone and language; the

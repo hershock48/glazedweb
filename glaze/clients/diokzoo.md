@@ -435,6 +435,38 @@ next door. The one-page briefs follow the same order.
 Still thin, and Kevin's facts to supply: live clients to name and a named
 second person in the "who the diocese would be dealing with" block.
 
+## The audit of 2026-11-05, and four more rulings
+
+Kevin asked what the research was being used for. The answer was uneven,
+so every note was re-read and mapped in the stmarymarshall repo at
+`docs/narthex-research-ledger.md`; read it before any review. Changed the
+same day, all live:
+
+- No "Book a call" button anywhere a diocese reads. The buttons are the
+  two asks, each a prefilled email to Kevin; the scheduler is a line of
+  text. `glaze/proposal.md` carries the rule for diocese letters.
+- The per-site price comparison is gone. The license exists so that no
+  one compares it to $50 a site, and the comparison had been added from an
+  older note.
+- Each letter has a table of what is running and what is not built yet.
+  Not built: giving through the platform, hosted video, the office panel,
+  texting, the self-serve export, the deposit script, the uptime monitor.
+- eCatholic's support terms (weekdays 8 to 5 Central, no changes made for
+  the parish; sections 7, 8 and 19, re-read that day) are in both letters.
+  This row gains "Support and uptime" (99.9% a month; urgent fixes the same
+  day, seven days a week), which are Kevin's numbers to change.
+- Kevin's rulings mid-pass: parishes built free are not capped ("name as
+  many as you want and we build them all"); no failure talk in anything a
+  diocese reads, so the exit license is titled "Continuity" and stated as
+  what the diocese holds; the social layer between parishes leads the
+  "connected" section.
+
+Raised by Kevin and not started: rebuilding the diocese's own site,
+diokzoo.org, on the platform with the finder built in. Its sitemap lists
+1,228 addresses: about 330 standing pages, 344 news posts, 140 events, 52
+people, 17 photo albums. It is an eCatholic site, so the reader written
+for the parishes applies.
+
 ## Open
 - (Ruled 2026-11-05: the chancery view is inside the license. Letters,
   this row and the terms page say so.)

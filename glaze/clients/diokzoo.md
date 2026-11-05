@@ -416,10 +416,8 @@ repo (6fc7433) and verified in production:
   reads.
 
 ## Open
-- Whether the chancery view is inside the license. The Kalamazoo letter
-  says it is "priced with the office panel" and this row lists it as not
-  included, while the letters sell seeing every site as what the diocese
-  gets. Kevin's to rule.
+- (Ruled 2026-11-05: the chancery view is inside the license. Letters,
+  this row and the terms page say so.)
 - Facts only Kevin has, for the vendor packet and the brief: a phone
   number, a named second person, and (after the entity) W-9 and insurance.
 

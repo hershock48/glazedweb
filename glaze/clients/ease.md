@@ -1,6 +1,6 @@
 # EASE Containers
 
-**Repo** `ease` (the proposal letter; no demo yet) · **Host** ease.glazedweb.com, planned · **Prospect**, not signed · Inbound 2026-11-05
+**Repo** `ease`, private (the proposal letter and a static demo) · **Host** ease.glazedweb.com (proposal at `/`, demo at `/demo`, all noindex) · **Prospect**, not signed · Inbound 2026-11-05
 
 **Build page** glazedweb.com/build/ease · **Agreement** glazedweb.com/agreement/ease · registry row `ease` in `lib/customOrders.js`. **Price ruled by Kevin 2026-11-05:** $3,500 build and $150 a month.
 
@@ -63,7 +63,7 @@ each was checked are in the `ease` repo README.
 
 ## Permissions
 
-None asked yet. The draft letter hotlinks their logo from their own site.
+None asked yet. The demo and the letter use copies of 20 photographs and the logo taken from their site on 2026-11-05, on Kevin's go-ahead, resized to 800px wide.
 
 ## Retired
 

@@ -57,8 +57,9 @@ does not use it at all.
 
 **Order again is in scope.** Kevin, 2026-11-05: "maybe we could make it
 easier to reorder." A button in every order email, a code on the carton
-label, one reminder a year. Added to Exhibit A at the same price. Standing
-orders are named as not included.
+label, one reminder a year. In Exhibit A, and ruled by Kevin the same day to
+stay inside the $3,500 rather than be priced separately. Standing orders are
+named as not included.
 
 ## What their stack is today
 

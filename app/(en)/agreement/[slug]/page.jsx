@@ -37,6 +37,19 @@ export async function generateMetadata({ params }) {
     title: order ? `Agreement for ${order.client} | glazedweb` : "Agreement | glazedweb",
     description: order ? `The custom-order agreement for ${order.client}: scope, pricing, and acceptance.` : undefined,
     robots: { index: false, follow: false },
+    // Its own card, not the homepage's. The image comes from
+    // opengraph-image.jsx beside this file; this block exists so the title
+    // and description stop inheriting "Web Design in Michigan" from the
+    // layout (Next replaces openGraph wholesale, glaze/link-cards.md).
+    openGraph: order
+      ? {
+          siteName: "Glazed Web",
+          type: "website",
+          url: `https://www.glazedweb.com/agreement/${order.slug}`,
+          title: `${order.client}: agreement and payments`,
+          description: "Your agreement with Glazed Web. The pay button for the next payment is on this page.",
+        }
+      : undefined,
   };
 }
 

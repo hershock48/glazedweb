@@ -527,3 +527,23 @@ title, and whether he is part of Glazed Web or of the product entity.
 - Data conflicts flagged in the repo README (St. Philip's Thursday and
   Friday Masses, a staff name, reconstructed emails; San Felipe's adoration
   time).
+
+## 2026-11-11: repriced, and the agreement brought into line
+
+Kevin decided the price after the cost of the work was written down
+(stmarymarshall `docs/price-and-letters-outline-2026-11-11.md`):
+**$1,990 a month for the diocese's platform and $69 a month for each
+parish whose site is live**, one invoice to the diocese, no parish
+billed. Sixty live is $6,130 a month. This replaces $3,990 flat.
+
+With it: the parish office's desk is included (it was a $29 add-on); no
+fee to move a parish in the first twelve months, $350 a parish after;
+one hour of our edits a parish a month, down from two; and the
+agreement states no terms for giving, which stays on each parish's own
+provider until giving is built and its terms agreed in writing.
+
+`lib/customOrders.js` (`diokzoo`) carries all of this, with
+`perParishMonthly` and `buildNote` added. The letter's terms page is
+written from it (stmarymarshall `tools/terms-page.mjs`). Still needed
+before anyone signs: an attorney's read.
+

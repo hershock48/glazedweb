@@ -547,3 +547,10 @@ provider until giving is built and its terms agreed in writing.
 written from it (stmarymarshall `tools/terms-page.mjs`). Still needed
 before anyone signs: an attorney's read.
 
+Later the same day Kevin settled giving: when it is built, the platform
+takes no fee from a gift, neither a percentage nor a monthly charge.
+The agreement's giving clause says so. eCatholic's terms keep 1% of all
+payments; that difference is stated in the letter. Stripe publishes no
+"2.2%" nonprofit rate (only that a discount exists on application), so
+no page quotes one.
+

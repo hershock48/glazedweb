@@ -159,14 +159,17 @@ plus ONE of phone or email).
 
 ## Open
 
-- **Four env settings before anyone real books**, all visible as a status panel
+- **The env settings before anyone real books**, all visible as a status panel
   on `/admin`: SMTP, `MIGAS_NOTIFY_TO`, `MIGAS_ADMIN_PIN`, a Blob store on the
-  Vercel project, and `MIGAS_BUSY_ICS_URL`. Kevin sets them in the dashboard.
-  Then book a real test call end to end (inbox + phone calendar + slot gone).
-- **The co-management project minimum.** He named a minimum, no figure. The page
-  says one exists without a number until he sets it.
-- **The 30/90-minute prices** are pro-rata arithmetic on his $250/hour, flagged
-  on the page. Confirm, or drop the half-hour session.
+  Vercel project, and `MIGAS_BUSY_ICS_URL`. Since 2026-11-04 the day-before
+  reminder also needs `CRON_SECRET`. `STRIPE_SECRET_KEY` stays unset until the
+  processor is decided, and the booking goes on the invoice path meanwhile.
+  Kevin sets them in the dashboard. Then book a real test call end to end
+  (inbox + phone calendar + slot gone + the reminder the day before).
+- **Closed by his email of 2026-11-04** (see "The site in his four sections"
+  below): the co-management project minimum, moot now that co-management is
+  priced by the platform's tiers, and the 30/90-minute prices, replaced by his
+  own two numbers, a half hour at $250 and a full hour at $400.
 - **Patreon dashboard exports**: member growth over the years and member quotes,
   both offered by him on the call. Seams in `PATREON` render them when supplied.
   Refresh `PATREON.stats` (45 members / 162 posts / from $100, read 2026-08-27)
@@ -187,7 +190,16 @@ plus ONE of phone or email).
   verifiable from a sandbox.
 - Stripe's published restricted-business list prohibits courses and information on
   cultivating marijuana, so the processor question may not be answerable yet.
-  First ask: what settles his existing Squarespace store sales today?
+  First ask: what settles his existing Squarespace store sales today? The
+  Checkout code shipped 2026-11-04 behind `STRIPE_SECRET_KEY`, off until this
+  is answered; `lib/pay.ts` in the migas repo says why.
+- **His picks for the tiles**: four Instagram posts and four Patreon posts.
+  Stand-ins are on the home page until he sends them. Also his to supply: the
+  reviews text.
+- **A text reminder** needs a messaging provider he has not chosen. The .ics on
+  the phone is the phone reminder until then.
+- **Whether the November restructure, the payment step and the cron sit inside
+  the $1,000 build** or are an addition. Kevin's call.
 - **When the pitch host converts**: he is in, so the day the deposit lands the
   rewrites() block and public/pitch/migas come out, noindex comes off with the
   domain cutover per the README's Going live section.
@@ -296,3 +308,15 @@ chosen; the .ics on the phone is the phone reminder until then.
 text, the email address. **Open with Kevin:** whether the restructure, the
 payment step and the cron sit inside the $1,000 build or are an addition;
 the Exhibit A scope lines on the registry row now describe the new shape.
+
+## Security bump merged (2026-11-11)
+
+`claude/next-security-2026-10` (2026-10-22: next 15.5.23 to 15.5.28, sharp
+pinned at ^0.35.5, for the October 2026 advisories) sat unmerged for three
+weeks. Kevin said merge it on 2026-11-11. Merge commit `e2aa3ac` on migas
+main; `npm ci` and `next build` passed on the merged tree first (13 pages,
+types and lint clean). Only `package.json` and `package-lock.json` changed,
+and main had not touched either since the branch was cut.
+
+`claude/migas-wording-agreement-q05hnr` has nothing main lacks and can be
+deleted. Not deleted; nobody asked.

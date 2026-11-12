@@ -9,6 +9,7 @@
 | Width check | `glaze/scripts/width-check.mjs` | The widths the auditor does not visit (320/360…), including container-level overflow the page-level check misses. |
 | Motion check | `glaze/scripts/motion-check.mjs` | Samples animations frame by frame and asserts their shape, not their existence. |
 | Perf check | `glaze/scripts/perf-check.mjs` | LCP, CLS, JS weight on a throttled connection. |
+| Tells check | `glaze/scripts/tells.mjs` | Machine-writing patterns in the rendered copy, with hidden wizard steps, closed FAQ answers, meta, alt and placeholders included. Hard hits (em dashes, the negation reframe, stock phrases, unnamed authorities, model vocabulary) exit 1; check hits are counted per page with sentence-length spread. `--text` for letters and drafts. Rules and sources: `glaze/writing-tells.md`. Built 2026-11-11 for MI Gas. |
 | Browser loader | `glaze/scripts/lib/browser.mjs` | Shared driver resolution: CHROMIUM_PATH aware, sandbox pin fallback, Windows-safe. New scripts import this, never resolve their own. |
 | Plate renderer | `glaze/scripts/plate.mjs` | Renders the Glazed credit plate. |
 | Ledger | `glaze/scripts/ledger.mjs`, spec in `glaze/ledger.md` | Reads and writes the private studio authority through its archive marker. Dated events and next actions share the dashboard lock/revision fence. Older imports normalize build payment and delivery. Kevin's main-registry prices are reconciled with evidence, never silently preferred over newer receipts. Channels remain separate. |

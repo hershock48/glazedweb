@@ -433,3 +433,15 @@ For later work:
 **Still his to supply:** his four Patreon picks. Two stand-in titles now name
 his real posts (the complete bloom guide, the runoff guide).
 
+## Build fee checkout fixed (2026-11-12)
+
+Jake tried "Pay the build in full" on /agreement/migas three times at 19:15 UTC
+and got "The card page could not be opened just now" each time. Stripe had
+answered 400 "Invalid email address: " because this order's `email` is empty
+(no MI Gas address exists yet) and checkout sent it anyway. Every payment
+button failed the same way: full, half, build plus monthly, and monthly. Fixed
+in glazedweb `e843fe2` (merged `1f486ec`): an address that isn't real is left
+out, and Stripe asks the client for one on its own page. Checked live with one
+unpaid session; no money moved. When Jake gives a real address, put it in the
+order's `email` and Checkout will prefill it.
+\n

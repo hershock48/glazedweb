@@ -101,6 +101,12 @@ for (const width of WIDTHS) {
       const ending = document
         .getAnimations()
         .filter((a) => {
+          // Scroll-driven animations (animation-timeline: scroll() or view())
+          // run on the page's scroll, not the clock, and only finish at one
+          // end of it. This has just scrolled back to the top, so their
+          // `finished` never resolves and the run hung (MI Gas, 2026-11-11: a
+          // progress line under the header and photos drifting with scroll).
+          if (a.timeline && a.timeline !== document.timeline) return false;
           const it = a.effect?.getTiming?.().iterations;
           return it !== Infinity;
         })

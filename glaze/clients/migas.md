@@ -375,11 +375,11 @@ had never taken.
   If it takes none, saying so is a claim a nutrient company's education arm
   cannot make (migas-voice.md, "no product attached to his advice").
 
-## Debug and UX pass, waiting on Kevin's OK (2026-11-11)
+## Debug and UX pass, merged (2026-11-11)
 
 Kevin, 2026-11-11: "double check and debug. improve ux and ui in pass." Migas
-branch `claude/ux-debug-pass-2026-11` (`8849010`), shown to Kevin and not
-merged. Its commit message lists every change with the measurements. What
+branch `claude/ux-debug-pass-2026-11` (`8849010`), merged as `7e3e63d` on
+Kevin's OK the same day. Its commit message lists every change with the measurements. What
 later work needs to know:
 
 - The three small forms (call-back, question, co-management application) move
@@ -403,4 +403,33 @@ later work needs to know:
 - Whether the application should ask for a flower-room count. Tiers are priced
   by rooms or lights, and today only lights is asked.
 - Whether to name or picture who takes the calls.
+
+## Motion, the loop redrawn, the demo sign-in (2026-11-11)
+
+Kevin, 2026-11-11, after seeing the site: more motion, a better co-management
+loop graphic, the AI-sounding lines he still saw on the home page, the demo
+button "behind a lock", and "push all to live". Migas `e4a3d2e`, merged as
+`1f21066` and live. The commit message has every change and the measurements.
+For later work:
+
+- Motion classes in globals.css: `.stagger` on a card grid (the Reveal
+  component watches it; never on a `gap-px` grid, whose background flashes),
+  `.lift` on a linked card, `.drift` on a photo inside an `overflow-hidden`
+  frame, and `.scroll-progress` in the header. All of it is off under reduced
+  motion and nothing animates on the first screen.
+- The loop's styles are `components/SteerLoop.css`, loaded only where the loop
+  is drawn. The light and the station flares share one 8s cycle; change both
+  durations together or they drift apart.
+- The demo button shows the platform's demo sign-in (facility `demo`, passcode
+  `grow-demo`) from `COMANAGEMENT.software.demoLogin`. If the platform changes
+  it, change it there. A one-click demo needs a change in the `rgs` repo,
+  which this session could not reach.
+- Home copy changed: the section heading is "Half an hour or a full hour"; the
+  mirrored session taglines are gone; guide and service titles lost their
+  comma shape; new hero and footer lines. "The work is public. The method is on
+  Patreon." and "The foundation." went with the copy pass (`7c6ea49`); if
+  anyone still sees them, the page is stale.
+
+**Still his to supply:** his four Patreon picks. Two stand-in titles now name
+his real posts (the complete bloom guide, the runoff guide).
 

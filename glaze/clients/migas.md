@@ -320,3 +320,36 @@ and main had not touched either since the branch was cut.
 
 `claude/migas-wording-agreement-q05hnr` has nothing main lacks and can be
 deleted. Not deleted; nobody asked.
+
+## Copy that sounds like AI (2026-11-11)
+
+Kevin, 2026-11-11: Jake is intense about anything on the site that reads as
+AI-written. Treat every line as read by an expert detector: the best study we
+have found that people who use AI tools daily spot AI text almost every time,
+paraphrased or not. The house reference is `glaze/writing-tells.md`. Run
+`glaze/scripts/tells.mjs` against a production build before any copy ships.
+
+**The first pass** is migas branch `claude/copy-pass-2026-11`, shown to Kevin
+and waiting on his OK to merge (2026-11-11). It took the live site from 2 hard
+and 50 check hits to 0 and 14, each of the 14 read and kept. It also removed
+the "Most booked" badge on the full-hour card, which claimed bookings the site
+had never taken.
+
+**Decisions:**
+
+- "We" stays. The marketing research says to use "I" for a solo practice, but
+  his posts say "we" for a real team (see migas-voice.md), so "we" is his voice.
+- Contractions follow his writing.
+- His own phrases stay even when the checker flags them: "Grow with us", the
+  call topics from his email, and his Patreon tagline.
+
+**Ask him:**
+
+- The three draft FAQ answers in his own words: confidentiality (consulting and
+  co-management) and rescheduling, plus term and notice for co-management.
+- One thing that went wrong that he is willing to publish. His posts always
+  have one and the site has none. Nothing gets lifted from the Patreon to fill
+  it.
+- Whether MI Gas takes a cut on any gear, nutrients or genetics it recommends.
+  If it takes none, saying so is a claim a nutrient company's education arm
+  cannot make (migas-voice.md, "no product attached to his advice").

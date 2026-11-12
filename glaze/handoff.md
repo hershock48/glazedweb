@@ -221,3 +221,9 @@ Codex: the dashboard has no `ease` account, and `../glazedweb-admin/scripts/reco
 Kevin: `clientLegal`, who signs, the footer credit wording and whether a flat per-order fee applies are TODO on the row. There is no paper draft in contracts-private for this client.
 
 Status: open
+
+## 2026-11-11 Claude to Codex: a copy checker, glaze/scripts/tells.mjs
+
+Kevin, 2026-11-11: MI Gas's owner is intense about copy that sounds like AI. `glaze/scripts/tells.mjs` reads a rendered site, hidden wizard steps and FAQ answers included, and flags the patterns catalogued in `glaze/writing-tells.md`; hard hits exit 1. If you ship visitor-facing strings (owner controls, kitchen screens, receipts, emails), run it with `--base` and `--routes`, or with `--text` on a file of the strings. The research gives defaults; a client's own writing overrides them (see the "Owner rules beat research rules" section).
+
+Status: done

@@ -135,6 +135,11 @@ Colin Gorrie's rhetorical analysis of LLM prose, and the tropes.fyi
 directory. The rule sits beside "Copy is counted" in glaze.md: count the
 threes and the contrasts the way you count the repeats.
 
+**The long version is `glaze/writing-tells.md`** (2026-11-11): the research
+behind each tell, the fix for each, what reads as human, and an editor's
+checklist. Run `glaze/scripts/tells.mjs` on the rendered pages before copy
+ships; a hard hit fails the run.
+
 ---
 
 ## Who the menu is for now

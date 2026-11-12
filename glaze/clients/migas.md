@@ -374,3 +374,33 @@ had never taken.
 - Whether MI Gas takes a cut on any gear, nutrients or genetics it recommends.
   If it takes none, saying so is a claim a nutrient company's education arm
   cannot make (migas-voice.md, "no product attached to his advice").
+
+## Debug and UX pass, waiting on Kevin's OK (2026-11-11)
+
+Kevin, 2026-11-11: "double check and debug. improve ux and ui in pass." Migas
+branch `claude/ux-debug-pass-2026-11` (`8849010`), shown to Kevin and not
+merged. Its commit message lists every change with the measurements. What
+later work needs to know:
+
+- The three small forms (call-back, question, co-management application) move
+  focus to the first problem after a rejected submit and to the confirmation
+  after a sent one. On a phone, both used to land off screen.
+- `.wrap`, `.eyebrow`, `.btn*`, `.card` and `.field` are in `@layer components`
+  now, so a utility beside one of them wins. Before, the class won silently.
+- Two-column form fields are three rows of a subgrid (label and hint, control,
+  message). Keep the label and hint inside the first row's wrapper, or the
+  pairs stop lining up.
+- globals.css has a print block for every page except the one-pager's sheet.
+  Printed from the top, /co-management used to come out with 6 blank pages.
+- The Professional tier highlight is gone. It never rendered, and drawing it
+  would have recommended a tier with no reason given.
+
+**Ask Jake:**
+
+- Whether a co-management prospect's first call is the paid full hour. The
+  buttons on /co-management now say "Full hour $400" beside them, because
+  that is where they go.
+- Whether the application should ask for a flower-room count. Tiers are priced
+  by rooms or lights, and today only lights is asked.
+- Whether to name or picture who takes the calls.
+

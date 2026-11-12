@@ -321,6 +321,27 @@ and main had not touched either since the branch was cut.
 `claude/migas-wording-agreement-q05hnr` has nothing main lacks and can be
 deleted. Not deleted; nobody asked.
 
+## UX pass merged (2026-11-11)
+
+Kevin asked for a UX and UI pass over the whole site and sent three of Jake's
+room photos to use. Branch `claude/ux-pass-2026-11`, merged as `d6b6121` on
+his OK. The branch commit (`20d6767`) lists every behavior change with its
+measurements. The ones to know:
+
+- The booking wizard's time step overflowed on phones, because a `<fieldset>`
+  sizes to its widest child, and the whole page zoomed out at 390px. Fixed
+  for every fieldset in globals.css.
+- "Book Half hour" and "Book Full hour" links carry `?session=hour` or
+  `?session=half`, and the wizard opens on step 2 with that session chosen.
+- Commit `7150362` used `.dot` on five lists and never defined it, so those
+  bullets were invisible. It is defined now.
+- The three photos are on the home page (one on phones), as WebP with all
+  metadata dropped. LCP on `/` went from 3.12s to 2.06s on a throttled phone
+  after the sun textures moved to lossless WebP and the first one got a
+  preload.
+- Reviews is out of the header nav until `REVIEWS` has a real quote, and the
+  footer no longer prints "Email: to be supplied".
+
 ## Copy that sounds like AI (2026-11-11)
 
 Kevin, 2026-11-11: Jake is intense about anything on the site that reads as
@@ -329,8 +350,8 @@ have found that people who use AI tools daily spot AI text almost every time,
 paraphrased or not. The house reference is `glaze/writing-tells.md`. Run
 `glaze/scripts/tells.mjs` against a production build before any copy ships.
 
-**The first pass** is migas branch `claude/copy-pass-2026-11`, shown to Kevin
-and waiting on his OK to merge (2026-11-11). It took the live site from 2 hard
+**The first pass** is migas branch `claude/copy-pass-2026-11`, merged to
+main as `7c6ea49` on Kevin's OK (2026-11-11). It took the live site from 2 hard
 and 50 check hits to 0 and 14, each of the 14 read and kept. It also removed
 the "Most booked" badge on the full-hour card, which claimed bookings the site
 had never taken.

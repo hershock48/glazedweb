@@ -444,4 +444,3 @@ in glazedweb `e843fe2` (merged `1f486ec`): an address that isn't real is left
 out, and Stripe asks the client for one on its own page. Checked live with one
 unpaid session; no money moved. When Jake gives a real address, put it in the
 order's `email` and Checkout will prefill it.
-\n

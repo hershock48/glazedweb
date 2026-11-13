@@ -444,3 +444,29 @@ in glazedweb `e843fe2` (merged `1f486ec`): an address that isn't real is left
 out, and Stripe asks the client for one on its own page. Checked live with one
 unpaid session; no money moved. When Jake gives a real address, put it in the
 order's `email` and Checkout will prefill it.
+
+## Admin switched on, storage connected (2026-11-12)
+
+Kevin set `MIGAS_ADMIN_PIN` (production) and asked for /admin to be debugged
+before it went to Jake. What changed:
+
+- **Storage.** Blob store `migas-availability` (`store_aa012wFV9Hxejj5y`,
+  public-read, iad1) is connected to the migas project for production and
+  preview, which adds `BLOB_READ_WRITE_TOKEN`. Created with the Vercel CLI on
+  Kevin's Mac; the Vercel connector is refused (403) on store creation.
+  /admin could sign in before this, but every save was refused.
+- **Admin fixes**, migas `922bdcc` (merged `5db320c`): a rejected save keeps
+  what was typed, the weekly hours stack on a phone, and the status panel
+  reads for the owner.
+- **Booking records**, migas `14b3f1e`: connecting the store also switched on
+  `lib/bookings.ts`, which was writing each booking (name, email, phone) to
+  `bookings/<reference>.json` in the public store, a guessable address. The
+  path now ends in an HMAC of the reference. No booking was written under the
+  old path. A private store for bookings would be stronger; it needs a second
+  store and token.
+
+Still off, and the admin's status tiles say so: his calendar feed
+(`MIGAS_BUSY_ICS_URL`), outgoing mail (SMTP), and an address for bookings
+(`MIGAS_NOTIFY_TO`). `CRON_SECRET` is unset too, so the day-before reminder
+does not run yet.
+

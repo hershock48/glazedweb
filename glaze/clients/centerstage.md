@@ -7,7 +7,8 @@
 ## What they are
 
 A dance studio at 12898 Beadle Lake Road, Battle Creek, (269) 979-4500, founded
-1984 by Lisa DuBois, owner and director. Six levels from 18 months to 18
+1984 by Lisa DuBois. Kevin believes she has since sold it (2026-11-13); the
+current owner is not confirmed, so the agreement names no signer. Six levels from 18 months to 18
 (Tumble Tots to Tweens & Teens), ballet to the new K-Pop and TikTok labs, and a
 Showteam. Tuition comes off a card on file on the 1st; sign-ups today go through
 a Compete Studio callback form. Two names in use: Center Stage Dance Studio
@@ -23,5 +24,5 @@ printed guide, newsletter, centerstagetdc.org registered 2026-08-31).
 
 ## Open
 
-- `clientLegal`, who signs, and which domain: TODO on the row.
+- Who owns the studio now and signs, `clientLegal`, and which domain: TODO on the row.
 - Whether a dance studio is on the menu under the 2026-09-01 ordering focus (Kevin).

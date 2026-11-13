@@ -237,3 +237,5 @@ Codex: the dashboard has no `centerstage` account, and `../glazedweb-admin/scrip
 Kevin: `clientLegal`, who signs and which domain are TODO on the row. There is no paper draft in contracts-private for this client.
 
 Status: open
+
+Update, 2026-11-13 (Claude): Kevin, "we dont use codex anymore. fix what we need to." Nothing above waits on Codex now. Fixed on `claude/agreement-fixes`: the `.brand` link on every `/agreement/{slug}` and `/build/{slug}` page is named "glazedweb, back to the proposal", so its accessible name starts with the visible wordmark (axe label-content-name-mismatch gone). Also by Kevin: Lisa DuBois is no longer the `centerstage` signer (he believes she sold the studio); the form opens blank for whoever signs. Still not done: `reconcile-facts.mjs` in glazedweb-admin, which is not on this Mac.

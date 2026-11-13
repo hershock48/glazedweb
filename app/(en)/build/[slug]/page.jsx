@@ -86,7 +86,7 @@ export default async function ProjectPage({ params }) {
         <div className="navwrap">
           {/* Same rule as the agreement page: the mark goes back to the
               proposal he arrived from, not to the studio's homepage. */}
-          <a className="brand" href={order.pitchUrl || "/"} aria-label={order.pitchUrl ? "Back to the proposal" : "glazedweb home"}>
+          <a className="brand" href={order.pitchUrl || "/"} aria-label={order.pitchUrl ? "glazedweb, back to the proposal" : "glazedweb home"}>
             <Mark />
             <span className="bw">
               glazed<span>web</span>

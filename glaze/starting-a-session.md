@@ -124,12 +124,12 @@ still there because it is a file.
 | What carries | Where it lives | Who reads it |
 |---|---|---|
 | Who Kevin is, what he has ruled, the traps of this machine | Claude's memory directory for this project | loaded into every Claude session in this folder |
-| The standards, the bar, the process | `glaze.md` and the files its table names | both agents, every session |
-| Lanes, branch prefixes, commit trailers, dirty-tree etiquette, the dispute rule | `AGENTS.md` in each repo, with `CLAUDE.md` pointing at it | both agents, every session |
-| The inbox between the two agents | `glaze/handoff.md` | both agents, at session start |
-| The work list, the owners, the merge order | `glaze/backlog.md` | both agents, and Kevin |
+| The standards, the bar, the process | `glaze.md` and the files its table names | every session |
+| Branch prefixes, commit trailers, when to merge, dirty-tree etiquette | `AGENTS.md` in each repo, with `CLAUDE.md` pointing at it | every session |
+| The work list, the owners, the merge order | `glaze/backlog.md` | every session, and Kevin |
 | Who found what, and whether it held | `contracts-private/reviews/` and its scorecard | whoever asks |
-| Review on every pull request | the workflow in each repo, plus Codex's GitHub integration | runs with no chat open at all |
+| Review on every pull request | the Claude review workflow in each repo | runs with no chat open at all |
+| The two-agent period, for the history of an old branch | `glaze/handoff.md` | whoever needs it; not an inbox since 9 Nov 2026 |
 
 **What does not carry:** the text of the conversation, any background agent still
 running when it ends, and anything on screen such as a local preview. Work that
@@ -144,25 +144,23 @@ Same opener as above, plus one line. The full version:
 Repos attached: glazedweb (the studio docs) and <client-repo> (the work).
 
 Read glaze.md in the glazedweb repo first, then AGENTS.md, then
-glaze/handoff.md and glaze/backlog.md, then glaze/clients/<client>.md. Run the
-ninety-second derive in glaze.md before trusting anything the docs claim about
-current state.
+glaze/backlog.md, then glaze/clients/<client>.md. Run the ninety-second derive
+in glaze.md before trusting anything the docs claim about current state.
 
 Today: <what you want done>
 ```
 
-`AGENTS.md` and the two shared files are the only addition. They are what make a
-new chat pick up the other agent's work instead of starting its own.
+`AGENTS.md` and the backlog are the only addition. They are what make a new chat
+pick up unfinished work instead of starting its own.
 
-### The other agent
+### Codex, retired
 
-Claude and Codex are not connected to each other. They share four things and
-nothing else: the rules in `AGENTS.md`, the inbox in `glaze/handoff.md`, the list
-in `glaze/backlog.md`, and the pull requests on GitHub, where each reviews the
-other before Kevin merges. A Claude session can also ask GPT a question directly
-through `glaze/scripts/second.mjs`, which runs the Codex CLI on Kevin's ChatGPT
-subscription. That is a phone call, not a link: one question, one answer, no
-shared memory.
+Codex worked in these repos alongside Claude from September until 9 Nov 2026,
+when Kevin retired it ("we're not using codex anymore"). What it left is history:
+its branches, the entries in `glaze/handoff.md`, the review scorecard, and the
+backlog items still marked (codex), which have no owner until Kevin says one
+still matters. Nothing waits for a second agent's review.
 
-If one of them is out of usage, the other takes over from those files and writes
-a note saying so. The rule is in the agent outage memory and in `AGENTS.md`.
+`glaze/scripts/second.mjs` still exists and still runs the Codex CLI on Kevin's
+ChatGPT subscription if he ever asks for a second opinion. No step calls it by
+default, and no step owes it.

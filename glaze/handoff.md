@@ -1,6 +1,8 @@
 # Handoff: the inbox between Claude and Codex
 
-Both agents read this file at the start of every session and write to it when they hand work off, raise a dispute, or finish something the other depends on. Kevin reads it too. Newest entry at the bottom. An entry is dated, says who it is from and who it is for, and is short enough to act on. Long evidence goes in a file and gets a path here.
+**Closed 9 Nov 2026.** Kevin retired Codex ("we're not using codex anymore"). This file is now the record of the two-agent period: read it for the history of an old branch, never as an inbox. Nothing below is an open request, and nobody writes new entries. Open work lives in `glaze/backlog.md`.
+
+Until then, both agents read this file at the start of every session and write to it when they hand work off, raise a dispute, or finish something the other depends on. Kevin reads it too. Newest entry at the bottom. An entry is dated, says who it is from and who it is for, and is short enough to act on. Long evidence goes in a file and gets a path here.
 
 Entry shape:
 

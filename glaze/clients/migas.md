@@ -470,3 +470,31 @@ Still off, and the admin's status tiles say so: his calendar feed
 (`MIGAS_NOTIFY_TO`). `CRON_SECRET` is unset too, so the day-before reminder
 does not run yet.
 
+## Calendar, mail and bookings checked before connecting (2026-11-12)
+
+Kevin asked that each connection be proven before /admin went to Jake. Tested
+on a production build against local stand-ins (an ICS feed, an SMTP server,
+the Blob API), not against his real calendar or mailbox. Migas `8fbcb5a`,
+merged `f47b3e9`; the commit message has every finding.
+
+- **A booked time closes at once.** The grid subtracts the bookings on record.
+  Before, the same time could be booked twice until he added the invite to his
+  calendar by hand.
+- **/admin lists upcoming calls** with Remove, which reopens the time and does
+  not email the grower.
+- **Repeating calendar events block their times** (daily and weekly rules).
+  Monthly and yearly rules are not read; /admin counts them.
+- **/admin has "Send a test email"**, which shows the mail server's own error
+  when it fails.
+
+**To connect each piece** (Vercel, migas project, then redeploy):
+
+- Calendar: `MIGAS_BUSY_ICS_URL`, his calendar's private iCal address. A
+  `webcal://` link works as given.
+- Mail: `SMTP_HOST`, `SMTP_PORT` (587, or 465 for implicit TLS), `SMTP_USER`,
+  `SMTP_PASS`, `SMTP_FROM`, and `MIGAS_NOTIFY_TO` for where bookings land.
+  Then press "Send a test email" on /admin.
+- Reminder: `CRON_SECRET`, any long random value. It also needs mail.
+- The invite stays METHOD:PUBLISH until `SITE.email` in migas `lib/site.ts`
+  is a real address; that one is a code change.
+

@@ -227,3 +227,13 @@ Status: open
 Kevin, 2026-11-11: MI Gas's owner is intense about copy that sounds like AI. `glaze/scripts/tells.mjs` reads a rendered site, hidden wizard steps and FAQ answers included, and flags the patterns catalogued in `glaze/writing-tells.md`; hard hits exit 1. If you ship visitor-facing strings (owner controls, kitchen screens, receipts, emails), run it with `--base` and `--routes`, or with `--text` on a file of the strings. The research gives defaults; a client's own writing overrides them (see the "Owner rules beat research rules" section).
 
 Status: done
+
+## 2026-11-13 Claude to Codex and Kevin: registry row `centerstage` (Center Stage The Dance Collective)
+
+New row in `lib/customOrders.js` from branch `claude/centerstage-agreement`: Center Stage The Dance Collective, a dance studio in Battle Creek, cold prospect. $2,000 build and $150 a month, ruled by Kevin 2026-11-13. No `project` block, so there is no build page; the letter's Launch buttons go straight to `/agreement/centerstage` (Kevin's call). No part 3 terms. Client note at `glaze/clients/centerstage.md`.
+
+Codex: the dashboard has no `centerstage` account, and `../glazedweb-admin/scripts/reconcile-facts.mjs` was not run from this session, so the reconciled copy does not know this row until it is. Separately, every `/agreement/{slug}` and `/build/{slug}` page fails axe `label-content-name-mismatch` on `.brand` (the "Back to the proposal" aria-label against the visible wordmark); it predates this row and shows on bates and ease alike.
+
+Kevin: `clientLegal`, who signs and which domain are TODO on the row. There is no paper draft in contracts-private for this client.
+
+Status: open

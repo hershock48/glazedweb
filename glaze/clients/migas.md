@@ -498,3 +498,62 @@ merged `f47b3e9`; the commit message has every finding.
 - The invite stays METHOD:PUBLISH until `SITE.email` in migas `lib/site.ts`
   is a real address; that one is a code change.
 
+
+## Remote Grow Solutions: Jake's second review (2026-11-16)
+
+His email "Kevin software", read from a photo of it. RemoteGrowSolutions
+`33c69d8`, live on remotegrowsolutions.vercel.app. The repo README has the
+point-by-point table.
+
+**What he asked for, in his words where it matters.**
+
+- Consultant side: "Need this eliminated" (the four counters). No "needs a
+  look", no "1 of 3, 2 to go". "This side doesn't need to be as
+  instructional. Just use color coordination and/or check list style in each
+  room."
+- A visual for each flower room, "maybe even a 3d profile of the room with a
+  simple rendering of benches/lights/ and plants".
+- A full irrigation schedule worked out from dripper size and drippers per
+  plant, P1 and P2 with on and off times.
+- Logins for Aroya, Growlink and TrolMaster so live graphs show under
+  irrigation and environment. Substrate sensor data uploads as a graph.
+- The customer is prompted for daily and weekly tasks, starting from his own
+  laminated weekly sheet with the facility and name details removed. The list
+  checks itself when the information is entered.
+- A guide page with a video for runoff reads: at least two plants per feed
+  zone, spread out, or a whole-row collection, or both.
+- Runoff EC, pH and volume for each feed zone of every room.
+- No "this week" tab on either side. Prompts sit under each room, with small
+  alerts at the top or bottom of the screen.
+- Mobile friendly. Aroya's customer interface is the reference for a simple
+  profile.
+- A question: can calls be hosted in the app with notes generated
+  automatically?
+
+**Built.** All of it except the four items below.
+
+**Not built, and why.**
+
+- Live readings pulled from a vendor. Growlink documents a developer API on
+  its Sprout plan and above. TrolMaster runs an API gateway that issues keys
+  on request for a monthly fee per device. No public Aroya API was found.
+  Each needs its own connector and a real facility's key to test against.
+  Until then a room links out to the vendor's live dashboard and draws graphs
+  from an uploaded CSV export.
+- Stored vendor logins. Nothing in the app can use one, so the profile
+  records the platform and the access route with no password field.
+- Video upload. Photos upload; a phone video needs direct-to-storage upload.
+- Calls in the app with generated notes. It needs a calling provider,
+  transcription, a model API key and recording consent. The model key
+  conflicts with the no-API-key rule, so it is Kevin's decision.
+
+**Two things only Jake can settle.**
+
+- His sheet is Monday to Friday. The public pages still say three check-ins a
+  week.
+- He names TrolMaster for temperature and RH graphs. The public requirements
+  still say TrolMaster sensors are not supported, which was about substrate
+  sensors on the August call.
+
+**Still his to supply.** The runoff video, and a read of the guide's written
+steps, which are the ordinary method and a draft until he confirms them.

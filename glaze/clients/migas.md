@@ -557,3 +557,42 @@ point-by-point table.
 
 **Still his to supply.** The runoff video, and a read of the guide's written
 steps, which are the ordinary method and a draft until he confirms them.
+
+## Rename, the Aroya reference, time off by blocking (2026-11-16, later)
+
+A second note from Jake the same day. RemoteGrowSolutions `3939ba5`, migas
+`3a7b7ae`.
+
+- **The platform is "MI-Gas x Plantsman Management" now**, spelled as he
+  wrote it, "instead of RGS". Changed everywhere a customer reads it, on the
+  platform and on the MI Gas home page. The repository, the
+  remotegrowsolutions.vercel.app address and the `RGS_` variables keep the old
+  name until Kevin renames them.
+- **Aroya is the format reference**, in his words "one of the most important
+  notes": their customer interface, "without having to start from scratch or
+  reinvent the wheel". Their app is behind a login, so what was read is what
+  they publish on aroya.io. Taken from it: a row of ring gauges at the top of
+  each room, every room as one table of latest readings with a status, and
+  the run as a strip of weeks. Ours colour the status against the room's own
+  setpoints. He named the differences himself: direct management and runoff.
+  If he can share screenshots of his own Aroya account, the next pass can be
+  closer.
+- **"I guess we need to test scheduling and payment."** Scheduling was tested
+  end to end on a production build against a local stand-in for storage: a
+  full booking, the time closing, /admin listing the call. Payment is OFF on
+  the live site: there is no Stripe key, so bookings go on the invoice path.
+  The half that is ours was tested with a locally signed notice: it marked
+  the call paid, refused a wrong signature and ignored a repeat. Creating a
+  real card page needs a Stripe test key in Vercel, and the processor
+  question in `lib/pay.ts` is still open.
+- **Time off by blocking.** His words: "instead of setting availability, I'm
+  just blocking off windows I'm not available and outside of that I'm open
+  from 7 am to 10 pm". /admin has a Time off section with one-off blocks,
+  weekly blocks and whole days, and one button that sets the weekly hours to
+  7 AM to 10 PM every day. The default hours were left alone because he wrote
+  "I might". He presses the button when he wants it.
+
+Still off on the live MI Gas site, same as 2026-11-12: his calendar feed,
+outgoing mail, the address bookings land at, the reminder, and card payment.
+Until mail is connected a booking is saved and shown on /admin but emailed to
+nobody, and the confirmation screen says so.

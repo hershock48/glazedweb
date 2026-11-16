@@ -665,3 +665,54 @@ outage. Neither review found an authorization hole or a leak of a stored key.
 **Still not verified.** Nothing was signed in to on the live sites. The
 versioned saves were tested against a stand-in, not the real Blob store. No
 real vendor API key has been tried. Card payment has never run against Stripe.
+
+## Signed in to the live sites, then Jake's answers (2026-11-16, later)
+
+RemoteGrowSolutions `cf723ed`, migas `a7ae562`.
+
+**Signing in found one thing local testing could not.** With no database, each
+server instance on Vercel kept its own copy of the demo, so a saved entry
+often did not show on the page that came back. The demo said so on screen
+from `7e96f2d`. By the time of the next deploy a Postgres database was
+attached to the platform project: the consultant page showed 0 facilities and
+the "Load the demo facility" button. Until that button is pressed the demo
+sign-in printed on the MI Gas page does not work.
+
+On the MI Gas admin, against the real Blob store: a test time-off block and a
+test booking (MG-FE63D0) both worked and were removed. Mail, calendar feed,
+notify address, reminder and card payment are still not connected.
+
+**Jake answered five of the open questions.** His words are quoted in the
+platform README under "His answers of 2026-11-16".
+
+- Data is due daily. Both sites say so. A room is flagged the morning after a
+  weekday with no entry.
+- Three levels of service: Remote (one review and one call a week), Middle
+  (three reviews, one call), Top (daily review, several calls). On the public
+  page, set per facility by the consultant, shown to the grower. Called
+  levels because "tier" already means facility size.
+- Canopy video: built. Picked on the entry form for that room and day, sent
+  from the phone straight to storage, played on the room page, ticks the
+  canopy line. 300 MB limit. Off until a Blob store is attached to the
+  platform project.
+- TrolMaster: substrate sensors are not accepted as a room's only substrate
+  sensors; environmental sensors are approved. His reason ("not reliable") is
+  left off the public pages.
+- Yes to recording calls. He did not pick between the two setups, so nothing
+  is built.
+
+**He sent an Aroya email and password as the "API login".** It was not used
+and is not written down anywhere, here included. Aroya's API takes a key from
+Aroya support, not a sign-in. Told through Kevin: ask Aroya support for a key,
+and change that password since it traveled in a message.
+
+**Open with Jake now.** Whether daily includes the weekend. Customer-facing
+names for Middle and Top. What a level costs: pricing is still by facility
+size only and no page ties a level to a price. Simpler or fuller for call
+recording. The Aroya API key. Everything else on the earlier list stands.
+
+**Found on the way, not fixed.** The co-management one-pager prints on two
+pages, and did before this change (the live copy measured the same).
+
+**Not verified.** The video upload against the real Blob store, or from a real
+iPhone. A real vendor key. Card payment.

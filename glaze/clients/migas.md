@@ -596,3 +596,33 @@ Still off on the live MI Gas site, same as 2026-11-12: his calendar feed,
 outgoing mail, the address bookings land at, the reminder, and card payment.
 Until mail is connected a booking is saved and shown on /admin but emailed to
 nobody, and the confirmation screen says so.
+
+## Correction on vendor APIs, the API key field, the room redrawn (2026-11-16, evening)
+
+Kevin asked whether the vendor findings above were certain. One was wrong.
+RemoteGrowSolutions `1ca812a`, migas `c58ac10`.
+
+- **Aroya does publish an API.** The two sections above say none was found.
+  It exists: a REST API, the key issued by Aroya customer support and tied to
+  an Aroya user, with facilities, rooms, devices, a chart per room and per
+  device, and a validate call.
+- **TrolMaster.** Read-only sensor readings, Pro controllers only, requested
+  through their API portal. Their help center says it is free for now. An
+  older TrolMaster page quoted $15 a month per device. They have to confirm.
+- **Growlink.** Keys on request, and access depends on the plan.
+- **So the key is the login.** No vendor lets another app sign in with a
+  username and password. The facility profile now takes each vendor's API
+  key, sealed before it is stored and shown as its last four characters. An
+  Aroya key can be checked against Aroya from the profile. Pulling the
+  readings into graphs is not built for any vendor: it waits for one real key,
+  because Aroya's schema does not describe what its chart call returns.
+- **The room drawing** was redone at Kevin's request: benches on legs, a
+  canopy sized to the day of flower, bar fixtures on rails, lights that follow
+  the lighting schedule.
+- **Calls with automatic notes** can be done with open-source parts: Jitsi
+  Meet for the call, Whisper for the transcript, an open model on Jake's own
+  computer for the notes. Not built. The recommendation is to start with
+  "upload a recording, get a transcript and a draft".
+- **The document for Jake.** "Open items for Jake: MI-Gas x Plantsman
+  Management", a Claude Doc Kevin forwards. It lists every open item, what it
+  needs from Jake, and the vendor pages behind the facts.

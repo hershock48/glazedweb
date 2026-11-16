@@ -626,3 +626,42 @@ RemoteGrowSolutions `1ca812a`, migas `c58ac10`.
 - **The document for Jake.** "Open items for Jake: MI-Gas x Plantsman
   Management", a Claude Doc Kevin forwards. It lists every open item, what it
   needs from Jake, and the vendor pages behind the facts.
+
+## The day's work reviewed and debugged (2026-11-16, night)
+
+Kevin asked for everything built that day to be double checked.
+RemoteGrowSolutions `2417427`, migas `517b138`.
+
+How it was checked: two read-only review sessions read the full diffs with no
+conclusions handed to them; a scripted browser walked a new, empty facility
+through every platform screen and action; a second script drove the MI Gas
+time-off controls against a local stand-in for storage, including a rehearsed
+outage. Neither review found an authorization hole or a leak of a stored key.
+
+**Fixed on the platform.**
+
+- A later partial entry hid an earlier out-of-range flag. The rules now read
+  each reading from the newest entry that has it, inside a week.
+- A wrong number could not be removed from an entry. Clearing a box now
+  removes it. A form opened before someone else saved only adds.
+- A gap in a sensor export drew as zero, and a decimal comma was misread.
+- An export with substrate and climate columns now lands under both headings.
+- A schedule typed without lights on was dropped in silence. It is refused.
+- Smaller ones: the assigned line rewriting past days, an old ticked item
+  vanishing, duplicate entries from two saves at once, the key check writing
+  back a stale copy, an oversized photo losing the typed entry.
+
+**Fixed on the MI Gas site.**
+
+- Adding a block could lose Jake's saved hours three ways: a stale copy on
+  another server instance, a failed read taken for "nothing saved", and a
+  cached copy of an overwritten file. All three are closed. Saves now write a
+  new versioned file.
+- The storage SDK retried a failing request for about seventeen minutes, so
+  the booking and admin pages would hang in an outage. Capped at a few
+  seconds.
+- A booking submit now checks the blocks as stored at that moment.
+
+**Still not verified.** Nothing was signed in to on the live sites. The
+versioned saves were tested against a stand-in, not the real Blob store. No
+real vendor API key has been tried. Card payment has never run against Stripe.

@@ -498,8 +498,10 @@ in the Diocese of Kalamazoo: Sean born and raised in the faith, Kevin a
 convert. Kevin's number is 269-274-3203. Both names and the number are in
 both letters and both one-page briefs. The letters say only that both are
 Catholics in the diocese; the rest is for conversation, not for print,
-unless Kevin says otherwise. Not known, so not printed: Sean's parish, his
-title, and whether he is part of Glazed Web or of the product entity.
+unless Kevin says otherwise. Sean is a parishioner of St. Philip in Battle
+Creek (Kevin, 2026-11-16); the letters and the briefs say so. Not known, so
+not printed: his title, and whether he is part of Glazed Web or of the
+product entity.
 
 ## Open
 - (Ruled 2026-11-05: the chancery view is inside the license. Letters,

@@ -716,3 +716,21 @@ pages, and did before this change (the live copy measured the same).
 
 **Not verified.** The video upload against the real Blob store, or from a real
 iPhone. A real vendor key. Card payment.
+
+## Co-management hidden for the launch (2026-11-19)
+
+migas `81bf57a`. Jake, by text: "lmk what i need to do on my end w the calendar
+scheduling/payments to finalize the website and launch. Then we can just hide
+the 3rd section (co-management and software) until its ready."
+
+- `COMANAGEMENT_LIVE` in the MI Gas `lib/site.ts` is false. The home page has
+  two ways in and ends after the call. No reachable page links to or mentions
+  co-management or the platform. The two co-management pages still open by
+  address, unlinked and noindex. Set the switch to true to bring it all back.
+- Checked on the live site after deploy. On the Vercel project only the Blob
+  token and the admin PIN are set: no mail, no notify address, no calendar
+  feed, no reminder secret, no Stripe key.
+- Kevin was given a list to forward: hours and time off on the admin page,
+  the calendar's private iCal link, the mailbox that sends and the address
+  bookings land at, invoice or card for launch, the domain, and the two draft
+  FAQ answers and eight post links still owed.

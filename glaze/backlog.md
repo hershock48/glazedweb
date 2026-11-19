@@ -1,6 +1,8 @@
 # The backlog
 
-The one backlog for the Glazed Web repos, moved into this repo on 2026-09-17 from the Codex thread that wrote it (its Documents\Codex copy is retired). Every item carries an owner in parentheses: (codex), (claude) or (kevin). Only the owner changes an item's status; the other agent reviews it before it merges. The lanes are in AGENTS.md. Items with a G prefix are external gates that only Kevin can open.
+The one backlog for the Glazed Web repos, moved into this repo on 2026-09-17 from the Codex thread that wrote it (its Documents\Codex copy is retired). Every item carries an owner in parentheses: (codex), (claude) or (kevin). Only the owner changes an item's status. Items with a G prefix are external gates that only Kevin can open.
+
+**9 Nov 2026: Codex is retired** (Kevin: "we're not using codex anymore"). A (codex) item has no owner now. It is not dropped and not done: it waits for Kevin to say it still matters, and whoever takes it up changes the owner. Nothing waits for a second agent's review, and the lanes that used to be in AGENTS.md are gone.
 
 Convention: `- [ ] ID (owner) text`. Add new items under the right section with the next ID. Do not renumber. The work log at the bottom is append-only.
 

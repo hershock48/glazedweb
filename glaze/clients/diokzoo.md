@@ -230,14 +230,14 @@ eCatholic gave security, promotion and support. The diocese pays for the
 site. That is the case we are answering: ownership, support written down,
 and the measured gaps in `glaze/research/diokzoo-audit-2026-11.md`.
 
-**People.** Stacie is introducing Kevin to **Vikki Sesna, communications
+**People.** Stacie is introducing Kevin to **Vicki Cessna, communications
 director of the diocese**, who writes the diocesan email. Stacie expects
 her to be defensive about anyone taking over social events; Kevin offered
 to carry her newsletter inside the parish sites instead. Stacie is also
 giving Kevin her own eCatholic login so he can see the back end and the
 MassTime panel. Kevin looks; nothing is changed on her site.
 
-**Vikki's newsletter is the announcements-inbox problem in one person.**
+**Vicki's newsletter is the announcements-inbox problem in one person.**
 Subscribers only, fed by parish workers emailing her, items dropped on the
 way. Stacie's own idea was a side panel on every parish site showing what is
 happening across the diocese, which is the diocese layer as built
@@ -268,9 +268,9 @@ diocese to pitch and the proof that a diocese will leave the template.
 posts hosted with the livestream layer, clipped, published on the diocese
 page and syndicated to every parish site, with a subscribe path that is not
 Facebook. The **holy-day popup**. And the **announcements inbox** as the
-tool Vikki is missing, offered to her as help, not replacement.
+tool Vicki is missing, offered to her as help, not replacement.
 
-**Kevin's follow-ups.** Take the Vikki introduction. Look at the eCatholic
+**Kevin's follow-ups.** Take the Vicki introduction. Look at the eCatholic
 back end once Stacie sends access, noting the MassTime panel's fields and
 whether any export exists. Ask which deanery St. Mary sits in and when the
 annual staff meeting is, because that room is the pitch.
@@ -279,7 +279,7 @@ annual staff meeting is, because that room is the pitch.
 
 Kevin forwarded the 2026-11-03 issue. Facts: published Tuesdays by the
 Office of Communications (sent under Emily Walsh, ewalsh@diokzoo.org;
-Vikki Sesna is the director), deadline the Thursday before, subscriber-only.
+Vicki Cessna is the director), deadline the Thursday before, subscriber-only.
 Sections: diocesan news, "REMINDER" items repeated week to week (the manual
 version of a run window), parish events from across the diocese (bazaars,
 galas, a parish mission), the bishop's Masses and gatherings, Liturgical
@@ -292,7 +292,7 @@ rotates parishes monthly (Office of Mission and Ministry, Jen Metzger).
 Its dated items are now rows in `parishes/diocese/events.ts` on the
 platform, so /diocese/events shows the diocese, not just the three platform
 parishes. This is the hand-kept version of the announcements inbox (phase
-two): Vikki's email is the inbox's first customer.
+two): Vicki's email is the inbox's first customer.
 
 ## Narthex, phase one built (2026-11-04)
 

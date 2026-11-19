@@ -734,3 +734,29 @@ the 3rd section (co-management and software) until its ready."
   the calendar's private iCal link, the mailbox that sends and the address
   bookings land at, invoice or card for launch, the domain, and the two draft
   FAQ answers and eight post links still owed.
+
+## The whole MI Gas repo reviewed and debugged (2026-11-19)
+
+migas `afa5462`. Kevin asked for the site, the admin and everything else to be
+double checked. Method: two read-only reviewers on the whole repo, plus a
+scripted browser on a local production build with mail, the calendar feed,
+reminders and payment notices switched on against local stand-ins. The full
+list is in the repo README under "Review of 2026-11-19".
+
+- Worst finding: the admin PIN could be guessed by machine in seconds, because
+  the sign-in cookie could be computed without the server. The admin lists
+  callers' names, emails and phones. Fixed: keyed cookie, lockout on wrong
+  PINs. Everyone was signed out once. A PIN under six characters still gets a
+  warning on the admin page; setting a longer one is Kevin's step.
+- A refused booking used to reset the dropdowns and drop the photos. Fixed.
+- Rate limits on every form; the grower's email no longer carries typed text;
+  photos are checked by their bytes; a booking that cannot be saved or checked
+  is refused; a failed owner email keeps the intake on the booking; the
+  calendar reader handles Exchange timezone names, DURATION and RDATE.
+- Do not switch Stripe on yet: the pay link dies after 24 hours. A task was
+  written up for it.
+- Still waiting on Jake and visible on public pages: two FAQ answers, the
+  "one thing to confirm" box on /consulting, the missing email on /connect,
+  and the placeholder /reviews page, which the footer links.
+- Not verified: the lockout against the real Blob store, a real mail provider,
+  his real calendar feed, real Stripe, a real iPhone.
